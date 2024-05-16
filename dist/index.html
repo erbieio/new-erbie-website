@@ -1,0 +1,69 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <link rel="icon" type="image/svg+xml" href="/logo.svg" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Erbie Website</title>
+  <style>
+    * {
+      padding: 0;
+      margin: 0;
+    }
+
+    #root {
+      display: none;
+    }
+
+    .loading-page {
+      width: 100vw;
+      height: 100vh;
+      justify-content: center;
+      color: white;
+      align-items: center;
+      display: flex;
+      background: #0f0c29;
+      background: radial-gradient(ellipse at center, #220A35 0%, #0D0316 55%, #0D0316 100%);
+    }
+  </style>
+  <script type="module" crossorigin src="/assets/index-C1bS5Baq.js"></script>
+  <link rel="stylesheet" crossorigin href="/assets/index-DVKauqYc.css">
+</head>
+
+<body>
+  <div id="root" class="hidden"></div>
+  <div class="loading-page" id="loading">
+    <svg xmlns="http://www.w3.org/2000/svg" width="50" height="50" viewBox="0 0 24 24">
+      <defs>
+        <filter id="svgSpinnersGooeyBalls20">
+          <feGaussianBlur in="SourceGraphic" result="y" stdDeviation="1" />
+          <feColorMatrix in="y" result="z" values="1 0 0 0 0 0 1 0 0 0 0 0 1 0 0 0 0 0 18 -7" />
+          <feBlend in="SourceGraphic" in2="z" />
+        </filter>
+      </defs>
+      <g filter="url(#svgSpinnersGooeyBalls20)">
+        <circle cx="5" cy="12" r="4" fill="currentColor">
+          <animate attributeName="cx" calcMode="spline" dur="2s" keySplines=".36,.62,.43,.99;.79,0,.58,.57" repeatCount="indefinite" values="5;8;5" />
+        </circle>
+        <circle cx="19" cy="12" r="4" fill="currentColor">
+          <animate attributeName="cx" calcMode="spline" dur="2s" keySplines=".36,.62,.43,.99;.79,0,.58,.57" repeatCount="indefinite" values="19;16;19" />
+        </circle>
+        <animateTransform attributeName="transform" dur="0.75s" repeatCount="indefinite" type="rotate" values="0 12 12;360 12 12" />
+      </g>
+    </svg>
+  </div>
+  <script>
+    window.onload = function () {
+      const t = setTimeout(() => {
+        const root = document.getElementById('root')
+        const loading = document.getElementById('loading')
+        loading.style.display = 'none'
+        root.style.display = 'block'
+        clearTimeout(t)
+      }, 400)
+    }
+  </script>
+</body>
+
+</html>
