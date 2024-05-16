@@ -5,12 +5,12 @@ export default function Footer() {
         <div className="text-left">Copyright © 2024 - Erbie</div>
         <div className="flex mt-16px lg:mt-0">
           <div>
-            <a href="https://www.erbie.io/PrivacyNotice" className="link color-#777 " target="__blank">
+            <a href="https://demo.erbie.io/PrivacyNotice" className="link color-#777 " target="__blank">
               Privacy Policy
             </a>
           </div>
           <div className="ml-24px lg:ml-40px">
-            <a href="https://www.erbie.io/TermsOfService" className="link color-#777 " target="__blank">
+            <a href="https://demo.erbie.io/TermsOfService" className="link color-#777 " target="__blank">
               Terms of Use
             </a>
           </div>

@@ -106,7 +106,7 @@ export default function Header() {
         ) : <div key={i}></div>)}
       </div>
       <div className="hidden lg:flex justify-start px-16px lg:px-0 lg:justify-end items-center">
-        <Button onClick={() => window.open('https://www.erbie.io/JoinErbieForm', '__blank')}>
+        <Button onClick={() => window.open('https://demo.erbie.io/JoinErbieForm', '__blank')}>
           <div className="uppercase">Get in Touch</div>
         </Button>
       </div>

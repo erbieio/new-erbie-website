@@ -1,1 +1,0 @@
-import{j as e}from"./index-DEJy5W0I.js";function n(){return e.jsx("div",{className:"coming-soon flex justify-center items-center",children:e.jsx("div",{children:e.jsx("div",{className:"text-center font-size-32px font-bold",children:"Coming Soon"})})})}function t(){return e.jsx("div",{children:e.jsx(n,{})})}export{t as default};

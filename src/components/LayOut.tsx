@@ -23,7 +23,6 @@ export default function LayOut() {
       return;
     }
     let dir = "";
-    console.log(e);
     if (e.deltaY > 0) {
       //向下
       dir = "down";
