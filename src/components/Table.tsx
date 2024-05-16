@@ -2,16 +2,19 @@
 import { ReactNode, ReactPortal, useEffect, useState } from "react";
 import "./Table.scss";
 import NoData from "./NoData";
+import Loading from "./Loading";
 export interface TableColumn {
   title: string;
   key: string;
   width?: number | string;
-  render?:() => void
+  render?:(val: unknown) => void
+
 }
 
 export interface TableProps {
   columns: Array<TableColumn>;
   dataSources: Array<unknown>;
+  loading?: boolean
 }
 export default function Table(props: TableProps) {
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
@@ -34,14 +37,15 @@ export default function Table(props: TableProps) {
     setLoaded(true)
   }, [props.columns, props.dataSources]);
   return (
-    <div className="table-components-box w-100%">
-      <table className="table-components w-100% text-left py-10px">
+    <div className="table-components-box w-100% min-h-30vh">
+      {
+        props.loading === true ? <Loading /> :      <table className="table-components w-100% text-left py-10px">
         <thead className="table-thead">
           <tr className="table-thead-tr">
             {props.columns.map((item, idx) => (
               <th
                 key={`t-thead-row-${idx}`}
-                className="fw-light font-size-12px px-10px py-8px color-#80838e"
+                className="fw-light font-size-12px px-10px py-8px color-#80838e  text-center"
                 style={{ width: (item.width || 0) + "px" }}
               >
                 {item.title}
@@ -71,9 +75,9 @@ export default function Table(props: TableProps) {
                   console.log('item', item)
                   return (<td
                     key={`t-body-row-${idx}-${i}`}
-                    className="font-size-12px px-8px py-4px"
+                    className="font-size-12px px-8px py-4px text-center"
                   >
-                    {typeof child.render === 'function' ? child.render(child): item[child.key]}
+                    {typeof child.render === 'function' ? child.render(item): item[child.key]}
                   </td>)
                 })}
               </tr>
@@ -81,6 +85,8 @@ export default function Table(props: TableProps) {
           )}
         </tbody>
       </table>
+      }
+
       {!list.length && loaded && (
         <div className="w-100% flex justify-center items-center h-90%">
           <NoData />

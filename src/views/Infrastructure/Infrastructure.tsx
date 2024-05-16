@@ -44,7 +44,7 @@ export default function Infrastructure() {
               </div>
             </div>
           </div>
-          <div className="right-box-bottom cursor-pointer w-100%">
+          <div className="right-box-bottom cursor-pointer w-100%" onClick={() => window.open('https://www.erbie.io/docs/install/run/deploy/index.html', '__blank')}>
             <div>Become A Vaildator</div>
             <img src={share} className="ml-30px w-20px" alt="" />
           </div>

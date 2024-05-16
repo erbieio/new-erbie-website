@@ -31,7 +31,9 @@ body,html {
   }
 }
 
-
+a {
+  color: white;
+}
 /* 上滑 */
 .scroll-top-enter {
   opacity: 0;

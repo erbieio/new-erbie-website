@@ -89,6 +89,7 @@ export const get_epoch_current = () => {
 export interface GetBlockPageParams {
   page: number;
   page_size: number;
+  filter?: number
 }
 export interface BlockItem {
   difficulty?: number;
@@ -111,12 +112,14 @@ export interface BlockItem {
   number: number | string;
   miner: string;
 }
-export const get_block_page = (
-  params: GetBlockPageParams
-): Promise<{
+
+export interface GetBlockResponse {
   blocks: Array<BlockItem>;
   total: number;
-}> => {
+}
+export const get_block_page = (
+  params: GetBlockPageParams
+): Promise<GetBlockResponse> => {
   return service.get(`${SCAN_API}/block/page`, { params });
 };
 
