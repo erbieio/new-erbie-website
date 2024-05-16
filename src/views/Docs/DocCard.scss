@@ -1,0 +1,31 @@
+.doc-card{ 
+    transition: ease .3s;
+    border-radius: 20px;
+    border: 1px solid rgba(211, 135, 255, 0.60);
+    background: linear-gradient(180deg, rgba(211, 135, 255, 0.00) 0%, rgba(211, 135, 255, 0.05) 100%);
+    backdrop-filter: blur(25px);
+    img{
+        transition: ease .3s;
+    }
+    .defaultImg {
+        display: block;
+    }
+    .lightImg {
+        display: none;
+    }
+    &:hover {
+        border-color: white;
+        img {
+            transform: scale(1.05);
+        }
+        .label {
+            text-decoration: underline;
+        }
+        .defaultImg {
+            display: none;
+        }
+        .lightImg {
+            display: block;
+        }
+    }
+}

@@ -1,0 +1,38 @@
+
+.ant-pagination {
+    .ant-pagination-item {
+        border-radius: 0;
+        margin-right: 3px;
+    }
+    .ant-pagination-item a{
+        color: white;
+    }
+    .ant-pagination-prev,.ant-pagination-next {
+        margin-right:0;
+        button {
+            color: white;
+        }
+    }
+    .ant-pagination-item-active {
+        --at-apply: min-w-22px lh-14px w-auto h-auto p-5px color-white bg-#D87CEE38 border-none ;
+        a {
+            --at-apply: px-0 ;
+            color: white !important;
+        }
+    }
+    .ant-pagination-item-link-icon {
+        color: white !important;
+    }
+    .ant-pagination-item-link .ant-pagination-item-ellipsis {
+        color: white !important;
+    }
+    .ant-pagination-options {
+        display: none;
+    }
+}
+
+.ant-popover .ant-popover-content {
+    border-radius: 8px;
+    overflow: hidden;
+    border:1px solid rgba(255, 255, 255, 0.3);
+}

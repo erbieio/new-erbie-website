@@ -1,0 +1,17 @@
+.button {
+    --at-apply: h-40px;
+    text-align: center;
+    display: inline-grid;
+    &-box {
+        border: solid 2px transparent;
+        border-radius: 8px;
+        background-image: linear-gradient(#0D0316, #0D0316),linear-gradient(135deg, #D387FF 0, #FACB7C 30%, #D87CEE 50%);
+        background-origin: border-box;
+        background-clip: content-box, border-box;
+    }
+    // .right-icon {
+    //     background: url('../assets/button-r.svg') no-repeat;
+    //     background-size: 100% 100%;
+    // }
+
+}

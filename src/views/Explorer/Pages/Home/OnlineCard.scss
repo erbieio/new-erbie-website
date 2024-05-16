@@ -1,0 +1,14 @@
+.online-card {
+    background: rgba($color: #fff, $alpha: .1);
+    padding: 20px 0;
+    --at-apply: w-100% h-83px lg:h-10vh;
+
+    * {
+        background: linear-gradient(272deg, #635371 -14.22%, #EDEDF2 50.45%, #635371 116.9%);
+        font-size: 14px;
+        font-weight: bold;
+        background-clip: text;
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+    }
+}

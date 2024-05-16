@@ -1,0 +1,17 @@
+.page-chain {
+    .chain-btn{
+        --at-apply: font-size-12px lg:font-size-14px border-1px border-style-solid border-color-#fff py-12px px-8px lg:min-w-80px cursor-pointer flex-auto;
+        background: rgba(56, 55, 82, 0.60);
+    }
+    .total-card {
+        --at-apply: p-10px lg:p-20px lg:h-22.8vh w-33% lg:w-100%;
+        border: 1px solid #D87CEE;
+        background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
+        border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
+        backdrop-filter: blur(25px);
+    }
+    .table-list {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid  rgba(255, 255, 255, 0.05);
+     }
+}

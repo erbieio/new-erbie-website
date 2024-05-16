@@ -1,0 +1,1 @@
+export const erbie_coin = 'ERB'

@@ -1,0 +1,27 @@
+.page-validator {
+    .data-card {
+        background: rgba(56, 55, 82, 0.60);
+        --at-apply: border-color-white border-1px border-solid flex justify-center items-center;
+    }
+
+    .table-box {
+
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+
+    .data-panel {
+        --at-apply: h-17vh flex w-47% lg:w-100% justify-center items-center;
+        border: 1px solid #D87CEE;
+        background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
+        border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
+        backdrop-filter: blur(25px);
+        .tit {
+            font-size: 16px;
+        }
+        .val {
+            font-size: 24px;
+            --at-apply: mt-14px;
+        }
+    }
+}

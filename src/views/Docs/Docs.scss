@@ -1,0 +1,19 @@
+.page-docs {
+    --at-apply: pt-52px lg:pt-0 flex justify-center items-center;
+    min-height: calc(100vh - 18vh);
+    .github-box {
+        background: linear-gradient(180deg, rgba(211, 135, 255, 0.00) 0%, rgba(211, 135, 255, 0.05) 100%);
+        .github-con {
+            background: url('../../assets/earth.svg') center center no-repeat;
+            background-size: 100%;
+ 
+        }
+        @media (max-width: 1024px) {
+            .github-con {
+                background: url('../../assets/earth.svg') center top -70px no-repeat;
+                background-size: 70%;
+            }
+        }
+    }
+
+}

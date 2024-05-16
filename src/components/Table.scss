@@ -1,0 +1,25 @@
+.table-components {
+    font-weight: 0;
+    border-collapse:collapse;
+    border-spacing:0px;
+    .table-thead-tr{
+        border-bottom: 1px solid rgba($color: #fff, $alpha: .2);
+        th {
+            --at-apply: h-32px lg:h-4.6vh;
+        }
+    }
+    .table-tbody-tr {
+        transition: ease .3s;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: .2);
+        --at-apply: font-size-12px border-b-style-solid border-b-width-1px;
+
+        &:hover {
+            background: rgba($color: #000000, $alpha: .7);
+        }
+    }
+    tr,td {
+        margin: 0;
+        white-space: nowrap;
+        --at-apply: h-32px lg:h-4.6vh;
+    }
+}

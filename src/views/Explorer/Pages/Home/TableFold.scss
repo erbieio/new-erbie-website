@@ -1,0 +1,9 @@
+.fold-component {
+    &-card{
+        --at-apply: px-5px flex-1 lh-18px;
+        border-bottom:1px solid rgba($color: #fff, $alpha: 0.2);
+        div {
+            --at-apply: flex items-center;
+        }
+    }
+}

@@ -1,0 +1,41 @@
+.block-list {
+    border:1px solid rgba(255, 255, 255, 0.2);
+    background: rgba(223, 222, 222, 0.08);
+    .tit {
+        border-bottom: 1px solid rgba($color: #fff, $alpha: .2);
+    }
+    .block-card {
+        transition: ease .3s;
+        border-bottom: 1px solid rgba($color: #fff, $alpha: .2);
+        &:hover {
+            background: rgba($color: #000000, $alpha: .7);
+        }
+    }
+    .page-box {
+        color: rgba(255, 255, 255, 0.65);
+        .page-ipt {
+            background: transparent;
+            outline: none;
+            border: 1px solid #fff;
+            height: 22px;
+            border-radius: 4px;
+            width: 48px;
+            color: rgba(255, 255, 255, 0.65);
+            padding: 0 5px;
+        }
+    }
+    .list-card,.list-header {
+        border-bottom: 1px solid rgba($color: #fff, $alpha: .2);
+    }
+    .list-card {
+        transition: ease .3s;
+        &:hover {
+            background: rgba($color: #000000, $alpha: .7);
+        }
+    }
+    .list-body {
+        .list-card-box:nth-last-of-type(1) .list-card {
+            border-bottom: none;
+        }
+    }
+}

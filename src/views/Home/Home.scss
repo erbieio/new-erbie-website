@@ -1,0 +1,72 @@
+.home-page {
+    &-con {
+        min-height: calc(100vh - 18vh);
+    }
+    .icon-box {
+        a,a i {
+            --at-apply: color-white;
+        }
+    }
+    .animate1 {
+        animation: animate-1 8s ease-in-out infinite;
+    }
+    .animate2 {
+        animation: animate-2 4s ease infinite;
+    }
+    .animate3 {
+        animation: animate-3 4s ease infinite;
+    }
+    .animate4 {
+        animation: animate-4 5s ease infinite;
+    }
+    @keyframes animate-1 {
+        0%{
+            transform: translate(0,0);
+        }
+        25%{
+            transform: translate(2px,12px);
+        }
+        50%{
+            transform: translate(12px,0);
+        }
+        50%{
+            transform: translate(6px,-8px);
+        }
+        100%{
+            transform: translate(0,0);
+        }
+    }
+    @keyframes animate-2 {
+        0%{
+            transform: translate(0,0);
+        }
+        50%{
+            transform: translate(8px,8px);
+        }
+        100%{
+            transform: translate(0,0);
+        }
+    }
+    @keyframes animate-3{
+        0%{
+            transform: translate(0,0);
+        }
+        50%{
+            transform: translate(8px,-12px);
+        }
+        100%{
+            transform: translate(0,0);
+        }
+    }
+    @keyframes animate-4{
+        0%{
+            border-color: #2a1f32;
+        }
+        50%{
+            border-color: #7954a8;
+        }
+        100%{
+            border-color: #2a1f32;
+        }
+    }
+}

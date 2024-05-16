@@ -1,0 +1,41 @@
+.page-infrastructure {
+    min-height: calc(100vh - 18vh);
+    .text-box {
+        letter-spacing: -0.56px;
+    }
+    .right-box {
+        &-top {
+            border-radius: 20px;
+            border: 1px solid #fff;
+            background: linear-gradient(180deg, rgba(211, 135, 255, 0.00) 0%, rgba(211, 135, 255, 0.05) 100%);
+            backdrop-filter: blur(25px);
+            .insvg {
+                transition: ease .3s;
+            }
+            &:hover {
+                .insvg{
+                    transform: scale(1.05);
+                }
+            }
+        }
+        &-bottom {
+            --at-apply:h-11vh flex justify-center items-center;
+            border: 1px solid;
+            border-image: linear-gradient(to right, rgba(#F5CC7D,1), rgba(#D583FD,1)) 1;
+            .arraw-icon {
+                transition: ease .3s;
+            }
+            &:hover {
+                .arraw-icon {
+                    transform: translateX(30px);
+                }
+            }
+        }
+        .hardware-box {
+            border-radius: 20px;
+            border: 1px solid #fff;
+            background: url('../../assets/in-net.svg') no-repeat left 0 bottom 0;
+            background-size: 86%;
+        }
+    }
+}
