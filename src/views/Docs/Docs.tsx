@@ -37,7 +37,7 @@ export default function Docs() {
       desc:"Develop a profound understanding of the core logic of Erbie's decentralized network.",
       img: img3,
       lightImg: imglight3,
-      link: `/`
+      link: `${ERBIE_DOCUMENT}/index.html`
     },
     {
       label:'Chain Layer SBT',
