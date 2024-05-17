@@ -1,4 +1,4 @@
-export const antdTheme = {
+export const ANTD_THEME = {
     token: {
         // Seed Token，影响范围大
         colorPrimary: 'rgba(223, 222, 222, 0.08)',

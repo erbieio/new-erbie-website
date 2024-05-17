@@ -1,1 +1,1 @@
-export const erbie_coin = 'ERB'
+export const ERBIE_COIN = 'ERB'

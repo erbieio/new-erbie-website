@@ -6,7 +6,7 @@ import lv2 from "../../../../assets/fold-lv2.svg";
 import lv3 from "../../../../assets/fold-lv3.svg";
 
 import "./TableFold.scss";
-import { erbie_coin } from "../../../../const/coin";
+import { ERBIE_COIN } from "../../../../const/coin";
 import { Popover } from 'antd';
 export interface TableFoldProps {
   loading: boolean;
@@ -25,7 +25,7 @@ function Fold(data: Array<BlockReward>) {
             <img src={lv1} alt="" className="w-14px mr-5px" />
             <div><span className="link hover:color-#1677ff">{one ? addressDots(one.address, 3,4) : ""}</span></div>
             <div className="color-#a1a1a1 ml-8px">
-              {one ? formatEther(one.amount) : ""} {erbie_coin}
+              {one ? formatEther(one.amount) : ""} {ERBIE_COIN}
             </div>
           </div>
           <div className="fold-component-card h-40px"></div>
@@ -39,7 +39,7 @@ function Fold(data: Array<BlockReward>) {
               <img src={lv2} alt="" className="w-14px mr-5px" />
               <div><span className="link hover:color-#1677ff">{addressDots(item.address, 3,4)}</span></div>
               <div className="color-#a1a1a1 ml-8px whitespace-normal w-80px">
-                {formatEther(item.amount)} {erbie_coin}
+                {formatEther(item.amount)} {ERBIE_COIN}
               </div>
             </div>
           ))}

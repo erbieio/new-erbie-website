@@ -8,10 +8,10 @@ import router from "./routes/Index.tsx";
 import { Provider } from "react-redux";
 import { store } from "./store/index.ts";
 import { ConfigProvider, Space } from "antd";
-import { antdTheme } from "./const/antdTheme.ts";
+import { ANTD_THEME } from "./const/antdTheme.ts";
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ConfigProvider theme={antdTheme}>
+  <ConfigProvider theme={ANTD_THEME}>
     <Space>
       <Provider store={store}>
         <RouterProvider router={router}></RouterProvider>

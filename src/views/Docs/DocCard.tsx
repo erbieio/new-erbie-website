@@ -5,13 +5,14 @@ export interface DocCardProps {
   onClick?: MouseEventHandler<HTMLDivElement>;
   label: string;
   desc: string;
+  link: string
 }
 export default function DocCard(props: DocCardProps) {
   return (
     <div className="relative flex flex-wrap flex-col-reverse justify-end items-center lg:flex-row w-48% lg:w-48% h-auto lg:h-21.6vh doc-card py-24px lg:py-20px px-10px lg:pl-30px">
       <div className="flex w-100% justify-center lg:justify-start">
         <div className="lg:w-75% text-center lg:text-left">
-          <div className="font-size-12px lg:font-size-20px label cursor-pointer">{props.label}</div>
+          <div className="font-size-12px lg:font-size-20px label cursor-pointer"><a href={props.link} target="__blank">{props.label}</a></div>
           <div className="hidden lg:block font-size-12px mt-10px">{props.desc}</div>
         </div>
       </div>
