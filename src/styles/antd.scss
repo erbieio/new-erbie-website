@@ -66,6 +66,7 @@
         svg{
             --at-apply:color-white;
         }
+        background: transparent !important;
         .anticon.active {
             svg {
                 --at-apply: color-#a216ff;

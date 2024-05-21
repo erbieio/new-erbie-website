@@ -37,6 +37,7 @@ export const get_onlineAddr = (): Promise<GetOnlineAddrResopnse> => {
 
 //  查询 总数
 export interface GetStatsResponse {
+  validatorTotalPledge: string;
   activeAccount: number;
   avgBlockTime: number;
   chainId: number;
@@ -220,4 +221,33 @@ export const get_staker_page = (
   params: GetStakerParams
 ): Promise<GetStakerResponse> => {
   return service.get(`${SCAN_API}/staker/page`, { params });
+};
+
+export interface GetSnftMetaItem {
+  address: string;
+  createdAt: number;
+  creator: string;
+  last_price: null | string;
+  meta_url: string;
+  owner: string;
+  pieces: number;
+  remove: boolean;
+  reward_at: number;
+  reward_number: number;
+  royaltyRatio: number;
+  tx_amount: number;
+}
+export interface GetSnftMetaResponse {
+  total: number;
+  nfts: Array<GetSnftMetaItem>;
+}
+export interface GetSnftMetaParams {
+  collection_id: undefined | string;
+  owner: undefined | string;
+  page: number;
+  page_size: number;
+}
+// 查询CSBT 列表 ?collection_id=&owner=&page=1&page_size=16
+export const get_snft_meta_page = (params: GetSnftMetaParams): Promise<GetSnftMetaResponse> => {
+  return service.get(`${SCAN_API}/snft_meta/page`, { params });
 };

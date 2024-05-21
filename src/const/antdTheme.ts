@@ -18,7 +18,7 @@ export const ANTD_THEME = {
           borderColor: 'rgba(255, 255, 255, 0.2)',
           headerColor: '#80838e',
           headerSplitColor: 'transparent',
-          // headerSortActiveBg: '#1677ff'
+          rowHoverBg: '#0D0612'
         }
       }
 }

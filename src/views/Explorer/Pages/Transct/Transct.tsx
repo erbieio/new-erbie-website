@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PageNation from "../../../../components/PageNation";
 import Table from "../../../../components/Table";
 import SearchIpt from "../../components/SearchIpt";
@@ -36,6 +37,8 @@ export default function Transct() {
       key:'Height'
     },
   ]
+
+  const [loading] = useState(false)
   return (
     <div className="page-transct min-h-70vh flex">
       <div className="flex flex-col flex-1 gap-2vh">
@@ -91,7 +94,7 @@ export default function Transct() {
           </div>
         </div>
         <div className="flex min-h-60vh">
-        <Table columns={columns} dataSources={[]} />
+        <Table columns={columns} dataSources={[]} loading={loading} />
         </div>
       </div>
     </div>

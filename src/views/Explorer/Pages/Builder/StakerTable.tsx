@@ -6,6 +6,7 @@ import { addressDots, formatDate } from "../../../../utils/common";
 interface StakerTableProps {
   dataSource: Array<GetStakerListItem>;
   sorter: (order: string) => void
+  loading: boolean
 }
 
 type SorterResult<T> = {  
@@ -74,12 +75,13 @@ export default function StakerTable(props: StakerTableProps) {
     },
   ];
   return (
-    <div className="w-100% staker-table">
+    <div className="w-100% staker-table h-100%">
       <Table
         columns={columns}
         dataSource={props.dataSource}
         pagination={false}
         onChange={onChange}
+        loading={props.loading}
       ></Table>
     </div>
   );

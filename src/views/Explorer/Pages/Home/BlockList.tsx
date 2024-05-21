@@ -139,7 +139,57 @@ export default function BlockList() {
           ))}
         </div>
         <div className="list-body max-h-46vh scrollbar-y">
-          {loading ? (
+          <Loading loading={loading}>
+            {
+                    list.map((item) => {
+                      return (
+                        <div className="list-card-box w-100%">
+                          <div
+                            className="flex font-size-12px justify-between lh-4.44vh list-card px-4px"
+                            key={item.number}
+                          >
+                            <div className="px-6px w-14% flex justify-center items-center">
+                              {item.number}
+                            </div>
+                            <div className="px-6px w-36% flex justify-center items-center">
+                              {addressDots(item.miner, 10)}
+                            </div>
+                            <div className="px-6px  w-10% flex justify-center items-center">
+                              {item.totalTransaction}
+                            </div>
+                            <div className="px-6px w-19% flex justify-center items-center">
+                              {formatDate(Number(item.timestamp))}
+                            </div>
+                            <div className="px-6px w-15% flex justify-center items-center lh-19px">
+                              {item.size} Bytes
+                            </div>
+                            <div className="px-6px w-6% flex justify-center items-center">
+                              <Popover
+                                placement="left"
+                                title={""}
+                                trigger="click"
+                                content={
+                                  <div className="w-662px">
+                                    <TableFold loading={loadReward} data={reward} />
+                                  </div>
+                                }
+                              >
+                                <i
+                                  className="font-size-18px cursor-pointer i-mi-chevron-down"
+                                  onClick={(e) => {
+                                    e.stopPropagation();
+                                    handleShow(item);
+                                  }}
+                                ></i>
+                              </Popover>
+                            </div>
+                          </div>
+                        </div>
+                      );
+                    })
+            }
+          </Loading>
+          {/* {loading ? (
             <div className="flex justify-center items-center w-100% h-40vh"><Loading /></div>
           ) : (
             list.map((item) => {
@@ -188,7 +238,7 @@ export default function BlockList() {
                 </div>
               );
             })
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -1,3 +1,4 @@
+import { useState } from "react";
 import PageNation from "../../../../components/PageNation";
 import Table from "../../../../components/Table";
 import SearchIpt from "../../components/SearchIpt";
@@ -30,6 +31,8 @@ export default function Account() {
   const handleSearch = () => {
 
   }
+
+  const [loading] = useState(false)
   return (
     <div className="page-account">
       <div className="flex">
@@ -43,7 +46,7 @@ export default function Account() {
               <PageNation total={248} page={2} pageSize={10} />
             </div>
             <div className="flex h-90%">
-              <Table columns={columns} dataSources={[]} />
+              <Table columns={columns} dataSources={[]} loading={loading} />
             </div>
           </div>
         </div>

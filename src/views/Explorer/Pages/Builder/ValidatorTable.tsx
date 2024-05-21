@@ -2,11 +2,15 @@ import { Table, type TableProps, type TableColumnsType } from 'antd';
 import './ValidatorTable.scss'
 import { GetValidatorListItem } from '../../../../api/modules/explorer';
 import { formatEther } from 'ethers';
-import { addressDots, formatDate } from '../../../../utils/common';
+import { addressDots } from '../../../../utils/common';
+import smile from '../../../../assets/builder/smile.svg'
+import neutral from '../../../../assets/builder/neutral.svg'
+import sad from '../../../../assets/builder/sad.svg'
+import moment from 'moment';
 interface ValidatorTableProps {
   dataSource: Array<GetValidatorListItem>
   sorter: (order: string) => void
-
+  loading: boolean
 }
 type SorterResult<T> = {  
   field: keyof T;  
@@ -28,12 +32,19 @@ export default function ValidatorTable(props: ValidatorTableProps) {
       props.sorter('')
     }
   };
+
+  const getIconPath = (v: number) => {
+         if (v < 40) return sad;
+        if (v >= 40 && v <= 50) return neutral;
+        if (v > 50) return smile;
+  }
+
   const columns: TableColumnsType<GetValidatorListItem> = [
     {
       title: "Validator",
       align: 'center',
       render(v){
-        return <div className='link hover:color-#1677ff'>{addressDots(v.address)}</div>
+        return <div className='link hover:color-#1677ff'>{addressDots(v.address,6,6)}</div>
       }
     },
 
@@ -41,7 +52,6 @@ export default function ValidatorTable(props: ValidatorTableProps) {
       title: "Total Staking",
       align: 'center',
       key:"amount",
-      // sortOrder: sortedInfo.columnKey === 'amount' ? sortedInfo.order : null,
       sorter: {
         multiple: undefined,
       },
@@ -68,7 +78,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         multiple: undefined,
       },
       render(v){
-        return formatDate(v.timestamp)
+        return moment(v.timestamp * 1000).format('YYYY/MM/DD HH:mm:ss')
       }
     },
     {
@@ -84,12 +94,15 @@ export default function ValidatorTable(props: ValidatorTableProps) {
     },
     {
       title: "Online Weight",
-      dataIndex: "weight",
       key:"weight",
       sorter: {
         multiple: undefined,
       },
-      align: 'center'
+      align: 'center',
+      render(v){
+        const path = getIconPath(v.weight)
+        return <div className='flex items-center justify-center'>{v.weight} <img src={path} className='w-1vw ml-8px' alt="" /></div>
+      }
     },
     {
       title: "Reputation Score",
@@ -103,8 +116,8 @@ export default function ValidatorTable(props: ValidatorTableProps) {
 
   ];
   return (
-    <div className='w-100% validator-table'>
-      <Table columns={columns} dataSource={props.dataSource} pagination={false} onChange={onChange}></Table>
+    <div className='w-100% validator-table  h-100%'>
+      <Table columns={columns} dataSource={props.dataSource} pagination={false} onChange={onChange} loading={props.loading}></Table>
     </div>
   )
 }
