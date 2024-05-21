@@ -3,15 +3,23 @@ import bg2 from "../../assets/wallet-bg1.svg";
 import bg2active from "../../assets/wallet-bg1-active.svg";
 import bg3 from "../../assets/wallet-bg2.svg";
 import bg3active from "../../assets/wallet-bg2-active.svg";
-import share from '../../assets/shareright.svg'
+import share from "../../assets/shareright.svg";
 import WalletCard from "./WalletCard";
 import "./Wallet.scss";
 
-function label1(){
-  return <div>50000+ <img className="ml--14px w-30px" src={share} alt="" /></div>
+function label1() {
+  return (
+    <div>
+      50000+ <img className="ml--14px w-30px" src={share} alt="" />
+    </div>
+  );
 }
-function label2(){
-  return <div>1400+ <img className="ml--14px w-30px" src={share} alt="" /></div>
+function label2() {
+  return (
+    <div>
+      1400+ <img className="ml--14px w-30px" src={share} alt="" />
+    </div>
+  );
 }
 
 export default function Wallet() {
@@ -25,14 +33,18 @@ export default function Wallet() {
               Get started with Erbie <br /> Wallet Portfolio
             </div>
             <div className="font-size-14px mt-12px lh-30px hidden lg:block">
-              The Erbie Wallet is your portal to the Erbie ecosystem, acting as <br />
-              a secure means for storing and transacting your crypto assets on
-              Erbie.
+              The Erbie Wallet is your portal to the Erbie ecosystem, acting as{" "}
+              <br />a secure means for storing and transacting your crypto
+              assets on Erbie.
             </div>
           </div>
         </div>
         <div className="right-box w-50% flex flex-col justify-between w-100%">
-          <WalletCard label={label1()} desc="PC Wallet Users" onClick={() => window.open('https://wallet.erbie.io/','__blank')}>
+          <WalletCard
+            label={label1()}
+            desc="PC Wallet Users"
+            onClick={() => window.open("https://wallet.erbie.io/", "__blank")}
+          >
             <img src={bg2} className="w-100px lg:w-180px default-img" alt="" />
             <img
               src={bg2active}
@@ -44,7 +56,12 @@ export default function Wallet() {
             label={label2()}
             desc="Plug-in Download"
             className="mt-20px lg:mt-0 lg:mt-0"
-            onClick={() => window.open('https://chrome.google.com/webstore/detail/liminowallet/ljgaiedhmdfibdpilgpglddemlbedmhh','__blank')}
+            onClick={() =>
+              window.open(
+                "https://chrome.google.com/webstore/detail/liminowallet/ljgaiedhmdfibdpilgpglddemlbedmhh",
+                "__blank"
+              )
+            }
           >
             <img src={bg3} className="w-100px lg:w-150px default-img" alt="" />
             <img

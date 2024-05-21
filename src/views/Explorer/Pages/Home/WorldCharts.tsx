@@ -1,4 +1,4 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import * as echarts from "echarts";
 import { registerMap } from "echarts/core";
 import worldGeoJSON from "./worldGEO.json";
@@ -50,6 +50,9 @@ export default function WorldCharts() {
     console.warn("option", getOption(validatorLocations));
     myChart.setOption(getOption(validatorLocations));
   }, 200);
+
+  const [totalCity, setTotalCitys] = useState(0)
+  const [totalCountry, setTotalCountrys] = useState(0)
   const handleGetLocations = async () => {
     const data = await get_validator_locations();
     const mapData = data.map((item) => {
@@ -66,8 +69,11 @@ export default function WorldCharts() {
       };
     });
     validatorLocations = mapData;
+    setTotalCitys(Array.from(new Set(data.map(item => item.city))).length)
+    setTotalCountrys(Array.from(new Set(data.map(item => item.country))).length)
     renderMap();
   };
+
   useEffect(() => {
     handleGetLocations();
     // renderMap()
@@ -82,10 +88,10 @@ export default function WorldCharts() {
       <div id="world-chart" style={{ width: 600, height: '36vh' }}></div>
       <div className="absolute bottom-0 left-0">
         <div className="total-card">
-          <span>11</span> Countries
+          <span>{totalCountry}</span> Countries
         </div>
         <div className="total-card">
-          <span>17</span> Cities
+          <span>{totalCity}</span> Cities
         </div>
       </div>
     </div>

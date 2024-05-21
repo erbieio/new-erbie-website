@@ -58,7 +58,7 @@ export const EXPLORER_PAGE_LIST:Array<ExplorerPageItem> = [
     name: "CHAIN",
   },
   {
-    path: "/explorer/validator",
+    path: "/explorer/builder",
     index: 1,
     name: "BUILDER",
   },

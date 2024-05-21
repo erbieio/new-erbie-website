@@ -12,6 +12,14 @@ import {
 } from "../../../../api/modules/explorer";
 import { addressDots } from "../../../../utils/common";
 import { Pagination, PaginationProps } from "antd";
+
+export interface TableMenuItem {
+  label: string
+  active: boolean
+  filter: number | null
+
+}
+
 export default function Chain() {
   const handleSearch = (v: string) => {
     console.log("search", v);
@@ -20,6 +28,23 @@ export default function Chain() {
     page: 1,
     page_size: 11,
   });
+  const [tableMenus, setTableMenus] = useState<Array<TableMenuItem>>([
+    {
+      label:'Blocks',
+      filter: null,
+      active: true
+    },
+    {
+      label: 'Blackhole Blocks',
+      filter: 1,
+      active: false
+    },
+    {
+      label :'Penalty Blocks',
+      filter: 2,
+      active: false
+    }
+  ])
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<GetStatsResponse>();
   const [blockData, setBlockData] = useState<GetBlockResponse>({
@@ -104,14 +129,37 @@ export default function Chain() {
       },
     },
   ];
+
+
+// 分类查询
+  const handleFilter = (item: TableMenuItem) => {
+    const menus = tableMenus.map(v => v)
+    menus.forEach(child => {
+      if(child.filter === item.filter) {
+        child.active = true
+      } else {
+        child.active = false
+      }
+    })
+    setTableMenus(menus)
+    const filter:number | null = item.filter
+    if(filter) {
+      params.current.filter = filter
+    } else {
+      delete params.current.filter
+    }
+    params.current.page = 1
+    handleGetBlocks()
+  }
+  
   return (
     <div className="page-chain flex flex-col flex-col-reverse lg:flex-row">
       <div className="chain-header flex-1 mt-20px lg:mt-0 w-100%">
         <div className="flex flex-col lg:flex-row w-100% lg:h-48px">
           <div className="flex-1 flex gap-10px">
-            <div className="chain-btn white-space">Blocks</div>
-            <div className="chain-btn white-space">Blackhole Blocks</div>
-            <div className="chain-btn white-space">Penalty Blocks</div>
+            {
+              tableMenus.map(item => <div key={item.label} className={`chain-btn white-space ${item.active ? 'active' : ''}`} onClick={() => handleFilter(item)}>{item.label}</div>)
+            }
           </div>
           <div className="flex-1 lg:ml-26px pt-20px lg:pt-0">
             <SearchIpt onSearch={handleSearch} className="font-size-14px" />

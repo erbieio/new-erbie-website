@@ -71,8 +71,6 @@ export default function Table(props: TableProps) {
             ) => (
               <tr className="table-tbody-tr h-24px" key={idx}>
                 {item.children.map((child, i) => {
-                  console.log('child', child)
-                  console.log('item', item)
                   return (<td
                     key={`t-body-row-${idx}-${i}`}
                     className="font-size-12px px-8px py-4px text-center"

@@ -13,6 +13,12 @@ export const ANTD_THEME = {
       components: {
         Popover: {
           colorPrimary: '#0D0316',
+        },
+        Table: {
+          borderColor: 'rgba(255, 255, 255, 0.2)',
+          headerColor: '#80838e',
+          headerSplitColor: 'transparent',
+          // headerSortActiveBg: '#1677ff'
         }
       }
 }

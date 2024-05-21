@@ -15,8 +15,7 @@ import Wallet from "../views/Wallet/Wallet.tsx";
 const Error = lazy(() => import("../views/Error/Error.tsx"));
 // const Wallet = lazy(() => import("../views/Wallet/Wallet.tsx"));
 const Chain = lazy(() => import('../views/Explorer/Pages/Chain/Chain.tsx'))
-const Validator = lazy(() => import('../views/Explorer/Pages/Validator/Validator.tsx'))
-const Staker = lazy(() => import('../views/Explorer/Pages/Staker/Staker.tsx'))
+const Builder = lazy(() => import('../views/Explorer/Pages/Builder/Builder.tsx'))
 const Csbt = lazy(() => import('../views/Explorer/Pages/Csbt/Csbt.tsx'))
 const Asset = lazy(() => import('../views/Explorer/Pages/Asset/Asset.tsx'))
 const Account = lazy(() => import('../views/Explorer/Pages/Account/Account.tsx'))
@@ -53,12 +52,8 @@ const router = createBrowserRouter([
                 element: LazyLoad(Chain),
               },
               {
-                path: '/explorer/validator',
-                element: LazyLoad(Validator),
-              },
-              {
-                path: '/explorer/staker',
-                element: LazyLoad(Staker),
+                path: '/explorer/builder',
+                element: LazyLoad(Builder),
               },
               {
                 path: '/explorer/csbt',
