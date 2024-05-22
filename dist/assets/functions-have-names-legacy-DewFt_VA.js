@@ -1,2 +1,0 @@
-System.register([],(function(n,t){"use strict";return{execute:function(){var t,e;n("r",(function(){if(e)return t;e=1;var n=function(){return"string"==typeof function(){}.name},r=Object.getOwnPropertyDescriptor;if(r)try{r([],"length")}catch(i){// IE 8 has a broken gOPD
-r=null}n.functionsHaveConfigurableNames=function(){if(!n()||!r)return!1;var t=r((function(){}),"name");return!!t&&!!t.configurable};var u=Function.prototype.bind;return n.boundFunctionsHaveNames=function(){return n()&&"function"==typeof u&&""!==function(){}.bind().name},t=n}))}}}));

@@ -135,7 +135,7 @@ export default function Account() {
             </div>
           </div>
         </div>
-        <div className="w-250px ml-22px flex flex-col justify-between">
+        <div className="w-25vw ml-22px flex flex-col justify-between">
           <div className="data-card h-16vh">
             <div>
               <div className="font-size-16px">Total Coin Addresses</div>
