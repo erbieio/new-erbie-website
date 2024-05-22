@@ -1,5 +1,4 @@
 import { Table, type TableProps, type TableColumnsType } from 'antd';
-import './ValidatorTable.scss'
 import { GetValidatorListItem } from '../../../../api/modules/explorer';
 import { formatEther } from 'ethers';
 import { addressDots } from '../../../../utils/common';
@@ -7,17 +6,13 @@ import smile from '../../../../assets/builder/smile.svg'
 import neutral from '../../../../assets/builder/neutral.svg'
 import sad from '../../../../assets/builder/sad.svg'
 import moment from 'moment';
+import { SorterResult } from '../../../../api/api';
 interface ValidatorTableProps {
   dataSource: Array<GetValidatorListItem>
   sorter: (order: string) => void
   loading: boolean
 }
-type SorterResult<T> = {  
-  field: keyof T;  
-  order: 'ascend' | 'descend';  
-  columnKey?: React.Key;
-  column: TableColumnsType<unknown>
-};  
+  
 export default function ValidatorTable(props: ValidatorTableProps) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error

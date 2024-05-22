@@ -1,3 +1,4 @@
+import { PageParams, PageResponse } from "../api";
 import { service } from "../request";
 
 const SCAN_API = "/scanApi";
@@ -90,9 +91,7 @@ export const get_epoch_current = () => {
  * @param params
  * @returns
  */
-export interface GetBlockPageParams {
-  page: number;
-  page_size: number;
+export interface GetBlockPageParams extends PageParams {
   filter?: number;
 }
 export interface BlockItem {
@@ -117,9 +116,8 @@ export interface BlockItem {
   miner: string;
 }
 
-export interface GetBlockResponse {
+export interface GetBlockResponse extends PageResponse {
   blocks: Array<BlockItem>;
-  total: number;
 }
 export const get_block_page = (
   params: GetBlockPageParams
@@ -165,9 +163,7 @@ export type GetValidatorOrder =
   | "score ASC"
   | "score DESC"
   | "";
-export interface GetValidatorParams {
-  page: number;
-  page_size: number;
+export interface GetValidatorParams extends PageParams {
   order: GetValidatorOrder;
 }
 export interface GetValidatorListItem {
@@ -183,9 +179,8 @@ export interface GetValidatorListItem {
   tx_hash: string;
   weight: number;
 }
-export interface GetValidatorResponse {
+export interface GetValidatorResponse extends PageResponse {
   data: Array<GetValidatorListItem>;
-  total: number;
 }
 // 查询矿工列表
 export const get_validator_page = (
@@ -195,9 +190,7 @@ export const get_validator_page = (
 };
 
 export type GetStakerOrder = "amount asc" | "amount desc" | "";
-export interface GetStakerParams {
-  page: number;
-  page_size: number;
+export interface GetStakerParams extends PageParams {
   order: GetStakerOrder;
   name: string;
 }
@@ -212,9 +205,8 @@ export interface GetStakerListItem {
   timestamp: number;
   tx_hash: string;
 }
-export interface GetStakerResponse {
+export interface GetStakerResponse extends PageResponse {
   data: Array<GetStakerListItem>;
-  total: number;
 }
 // 查询质押者列表
 export const get_staker_page = (
@@ -237,17 +229,95 @@ export interface GetSnftMetaItem {
   royaltyRatio: number;
   tx_amount: number;
 }
-export interface GetSnftMetaResponse {
-  total: number;
+export interface GetSnftMetaResponse extends PageResponse {
   nfts: Array<GetSnftMetaItem>;
 }
-export interface GetSnftMetaParams {
+export interface GetSnftMetaParams extends PageParams {
   collection_id: undefined | string;
   owner: undefined | string;
-  page: number;
-  page_size: number;
 }
-// 查询CSBT 列表 ?collection_id=&owner=&page=1&page_size=16
-export const get_snft_meta_page = (params: GetSnftMetaParams): Promise<GetSnftMetaResponse> => {
+// 查询CSBT 列表
+export const get_snft_meta_page = (
+  params: GetSnftMetaParams
+): Promise<GetSnftMetaResponse> => {
   return service.get(`${SCAN_API}/snft_meta/page`, { params });
 };
+
+export interface GetAccountPageListItem {
+  address: string;
+  balance: string;
+  code: null | string;
+  nftCount: number;
+  nonce: number;
+  number: number;
+  snftCount: number;
+  snftValue: string;
+  stakerAmount?: string;
+  validatorAmount?: string;
+}
+export interface GetAccountPageResponse extends PageResponse {
+  balance: string;
+  accounts: Array<GetAccountPageListItem>;
+}
+export type GetAccountPageOrder =
+  | "balance DESC"
+  | "balance ASC"
+  | "staker_amount DESC"
+  | "staker_amount ASC"
+  | "validator_amount DESC"
+  | "validator_amount ASC"
+  | "snft_count ASC"
+  | "snft_count DESC"
+  | "";
+export interface GetAccountPageParams extends PageParams {
+  order: GetAccountPageOrder;
+}
+// 查询账户列表
+export const get_account_page = (
+  params: GetAccountPageParams
+): Promise<GetAccountPageResponse> => {
+  return service.get(`${SCAN_API}/account/page`, { params });
+};
+
+export interface GetTransitionPageListItem {
+  blockHash: string;
+  blockNumber: number;
+  contractAddress: null | string;
+  cumulativeGasUsed: number;
+  from: string;
+  gas: number;
+  gasPrice: number;
+  gasUsed: number;
+  hash: string;
+  input: string;
+  nonce: number;
+  status: number;
+  timestamp: number;
+  to: string;
+  transactionIndex: number;
+  value: string;
+}
+
+export interface GetTransactionPageParams extends PageParams {
+ 
+}
+
+export interface GetTransactionPageResponse extends PageResponse {
+  transactions: Array<GetTransitionPageListItem>;
+}
+// 查询交易列表
+export const get_transaction_page = (params: GetTransactionPageParams): Promise<GetTransactionPageResponse> => {
+  return service.get(`${SCAN_API}/transaction/page`, { params });
+};
+
+
+
+export interface Get24hTxsItem {
+  hour: number
+  num: number
+}
+export type Get24hTxsResponse = Array<Get24hTxsItem>
+// 查询24小时交易增长曲线 
+export const get_24h_txs = ():Promise<Get24hTxsResponse> => {
+  return service.get(`${SCAN_API}/chart/tx`)
+}

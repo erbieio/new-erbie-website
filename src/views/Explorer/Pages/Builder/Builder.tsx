@@ -34,7 +34,7 @@ export default function Validator() {
   };
   const params = useRef<{ page: number; page_size: number }>({
     page: 1,
-    page_size: 10,
+    page_size: 11,
   });
   let validatorOrder: GetValidatorOrder = "";
   let stakerOrder: GetStakerOrder = "";

@@ -47,33 +47,38 @@
 
 .ant-table {
     background: transparent !important;
-    .ant-table-cell,
-    .ant-table-wrapper .ant-table-thead>tr>th,
-    .ant-table-wrapper .ant-table-tbody>tr>th,
-    .ant-table-wrapper .ant-table-tbody>tr>td,
-    .ant-table-wrapper tfoot>tr>td {
-        padding: 0px 8px !important;
-        svg{
-            --at-apply:color-white;
-        }
 
+}
+.ant-table-cell,
+.ant-table-wrapper .ant-table-thead>tr>th,
+.ant-table-wrapper .ant-table-tbody>tr>th,
+.ant-table-wrapper .ant-table-tbody>tr>td,
+.ant-table-wrapper tfoot>tr>td {
+    font-size: 12px;
+    padding: 0px 8px !important;
+    height: 4.6vh;
+    svg{
+        --at-apply:color-white;
     }
 
-    .ant-table-thead>tr>th {
-        font-size: 12px !important;
-        font-weight: normal;
-        padding: 10px 8px !important;
-        svg{
-            --at-apply:color-white;
-        }
-        background: transparent !important;
-        .anticon.active {
-            svg {
-                --at-apply: color-#a216ff;
-            }
-        }
+}
 
-
-
+.ant-table-thead>tr>th {
+    font-size: 12px !important;
+    font-weight: normal;
+    padding: 10px 8px !important;
+    font-size: 12px;
+    height: 4.6vh;
+    svg{
+        --at-apply:color-white;
     }
+    background: transparent !important;
+    .anticon.active {
+        svg {
+            --at-apply: color-#a216ff;
+        }
+    }
+
+
+
 }

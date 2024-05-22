@@ -1,20 +1,15 @@
 import { Table, type TableColumnsType } from "antd";
-import "./StakerTable.scss";
 import { GetStakerListItem } from "../../../../api/modules/explorer";
 import { formatEther } from "ethers";
 import { addressDots, formatDate } from "../../../../utils/common";
+import { SorterResult } from "../../../../api/api";
 interface StakerTableProps {
   dataSource: Array<GetStakerListItem>;
   sorter: (order: string) => void
   loading: boolean
 }
 
-type SorterResult<T> = {  
-  field: keyof T;  
-  order: 'ascend' | 'descend';  
-  columnKey?: React.Key;
-  column: TableColumnsType<unknown>
-}; 
+
 export default function StakerTable(props: StakerTableProps) {
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
