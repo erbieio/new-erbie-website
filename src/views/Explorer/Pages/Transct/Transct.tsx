@@ -112,7 +112,7 @@ export default function Transct() {
       key: "Height",
       align: "center",
       render(v) {
-        return txInputToType(v.input);
+        return formatEther(v.gasPrice * v.gasUsed);
       },
     },
   ];

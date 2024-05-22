@@ -1,27 +1,42 @@
 import { useEffect, useState } from "react";
 import * as echarts from "echarts";
 import { registerMap } from "echarts/core";
-import worldGeoJSON from "./worldGEO.json";
+import worldGeoJSON from "./worldGEO1.json";
 import { debounce } from "../../../../utils/common";
 import { get_validator_locations } from "../../../../api/modules/explorer";
 import "./WorldCharts.scss";
 const getOption = (mapData: Array<MapDataItem>): echarts.EChartOption => ({
-  tooltip: {
-    trigger: "item", // 触发类型，默认数据触发，可选为：'item'、'axis'
-  },
+  // tooltip: {
+  //   trigger: "axis", // 触发类型，默认数据触发，可选为：'item'、'axis'
+  // },
   geo: {
     map: "world",
     fitSize: true,
+    label: {
+      show: false
+    },
+
+    emphasis: {
+      label: {
+        show: false
+      },
+      itemStyle: {
+      areaColor: '#8d5dc1'
+    },
+    },
   },
   series: [
     {
       name: "World Map",
+      label: {  
+        show: false // 关闭散点图上的标签显示（如果需要的话）  
+      }, 
       // type: 'map', // 指定是地图类型
       type: "scatter", // 例如使用散点图来展示数据
       coordinateSystem: "geo", // 指定使用地理坐标系
       // eslint-disable-next-line @typescript-eslint/ban-ts-comment
       // @ts-ignore
-      mapType: "world", // 指定使用的地图，这里为世界地图
+      // mapType: "world", // 指定使用的地图，这里为世界地图
       roam: false, // 是否开启鼠标缩放和平移漫游
       data: mapData,
     },
@@ -43,13 +58,10 @@ export default function WorldCharts() {
   let validatorLocations: Array<MapDataItem> = [];
   const renderMap = debounce(() => {
     const myChart = echarts.init(document.getElementById("world-chart"));
-    console.log("worldGeoJSON", worldGeoJSON);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     registerMap("world", worldGeoJSON);
     // 使用刚指定的配置项和数据显示图表。
-    console.warn("validatorLocations", validatorLocations);
-    console.warn("option", getOption(validatorLocations));
     myChart.setOption(getOption(validatorLocations));
   }, 200);
 
@@ -67,6 +79,9 @@ export default function WorldCharts() {
           itemStyle: {
             color: "#9e42e4", // 高亮时区域颜色
           },
+          // label: {
+          //   show: false
+          // }
         },
       };
     });
