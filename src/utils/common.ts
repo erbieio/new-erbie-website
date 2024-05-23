@@ -37,14 +37,18 @@ export function debounce(fn: Function, delay = 100) {
 
 // 为地址字符串添加...
 export function addressDots(v: string | number, len = 12, lastlen = 12) {
-  const newstr = typeof v === 'number' ? v.toString() : v
-  return newstr ? newstr.slice(0, len) + "..." + newstr.slice(newstr.length - lastlen, newstr.length) : "";
+  const newstr = typeof v === "number" ? v.toString() : v;
+  return newstr
+    ? newstr.slice(0, len) +
+        "..." +
+        newstr.slice(newstr.length - lastlen, newstr.length)
+    : "";
 }
 
 // 时间日期时间戳转换为字符串
 export function formatDate(data: number, format = "YYYY-MM-DD HH:mm:ss") {
-  const t = new Date().getTime();
-  const nowTime = data * 1000;
+  const t = new Date(moment().format(format)).getTime() / 1000;
+  const nowTime = data;
   if (nowTime) {
     if (t < nowTime) {
       return moment(nowTime * 1000).format(format);
@@ -68,5 +72,3 @@ export function formatDate(data: number, format = "YYYY-MM-DD HH:mm:ss") {
     }
   }
 }
-
-
