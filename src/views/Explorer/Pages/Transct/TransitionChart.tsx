@@ -5,6 +5,7 @@ import { LabelLayout } from "echarts/features";
 import { CanvasRenderer } from "echarts/renderers";
 import { useEffect, useRef } from "react";
 import { GetStatsResponse } from "../../../../api/modules/explorer";
+import { debounce } from "../../../../utils/common";
 
 echarts.use([
   TooltipComponent,
@@ -19,9 +20,9 @@ export interface TransactionChartProps {
 }
 export default function TransitionChart(props: TransactionChartProps) {
   const myRef = useRef<HTMLDivElement>(null);
-  let myChart: echarts.ECharts
-  const initChart = () => {
-    if(myChart) {
+  let myChart: echarts.ECharts;
+  const initChart = debounce(() => {
+    if (myChart) {
       myChart.dispose();
     }
     if (myRef.current && props.data) {
@@ -89,12 +90,11 @@ export default function TransitionChart(props: TransactionChartProps) {
           bottom: "20%",
         },
       };
-      console.log('option', option)
-      option && myChart.setOption(option);
+      myChart.setOption(option);
     }
-  };
+  }, 500);
   useEffect(() => {
-    if(props.data){
+    if (props.data) {
       initChart();
     }
 

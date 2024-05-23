@@ -12,7 +12,7 @@ export default function NoData(props: NoDataProps) {
                 props.icon ? <i className={`font-size-40 ${props.icon}`}></i> : <img className='empty-img w-100px' src={empty} alt="" />
             }
         </div>
-        <div className='text-center mt-10px font-size-14px'>{props.text || 'No Data'}</div>
+        <div className='text-center mt-10px font-size-14px color-#80838E'>{props.text || 'No Data'}</div>
     </div>
   )
 }

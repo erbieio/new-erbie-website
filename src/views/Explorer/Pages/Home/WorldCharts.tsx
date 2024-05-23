@@ -13,24 +13,24 @@ const getOption = (mapData: Array<MapDataItem>): echarts.EChartOption => ({
     map: "world",
     fitSize: true,
     label: {
-      show: false
+      show: false,
     },
 
     emphasis: {
       label: {
-        show: false
+        show: false,
       },
       itemStyle: {
-      areaColor: '#8d5dc1'
-    },
+        areaColor: "#8d5dc1",
+      },
     },
   },
   series: [
     {
       name: "World Map",
-      label: {  
-        show: false // 关闭散点图上的标签显示（如果需要的话）  
-      }, 
+      label: {
+        show: false, // 关闭散点图上的标签显示（如果需要的话）
+      },
       // type: 'map', // 指定是地图类型
       type: "scatter", // 例如使用散点图来展示数据
       coordinateSystem: "geo", // 指定使用地理坐标系
@@ -69,31 +69,34 @@ export default function WorldCharts() {
   const [totalCountry, setTotalCountrys] = useState(0);
   const handleGetLocations = async () => {
     const data = await get_validator_locations();
-    const mapData = data.map((item) => {
-      return {
-        name: item.address,
-        value: [item.longitude, item.latitude],
-        itemStyle: { color: "#9e42e4" },
-        emphasis: {
-          // 高亮样式
-          itemStyle: {
-            color: "#9e42e4", // 高亮时区域颜色
+    if (data && data.length) {
+      const mapData = data?.map((item) => {
+        return {
+          name: item.address,
+          value: [item.longitude, item.latitude],
+          itemStyle: { color: "#9e42e4" },
+          emphasis: {
+            // 高亮样式
+            itemStyle: {
+              color: "#9e42e4", // 高亮时区域颜色
+            },
+            // label: {
+            //   show: false
+            // }
           },
-          // label: {
-          //   show: false
-          // }
-        },
-      };
-    });
-    validatorLocations = mapData;
-    setTotalCitys(Array.from(new Set(data.map((item) => item.city))).length);
-    setTotalCountrys(
-      Array.from(new Set(data.map((item) => item.country))).length
-    );
-    renderMap();
+        };
+      });
+      validatorLocations = mapData;
+      setTotalCitys(Array.from(new Set(data.map((item) => item.city))).length);
+      setTotalCountrys(
+        Array.from(new Set(data.map((item) => item.country))).length
+      );
+      renderMap();
+    }
   };
 
   useEffect(() => {
+    renderMap();
     handleGetLocations();
     // renderMap()
     window.addEventListener("resize", renderMap);

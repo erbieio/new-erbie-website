@@ -1,21 +1,48 @@
 import * as echarts from "echarts";
 import { useEffect, useRef } from "react";
 import { Get24hTxsItem } from "../../../../api/modules/explorer";
-
+import { debounce } from "../../../../utils/common";
 
 export type VolumeChartProps = {
-  list: Array<Get24hTxsItem>
-}
+  list: Array<Get24hTxsItem>;
+};
 export default function VolumeChart(props: VolumeChartProps) {
-  const data = props.list.map(item => item.num)
+  const data = props.list.map((item) => item.num);
   const myRef = useRef<HTMLDivElement>(null);
 
-  let myChart: echarts.ECharts
-  const initChart = () => {
+  let myChart: echarts.ECharts;
+  const initChart = debounce(() => {
+    if (myChart) {
+      myChart.dispose();
+    }
     const option: echarts.EChartOption = {
       xAxis: {
         type: "category",
-        data: ["1", "2", "3", "4", "5", "6", "7","8","9","10",'11','12','13','14','15','16','17','18','19','20','21','22','23'],
+        data: [
+          "1",
+          "2",
+          "3",
+          "4",
+          "5",
+          "6",
+          "7",
+          "8",
+          "9",
+          "10",
+          "11",
+          "12",
+          "13",
+          "14",
+          "15",
+          "16",
+          "17",
+          "18",
+          "19",
+          "20",
+          "21",
+          "22",
+          "23",
+        ],
         axisTick: {
           show: false,
         },
@@ -49,7 +76,7 @@ export default function VolumeChart(props: VolumeChartProps) {
         },
         splitLine: {
           show: true,
-    
+
           lineStyle: {
             type: "dashed", // 设置为虚线
             // 这里还可以设置其他线条样式，如颜色、宽度等
@@ -77,32 +104,30 @@ export default function VolumeChart(props: VolumeChartProps) {
         left: "6%",
         right: "4%",
         top: "10%",
-        bottom: "20%",
+        bottom: "22%",
       },
     };
-    if (myRef.current) {
-      if(myChart) {
-        myChart.dispose()
-        
-      }
-      const chartDom = document.getElementById("volume-chart");
-      myChart = echarts.init(chartDom);
-      myChart.setOption(option);
-      option && myChart.setOption(option);
-    }
 
-  }
-  useEffect(() => {
-    initChart()
-    window.addEventListener('resize', initChart)
-    return () => {
-      window.removeEventListener('resize', initChart)
+    if (myRef.current) {
+      myChart = echarts.init(myRef.current);
+      myChart.setOption(option);
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, 500);
+  useEffect(() => {
+    initChart();
+    window.addEventListener("resize", initChart);
+    return () => {
+      window.removeEventListener("resize", initChart);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [props.list]);
   return (
     <div className="w-100% flex justify-center">
-      <div id="volume-chart" style={{ height: "20vh", width: "26vw" }} ref={myRef}></div>
+      <div
+        id="volume-chart"
+        style={{ height: "22vh", width: "23vw" }}
+        ref={myRef}
+      ></div>
     </div>
   );
 }

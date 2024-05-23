@@ -9,6 +9,7 @@ export const ANTD_THEME = {
         bodySortBg:'red',
         colorBgElevated:'#0D0316',
         colorText:'white',
+        colorTextDescription: '#ccc'
       },
       components: {
         Popover: {
@@ -19,6 +20,9 @@ export const ANTD_THEME = {
           headerColor: '#80838e',
           headerSplitColor: 'transparent',
           rowHoverBg: '#0D0612'
+        },
+        Empty: {
+      
         }
       }
 }

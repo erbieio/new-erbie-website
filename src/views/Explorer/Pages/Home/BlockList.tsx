@@ -141,9 +141,9 @@ export default function BlockList() {
         <div className="list-body max-h-46vh scrollbar-y">
           <Loading loading={loading}>
             {
-                    list.map((item) => {
+                    list.map((item,i) => {
                       return (
-                        <div className="list-card-box w-100%">
+                        <div className="list-card-box w-100%" key={i}>
                           <div
                             className="flex font-size-12px justify-between lh-4.44vh list-card px-4px"
                             key={item.number}

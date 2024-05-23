@@ -9,9 +9,11 @@ import { Provider } from "react-redux";
 import { store } from "./store/index.ts";
 import { ConfigProvider, Space } from "antd";
 import { ANTD_THEME } from "./const/antdTheme.ts";
+import { EmptyConfig } from "./antd/config/config.tsx";
+
 
 ReactDOM.createRoot(document.getElementById("root")!).render(
-  <ConfigProvider theme={ANTD_THEME}>
+  <ConfigProvider theme={ANTD_THEME} renderEmpty={EmptyConfig}>
     <Space>
       <Provider store={store}>
         <RouterProvider router={router}></RouterProvider>

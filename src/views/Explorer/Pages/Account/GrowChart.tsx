@@ -89,7 +89,6 @@ export default function GrowChart() {
     return () => {
       window.removeEventListener("resize", initChart);
     };
-
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
