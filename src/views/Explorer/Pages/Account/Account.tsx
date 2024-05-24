@@ -3,7 +3,7 @@ import { useEffect, useRef, useState } from "react";
 import SearchIpt from "../../components/SearchIpt";
 import "./Account.scss";
 import GrowChart from "./GrowChart";
-import { GetAccountPageListItem, GetAccountPageOrder, GetAccountPageParams, GetAccountPageResponse, GetStatsResponse, get_account_page, get_stats } from "../../../../api/modules/explorer";
+import { GetAccountPageListItem, GetAccountPageOrder, GetAccountPageParams, GetAccountPageResponse, GetStatsResponse, get_account_page, get_stats, get_24h_accounts, Get24hTxsResponse } from '../../../../api/modules/explorer';
 import { Pagination, Table, TableColumnsType, TableProps } from 'antd';
 import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
@@ -105,9 +105,18 @@ export default function Account() {
     }
     handleGetList()
   };
+
+
+  // 24h addount chart
+  const [accountChartData, setAccountChartData] = useState<Get24hTxsResponse>()
+  const handleGetChart = async()=> {
+    const data = await get_24h_accounts()
+    setAccountChartData(data)
+  }
   useEffect(() => {
     handleGetList()
     handleGetStats()
+    handleGetChart()
   // eslint-disable-next-line react-hooks/exhaustive-deps
   },[])
 
@@ -149,7 +158,7 @@ export default function Account() {
                 +0.00%{" "}
               </div>
               <div className="w-100%">
-                <GrowChart />
+                <GrowChart data={accountChartData || []} />
               </div>
             </div>
           </div>

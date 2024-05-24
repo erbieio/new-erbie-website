@@ -321,3 +321,9 @@ export type Get24hTxsResponse = Array<Get24hTxsItem>
 export const get_24h_txs = ():Promise<Get24hTxsResponse> => {
   return service.get(`${SCAN_API}/chart/tx`)
 }
+
+
+// 查询24小时账户增长曲线
+export const get_24h_accounts = (): Promise<Get24hTxsResponse> => {
+  return service.get(`${SCAN_API}/chart/account`)
+}

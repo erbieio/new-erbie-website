@@ -3,6 +3,7 @@ import "./styles/antd.scss";
 import "virtual:uno.css";
 import "./index.css";
 import "./styles/common.scss";
+import './styles/animate.scss'
 import { RouterProvider } from "react-router-dom";
 import router from "./routes/Index.tsx";
 import { Provider } from "react-redux";

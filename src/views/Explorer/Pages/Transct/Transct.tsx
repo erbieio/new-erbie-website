@@ -165,6 +165,8 @@ export default function Transct() {
       {hour:23,num:0},
     ]);
   };
+
+
   useEffect(() => {
     handleGetList();
     handleGetStats();

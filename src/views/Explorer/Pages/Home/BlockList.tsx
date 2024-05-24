@@ -104,11 +104,6 @@ export default function BlockList() {
       title: "",
       key: "action",
       width: "6%",
-      render() {
-        return (
-          <i className="i-mi-chevron-down font-size-18px cursor-pointer"></i>
-        );
-      },
     },
   ];
   return (
@@ -126,7 +121,6 @@ export default function BlockList() {
         </div>
       </div>
       <div className="scrollbar-x h-90%">
-        {/* <Table columns={columns} dataSources={list}></Table> */}
         <div className="flex list-header px-5px">
           {columns.map((item, i) => (
             <div
@@ -140,70 +134,22 @@ export default function BlockList() {
         </div>
         <div className="list-body max-h-46vh scrollbar-y">
           <Loading loading={loading}>
-            {
-                    list.map((item,i) => {
-                      return (
-                        <div className="list-card-box w-100%" key={i}>
-                          <div
-                            className="flex font-size-12px justify-between lh-4.44vh list-card px-4px"
-                            key={item.number}
-                          >
-                            <div className="px-6px w-14% flex justify-center items-center">
-                              {item.number}
-                            </div>
-                            <div className="px-6px w-36% flex justify-center items-center">
-                              {addressDots(item.miner, 10)}
-                            </div>
-                            <div className="px-6px  w-10% flex justify-center items-center">
-                              {item.totalTransaction}
-                            </div>
-                            <div className="px-6px w-19% flex justify-center items-center">
-                              {formatDate(Number(item.timestamp))}
-                            </div>
-                            <div className="px-6px w-15% flex justify-center items-center lh-19px">
-                              {item.size} Bytes
-                            </div>
-                            <div className="px-6px w-6% flex justify-center items-center">
-                              <Popover
-                                placement="left"
-                                title={""}
-                                trigger="click"
-                                content={
-                                  <div className="w-662px">
-                                    <TableFold loading={loadReward} data={reward} />
-                                  </div>
-                                }
-                              >
-                                <i
-                                  className="font-size-18px cursor-pointer i-mi-chevron-down"
-                                  onClick={(e) => {
-                                    e.stopPropagation();
-                                    handleShow(item);
-                                  }}
-                                ></i>
-                              </Popover>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-            }
-          </Loading>
-          {/* {loading ? (
-            <div className="flex justify-center items-center w-100% h-40vh"><Loading /></div>
-          ) : (
-            list.map((item) => {
+            {list.map((item, i) => {
               return (
-                <div className="list-card-box">
+                <div className="list-card-box w-100%" key={i}>
                   <div
                     className="flex font-size-12px justify-between lh-4.44vh list-card px-4px"
                     key={item.number}
                   >
                     <div className="px-6px w-14% flex justify-center items-center">
-                      {item.number}
+                      <div className="link hover:color-#1677ff">
+                        {item.number}
+                      </div>
                     </div>
                     <div className="px-6px w-36% flex justify-center items-center">
-                      {addressDots(item.miner, 10)}
+                      <div className="link hover:color-#1677ff">
+                        {addressDots(item.miner, 10)}
+                      </div>
                     </div>
                     <div className="px-6px  w-10% flex justify-center items-center">
                       {item.totalTransaction}
@@ -237,8 +183,8 @@ export default function BlockList() {
                   </div>
                 </div>
               );
-            })
-          )} */}
+            })}
+          </Loading>
         </div>
       </div>
     </div>

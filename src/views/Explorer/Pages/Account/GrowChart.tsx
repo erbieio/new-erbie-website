@@ -1,12 +1,16 @@
 import { useEffect, useRef } from "react";
 import * as echarts from "echarts";
+import { Get24hTxsResponse } from "../../../../api/modules/explorer";
 
-export default function GrowChart() {
+export interface GrowChartProps {
+  data: Get24hTxsResponse;
+}
+export default function GrowChart(props: GrowChartProps) {
   const myRef = useRef<HTMLDivElement>(null);
   const option: echarts.EChartOption = {
     xAxis: {
       type: "category",
-      data: ["Mon", "Tue", "Wed", "Thu", "Fri", "Sat", "Sun"],
+      data: props.data.map(item => item.hour),
       axisTick: {
         show: false,
       },
@@ -51,7 +55,7 @@ export default function GrowChart() {
     },
     series: [
       {
-        data: [820, 22, 901, 45, 1290, 500, 888],
+        data: props.data.map((item) => item.num),
         type: "line",
         smooth: true,
         lineStyle: {
@@ -71,17 +75,16 @@ export default function GrowChart() {
       bottom: "24%",
     },
   };
-  let myChart: echarts.ECharts
+
+  let myChart: echarts.ECharts;
   const initChart = () => {
-    if(myRef.current) {
-      if(myChart) {
-        myChart.dispose()
-      }
+    if (myChart) {
+      myChart.dispose();
+    }
+    if (myRef.current) {
       myChart = echarts.init(myRef.current);
       myChart.setOption(option);
-      option && myChart.setOption(option);
     }
-
   };
   useEffect(() => {
     initChart();
@@ -90,7 +93,7 @@ export default function GrowChart() {
       window.removeEventListener("resize", initChart);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [props.data]);
   return (
     <div className="w-100%">
       <div
