@@ -1,0 +1,15 @@
+.account-detail {
+    .menu-card {
+        &.active {
+            transition: ease .3s;
+            --at-apply: border-1px border-solid;
+            border-image: linear-gradient(to right, #8f41e9, #FACB7C) 1;
+            background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
+            border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
+            backdrop-filter: blur(25px);
+        }
+    }
+    .table-box {
+        background: rgba(255, 255, 255, 0.05);
+    }
+}

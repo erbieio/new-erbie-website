@@ -1,0 +1,50 @@
+.card-box {
+    background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
+    border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
+    backdrop-filter: blur(25px);
+    border-width: 1px;
+    border-style: solid;
+    border-image: linear-gradient(to right, #8f41e9, #FACB7C) 1;
+
+    .line {
+        border-bottom: 1px solid #4E3D5A;
+    }
+
+    .text-line {
+        --at-apply: h-4vh font-size-12px;
+    }
+
+    .stake-line {
+        --at-apply: h-2.99vh font-size-12px px-16px text-left flex items-center;
+    }
+
+    .staked-card {
+        --at-apply: h-3.04vh flex items-center justify-between px-16px border-b-solid border-b-1px border-b-#4E3D5A font-size-12px;
+    }
+
+    .csbt-card {
+        --at-apply: h-3.04vh flex items-center px-16px border-b-solid border-b-1px border-b-#4E3D5A font-size-12px;
+    }
+
+    .staked-table {
+        thead th {
+            --at-apply: px-10px border-t-solid border-t-1px border-t-#4E3D5A;
+        }
+
+        tr td,
+        thead th {
+            --at-apply: border-b-solid border-b-1px border-b-#4E3D5A h-3vh;
+        }
+    }
+
+    .csbt-table {
+        thead th {
+            --at-apply: px-10px border-t-solid border-t-1px border-t-#4E3D5A;
+        }
+
+        tr td,
+        thead th {
+            --at-apply: border-b-solid border-b-1px border-b-#4E3D5A h-3.16vh;
+        }
+    }
+}

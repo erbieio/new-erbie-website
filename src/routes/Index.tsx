@@ -20,6 +20,8 @@ const Csbt = lazy(() => import('../views/Explorer/Pages/Csbt/Csbt.tsx'))
 const Asset = lazy(() => import('../views/Explorer/Pages/Asset/Asset.tsx'))
 const Account = lazy(() => import('../views/Explorer/Pages/Account/Account.tsx'))
 const Transct = lazy(() => import('../views/Explorer/Pages/Transct/Transct.tsx'))
+const AccountDetail = lazy(() => import('../views/Explorer/Pages/AccountDetail/AccountDetail.tsx'))
+const BlockDetail = lazy(() => import('../views/Explorer/Pages/BlockDetail/BlockDetail.tsx'))
 
 const router = createBrowserRouter([
     {
@@ -70,6 +72,14 @@ const router = createBrowserRouter([
               {
                 path: '/explorer/transct',
                 element: LazyLoad(Transct),
+              },
+              {
+                path: '/explorer/accountDetail/:address',
+                element: LazyLoad(AccountDetail),
+              },
+              {
+                path: '/explorer/blockDetail/:blockNumber',
+                element: LazyLoad(BlockDetail),
               },
             ]
         },

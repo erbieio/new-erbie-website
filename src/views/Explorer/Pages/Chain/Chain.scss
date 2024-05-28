@@ -3,6 +3,7 @@
         --at-apply: font-size-12px lg:font-size-14px border-1px border-style-solid border-color-#fff py-12px px-8px lg:min-w-80px cursor-pointer flex-auto;
         background: rgba(56, 55, 82, 0.60);
         &.active {
+            transition: ease .3s;
             background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
             border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
             backdrop-filter: blur(25px);

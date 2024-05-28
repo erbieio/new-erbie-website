@@ -111,7 +111,31 @@ export default function Account() {
   const [accountChartData, setAccountChartData] = useState<Get24hTxsResponse>()
   const handleGetChart = async()=> {
     const data = await get_24h_accounts()
-    setAccountChartData(data)
+    setAccountChartData(data && data.length ? data: [
+      {hour:1,num:0},
+      {hour:2,num:0},
+      {hour:3,num:0},
+      {hour:4,num:0},
+      {hour:5,num:0},
+      {hour:6,num:0},
+      {hour:7,num:0},
+      {hour:8,num:0},
+      {hour:9,num:0},
+      {hour:10,num:0},
+      {hour:11,num:0},
+      {hour:12,num:0},
+      {hour:13,num:0},
+      {hour:14,num:0},
+      {hour:15,num:0},
+      {hour:16,num:0},
+      {hour:17,num:0},
+      {hour:18,num:0},
+      {hour:19,num:0},
+      {hour:20,num:0},
+      {hour:21,num:0},
+      {hour:22,num:0},
+      {hour:23,num:0},
+    ])
   }
   useEffect(() => {
     handleGetList()

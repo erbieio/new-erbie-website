@@ -12,6 +12,7 @@ import {
 } from "../../../../api/modules/explorer";
 import { addressDots } from "../../../../utils/common";
 import { Pagination, PaginationProps } from "antd";
+import { useNavigate } from "react-router-dom";
 
 export interface TableMenuItem {
   label: string
@@ -21,6 +22,7 @@ export interface TableMenuItem {
 }
 
 export default function Chain() {
+  const navigator = useNavigate()
   const handleSearch = (v: string) => {
     console.log("search", v);
   };
@@ -75,6 +77,12 @@ export default function Chain() {
     const data = await get_stats();
     setStats(data);
   };
+  const toBlockDetail = (blockNumber: number | string) => {
+    navigator(`/explorer/blockDetail/${blockNumber}`)
+  } 
+  const toAccountDetail = (address: string) => {
+    navigator(`/explorer/accountDetail/${address}`)
+  } 
   const columns: Array<TableColumn> = [
     {
       title: "Height",
@@ -82,7 +90,7 @@ export default function Chain() {
       render(row) {
         const rowData = row as BlockItem;
         return (
-          <span className="link hover:color-#1677ff">{rowData.number}</span>
+          <span className="link hover:color-#1677ff" onClick={() => toBlockDetail(rowData.number)}>{rowData.number}</span>
         );
       },
     },
@@ -92,7 +100,7 @@ export default function Chain() {
       render(row) {
         const rowData = row as BlockItem;
         return (
-          <span className="link hover:color-#1677ff">{`${addressDots(
+          <span className="link hover:color-#1677ff" onClick={() => toAccountDetail(rowData.miner)}>{`${addressDots(
             rowData.miner,
             5,
             18
