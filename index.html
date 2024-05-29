@@ -54,9 +54,9 @@
   <script type="module" src="/src/main.tsx"></script>
   <script>
     window.onload = function () {
-      const t = setTimeout(() => {
-        const root = document.getElementById('root')
-        const loading = document.getElementById('loading')
+      var t = setTimeout(() => {
+        var root = document.getElementById('root')
+        var loading = document.getElementById('loading')
         loading.style.display = 'none'
         root.style.display = 'block'
         clearTimeout(t)
