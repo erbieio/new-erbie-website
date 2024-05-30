@@ -39,7 +39,7 @@ export default function TXNCard() {
 
 
      <div>
-     <div className='color-#D387FF font-size-16px font-bold'>Other Information</div>
+     <div className='color-#D387FF font-size-16px font-bold text-left px-14px'>Other Information</div>
       <div className='flex justify-between items-center px-16px text-line'>
         <div>Owned CSBT</div>
         <div>0</div>
