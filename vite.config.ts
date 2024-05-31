@@ -44,6 +44,7 @@ export default defineConfig({
       '/scanApi': {
         target: 'https://scanapi.erbie.io',
         changeOrigin: true,
+        secure: false,
         rewrite: (path) => path.replace(/^\/scanApi/, '')
       },
       '/scanAssets': {

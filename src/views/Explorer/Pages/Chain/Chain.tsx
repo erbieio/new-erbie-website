@@ -139,7 +139,7 @@ export default function Chain() {
   ];
 
 
-// 分类查询
+// category search
   const handleFilter = (item: TableMenuItem) => {
     const menus = tableMenus.map(v => v)
     menus.forEach(child => {

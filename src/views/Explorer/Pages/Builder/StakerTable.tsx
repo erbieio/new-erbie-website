@@ -3,6 +3,7 @@ import { GetStakerListItem } from "../../../../api/modules/explorer";
 import { formatEther } from "ethers";
 import { addressDots, formatDate } from "../../../../utils/common";
 import { SorterResult } from "../../../../api/api";
+import { useNavigate } from "react-router-dom";
 interface StakerTableProps {
   dataSource: Array<GetStakerListItem>;
   sorter: (order: string) => void
@@ -11,6 +12,10 @@ interface StakerTableProps {
 
 
 export default function StakerTable(props: StakerTableProps) {
+  const navigator = useNavigate()
+  const toAccountDetail = (address: string) => {
+    navigator(`/explorer/accountDetail/${address}`)
+  } 
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const onChange: TableProps<GetValidatorListItem>['onChange'] = (pagination, filters, sorter: SorterResult<GetValidatorListItem>) => {
@@ -30,7 +35,7 @@ export default function StakerTable(props: StakerTableProps) {
       align: "center",
       render(v) {
         return (
-          <div className="link hover:color-#1677ff">
+          <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(v.address)}>
             {addressDots(v.address, 6, 6)}
           </div>
         );

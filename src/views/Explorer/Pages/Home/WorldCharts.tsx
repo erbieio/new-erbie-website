@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import * as echarts from "echarts";
 import { registerMap } from "echarts/core";
 import worldGeoJSON from "./worldGEO1.json";
@@ -55,9 +55,10 @@ interface MapDataItem {
   };
 }
 export default function WorldCharts() {
+  const myRef = useRef(null)
   let validatorLocations: Array<MapDataItem> = [];
   const renderMap = debounce(() => {
-    const myChart = echarts.init(document.getElementById("world-chart"));
+    const myChart = echarts.init(myRef.current);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     registerMap("world", worldGeoJSON);
@@ -107,7 +108,7 @@ export default function WorldCharts() {
   }, []);
   return (
     <div className="flex justify-center items-center w-600px h-36vh relative world-chart">
-      <div id="world-chart" style={{ width: 600, height: "36vh" }}></div>
+      <div id="world-chart" ref={myRef} style={{ width: 600, height: "36vh" }}></div>
       <div className="absolute bottom-0 left-0">
         <div className="total-card">
           <span>{totalCountry}</span> Countries

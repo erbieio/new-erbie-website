@@ -23,6 +23,10 @@ export const ANTD_THEME = {
         },
         Empty: {
       
+        },
+        Skeleton : {
+          gradientFromColor: 'rgba(255, 255, 255, 0.12)',
+          gradientToColor: 'rgba(255, 255, 255, 0.18)',
         }
       }
 }

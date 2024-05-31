@@ -1,5 +1,5 @@
 import {dealType} from '../assets/json/deal.json'
-//交易类型
+// tx type
 export function txInputToType(hexCharCodeStr: string) {
     if (hexCharCodeStr) {
         // //console.log(hexCharCodeStr)

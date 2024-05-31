@@ -1,9 +1,9 @@
 import { PageParams, PageResponse } from "../api";
 import { service } from "../request";
 
-const SCAN_API = "/scanApi";
-const SCAN_RESOURCE_PATH = "/scanAssets";
-// 查询矿工经纬度
+const SCAN_API = import.meta.env.VITE_API_HOST;
+const SCAN_RESOURCE_PATH = import.meta.env.VITE_ASSETS_HOST;
+// validator locations
 
 export interface GetValidatorLocationsItem {
   address: string;
@@ -19,7 +19,7 @@ export const get_validator_locations = (): Promise<
   return service.get(`${SCAN_API}/validator/locations`);
 };
 
-// 查询在线地址
+// on address
 export interface OnlineHItem {
   addrs: Array<string>;
   count: number;
@@ -36,7 +36,7 @@ export const get_onlineAddr = (): Promise<GetOnlineAddrResopnse> => {
   return service.get(`${SCAN_RESOURCE_PATH}/upload/onlineAddr.json`);
 };
 
-//  查询 总数
+//  total data
 export interface GetStatsResponse {
   validatorTotalPledge: string;
   activeAccount: number;
@@ -80,12 +80,12 @@ export const get_stats = (): Promise<GetStatsResponse> => {
   return service.get(`${SCAN_API}/stats`);
 };
 
-//  系统NFT周期查询
+//  nft
 export const get_epoch_current = () => {
   return service.get("/epoch/current");
 };
 
-//  查询区块分页数据
+//  block list
 /**
  *
  * @param params
@@ -125,7 +125,7 @@ export const get_block_page = (
   return service.get(`${SCAN_API}/block/page`, { params });
 };
 
-// 查询某个区块的数据
+// block data
 
 export interface AddressBlockReward {
   address: string;
@@ -182,7 +182,7 @@ export interface GetValidatorListItem {
 export interface GetValidatorResponse extends PageResponse {
   data: Array<GetValidatorListItem>;
 }
-// 查询矿工列表
+// validators list
 export const get_validator_page = (
   params: GetValidatorParams
 ): Promise<GetValidatorResponse> => {
@@ -208,7 +208,7 @@ export interface GetStakerListItem {
 export interface GetStakerResponse extends PageResponse {
   data: Array<GetStakerListItem>;
 }
-// 查询质押者列表
+// stakers list
 export const get_staker_page = (
   params: GetStakerParams
 ): Promise<GetStakerResponse> => {
@@ -233,10 +233,10 @@ export interface GetSnftMetaResponse extends PageResponse {
   nfts: Array<GetSnftMetaItem>;
 }
 export interface GetSnftMetaParams extends PageParams {
-  collection_id: undefined | string;
-  owner: undefined | string;
+  collection_id?: undefined | string;
+  owner?: undefined | string;
 }
-// 查询CSBT 列表
+// csbt list
 export const get_snft_meta_page = (
   params: GetSnftMetaParams
 ): Promise<GetSnftMetaResponse> => {
@@ -272,7 +272,7 @@ export type GetAccountPageOrder =
 export interface GetAccountPageParams extends PageParams {
   order: GetAccountPageOrder;
 }
-// 查询账户列表
+// accounts list
 export const get_account_page = (
   params: GetAccountPageParams
 ): Promise<GetAccountPageResponse> => {
@@ -299,31 +299,76 @@ export interface GetTransitionPageListItem {
 }
 
 export interface GetTransactionPageParams extends PageParams {
- 
+  addr?: string;
+  types?: null | string;
 }
 
 export interface GetTransactionPageResponse extends PageResponse {
   transactions: Array<GetTransitionPageListItem>;
 }
-// 查询交易列表
-export const get_transaction_page = (params: GetTransactionPageParams): Promise<GetTransactionPageResponse> => {
+// tx list
+export const get_transaction_page = (
+  params: GetTransactionPageParams
+): Promise<GetTransactionPageResponse> => {
   return service.get(`${SCAN_API}/transaction/page`, { params });
 };
 
-
-
 export interface Get24hTxsItem {
-  hour: number
-  num: number
+  hour: number;
+  num: number;
 }
-export type Get24hTxsResponse = Array<Get24hTxsItem>
-// 查询24小时交易增长曲线 
-export const get_24h_txs = ():Promise<Get24hTxsResponse> => {
-  return service.get(`${SCAN_API}/chart/tx`)
-}
+export type Get24hTxsResponse = Array<Get24hTxsItem>;
+// 24h txs
+export const get_24h_txs = (): Promise<Get24hTxsResponse> => {
+  return service.get(`${SCAN_API}/chart/tx`);
+};
 
-
-// 查询24小时账户增长曲线
+// 24h accounts
 export const get_24h_accounts = (): Promise<Get24hTxsResponse> => {
-  return service.get(`${SCAN_API}/chart/account`)
+  return service.get(`${SCAN_API}/chart/account`);
+};
+
+// pledge list
+export interface GetPledgePageParams extends PageParams {
+  staker?: string;
+  validator?: string
+}
+export interface GetPledgePageItem {
+  amount: string;
+  block_number: number;
+  staker: string;
+  timestamp: number;
+  tx_hash: string;
+  validator: string;
+}
+export interface GetPledgePageResponse extends PageResponse {
+  data: Array<GetPledgePageItem>;
+}
+export const get_pledge_page = (params: GetPledgePageParams): Promise<GetPledgePageResponse> => {
+  return service.get(`${SCAN_API}/pledge/page`, { params });
+};
+
+// account detail
+export interface GetAccountDetailResponse {
+  address: string
+  balance:string
+  nonce: number
+  code: null | number
+  number: number
+  snftCount: number
+  snftValue: string
+  timestamp: number
+  weight:number
+  nftCount: number
+  validatorAmount: string
+  stakerAmount: string
+  rewardCoinCount: number
+  rewardSNFTCount: number
+  validatorReward: string
+  lastNumber: number
+  reward: string
+  profit: string
+}
+export const get_account_detail = (address: string): Promise<GetAccountDetailResponse> => {
+  return service.get(`${SCAN_API}/account/${address}`)
 }

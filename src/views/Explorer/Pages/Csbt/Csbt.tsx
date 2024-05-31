@@ -12,16 +12,25 @@ import {
 import { Pagination } from "antd";
 import { addressDots } from "../../../../utils/common";
 import moment from "moment";
+import { useNavigate } from "react-router-dom";
 export default function Csbt() {
   const handleSearch = () => {};
+  const navigator = useNavigate();
+  const toAccountDetail = (address: string) => {
+    navigator(`/explorer/accountDetail/${address}`);
+  };
   const columns: Array<TableColumn> = [
     {
       title: "Address",
       key: "address",
-      render(v){
+      render(v) {
         const data = v as GetSnftMetaItem;
-        return <a className="link">{addressDots(data.address,6,6)}</a>
-      }
+        return (
+          <a className="link" onClick={() => toAccountDetail(data.address)}>
+            {addressDots(data.address, 6, 6)}
+          </a>
+        );
+      },
     },
     {
       title: "Number",
@@ -44,7 +53,14 @@ export default function Csbt() {
       key: "owner",
       render(v) {
         const data = v as GetSnftMetaItem;
-        return addressDots(data.owner, 6, 6);
+        return (
+          <span
+            className="link hover:color-blue"
+            onClick={() => toAccountDetail(data.owner)}
+          >
+            {addressDots(data.owner, 6, 6)}
+          </span>
+        );
       },
     },
     {
@@ -89,7 +105,7 @@ export default function Csbt() {
   };
   useEffect(() => {
     handleGetList();
-    handleGetStats()
+    handleGetStats();
   }, []);
 
   const handleChangePage = (page: number) => {
@@ -116,7 +132,11 @@ export default function Csbt() {
               </div>
             </div>
             <div className="h-90% flex">
-            <Table columns={columns} dataSources={csbtData?.nfts || []} loading={loading} />
+              <Table
+                columns={columns}
+                dataSources={csbtData?.nfts || []}
+                loading={loading}
+              />
             </div>
           </div>
         </div>

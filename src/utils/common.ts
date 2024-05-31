@@ -35,7 +35,7 @@ export function debounce(fn: Function, delay = 100) {
   };
 }
 
-// 为地址字符串添加...
+// addr mask
 export function addressDots(v: string | number, len = 12, lastlen = 12) {
   const newstr = typeof v === "number" ? v.toString() : v;
   return newstr
@@ -45,8 +45,9 @@ export function addressDots(v: string | number, len = 12, lastlen = 12) {
     : "";
 }
 
-// 时间日期时间戳转换为字符串
+// format date
 export function formatDate(data: number, format = "YYYY-MM-DD HH:mm:ss") {
+  if (data === 0) return "-";
   const t = new Date(moment().format(format)).getTime() / 1000;
   const nowTime = data;
   if (nowTime) {

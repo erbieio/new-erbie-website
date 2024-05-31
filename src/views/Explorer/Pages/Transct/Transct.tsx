@@ -18,8 +18,13 @@ import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { Pagination, Table, TableColumnsType } from "antd";
 import { txInputToType } from "../../../../utils/utils";
+import { useNavigate } from "react-router-dom";
 export default function Transct() {
   const handleSearch = () => {};
+  const navigator = useNavigate();
+  const toAccountDetail = (address: string) => {
+    navigator(`/explorer/accountDetail/${address}`);
+  };
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",
@@ -55,7 +60,7 @@ export default function Transct() {
       align: "center",
       render(v) {
         return (
-          <div className="link hover:color-#1677ff">
+          <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(v.from)}>
             {addressDots(v.from, 6, 6)}
           </div>
         );
@@ -67,7 +72,7 @@ export default function Transct() {
       align: "center",
       render(v) {
         return (
-          <div className="link hover:color-#1677ff">
+          <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(v.to)}>
             {addressDots(v.to, 6, 6)}
           </div>
         );

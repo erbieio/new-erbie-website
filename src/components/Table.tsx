@@ -4,7 +4,7 @@ import "./Table.scss";
 import NoData from "./NoData";
 import Loading from "./Loading";
 export interface TableColumn {
-  title: string;
+  title: string | ReactNode;
   key: string;
   width?: number | string;
   render?: (val: unknown) => void;

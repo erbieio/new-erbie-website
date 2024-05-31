@@ -8,14 +8,19 @@ import { Pagination, Table, TableColumnsType, TableProps } from 'antd';
 import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { SorterResult } from "../../../../api/api";
+import { useNavigate } from "react-router-dom";
 export default function Account() {
+  const navigator = useNavigate();
+  const toAccountDetail = (address: string) => {
+    navigator(`/explorer/accountDetail/${address}`);
+  };
   const columns: TableColumnsType<GetAccountPageListItem> = [
     {
       title: "Address",
       key:"address",
       align: 'center',
       render(v){
-        return <div className='link hover:color-#1677ff'>{ addressDots(v.address, 6 ,6) }</div>
+        return <div className='link hover:color-#1677ff' onClick={() => toAccountDetail(v.address)}>{ addressDots(v.address, 6 ,6) }</div>
       }
     },
     {
