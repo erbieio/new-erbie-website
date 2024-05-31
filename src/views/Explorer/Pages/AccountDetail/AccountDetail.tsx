@@ -66,7 +66,9 @@ export default function AccountDetail() {
       const data = await get_account_detail(addr)
       setAccountDetail(data)
     } finally {
-      setLoadingAccount(false)
+      setTimeout(() => {
+        setLoadingAccount(false)
+      },300)
     }
   }
   const pageParams = useRef({
