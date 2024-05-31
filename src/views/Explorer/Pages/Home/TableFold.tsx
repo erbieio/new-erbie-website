@@ -31,7 +31,7 @@ function Fold(data: Array<BlockReward>) {
           <div className="fold-component-card h-40px"></div>
         </div>
         <div className="w-75% flex flex-wrap">
-          {list.map((item) => (
+          {list && list.length &&list.map((item) => (
             <div
               key={item.address}
               className="w-33.3333% h-40px flex fold-component-card whitespace-normal"
@@ -39,14 +39,14 @@ function Fold(data: Array<BlockReward>) {
               <img src={lv2} alt="" className="w-14px mr-5px" />
               <div><span className="link hover:color-#1677ff">{addressDots(item.address, 3,4)}</span></div>
               <div className="color-#a1a1a1 ml-8px whitespace-normal w-80px">
-                {formatEther(item.amount)} {ERBIE_COIN}
+                {formatEther(item.amount || '0')} {ERBIE_COIN}
               </div>
             </div>
           ))}
         </div>
       </div>
       <div className="flex">
-        {list2.map((item) => (
+        {list2 && list2.length && list2.map((item) => (
           <div
             key={item.address}
             className="w-25% lh-30px fold-component-card py-5px"

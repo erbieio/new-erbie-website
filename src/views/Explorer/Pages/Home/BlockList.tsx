@@ -38,7 +38,7 @@ export default function BlockList() {
         loading: false,
       }));
       setList(newList);
-      setTotalPage(Math.ceil(data.total / 10));
+      setTotalPage(data.total);
       return data;
     } finally {
       setLoading(false);
