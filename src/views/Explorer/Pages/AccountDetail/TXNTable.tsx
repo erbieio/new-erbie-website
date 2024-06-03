@@ -115,6 +115,7 @@ export default function TXNTable(props: TXTTableProps) {
   return (
     <div>
       <Table
+        pagination={false}
         dataSource={props.list}
         loading={props.loading}
         columns={columns}

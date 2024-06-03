@@ -11,18 +11,17 @@ import {
   GetStatsResponse,
 } from "../../../../api/modules/explorer";
 import { addressDots } from "../../../../utils/common";
-import { Pagination, PaginationProps } from "antd";
+import { Pagination, PaginationProps, Skeleton } from "antd";
 import { useNavigate } from "react-router-dom";
 
 export interface TableMenuItem {
-  label: string
-  active: boolean
-  filter: number | null
-
+  label: string;
+  active: boolean;
+  filter: number | null;
 }
 
 export default function Chain() {
-  const navigator = useNavigate()
+  const navigator = useNavigate();
   const handleSearch = (v: string) => {
     console.log("search", v);
   };
@@ -32,27 +31,28 @@ export default function Chain() {
   });
   const [tableMenus, setTableMenus] = useState<Array<TableMenuItem>>([
     {
-      label:'Blocks',
+      label: "Blocks",
       filter: null,
-      active: true
+      active: true,
     },
     {
-      label: 'Blackhole Blocks',
+      label: "Blackhole Blocks",
       filter: 1,
-      active: false
+      active: false,
     },
     {
-      label :'Penalty Blocks',
+      label: "Penalty Blocks",
       filter: 2,
-      active: false
-    }
-  ])
+      active: false,
+    },
+  ]);
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<GetStatsResponse>();
   const [blockData, setBlockData] = useState<GetBlockResponse>({
     blocks: [],
     total: 0,
   });
+  const multiple = 0.5436;
   const handleGetBlocks = async () => {
     try {
       setLoading(true);
@@ -62,27 +62,43 @@ export default function Chain() {
       setLoading(false);
     }
   };
+
   useEffect(() => {
     handleGetBlocks();
     handleGetStats();
   }, []);
-  // 获取分页数据
+  // get table list
   const handleChangePage: PaginationProps["onChange"] = (page) => {
     params.current.page = page;
     handleGetBlocks();
   };
 
-  // 获取统计数据
+  // get total stats
   const handleGetStats = async () => {
-    const data = await get_stats();
-    setStats(data);
+    try {
+      setStatLoading(true);
+      const data = await get_stats();
+      setStats(data);
+    } finally {
+      const t = setTimeout(() => {
+        setStatLoading(false);
+        clearTimeout(t);
+      }, 300);
+    }
   };
   const toBlockDetail = (blockNumber: number | string) => {
-    navigator(`/explorer/blockDetail/${blockNumber}`)
-  } 
+    navigator(`/explorer/blockDetail/${blockNumber}`);
+  };
   const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`)
-  } 
+    navigator(`/explorer/accountDetail/${address}`);
+  };
+  const [statloading, setStatLoading] = useState(false);
+  // const [totalRewards, setTotalRewards] = useState(0)
+  // const totalERBRewards = useMemo(() => {
+  //   // const ReduceRewardPeriod = 365 * 720 * 24
+  //   // const DeflationRate = 0.85
+  // }, [stats])
+
   const columns: Array<TableColumn> = [
     {
       title: "Height",
@@ -90,7 +106,12 @@ export default function Chain() {
       render(row) {
         const rowData = row as BlockItem;
         return (
-          <span className="link hover:color-#1677ff" onClick={() => toBlockDetail(rowData.number)}>{rowData.number}</span>
+          <span
+            className="link hover:color-#1677ff"
+            onClick={() => toBlockDetail(rowData.number)}
+          >
+            {rowData.number}
+          </span>
         );
       },
     },
@@ -100,11 +121,10 @@ export default function Chain() {
       render(row) {
         const rowData = row as BlockItem;
         return (
-          <span className="link hover:color-#1677ff" onClick={() => toAccountDetail(rowData.miner)}>{`${addressDots(
-            rowData.miner,
-            5,
-            18
-          )}`}</span>
+          <span
+            className="link hover:color-#1677ff"
+            onClick={() => toAccountDetail(rowData.miner)}
+          >{`${addressDots(rowData.miner, 5, 18)}`}</span>
         );
       },
     },
@@ -138,36 +158,43 @@ export default function Chain() {
     },
   ];
 
-
-// category search
+  // category search
   const handleFilter = (item: TableMenuItem) => {
-    const menus = tableMenus.map(v => v)
-    menus.forEach(child => {
-      if(child.filter === item.filter) {
-        child.active = true
+    const menus = tableMenus.map((v) => v);
+    menus.forEach((child) => {
+      if (child.filter === item.filter) {
+        child.active = true;
       } else {
-        child.active = false
+        child.active = false;
       }
-    })
-    setTableMenus(menus)
-    const filter:number | null = item.filter
-    if(filter) {
-      params.current.filter = filter
+    });
+    setTableMenus(menus);
+    const filter: number | null = item.filter;
+    if (filter) {
+      params.current.filter = filter;
     } else {
-      delete params.current.filter
+      delete params.current.filter;
     }
-    params.current.page = 1
-    handleGetBlocks()
-  }
-  
+    params.current.page = 1;
+    handleGetBlocks();
+  };
+
   return (
     <div className="page-chain flex flex-col flex-col-reverse lg:flex-row">
       <div className="chain-header flex-1 mt-20px lg:mt-0 w-100%">
         <div className="flex flex-col lg:flex-row w-100% lg:h-48px">
           <div className="flex-1 flex gap-10px">
-            {
-              tableMenus.map(item => <div key={item.label} className={`chain-btn white-space ${item.active ? 'active' : ''}`} onClick={() => handleFilter(item)}>{item.label}</div>)
-            }
+            {tableMenus.map((item) => (
+              <div
+                key={item.label}
+                className={`chain-btn white-space ${
+                  item.active ? "active" : ""
+                }`}
+                onClick={() => handleFilter(item)}
+              >
+                {item.label}
+              </div>
+            ))}
           </div>
           <div className="flex-1 lg:ml-26px pt-20px lg:pt-0">
             <SearchIpt onSearch={handleSearch} className="font-size-14px" />
@@ -199,28 +226,53 @@ export default function Chain() {
       </div>
       <div className="mt-20px lg:mt-0 w-100% lg:w-250px lg:ml-22px flex justify-between flex-row lg:flex-col">
         <div className="total-card flex justify-center items-center">
-          <div>
+          <div className="w-100%">
             <div className="font-size-12px lg:font-size-16px">Block Height</div>
             <div className="font-size-16px lg:font-size-24px mt-16px">
-              {stats?.totalBlock}
+              <Skeleton
+                loading={statloading}
+                title={false}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+              >
+                {stats?.totalBlock}
+              </Skeleton>
             </div>
           </div>
         </div>
         <div className="total-card flex justify-center items-center">
-          <div>
+          <div className="w-100%">
             <div className="font-size-12px lg:font-size-16px">
               Total ERB Rewards
             </div>
             <div className="font-size-16px lg:font-size-24px mt-16px">
-              {stats?.rewardCoinCount}
+              <Skeleton
+                loading={statloading}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+                title={false}
+              >
+                {stats
+                  ? Math.floor(
+                      Number(stats?.rewardCoinCount) * multiple * 100
+                    ) / 100
+                  : 0}
+              </Skeleton>
             </div>
           </div>
         </div>
         <div className="total-card flex justify-center items-center">
-          <div>
+          <div className="w-100%">
             <div className="font-size-12px lg:font-size-16px">Total CSBT</div>
             <div className="font-size-16px lg:font-size-24px mt-16px">
-              {stats?.rewardSNFTCount}
+              <Skeleton
+                loading={statloading}
+                title={false}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+              >
+                {stats?.rewardSNFTCount}
+              </Skeleton>
             </div>
           </div>
         </div>

@@ -72,6 +72,7 @@ export default function CSBTTable(props: CSBTTableProps) {
   return (
     <div>
       <Table
+        pagination={false}
         dataSource={props.list}
         loading={props.loading}
         columns={columns}

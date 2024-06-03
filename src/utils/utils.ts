@@ -34,3 +34,14 @@ export function txInputToType(hexCharCodeStr: string) {
         }
     }
 }
+
+const DREBlockReward = 0.5436
+const ReduceRewardPeriod = 365 * 720 * 24 * 7
+const DeflationRate = 0.85
+// calc erb rewards
+export function calcERBRewardsTimes(blocknumber: number, _DREBlockReward?: number){
+    const times = blocknumber / ReduceRewardPeriod
+	const rewardratio = DeflationRate**times
+	const u = rewardratio * (_DREBlockReward || DREBlockReward)
+	return u
+}

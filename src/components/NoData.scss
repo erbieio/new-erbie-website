@@ -1,14 +1,17 @@
-.empty-img {
-    animation: animate-empty 4s ease-in-out infinite;
-    @keyframes animate-empty {
-        0%{
-            transform: translate(0,0) scale(1);
-        }
-        50%{
-            transform: translate(0,-8px) scale(1.05);
-        }
-        100%{
-            transform: translate(0,0) scale(1);
+.no-data {
+    font-family: Space Mono;
+    .empty-img {
+        animation: animate-empty 4s ease-in-out infinite;
+        @keyframes animate-empty {
+            0%{
+                transform: translate(0,0) scale(1);
+            }
+            50%{
+                transform: translate(0,-8px) scale(1.05);
+            }
+            100%{
+                transform: translate(0,0) scale(1);
+            }
         }
     }
 }

@@ -251,12 +251,14 @@ export default function Transct() {
               </div>
             </div>
             <div className="min-h-50vh">
+              <div className="overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}
                 dataSource={listData?.transactions}
                 loading={loading}
                 pagination={false}
               />
+              </div>
             </div>
           </div>
         </div>

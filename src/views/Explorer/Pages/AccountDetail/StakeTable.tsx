@@ -69,8 +69,7 @@ export default function StakeTable(props: StakeTableProps) {
   ];
   return (
     <div>
-      <Table
-        columns={columns}
+      <Table        columns={columns}
         dataSources={props.list}
         loading={props.loading}
       />

@@ -5,7 +5,7 @@ export const ANTD_THEME = {
         borderRadius: 0,
 
         // 派生变量，影响范围小
-        colorBgContainer: '#261435',
+        colorBgContainer: 'transparent', // '#261435',
         bodySortBg:'red',
         colorBgElevated:'#0D0316',
         colorText:'white',
@@ -19,7 +19,7 @@ export const ANTD_THEME = {
           borderColor: 'rgba(255, 255, 255, 0.2)',
           headerColor: '#80838e',
           headerSplitColor: 'transparent',
-          rowHoverBg: '#0D0612'
+          rowHoverBg:'rgba(255, 255, 255, 0.05)', // '#0D0612'
         },
         Empty: {
       

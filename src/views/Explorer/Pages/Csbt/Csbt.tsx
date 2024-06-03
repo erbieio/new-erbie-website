@@ -9,7 +9,7 @@ import {
   get_snft_meta_page,
   get_stats,
 } from "../../../../api/modules/explorer";
-import { Pagination } from "antd";
+import { Pagination, Skeleton } from "antd";
 import { addressDots } from "../../../../utils/common";
 import moment from "moment";
 import { useNavigate } from "react-router-dom";
@@ -74,10 +74,19 @@ export default function Csbt() {
   ];
   const [stats, setStats] = useState<GetStatsResponse>();
 
-  // 获取统计数据
+  // get total stats
+  const [statloading, setStatLoading] = useState(false);
   const handleGetStats = async () => {
-    const data = await get_stats();
-    setStats(data);
+    try {
+      setStatLoading(true);
+      const data = await get_stats();
+      setStats(data);
+    } finally {
+      const t = setTimeout(() => {
+        setStatLoading(false);
+        clearTimeout(t);
+      }, 300);
+    }
   };
   const [loading, setLoading] = useState(false);
 
@@ -142,9 +151,18 @@ export default function Csbt() {
         </div>
         <div className="w-250px ml-22px flex flex-col gap-2vh">
           <div className="data-panel">
-            <div>
+            <div className="w-100% px-20px">
               <div className="tit">Mined CSBT Number</div>
-              <div className="val">{stats ? stats.totalSNFT : 0}</div>
+              <div className="val">
+                <Skeleton
+                  loading={statloading}
+                  title={false}
+                  active
+                  paragraph={{ rows: 1, width: "100% " }}
+                >
+                  {stats ? stats.totalSNFT : 0}
+                </Skeleton>
+              </div>
             </div>
           </div>
           <div className="data-panel">

@@ -14,7 +14,7 @@ import {
 } from "../../../../api/modules/explorer";
 import ValidatorTable from "./ValidatorTable";
 import StakerTable from "./StakerTable";
-import { Pagination } from "antd";
+import { Pagination, Skeleton } from "antd";
 import { formatEther } from "ethers";
 
 export interface ValidatorMenuItem {
@@ -27,10 +27,19 @@ export default function Validator() {
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<GetStatsResponse>();
   const handleSearch = () => {};
-  // 获取统计数据
+  // get total stats
+  const [statloading, setStatLoading] = useState(false);
   const handleGetStats = async () => {
-    const data = await get_stats();
-    setStats(data);
+    try {
+      setStatLoading(true);
+      const data = await get_stats();
+      setStats(data);
+    } finally {
+      const t = setTimeout(() => {
+        setStatLoading(false);
+        clearTimeout(t);
+      }, 300);
+    }
   };
   const params = useRef<{ page: number; page_size: number }>({
     page: 1,
@@ -192,27 +201,66 @@ export default function Validator() {
       </div>
       <div className="w-100% lg:w-250px flex flex-wrap gap-22px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-20px lg:mt-0">
         <div className="data-panel">
-          <div>
+          <div className="w-100% px-20px">
             <div className="tit">Validator Number</div>
-            <div className="val">{stats ? stats.totalValidator : "--"}</div>
+            <div className="val">
+              <Skeleton
+                loading={statloading}
+                title={false}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+              >
+                {stats ? stats.totalValidator : "--"}
+              </Skeleton>
+            </div>
           </div>
         </div>
         <div className="data-panel">
-          <div>
+          <div className="w-100% px-20px">
             <div className="tit">Stake of Validator</div>
-            <div className="val">{stats ? formatEther(stats.validatorTotalPledge ) : 0}</div>
+            <div className="val">
+              <Skeleton
+                loading={statloading}
+                title={false}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+              >
+                {stats ? formatEther(stats.validatorTotalPledge) : 0}
+              </Skeleton>
+            </div>
           </div>
         </div>
         <div className="data-panel">
-          <div>
+          <div className="w-100% px-20px">
             <div className="tit">Staker Number</div>
-            <div className="val">{stats ? stats.totalStaker : "--"}</div>
+            <div className="val">
+              <Skeleton
+                loading={statloading}
+                title={false}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+              >
+                {stats ? stats.totalStaker : "--"}
+              </Skeleton>
+            </div>
           </div>
         </div>
         <div className="data-panel">
-          <div>
+          <div className="w-100% px-20px">
             <div className="tit">Stake of Staker</div>
-            <div className="val">{ stats ? Number(formatEther(stats.totalPledge)) - Number(formatEther(stats.validatorTotalPledge)) : 0}</div>
+            <div className="val">
+              <Skeleton
+                loading={statloading}
+                title={false}
+                active
+                paragraph={{ rows: 1, width: "100% " }}
+              >
+                {stats
+                  ? Number(formatEther(stats.totalPledge)) -
+                    Number(formatEther(stats.validatorTotalPledge))
+                  : 0}
+              </Skeleton>
+            </div>
           </div>
         </div>
       </div>
