@@ -3,7 +3,7 @@ import { GetStakerListItem } from "../../../../api/modules/explorer";
 import { formatEther } from "ethers";
 import { addressDots, formatDate } from "../../../../utils/common";
 import { SorterResult } from "../../../../api/api";
-import { useNavigate } from "react-router-dom";
+import useRouter from "../../../../hooks/useRouter";
 interface StakerTableProps {
   dataSource: Array<GetStakerListItem>;
   sorter: (order: string) => void
@@ -12,10 +12,7 @@ interface StakerTableProps {
 
 
 export default function StakerTable(props: StakerTableProps) {
-  const navigator = useNavigate()
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`)
-  } 
+  const {toAccountDetail} = useRouter()
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const onChange: TableProps<GetValidatorListItem>['onChange'] = (pagination, filters, sorter: SorterResult<GetValidatorListItem>) => {

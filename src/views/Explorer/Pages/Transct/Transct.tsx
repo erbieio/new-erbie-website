@@ -18,13 +18,10 @@ import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { Pagination, Table, TableColumnsType } from "antd";
 import { txInputToType } from "../../../../utils/utils";
-import { useNavigate } from "react-router-dom";
+import useRouter from "../../../../hooks/useRouter";
 export default function Transct() {
   const handleSearch = () => {};
-  const navigator = useNavigate();
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`);
-  };
+  const {toAccountDetail} = useRouter()
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",

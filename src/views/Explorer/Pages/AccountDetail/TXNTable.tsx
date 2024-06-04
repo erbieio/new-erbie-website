@@ -1,19 +1,16 @@
 import { GetTransitionPageListItem } from "../../../../api/modules/explorer";
 import { addressDots, formatDate } from "../../../../utils/common";
-import { useNavigate } from "react-router-dom";
 import { formatEther } from "ethers";
 import { txInputToType } from "../../../../utils/utils";
 import { TableColumnsType, Table } from "antd";
+import useRouter from "../../../../hooks/useRouter";
 
 export interface TXTTableProps {
   list: Array<GetTransitionPageListItem>;
   loading: boolean;
 }
 export default function TXNTable(props: TXTTableProps) {
-  const navigator = useNavigate();
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`);
-  };
+  const {toAccountDetail} = useRouter()
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",

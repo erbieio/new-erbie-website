@@ -12,7 +12,7 @@ import { Pagination, type PaginationProps, Popover } from "antd";
 import { addressDots, formatDate } from "../../../../utils/common";
 import TableFold from "./TableFold";
 import Loading from "../../../../components/Loading";
-import { useNavigate } from "react-router-dom";
+import useRouter from "../../../../hooks/useRouter";
 
 export default function BlockList() {
   const [list, setList] = useState<Array<BlockItem>>([]);
@@ -107,10 +107,7 @@ export default function BlockList() {
       width: "6%",
     },
   ];
-  const navigator = useNavigate()
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`)
-  } 
+  const {toAccountDetail} = useRouter()
   return (
     <div className="block-list h-100%">
       <div className="font-size-16px text-left py-10px px-16px tit justify-between flex h-6.4vh">

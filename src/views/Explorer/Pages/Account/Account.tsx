@@ -8,12 +8,9 @@ import { Pagination, Table, TableColumnsType, TableProps } from 'antd';
 import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { SorterResult } from "../../../../api/api";
-import { useNavigate } from "react-router-dom";
+import useRouter from "../../../../hooks/useRouter";
 export default function Account() {
-  const navigator = useNavigate();
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`);
-  };
+  const {toAccountDetail} = useRouter()
   const columns: TableColumnsType<GetAccountPageListItem> = [
     {
       title: "Address",

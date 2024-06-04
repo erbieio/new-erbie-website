@@ -1,8 +1,8 @@
 import { GetPledgePageItem } from "../../../../api/modules/explorer";
 import Table, { TableColumn } from "../../../../components/Table";
-import { useNavigate } from "react-router-dom";
 import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther } from "ethers";
+import useRouter from "../../../../hooks/useRouter";
 
 export interface StakeTableProps {
   list: Array<GetPledgePageItem>;
@@ -10,10 +10,7 @@ export interface StakeTableProps {
   type: 2 | 3; // STAKE  STAKED
 }
 export default function StakeTable(props: StakeTableProps) {
-  const navigator = useNavigate();
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`);
-  };
+  const {toAccountDetail} = useRouter()
   const columns: Array<TableColumn> = [
     {
       title: "Account",

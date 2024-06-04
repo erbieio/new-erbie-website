@@ -12,13 +12,10 @@ import {
 import { Pagination, Skeleton } from "antd";
 import { addressDots } from "../../../../utils/common";
 import moment from "moment";
-import { useNavigate } from "react-router-dom";
+import useRouter from "../../../../hooks/useRouter";
 export default function Csbt() {
   const handleSearch = () => {};
-  const navigator = useNavigate();
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`);
-  };
+  const {toAccountDetail} = useRouter()
   const columns: Array<TableColumn> = [
     {
       title: "Address",

@@ -13,6 +13,7 @@ import {
 import { addressDots } from "../../../../utils/common";
 import { Pagination, PaginationProps, Skeleton } from "antd";
 import { useNavigate } from "react-router-dom";
+import useRouter from "../../../../hooks/useRouter";
 
 export interface TableMenuItem {
   label: string;
@@ -89,9 +90,7 @@ export default function Chain() {
   const toBlockDetail = (blockNumber: number | string) => {
     navigator(`/explorer/blockDetail/${blockNumber}`);
   };
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`);
-  };
+  const {toAccountDetail} = useRouter()
   const [statloading, setStatLoading] = useState(false);
   // const [totalRewards, setTotalRewards] = useState(0)
   // const totalERBRewards = useMemo(() => {

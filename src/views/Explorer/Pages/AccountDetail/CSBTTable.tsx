@@ -1,17 +1,14 @@
-import { useNavigate } from "react-router-dom";
 import { GetSnftMetaItem } from "../../../../api/modules/explorer";
-
 import { addressDots, formatDate } from "../../../../utils/common";
 import { TableColumnsType, Table } from "antd";
+import useRouter from "../../../../hooks/useRouter";
 export interface CSBTTableProps {
   list: Array<GetSnftMetaItem>;
   loading: boolean;
 }
 export default function CSBTTable(props: CSBTTableProps) {
-    const navigator = useNavigate()
-    const toAccountDetail = (address: string) => {
-        navigator(`/explorer/accountDetail/${address}`);
-      };
+  const {toAccountDetail} = useRouter()
+
   const columns: TableColumnsType<GetSnftMetaItem> = [
     {
       title: "Address",

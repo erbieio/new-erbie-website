@@ -7,7 +7,7 @@ import neutral from '../../../../assets/builder/neutral.svg'
 import sad from '../../../../assets/builder/sad.svg'
 import moment from 'moment';
 import { SorterResult } from '../../../../api/api';
-import { useNavigate } from 'react-router-dom';
+import useRouter from '../../../../hooks/useRouter';
 interface ValidatorTableProps {
   dataSource: Array<GetValidatorListItem>
   sorter: (order: string) => void
@@ -15,7 +15,6 @@ interface ValidatorTableProps {
 }
   
 export default function ValidatorTable(props: ValidatorTableProps) {
-  const navigator = useNavigate()
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const onChange: TableProps<GetValidatorListItem>['onChange'] = (pagination, filters, sorter: SorterResult<GetValidatorListItem>) => {
@@ -35,9 +34,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         if (v >= 40 && v <= 50) return neutral;
         if (v > 50) return smile;
   }
-  const toAccountDetail = (address: string) => {
-    navigator(`/explorer/accountDetail/${address}`)
-  } 
+  const {toAccountDetail} = useRouter()
   const columns: TableColumnsType<GetValidatorListItem> = [
     {
       title: "Validator",
