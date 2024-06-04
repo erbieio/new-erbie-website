@@ -85,7 +85,7 @@ export default function Csbt() {
       const t = setTimeout(() => {
         setStatLoading(false);
         clearTimeout(t);
-      }, 300);
+      }, 100);
     }
   };
   const [loading, setLoading] = useState(false);

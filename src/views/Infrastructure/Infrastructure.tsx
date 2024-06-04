@@ -1,6 +1,7 @@
 import "./Infrastructure.scss";
 import video from '../../assets/demo.mp4'
 import share from '../../assets/shareright.svg'
+import { ERBIE_DOCUMENT } from "../../const/website";
 
 export default function Infrastructure() {
   return (
@@ -44,7 +45,7 @@ export default function Infrastructure() {
               </div>
             </div>
           </div>
-          <div className="right-box-bottom cursor-pointer w-100%" onClick={() => window.open('https://www.erbie.io/erbiedocs/newnavigation/guide/run.html', '__blank')}>
+          <div className="right-box-bottom cursor-pointer w-100%" onClick={() => window.open(`${ERBIE_DOCUMENT}/newnavigation/guide/run.html`, '__blank')}>
             <div>Become A Vaildator</div>
             <img src={share} className="ml-30px w-20px" alt="" />
           </div>

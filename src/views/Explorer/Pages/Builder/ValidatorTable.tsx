@@ -115,7 +115,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
 
   ];
   return (
-    <div className='w-100% validator-table  h-100%'>
+    <div className='w-100% validator-table  h-100% overflow-x-scroll scrollbar-x'>
       <Table columns={columns} dataSource={props.dataSource} pagination={false} onChange={onChange} loading={props.loading}></Table>
     </div>
   )

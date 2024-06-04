@@ -38,7 +38,7 @@ export default function Validator() {
       const t = setTimeout(() => {
         setStatLoading(false);
         clearTimeout(t);
-      }, 300);
+      }, 100);
     }
   };
   const params = useRef<{ page: number; page_size: number }>({

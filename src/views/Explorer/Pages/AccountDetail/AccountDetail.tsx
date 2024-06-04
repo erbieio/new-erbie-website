@@ -1,10 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import "./AccountDetail.scss";
-import TXNCard from "./TXNCard";
-import StakeCard from "./StakeCard";
-import StakedCard from "./StakedCard";
-import CSBTCard from "./CSBTCard";
 import { Pagination } from "antd";
 import {
   GetAccountDetailResponse,
@@ -19,6 +15,7 @@ import {
 import TXNTable from "./TXNTable";
 import StakeTable from "./StakeTable";
 import CSBTTable from "./CSBTTable";
+import AccountDetailCard from "./AccountDetailCard";
 export interface AcccountDetailMenusItem {
   label: string;
   checked: boolean;
@@ -68,7 +65,7 @@ export default function AccountDetail() {
     } finally {
       setTimeout(() => {
         setLoadingAccount(false)
-      },300)
+      },100)
     }
   }
   const pageParams = useRef({
@@ -175,10 +172,7 @@ export default function AccountDetail() {
   return (
     <div className="account-detail flex h-100% h-72vh">
       <div className="w-330px">
-        {currentMenu === 1 ? <TXNCard loading={loadingAccount} data={accountDetail} /> : <></>}
-        {currentMenu === 2 ? <StakeCard /> : <></>}
-        {currentMenu === 3 ? <StakedCard /> : <></>}
-        {currentMenu === 4 ? <CSBTCard /> : <></>}
+        <AccountDetailCard loading={loadingAccount} data={accountDetail} />
       </div>
       <div className="w-70% ml-24px flex flex-col gap-2vh">
         <div className="flex font-size-14px gap-1vh justify-between">

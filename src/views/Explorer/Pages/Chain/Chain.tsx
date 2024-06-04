@@ -83,7 +83,7 @@ export default function Chain() {
       const t = setTimeout(() => {
         setStatLoading(false);
         clearTimeout(t);
-      }, 300);
+      }, 100);
     }
   };
   const toBlockDetail = (blockNumber: number | string) => {

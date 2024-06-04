@@ -16,6 +16,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     {
       title: "Address",
       fixed: 'left',
+      align: 'center',
       key: "address",
       render(v) {
         return (
@@ -28,6 +29,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     {
       title: <div>SNFT Number<i className="i-material-symbols-help-outline-rounded font-size-18px cursor-pointer"></i></div>,
       key: "address",
+      align: 'center',
       render(v) {
         return parseInt(v.address.slice(3), 16);
       },
@@ -35,6 +37,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     {
       title: "Creation Time",
       key: "createdAt",
+      align: 'center',
       render(v) {
         return formatDate(v.createdAt)
       },
@@ -42,6 +45,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     {
       title: "Creator",
       key: "creator",
+      align: 'center',
       render(v) {
         return (
           <span className="link hover:color-blue" onClick={() => toAccountDetail(v.creator)}>
@@ -53,6 +57,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     {
       title: "Owner",
       key: "owner",
+      align: 'center',
       render(v) {
         return (
           <span className="link hover:color-blue" onClick={() => toAccountDetail(v.owner)}>
@@ -64,6 +69,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     {
       title: "Owner Get Time",
       key: "reward_at",
+      align: 'center',
       render(v) {
         return formatDate(v.reward_at)
       }

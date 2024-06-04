@@ -18,8 +18,9 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "TXN Hash",
       key: "hash",
-      width: 300,
-      fixed: "left",
+      align: 'center',
+      // width:180,
+      // fixed: "left",
       render(v) {
         return (
           <span className="link hover:color-blue">
@@ -31,7 +32,8 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "TXN Time",
       key: "timestamp",
-      width: 200,
+      align: 'center',
+      width:70,
       render(v) {
         return formatDate(v.timestamp);
       },
@@ -39,7 +41,8 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Sender",
       key: "from",
-      width: 150,
+      align: 'center',
+      // width: 150,
       render(v) {
         return (
           <span
@@ -54,6 +57,7 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Receiver",
       key: "to",
+      align: 'center',
       width: 150,
       render(v) {
         return (
@@ -69,6 +73,7 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Transaction Value",
       key: "value",
+      align: 'center',
       render(v) {
         return formatEther(v.value);
       },
@@ -76,6 +81,7 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "TXN Type",
       key: "input",
+      align: 'center',
       render(v) {
         return (
           <div
@@ -90,6 +96,7 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Status",
       key: "status",
+      align: 'center',
       render(v) {
         return (
           <div
@@ -106,6 +113,7 @@ export default function TXNTable(props: TXTTableProps) {
     },
     {
       title: "TXN Fee",
+      align: 'center',
       key: "gasPrice",
       render(v) {
         return formatEther(v.gasPrice * v.gasUsed).slice(0, 10);

@@ -13,7 +13,7 @@ export default function Explorer() {
       <div className="flex items-center">
         <ExplorerMenus />
       </div>
-      <div className="w-100% lg:pl-30px lg:overflow-x-scroll scrollbar-x flex justify-center items-center">
+      <div className="w-100% lg:pl-30px lg:overflow-x-scroll scrollbar-x flex justify-center items-center overflow-y-hidden">
         <TransitionGroup className={"w-100%"}>
           <SwitchTransition mode="out-in">
             <CSSTransition
