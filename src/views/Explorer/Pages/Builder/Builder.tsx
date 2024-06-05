@@ -150,7 +150,7 @@ export default function Validator() {
   return (
     <div className="page-validator flex flex-col flex-col-reverse lg:flex-row">
       <div className="flex-1 flex gap-2vh flex-col">
-        <div className="flex flex-col lg:flex-row mt-20px lg:mt-0">
+        <div className="flex flex-col lg:flex-row mt-14px lg:mt-0">
           <div className="w-100% lg:w-35% flex gap-14px lg:gap-12px">
             {tableMenus.map((item) => (
               <div
@@ -162,7 +162,7 @@ export default function Validator() {
               </div>
             ))}
           </div>
-          <div className="w-100% lg:w-65% mt-20px lg:mt-0">
+          <div className="w-100% lg:w-65% mt-14px lg:mt-0">
             <SearchIpt className="lg:ml-12px" onSearch={handleSearch} />
           </div>
         </div>
@@ -199,7 +199,7 @@ export default function Validator() {
           </div>
         </div>
       </div>
-      <div className="w-100% lg:w-250px flex flex-wrap justify-evenly gap-10px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-14px lg:mt-0">
+      <div className="w-100% lg:w-250px flex flex-wrap justify-between gap-10px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-14px lg:mt-0">
         <div className="data-panel">
           <div className="w-100% lg:px-20px">
             <div className="tit">Validator Number</div>

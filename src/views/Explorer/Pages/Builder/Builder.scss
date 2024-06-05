@@ -16,7 +16,7 @@
     }
 
     .data-panel {
-        --at-apply: h-80px lg:h-17.27vh flex flex-row w-46.5% lg:w-100% justify-center items-center;
+        --at-apply: h-60px lg:h-17.27vh flex flex-row w-48% lg:w-100% justify-center items-center;
         border: 1px solid #D87CEE;
         background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
         border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
@@ -25,7 +25,7 @@
             --at-apply: font-size-14px lg:font-size-16px;
         }
         .val {
-            --at-apply: mt-10px lg:mt-14px font-size-14px lg:font-size-24px;
+            --at-apply: mt-0 lg:mt-14px font-size-14px lg:font-size-24px;
         }
     }
 }

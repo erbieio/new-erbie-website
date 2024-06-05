@@ -23,7 +23,6 @@ export default function Header() {
         const t1 = setInterval(() => {
           if (list.length != PAGE_LIST.length) {
             list.push({ ...PAGE_LIST[idx] });
-            console.log("list", list);
             setMenuList(list.map((item) => item));
             idx = idx + 1;
           } else {
@@ -31,7 +30,7 @@ export default function Header() {
             clearInterval(t1);
             clearTimeout(t3);
           }
-        }, 50);
+        }, 30);
       }, 10);
     } else {
       let idx2 = menuList.length;
@@ -118,7 +117,7 @@ export default function Header() {
       >
         <div>
           <TransitionGroup>
-            {menuList.map((item, i) => (
+            {menuList.filter(item => item.name).map((item, i) => (
               <CSSTransition key={i} timeout={300} classNames="slider">
                 <div
                   className={`px-16px lg:px-48px flex items-center py-16px lg:py-0 justify-start lg:justify-center cursor-pointer uppercase ${

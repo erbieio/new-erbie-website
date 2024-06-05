@@ -226,8 +226,8 @@ export default function Chain() {
       <div className="mt-14px lg:mt-0 w-100% lg:w-250px lg:ml-22px gap-10px lg:gap-0 flex justify-between flex-row lg:flex-col">
         <div className="total-card flex justify-center items-center">
           <div className="w-100%">
-            <div className="font-size-12px lg:font-size-16px">Block Height</div>
-            <div className="font-size-16px lg:font-size-24px mt-16px">
+            <div className="font-size-10px lg:font-size-16px">Block Height</div>
+            <div className="font-size-10px lg:font-size-24px lg:mt-16px">
               <Skeleton
                 loading={statloading}
                 title={false}
@@ -241,10 +241,10 @@ export default function Chain() {
         </div>
         <div className="total-card flex justify-center items-center">
           <div className="w-100%">
-            <div className="font-size-12px lg:font-size-16px">
+            <div className="font-size-10px lg:font-size-16px">
               Total ERB Rewards
             </div>
-            <div className="font-size-16px lg:font-size-24px mt-16px">
+            <div className="font-size-10px lg:font-size-24px lg:mt-16px">
               <Skeleton
                 loading={statloading}
                 active
@@ -262,8 +262,8 @@ export default function Chain() {
         </div>
         <div className="total-card flex justify-center items-center">
           <div className="w-100%">
-            <div className="font-size-12px lg:font-size-16px">Total CSBT</div>
-            <div className="font-size-16px lg:font-size-24px mt-16px">
+            <div className="font-size-10px lg:font-size-16px">Total CSBT</div>
+            <div className="font-size-10px lg:font-size-24px lg:mt-16px">
               <Skeleton
                 loading={statloading}
                 title={false}

@@ -146,7 +146,7 @@ export default function Csbt() {
             </div>
           </div>
         </div>
-        <div className="w-100% lg:w-250px lg:ml-22px flex flex-row justify-between lg:flex-col gap-10px mb-20px mt-20px lg:mt-0 lg:mb-0 lg:gap-2vh">
+        <div className="w-100% lg:w-250px lg:ml-22px flex flex-row justify-between lg:flex-col gap-10px mb-14px mt-14px lg:mt-0 lg:mb-0 lg:gap-2vh">
           <div className="data-panel">
             <div className="w-100% lg:px-20px">
               <div className="tit">Mined CSBT Number</div>
@@ -163,13 +163,13 @@ export default function Csbt() {
             </div>
           </div>
           <div className="data-panel">
-            <div>
+            <div className="w-100% lg:px-20px">
               <div className="tit">Minted Personal CSBT</div>
               <div className="val">--</div>
             </div>
           </div>
           <div className="data-panel">
-            <div>
+            <div className="w-100% lg:px-20px">
               <div className="tit">Minted Group CSBT</div>
               <div className="val">--</div>
             </div>
