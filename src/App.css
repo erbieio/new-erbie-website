@@ -5,7 +5,7 @@
 
 
 .container-box {
-  --at-apply: w-100vw;
+  --at-apply: w-100vw overflow-hidden lg:w-100vw;
 }
 
 @media (prefers-reduced-motion: no-preference) {

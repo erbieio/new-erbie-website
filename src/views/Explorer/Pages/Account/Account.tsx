@@ -153,13 +153,13 @@ export default function Account() {
 
   return (
     <div className="page-account">
-      <div className="flex">
+      <div className="flex flex-col lg:flex-row overflow-hidden mt-20px lg:mt-0">
         <div className="flex-1">
           <div>
             <SearchIpt onSearch={handleSearch} />
           </div>
-          <div className="table-box h-65vh mt-2vh">
-            <div className="flex justify-between pt-10px px-10px pb-14px">
+          <div className="table-box lg:h-65vh mt-2vh">
+            <div className="flex flex-col lg:flex-row lg:justify-between pt-10px px-10px pb-14px">
               <div className="uppercase font-size-16px">
                 Account Informations
               </div>
@@ -170,7 +170,7 @@ export default function Account() {
             </div>
           </div>
         </div>
-        <div className="w-25vw ml-22px flex flex-col justify-between">
+        <div className="w-100% lg:w-25vw lg:ml-22px flex flex-col justify-between gap-10px lg:gap-0 mt-20px lg:mt-0">
           <div className="data-card h-16vh">
             <div>
               <div className="font-size-16px">Total Coin Addresses</div>

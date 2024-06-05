@@ -108,7 +108,7 @@ export default function TransitionChart(props: TransactionChartProps) {
     <div className="w-100% flex justify-center">
       <div
         id="transition-chart"
-        style={{ height: "18vh", width: "26vw" }}
+        className="w-84vw h-20vh lg:w-26vw lg:w-18vh"
         ref={myRef}
       ></div>
     </div>

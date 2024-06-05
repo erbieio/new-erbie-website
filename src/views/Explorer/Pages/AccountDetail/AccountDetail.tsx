@@ -170,11 +170,11 @@ export default function AccountDetail() {
   },[params.address])
 
   return (
-    <div className="account-detail flex h-100% h-72vh">
-      <div className="w-330px">
+    <div className="account-detail flex h-100% flex-col lg:flex-row lg:h-72vh">
+      <div className="w-100% lg:w-330px">
         <AccountDetailCard loading={loadingAccount} data={accountDetail} />
       </div>
-      <div className="w-70% ml-24px flex flex-col gap-2vh">
+      <div className="lg:w-70% lg:ml-24px flex flex-col gap-2vh mt-20px lg:mt-0">
         <div className="flex font-size-14px gap-1vh justify-between">
           {list.map((item, i) => (
             <div
@@ -189,7 +189,7 @@ export default function AccountDetail() {
           ))}
         </div>
         <div className="table-box h-100%">
-          <div className="text-left px-10px py-8px lh-4vh flex items-center justify-between w-100%">
+          <div className="text-left px-10px py-8px lh-4vh flex flex-col lg:flex-row items-center justify-between w-100%">
             <div className="font-size-16px">TRANSACTIONS LIST</div>
             <div>
               <Pagination
@@ -200,7 +200,7 @@ export default function AccountDetail() {
               />
             </div>
           </div>
-          <div className=" overflow-x-scroll scrollbar-x h-60vh">
+          <div className=" overflow-x-scroll scrollbar-x lg:h-60vh">
             {currentMenu === 1 ? (
               <TXNTable list={tableList} loading={loading} />
             ) : (

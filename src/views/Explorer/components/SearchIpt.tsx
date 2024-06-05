@@ -18,7 +18,7 @@ export default function SearchIpt(props: SearchIptProps) {
     <div>
       <div className={`search-box flex ${focus ? "focus" : ""} ${props.className}`}>
         <input
-          className={`font-size-12px lg:font-size-16px color-white ${props.className}`}
+          className={`font-size-12px lg:font-size-16px color-white`}
           placeholder="Search by Address/ Txn Hash/ Block"
           value={val}
           onChange={(e) => setVal(e.target.value)}

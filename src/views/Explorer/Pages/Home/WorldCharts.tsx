@@ -107,8 +107,8 @@ export default function WorldCharts() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
-    <div className="flex justify-center items-center w-600px h-36vh relative world-chart">
-      <div id="world-chart" ref={myRef} style={{ width: 600, height: "36vh" }}></div>
+    <div className="flex justify-center items-center relative world-chart">
+      <div id="world-chart" ref={myRef} className="w-500px h-30vh lg:w-600px lg:h-36vh"></div>
       <div className="absolute bottom-0 left-0">
         <div className="total-card">
           <span>{totalCountry}</span> Countries

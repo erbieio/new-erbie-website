@@ -1,6 +1,6 @@
 .page-chain {
     .chain-btn{
-        --at-apply: font-size-12px lg:font-size-14px border-1px border-style-solid border-color-#fff flex items-center justify-center lg:min-w-80px cursor-pointer flex-auto;
+        --at-apply: font-size-12px h-40px lg:h-auto lg:font-size-14px border-1px border-style-solid border-color-#fff flex items-center justify-center lg:min-w-80px cursor-pointer flex-auto;
         background: rgba(56, 55, 82, 0.60);
         &.active {
             transition: ease .3s;

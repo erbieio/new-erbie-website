@@ -23,7 +23,7 @@ export default function useRouter(){
     const toAccountDetail = (address: string) => {
         to(`/explorer/accountDetail/${address}`)
     }
-    const toBlockDetail = (block: number) => {
+    const toBlockDetail = (block: number | string) => {
         to(`/explorer/blockDetail/${block}`)
     }
     return {

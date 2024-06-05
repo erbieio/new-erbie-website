@@ -180,8 +180,8 @@ export default function Transct() {
     handleGetList();
   };
   return (
-    <div className="page-transct min-h-70vh flex">
-      <div className="flex flex-col w-35% gap-2vh">
+    <div className="page-transct min-h-70vh flex flex-col flex-col-reverse lg:flex-row">
+      <div className="flex flex-col lg:w-35% gap-2vh">
         <div className="flex-1 flex">
           {/* 上 左 */}
           <div className="flex-1">
@@ -213,20 +213,20 @@ export default function Transct() {
           </div>
         </div>
       </div>
-      <div className=" w-65% ml-20px min-h-38vh">
-        <div className="data-box flex gap-1vh">
+      <div className="w-100% lg:w-65% lg:ml-20px min-h-38vh">
+        <div className="data-box flex gap-1vh mt-14px lg:mt-0">
           <div className="data-card flex-1">
             <div className="flex flex-col h-100% justify-between">
-              <div className="font-size-16px">Total Transaction Volume</div>
-              <div className="font-size-24px">
+              <div className="font-size-14px lg:font-size-16px">Total Transaction Volume</div>
+              <div className="font-size-12px lg:font-size-24px">
                 {formatEther(stats?.totalAmount || "0")} ERB
               </div>
             </div>
           </div>
           <div className="data-card flex-1">
             <div className="flex flex-col h-100% justify-between">
-              <div className="font-size-16px">Total Transactions</div>
-              <div className="font-size-24px">
+              <div className="font-size-14px lg:font-size-16px">Total Transactions</div>
+              <div className="font-size-12px lg:font-size-24px">
                 {stats?.totalTransaction || "0"}
               </div>
             </div>
@@ -234,7 +234,7 @@ export default function Transct() {
         </div>
         <div>
           <div className="table-box mt-2vh">
-            <div className="flex justify-between px-10px pt-10px pb-14px">
+            <div className="flex flex-col lg:flex-row lg:justify-between px-10px pt-10px pb-14px">
               <div className="font-size-16px uppercase">
                 Transct Informations
               </div>

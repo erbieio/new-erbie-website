@@ -98,7 +98,7 @@ export default function GrowChart(props: GrowChartProps) {
     <div className="w-100%">
       <div
         id="growth-chart"
-        style={{ height: "22vh", width: "23vw" }}
+        className="w-84vw lg:w-21vw h-20vh lg:h-22vh"
         ref={myRef}
       ></div>
     </div>

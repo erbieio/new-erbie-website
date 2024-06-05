@@ -70,3 +70,11 @@
         }
     }
 }
+@media (max-width: 1024px) {
+    .home-page{
+        &-con {
+            min-height: 620px;
+        }
+    }
+
+}

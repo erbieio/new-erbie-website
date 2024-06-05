@@ -120,14 +120,14 @@ export default function Csbt() {
   };
   return (
     <div className="page-csbt">
-      <div className="flex">
+      <div className="flex flex-col flex-col-reverse lg:flex-row">
         <div className="flex-1">
           <div>
             <SearchIpt onSearch={handleSearch} />
           </div>
-          <div className="table-box h-65vh mt-2vh">
+          <div className="table-box lg:h-65vh mt-2vh">
             <div className="px-10px pt-10px pb-14px">
-              <div className="flex justify-between">
+              <div className="flex lg:justify-between flex-col lg:flex-row">
                 <div>CHAINLAYER SBT</div>
                 <Pagination
                   onChange={handleChangePage}
@@ -137,7 +137,7 @@ export default function Csbt() {
                 ></Pagination>
               </div>
             </div>
-            <div className="h-90% flex">
+            <div className="h-90% flex overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}
                 dataSources={csbtData?.nfts || []}
@@ -146,9 +146,9 @@ export default function Csbt() {
             </div>
           </div>
         </div>
-        <div className="w-250px ml-22px flex flex-col gap-2vh">
+        <div className="w-100% lg:w-250px lg:ml-22px flex flex-row justify-between lg:flex-col gap-10px mb-20px mt-20px lg:mt-0 lg:mb-0 lg:gap-2vh">
           <div className="data-panel">
-            <div className="w-100% px-20px">
+            <div className="w-100% lg:px-20px">
               <div className="tit">Mined CSBT Number</div>
               <div className="val">
                 <Skeleton

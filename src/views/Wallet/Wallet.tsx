@@ -26,7 +26,7 @@ export default function Wallet() {
   return (
     <div className="page-wallet pb-30px lg:pb-0 flex items-center justify-center">
       <div className="flex justify-around flex-col gap-80px lg:flex-row w-100%">
-        <div className="left-box lg:mb-0 lg:h-70vh relative w-50% flex justify-center items-center">
+        <div className="left-box lg:mb-0 lg:h-70vh relative w-100% lg:w-50% flex justify-center items-center">
           <img src={bg1} className="h-300px lg:h-100%" alt="" />
           <div className="absolute left-0 right-0 top-0px lg:top-50px text-center lg:text-left">
             <div className="font-size-24px lg:font-size-42px lh-60px">
@@ -39,7 +39,7 @@ export default function Wallet() {
             </div>
           </div>
         </div>
-        <div className="right-box w-50% flex flex-col justify-between w-100%">
+        <div className="right-box w-100% lg:w-50% flex flex-col justify-between w-100%">
           <WalletCard
             label={label1()}
             desc="PC Wallet Users"

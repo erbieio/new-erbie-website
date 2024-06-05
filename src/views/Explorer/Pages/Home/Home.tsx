@@ -35,7 +35,7 @@ export default function Home() {
   return (
     <div className="page-explorer-home flex justify-center items-center w-100%">
       <div className=" flex flex-col lg:flex-row w-100%">
-      <div className="lg:mr-44px flex-1 flex flex-col justify-evenly">
+      <div className="lg:mr-30px flex-1 flex flex-col justify-evenly">
         <div className="flex flex-wrap lg:flex-nowrap lg:border-l-style-solid border-color-white border-l-width-1px">
           <HomeCard label="Block Height" value={ stats && stats.totalBlock ? stats.totalBlock - 1 : 0} />
           <HomeCard label="Block Time" value={`${stats?.avgBlockTime || 0} ms`} />
@@ -59,7 +59,7 @@ export default function Home() {
             <OnlineCard label="Total Stakers" value={stats?.totalStaker || 0}  />
         </div>
       </div>
-      <div className="flex-1 right-box">
+      <div className="flex-1 right-box w-100%">
         <div className="hidden lg:flex border-l-style-solid border-color-white border-l-width-1px">
           <HomeCard label="Total Transactions" value={`${stats && stats.totalTransaction ? stats.totalTransaction : 0}`} />
           <HomeCard label="Total Staking" value={`${stats && stats.totalPledge ? parseInt((Number(stats.totalPledge)/1000000000000000000).toString()) : 0}`} />

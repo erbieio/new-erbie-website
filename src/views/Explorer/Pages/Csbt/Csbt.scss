@@ -1,16 +1,16 @@
 .page-csbt {
     .data-panel {
-        --at-apply: h-23vh flex justify-center items-center;
+        --at-apply: w-32% lg:w-100% h-12vh lg:h-23vh flex justify-center items-center;
         border: 1px solid #D87CEE;
         background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
         border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
         backdrop-filter: blur(25px);
         .tit {
-            font-size: 16px;
+
+            --at-apply: font-size-12px lg:font-size-16px;
         }
         .val {
-            font-size: 24px;
-            --at-apply: mt-20px;
+            --at-apply: mt-10px lg:mt-20px font-size-12px lg:font-size-24px;
         }
     }
     .table-box {

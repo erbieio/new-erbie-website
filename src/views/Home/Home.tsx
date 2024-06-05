@@ -20,7 +20,7 @@ export default function Home() {
   });
   return (
     <div className="home-page relative">
-      <div className="flex items-center home-page-con w-100%">
+      <div className="flex lg:items-center home-page-con w-100%">
         <div className="flex flex-col lg:flex-row w-100%">
           <div className="w-100% lg:flex-1 h-200px lg:h-auto flex items-center">
             <div className="flex-1  lg:absolute left-0 lg:top-50% lg:mt--225px z-10 lg:w-50%">

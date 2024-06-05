@@ -180,7 +180,7 @@ export default function Chain() {
 
   return (
     <div className="page-chain flex flex-col flex-col-reverse lg:flex-row">
-      <div className="chain-header flex-1 mt-20px lg:mt-0 w-100%">
+      <div className="chain-header flex-1 mt-14px lg:mt-0 w-100%">
         <div className="flex flex-col lg:flex-row w-100% lg:h-48px">
           <div className="flex-1 flex gap-10px">
             {tableMenus.map((item) => (
@@ -213,7 +213,7 @@ export default function Chain() {
                 onChange={handleChangePage}
               ></Pagination>
             </div>
-            <div className="flex h-90%">
+            <div className="flex h-100% lg:h-90%  overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}
                 dataSources={blockData?.blocks}
@@ -223,7 +223,7 @@ export default function Chain() {
           </div>
         </div>
       </div>
-      <div className="mt-20px lg:mt-0 w-100% lg:w-250px lg:ml-22px flex justify-between flex-row lg:flex-col">
+      <div className="mt-14px lg:mt-0 w-100% lg:w-250px lg:ml-22px gap-10px lg:gap-0 flex justify-between flex-row lg:flex-col">
         <div className="total-card flex justify-center items-center">
           <div className="w-100%">
             <div className="font-size-12px lg:font-size-16px">Block Height</div>

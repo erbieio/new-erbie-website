@@ -19,7 +19,7 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
     }
   }, [params]);
   return (
-    <div className="card-box h-100% flex flex-col justify-evenly">
+    <div className="card-box h-100% flex flex-col justify-evenly mt-14px lg:mt-0">
       <div>
         <div className="color-#D387FF font-size-16px font-bold text-left px-16px">
           Account Detail

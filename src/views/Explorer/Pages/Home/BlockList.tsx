@@ -7,11 +7,9 @@ import {
   get_block_page,
   get_block_reward,
 } from "../../../../api/modules/explorer";
-import { TableColumn } from "../../../../components/Table";
-import { Pagination, type PaginationProps, Popover } from "antd";
+import { Pagination, type PaginationProps, Popover, Table, TableColumnsType } from "antd";
 import { addressDots, formatDate } from "../../../../utils/common";
 import TableFold from "./TableFold";
-import Loading from "../../../../components/Loading";
 import useRouter from "../../../../hooks/useRouter";
 
 export default function BlockList() {
@@ -19,9 +17,11 @@ export default function BlockList() {
   const [totalPage, setTotalPage] = useState(0);
   const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
+  const {toAccountDetail,toBlockDetail} = useRouter()
+
   const params = useRef({
     page: 1,
-    page_size: 10,
+    page_size: 9,
   });
 
   const handleGetBlockPage = async (params: GetBlockPageParams) => {
@@ -75,42 +75,79 @@ export default function BlockList() {
     }
   };
 
-  const columns: Array<TableColumn> = [
+  const columns: TableColumnsType<BlockItem> = [
     {
       title: "Height",
-      key: "number",
+      dataIndex: "number",
       width: "14%",
+      render(_value, record) {
+          return  <div className="link hover:color-#1677ff" onClick={() => toBlockDetail(record.number)}>
+          {record.number}
+        </div>
+      },
     },
     {
       title: "Proposers",
-      key: "miner",
+      dataIndex: "miner",
       width: "36%",
+      render(_value, record) {
+          return              <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(record.miner)}>
+          {addressDots(record.miner, 10)}
+        </div>
+      },
     },
     {
       title: "TXN",
-      key: "totalTransaction",
+      dataIndex: "totalTransaction",
       width: "10%",
     },
     {
       title: "Age",
-      key: "timestamp",
+      dataIndex: "timestamp",
       width: "19%",
+      render(_value, record) {
+          return formatDate(Number(record.timestamp))
+      },
     },
     {
       title: "Block Size",
-      key: "size",
+      dataIndex: "size",
       width: "15%",
+      render(_value, record) {
+          return record.size + ' Bytes'
+      },
     },
     {
       title: "",
-      key: "action",
+      dataIndex: "action",
       width: "6%",
+      render(_value, record) {
+          return   <Popover
+          placement="left"
+          title={""}
+          trigger="click"
+          content={
+            <div className="scrollbar-x overflow-x-scroll">
+              <div className="w-662px lg:w-662px">
+              <TableFold loading={loadReward} data={reward} />
+              </div>
+            </div>
+          }
+        >
+          <i
+            className="font-size-18px cursor-pointer i-mi-chevron-down"
+            onClick={(e) => {
+              e.stopPropagation();
+              handleShow(record);
+            }}
+          ></i>
+        </Popover>
+      },
     },
   ];
-  const {toAccountDetail} = useRouter()
   return (
     <div className="block-list h-100%">
-      <div className="font-size-16px text-left py-10px px-16px tit justify-between flex h-6.4vh">
+      <div className="font-size-16px text-left py-10px px-16px tit items-center justify-between flex flex-col lg:flex-row lg:h-6.4vh">
         <div className="items-center h-100% flex">Block List</div>
         <div className="flex items-center page-box">
           <Pagination
@@ -122,72 +159,8 @@ export default function BlockList() {
           />
         </div>
       </div>
-      <div className="scrollbar-x h-90%">
-        <div className="flex list-header px-5px">
-          {columns.map((item, i) => (
-            <div
-              className="font-size-12px px-5px h-5vh lh-2vh flex justify-center items-center color-#80838E text-center whitespace-normal"
-              style={{ width: item.width }}
-              key={i}
-            >
-              {item.title}
-            </div>
-          ))}
-        </div>
-        <div className="list-body max-h-46vh scrollbar-y">
-          <Loading loading={loading}>
-            {list.map((item, i) => {
-              return (
-                <div className="list-card-box w-100%" key={i}>
-                  <div
-                    className="flex font-size-12px justify-between lh-4.44vh list-card px-4px"
-                    key={item.number}
-                  >
-                    <div className="px-6px w-14% flex justify-center items-center">
-                      <div className="link hover:color-#1677ff">
-                        {item.number}
-                      </div>
-                    </div>
-                    <div className="px-6px w-36% flex justify-center items-center">
-                      <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(item.miner)}>
-                        {addressDots(item.miner, 10)}
-                      </div>
-                    </div>
-                    <div className="px-6px  w-10% flex justify-center items-center">
-                      {item.totalTransaction}
-                    </div>
-                    <div className="px-6px w-19% flex justify-center items-center">
-                      {formatDate(Number(item.timestamp))}
-                    </div>
-                    <div className="px-6px w-15% flex justify-center items-center lh-19px">
-                      {item.size} Bytes
-                    </div>
-                    <div className="px-6px w-6% flex justify-center items-center">
-                      <Popover
-                        placement="left"
-                        title={""}
-                        trigger="click"
-                        content={
-                          <div className="w-662px">
-                            <TableFold loading={loadReward} data={reward} />
-                          </div>
-                        }
-                      >
-                        <i
-                          className="font-size-18px cursor-pointer i-mi-chevron-down"
-                          onClick={(e) => {
-                            e.stopPropagation();
-                            handleShow(item);
-                          }}
-                        ></i>
-                      </Popover>
-                    </div>
-                  </div>
-                </div>
-              );
-            })}
-          </Loading>
-        </div>
+      <div className="scrollbar-x overflow-x-scroll h-90%">
+        <Table columns={columns} dataSource={list} loading={loading} pagination={false} />
       </div>
     </div>
   );

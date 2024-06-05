@@ -151,7 +151,7 @@ export default function Validator() {
     <div className="page-validator flex flex-col flex-col-reverse lg:flex-row">
       <div className="flex-1 flex gap-2vh flex-col">
         <div className="flex flex-col lg:flex-row mt-20px lg:mt-0">
-          <div className="w-35% flex gap-12px">
+          <div className="w-100% lg:w-35% flex gap-14px lg:gap-12px">
             {tableMenus.map((item) => (
               <div
                 key={item.value}
@@ -166,7 +166,7 @@ export default function Validator() {
             <SearchIpt className="lg:ml-12px" onSearch={handleSearch} />
           </div>
         </div>
-        <div className="h-64.6vh flex flex-col">
+        <div className="lg:h-64.6vh flex flex-col">
           <div className="table-box h-100%">
             <div className="flex flex-col lg:flex-row justify-between px-10px pt-10px pb-14px">
               <div>VALIDATOR INFORMATION</div>
@@ -181,7 +181,7 @@ export default function Validator() {
                 />
               </div>
             </div>
-            <div className="flex h-90%">
+            <div className="flex h-100% lg:h-90% overflow-x-scroll scrollbar-x">
               {showTable === 1 ? (
                 <ValidatorTable
                   dataSource={validatorData.data}
@@ -199,9 +199,9 @@ export default function Validator() {
           </div>
         </div>
       </div>
-      <div className="w-100% lg:w-250px flex flex-wrap gap-22px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-20px lg:mt-0">
+      <div className="w-100% lg:w-250px flex flex-wrap justify-evenly gap-10px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-14px lg:mt-0">
         <div className="data-panel">
-          <div className="w-100% px-20px">
+          <div className="w-100% lg:px-20px">
             <div className="tit">Validator Number</div>
             <div className="val">
               <Skeleton
@@ -216,7 +216,7 @@ export default function Validator() {
           </div>
         </div>
         <div className="data-panel">
-          <div className="w-100% px-20px">
+          <div className="w-100% lg:px-20px">
             <div className="tit">Stake of Validator</div>
             <div className="val">
               <Skeleton
@@ -231,7 +231,7 @@ export default function Validator() {
           </div>
         </div>
         <div className="data-panel">
-          <div className="w-100% px-20px">
+          <div className="w-100% lg:px-20px">
             <div className="tit">Staker Number</div>
             <div className="val">
               <Skeleton
@@ -246,7 +246,7 @@ export default function Validator() {
           </div>
         </div>
         <div className="data-panel">
-          <div className="w-100% px-20px">
+          <div className="w-100% lg:px-20px">
             <div className="tit">Stake of Staker</div>
             <div className="val">
               <Skeleton

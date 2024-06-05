@@ -67,8 +67,8 @@ export default function Docs() {
   ]
   return (
     <div className="page-docs">
-      <div className="flex flex-col lg:flex-row ">
-      <div className="mb-35px lg:mb-0 w-100% h-380px lg:w-30% pt-44px lg:h-70vh relative rounded-20px border-width-1px border-style-solid border-color-#5C3475 github-box ">
+      <div className="flex flex-col lg:flex-row w-100% lg:w-auto">
+      <div className="mb-35px lg:mb-0 w-100% h-62vh lg:w-30% pt-44px lg:h-70vh relative rounded-20px border-width-1px border-style-solid border-color-#5C3475 github-box ">
         <div className="github-con h-100% px-32px flex flex-col justify-between pb-20px lg:pb-40px">
           <img src={guthubimg} className="h-46px transform-translate-y--24px lg:h-58px" />
           <div className="flex justify-center items-center">
