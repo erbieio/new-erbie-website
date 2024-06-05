@@ -170,7 +170,7 @@ export default function Account() {
             </div>
           </div>
         </div>
-        <div className="w-100% lg:w-25vw lg:ml-22px flex flex-col justify-between gap-10px lg:gap-0 mt-20px lg:mt-0">
+        <div className="w-100% lg:w-25vw lg:ml-22px flex flex-col justify-between gap-10px lg:gap-20px mt-20px lg:mt-0">
           <div className="data-card h-16vh">
             <div>
               <div className="font-size-16px">Total Coin Addresses</div>

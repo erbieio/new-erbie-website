@@ -39,7 +39,7 @@ export default function Home() {
               </div>
             </div>
           </div>
-          <div className="lg:flex-1 flex justify-end pl-15px">
+          <div className="lg:flex-1 flex justify-end lg:pl-15px">
             <div
               className={`rounded-20px animate-box border-color-#2a1f32 w-100vw lg:w-553px h-300px lg:h-64vh border-solid border-1px lg:ml-93px relative mt-45px lg:mt-0 ${animate4}`}
             >
