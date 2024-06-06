@@ -165,7 +165,7 @@ export default function Account() {
               </div>
               <Pagination total={accountData?.total} current={params.current.page} pageSize={params.current.page_size} onChange={handlePageChange} />
             </div>
-            <div className="h-90% flex w-100%">
+            <div className="h-90% flex w-100% overflow-x-scroll scrollbar-x">
               <Table columns={columns} dataSource={accountData?.accounts} loading={loading} pagination={false} onChange={handleChange} />
             </div>
           </div>
