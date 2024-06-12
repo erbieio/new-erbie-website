@@ -301,6 +301,7 @@ export interface GetTransitionPageListItem {
 export interface GetTransactionPageParams extends PageParams {
   addr?: string;
   types?: null | string;
+  number?: number
 }
 
 export interface GetTransactionPageResponse extends PageResponse {
@@ -331,7 +332,7 @@ export const get_24h_accounts = (): Promise<Get24hTxsResponse> => {
 // pledge list
 export interface GetPledgePageParams extends PageParams {
   staker?: string;
-  validator?: string
+  validator?: string;
 }
 export interface GetPledgePageItem {
   amount: string;
@@ -344,31 +345,75 @@ export interface GetPledgePageItem {
 export interface GetPledgePageResponse extends PageResponse {
   data: Array<GetPledgePageItem>;
 }
-export const get_pledge_page = (params: GetPledgePageParams): Promise<GetPledgePageResponse> => {
+export const get_pledge_page = (
+  params: GetPledgePageParams
+): Promise<GetPledgePageResponse> => {
   return service.get(`${SCAN_API}/pledge/page`, { params });
 };
 
 // account detail
 export interface GetAccountDetailResponse {
-  address: string
-  balance:string
-  nonce: number
-  code: null | number
-  number: number
-  snftCount: number
-  snftValue: string
-  timestamp: number
-  weight:number
-  nftCount: number
-  validatorAmount: string
-  stakerAmount: string
-  rewardCoinCount: number
-  rewardSNFTCount: number
-  validatorReward: string
-  lastNumber: number
-  reward: string
-  profit: string
+  address: string;
+  balance: string;
+  nonce: number;
+  code: null | number;
+  number: number;
+  snftCount: number;
+  snftValue: string;
+  timestamp: number;
+  weight: number;
+  nftCount: number;
+  validatorAmount: string;
+  stakerAmount: string;
+  rewardCoinCount: number;
+  rewardSNFTCount: number;
+  validatorReward: string;
+  lastNumber: number;
+  reward: string;
+  profit: string;
 }
-export const get_account_detail = (address: string): Promise<GetAccountDetailResponse> => {
-  return service.get(`${SCAN_API}/account/${address}`)
+export const get_account_detail = (
+  address: string
+): Promise<GetAccountDetailResponse> => {
+  return service.get(`${SCAN_API}/account/${address}`);
+};
+
+export interface GetBlockDetailResponse {
+  difficulty: number;
+  extraData: string;
+  gasLimit: number;
+  gasUsed: number;
+  hash: string;
+  miner: string;
+  mixHash: string;
+  nonce: string;
+  number: number;
+  parentHash: string;
+  receiptsRoot: string;
+  sha3Uncles: string;
+  size: number;
+  stateRoot: string;
+  timestamp: number;
+  totalDifficulty: string;
+  totalTransaction: number;
+  transactionsRoot: string;
+  uncles: Array<unknown>;
+}
+// /block/203431
+export const get_block_detail = (
+  block: number
+): Promise<GetBlockDetailResponse> => {
+  return service.get(`${SCAN_API}/block/${block}`);
+};
+
+export interface GetSlashingParams {
+  page: number
+  page_size: number
+  address?: string
+  number? : number
+  reason? : 1 | 2
+}
+// https://scanapi.erbie.io/slashings?page=1&page_size=10&address=&number=203431&reason=
+export const get_slashings = (params: GetSlashingParams) => {
+  return service.get(`${SCAN_API}/slashings`, {params})
 }

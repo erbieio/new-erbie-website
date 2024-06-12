@@ -67,7 +67,7 @@ export default function Header() {
     handleChangeMenu(false)
   }
   return (
-    <div className="flex flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex  header px-16px lg:px-40px py-21.5px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32">
+    <div className="flex flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex  header px-16px lg:px-40px py-12px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32">
       <div className="flex items-center justify-between">
         <img
           src={logo}

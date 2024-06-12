@@ -72,7 +72,7 @@ export default function StakerTable(props: StakerTableProps) {
     },
   ];
   return (
-    <div className="w-100% staker-table h-100%">
+    <div className="w-100% staker-table h-100%  overflow-x-scroll scrollbar-x">
       <Table
         columns={columns}
         dataSource={props.dataSource}

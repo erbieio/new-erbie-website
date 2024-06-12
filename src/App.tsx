@@ -6,7 +6,7 @@ import LayOut from './components/LayOut'
 
 function App() {
   return (
-    <div className='pt-100px lg:pt-9vh'>
+    <div className='pt-84px lg:pt-9vh'>
       <Header />
       <div className='container-box overflow-hidden'>
         <LayOut />

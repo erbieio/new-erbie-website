@@ -32,7 +32,7 @@ export default function TXNTable(props: TXTTableProps) {
       align: 'center',
       width:70,
       render(v) {
-        return formatDate(v.timestamp);
+        return <div className="whitespace-nowrap">{formatDate(v.timestamp)}</div>;
       },
     },
     {
@@ -82,7 +82,7 @@ export default function TXNTable(props: TXTTableProps) {
       render(v) {
         return (
           <div
-            className="max-w-80px text-ellipsis overflow-hidden"
+            className="overflow-hidden whitespace-nowrap"
             title={txInputToType(v.input)}
           >
             {txInputToType(v.input)}

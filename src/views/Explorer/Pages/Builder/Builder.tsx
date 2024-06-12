@@ -201,7 +201,7 @@ export default function Validator() {
       </div>
       <div className="w-100% lg:w-250px flex flex-wrap justify-between gap-10px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-14px lg:mt-0">
         <div className="data-panel">
-          <div className="w-100% lg:px-20px">
+          <div className="w-100% px-10px lg:px-20px">
             <div className="tit">Validator Number</div>
             <div className="val">
               <Skeleton
@@ -216,7 +216,7 @@ export default function Validator() {
           </div>
         </div>
         <div className="data-panel">
-          <div className="w-100% lg:px-20px">
+          <div className="w-100% px-10px lg:px-20px">
             <div className="tit">Stake of Validator</div>
             <div className="val">
               <Skeleton
@@ -231,7 +231,7 @@ export default function Validator() {
           </div>
         </div>
         <div className="data-panel">
-          <div className="w-100% lg:px-20px">
+          <div className="w-100% px-10px lg:px-20px">
             <div className="tit">Staker Number</div>
             <div className="val">
               <Skeleton
@@ -246,7 +246,7 @@ export default function Validator() {
           </div>
         </div>
         <div className="data-panel">
-          <div className="w-100% lg:px-20px">
+          <div className="w-100% px-10px lg:px-20px">
             <div className="tit">Stake of Staker</div>
             <div className="val">
               <Skeleton

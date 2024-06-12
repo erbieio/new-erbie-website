@@ -28,7 +28,10 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
           <span> {addressDots(addr)} </span>{" "}
           <CopyToClipboard
             text={addr}
-            onCopy={() => message.success("Copied to clipboard")}
+            onCopy={() => message.open({
+              content: "Copied to clipboard",
+              type: 'success'
+            })}
           >
             <i className="i-ep-copy-document color-white font-size-18px"></i>
           </CopyToClipboard>

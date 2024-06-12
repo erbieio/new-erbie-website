@@ -19,7 +19,7 @@ export const ANTD_THEME = {
           borderColor: 'rgba(255, 255, 255, 0.2)',
           headerColor: '#80838e',
           headerSplitColor: 'transparent',
-          rowHoverBg:'rgba(255, 255, 255, 0.05)', // '#0D0612'
+          rowHoverBg:'rgba(0, 0, 0, 0.7)', // '#0D0612'
         },
         Empty: {
       

@@ -34,19 +34,14 @@ export default function AccountDetail() {
       value: 1,
     },
     {
-      label: "Stake",
+      label: "Staked",
       checked: false,
       value: 2,
     },
     {
-      label: "Staked",
-      checked: false,
-      value: 3,
-    },
-    {
       label: "CSBT",
       checked: false,
-      value: 4,
+      value: 3,
     },
   ]);
 
@@ -141,10 +136,10 @@ export default function AccountDetail() {
       if (currentMenu === 1) {
         handleGetTXTableList();
       }
-      if (currentMenu === 2 || currentMenu === 3) {
+      if (currentMenu === 2) {
         handleGetStakeList();
       }
-      if (currentMenu === 4) {
+      if (currentMenu === 3) {
         handleGetCSBTList();
       }
 
@@ -180,7 +175,7 @@ export default function AccountDetail() {
             <div
               key={i}
               onClick={() => handleMenuClick(item)}
-              className={`w-24% bg-#2A223E lh-4vh cursor-pointer menu-card ${
+              className={`w-32% bg-#2A223E lh-4vh cursor-pointer menu-card ${
                 item.checked ? "active" : ""
               }`}
             >

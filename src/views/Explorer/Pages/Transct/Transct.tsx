@@ -13,15 +13,15 @@ import {
   get_stats,
   get_transaction_page,
 } from "../../../../api/modules/explorer";
-import moment from "moment";
-import { addressDots } from "../../../../utils/common";
+import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { Pagination, Table, TableColumnsType } from "antd";
 import { txInputToType } from "../../../../utils/utils";
 import useRouter from "../../../../hooks/useRouter";
+
 export default function Transct() {
   const handleSearch = () => {};
-  const {toAccountDetail} = useRouter()
+  const {toAccountDetail,toBlockDetail} = useRouter()
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",
@@ -40,7 +40,7 @@ export default function Transct() {
       key: "timestamp",
       align: "center",
       render(v) {
-        return moment(v.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss");
+        return <div className="whitespace-nowrap">{formatDate(v.timestamp,'YYYY/MM/DD HH:mm:ss')}</div>;
       },
     },
     {
@@ -48,7 +48,7 @@ export default function Transct() {
       key: "blockNumber",
       align: "center",
       render(v) {
-        return <div className="link hover:color-#1677ff">{v.blockNumber}</div>;
+        return <div className="link hover:color-#1677ff" onClick={() => toBlockDetail(v.blockNumber)}>{v.blockNumber}</div>;
       },
     },
     {
@@ -88,7 +88,7 @@ export default function Transct() {
       key: "Height",
       align: "center",
       render(v) {
-        return txInputToType(v.input);
+        return <div className="whitespace-nowrap">{txInputToType(v.input)}</div>;
       },
     },
     {
@@ -247,7 +247,7 @@ export default function Transct() {
                 ></Pagination>
               </div>
             </div>
-            <div className="min-h-50vh">
+            <div className="lg:min-h-50vh">
               <div className="overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}
