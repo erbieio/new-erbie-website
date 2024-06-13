@@ -21,7 +21,7 @@ export default function BlockList() {
 
   const params = useRef({
     page: 1,
-    page_size: 9,
+    page_size: 10,
   });
 
   const handleGetBlockPage = async (params: GetBlockPageParams) => {
@@ -106,7 +106,7 @@ export default function BlockList() {
       dataIndex: "timestamp",
       width: "19%",
       render(_value, record) {
-          return formatDate(Number(record.timestamp))
+          return <div className="whitespace-nowrap">{formatDate(Number(record.timestamp))}</div>
       },
     },
     {
@@ -114,13 +114,14 @@ export default function BlockList() {
       dataIndex: "size",
       width: "15%",
       render(_value, record) {
-          return record.size + ' Bytes'
+          return <div className="whitespace-nowrap">{record.size + ' Bytes'}</div>
       },
     },
     {
       title: "",
       dataIndex: "action",
       width: "6%",
+      fixed: 'right',
       render(_value, record) {
           return   <Popover
           placement="left"

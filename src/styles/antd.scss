@@ -86,3 +86,11 @@
 .ant-table-placeholder .ant-table-cell {
     border-bottom: none !important;
 }
+.ant-table-thead .ant-table-cell-fix-right,.ant-table-wrapper .ant-table-tbody .ant-table-cell-fix-right{
+    background: #24152F !important;
+}
+.ant-table-thead .ant-table-cell-fix-right,.ant-table-wrapper .ant-table-tbody .ant-table-cell-fix-right{
+    &:hover {
+        background: rgba($color: #000000, $alpha: 0.8) !important;
+    }
+}

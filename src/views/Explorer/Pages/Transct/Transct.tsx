@@ -127,7 +127,7 @@ export default function Transct() {
   };
   const [loading, setLoading] = useState(false);
   const [listData, setListData] = useState<GetTransactionPageResponse>();
-  const params = useRef<GetTransactionPageParams>({ page: 1, page_size: 9 });
+  const params = useRef<GetTransactionPageParams>({ page: 1, page_size: 10 });
   const handleGetList = async () => {
     try {
       setLoading(true);

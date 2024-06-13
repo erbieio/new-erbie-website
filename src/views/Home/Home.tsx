@@ -35,7 +35,8 @@ export default function Home() {
                 <a href="https://twitter.com/ErbieChain" target="__blank"><i className="i-ri-twitter-x-fill color-white font-size-18px mr-44px"></i></a>
                 <a href="https://discord.com/invite/N4ksH6tqRX" target="__blank"><i className="i-ic-outline-discord color-white font-size-26px mr-44px"></i></a>
                 <a href="https://medium.erbie.io/" target="__blank"><i className="i-ph-medium-logo-fill color-white font-size-30px mr-44px"></i></a>
-                <a href="https://www.youtube.com/channel/UCB3-3LhjxsZk-vm47qwydgg" target="__blank"><i className="i-ant-design-youtube-filled  font-size-30px"></i></a>
+                <a href="https://www.youtube.com/channel/UCB3-3LhjxsZk-vm47qwydgg" target="__blank"><i className="i-ant-design-youtube-filled  font-size-26px mr-44px"></i></a>
+                <a href="https://t.me/erbienews" target="__blank"><i className="i-ic-baseline-telegram  font-size-24px"></i></a>
               </div>
             </div>
           </div>

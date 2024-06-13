@@ -200,7 +200,7 @@ export default function Chain() {
           </div>
         </div>
         {/* 左下 */}
-        <div className="lg:h-63.5vh">
+        <div className="lg:h-64.5vh">
           <div className="table-list mt-14px flex-1 h-100%">
             <div className="flex flex-col lg:flex-row justify-between p-10px">
               <div className="font-size-12px lg:font-size-16px">

@@ -25,7 +25,7 @@ function label2() {
 export default function Wallet() {
   return (
     <div className="page-wallet pb-30px lg:pb-0 flex items-center justify-center">
-      <div className="flex justify-around flex-col gap-80px lg:flex-row w-100%">
+      <div className="flex justify-around flex-col gap-40px lg:gap-80px lg:flex-row w-100%">
         <div className="left-box lg:mb-0 lg:h-70vh relative w-100% lg:w-50% flex justify-center items-center">
           <img src={bg1} className="h-300px lg:h-100%" alt="" />
           <div className="absolute left-0 right-0 top-0px lg:top-50px text-center lg:text-left">
