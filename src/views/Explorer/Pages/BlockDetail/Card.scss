@@ -6,5 +6,8 @@
     .line {
         --at-apply: border-b-1px border-b-solid border-b-#52405E px-16px;
         box-sizing: border-box;
+        &:nth-last-of-type(1) {
+            --at-apply: border-none;
+        }
        }
 }

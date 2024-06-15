@@ -7,6 +7,7 @@ import { useDispatch } from "react-redux";
 import { setAnimate } from "../store/pageAnimateSlice";
 import "./Header.scss";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
+import { message } from "antd";
 
 export default function Header() {
   const navigator = useNavigate();
@@ -105,7 +106,7 @@ export default function Header() {
         ) : <div key={i}></div>)}
       </div>
       <div className="hidden lg:flex justify-start px-16px lg:px-0 lg:justify-end items-center">
-        <Button onClick={() => window.open('https://demo.erbie.io/JoinErbieForm', '__blank')}>
+        <Button onClick={() => message.warning('Coming soon')}>
           <div className="uppercase">Get in Touch</div>
         </Button>
       </div>

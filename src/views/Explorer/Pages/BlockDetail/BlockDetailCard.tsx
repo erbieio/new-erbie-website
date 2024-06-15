@@ -4,8 +4,8 @@ export default function BlockDetailCard() {
     <div className='font-size-12px color-white card-detail-box'>
         <div className=' color-#D387FF lh-4.5vh font-bold  text-left px-16px'>Block Details # 128088</div>
         <div className='flex justify-between items-center line lh-3vh'>
-            <div>Block Generation Time</div>
-            <div>5 Min Age</div>
+            <div className=' whitespace-nowrap text-ellipsis'>Block Generation Time</div>
+            <div className='whitespace-nowrap text-ellipsis'>5 Min Age</div>
         </div>
         <div className='flex justify-between items-center line lh-3vh'>
             <div>Block Size</div>

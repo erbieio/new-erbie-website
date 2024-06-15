@@ -23,9 +23,9 @@ export default function Csbt() {
       render(v) {
         const data = v as GetSnftMetaItem;
         return (
-          <a className="link" onClick={() => toAccountDetail(data.address)}>
+          <span className="link hover:color-#1677ff" onClick={() => toAccountDetail(data.address)}>
             {addressDots(data.address, 6, 6)}
-          </a>
+          </span>
         );
       },
     },

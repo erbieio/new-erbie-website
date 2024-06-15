@@ -27,6 +27,7 @@ export default function Transct() {
       title: "TXN Hash",
       key: "blockHash",
       align: "center",
+      fixed: 'left',
       render(v) {
         return (
           <div className="link hover:color-#1677ff">

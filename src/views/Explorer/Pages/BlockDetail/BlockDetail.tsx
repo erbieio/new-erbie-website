@@ -11,7 +11,9 @@ import { txInputToType } from "../../../../utils/utils";
 import './BlockDetail.scss'
 import BlockholeDetailsCard from "./BlockholeDetailsCard";
 import NodeAddressCard from "./NodeAddressCard";
+// import { useParams } from "react-router-dom";
 export default function BlockDetail() {
+  // const params = useParams()
   const pageParams = useRef({
     page: 1,
     page_size: 10,
@@ -29,8 +31,7 @@ export default function BlockDetail() {
       title: "TXN Hash",
       key: "hash",
       align: 'center',
-      // width:180,
-      // fixed: "left",
+      fixed: "left",
       render(v) {
         return (
           <span className="link hover:color-blue">
@@ -130,10 +131,15 @@ export default function BlockDetail() {
       },
     },
   ];
-
+  // const [reward, setReward] = useState<GetBlockRewa>()
+  // const handleGetReward = async() => {
+  //   if(params.block) {
+  //     const data = await get_block_reward(params.block)
+  //   }
+  // }
   return (
     <div className="block-detail flex flex-col lg:flex-row lg:h-72vh">
-      <div className="lg:w-35% flex flex-col lg:flex-row lg:flex-col gap-1.5vh mt-14px lg:mt-0">
+      <div className="lg:w-35% flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
         <BlockDetailCard />
         {/* <RewardListCard /> */}
         <BlockholeDetailsCard />
