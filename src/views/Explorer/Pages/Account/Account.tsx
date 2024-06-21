@@ -9,6 +9,7 @@ import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
+import { toFixed } from "../../../../utils/utils";
 export default function Account() {
   const {toAccountDetail} = useRouter()
   const columns: TableColumnsType<GetAccountPageListItem> = [
@@ -30,7 +31,7 @@ export default function Account() {
         multiple: undefined,
       },
       render(v){
-        return formatEther(v.balance)
+        return toFixed(formatEther(v.balance))
       }
     },
     {
@@ -42,7 +43,7 @@ export default function Account() {
         multiple: undefined,
       },
       render(v){
-        return formatEther(v?.stakerAmount || '0')
+        return toFixed(formatEther(v?.stakerAmount || '0'))
       }
     },
     {
@@ -54,7 +55,7 @@ export default function Account() {
         multiple: undefined,
       },
       render(v){
-        return formatEther(v?.validatorAmount || '0')
+        return toFixed(formatEther(v?.validatorAmount || '0'))
       }
     },
     {

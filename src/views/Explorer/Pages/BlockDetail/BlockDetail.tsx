@@ -7,10 +7,11 @@ import { GetTransitionPageListItem } from '../../../../api/modules/explorer';
 import { addressDots, formatDate } from "../../../../utils/common";
 import useRouter from "../../../../hooks/useRouter";
 import { formatEther } from "ethers";
-import { txInputToType } from "../../../../utils/utils";
+import { toFixed, txInputToType } from "../../../../utils/utils";
 import './BlockDetail.scss'
 import BlockholeDetailsCard from "./BlockholeDetailsCard";
 import NodeAddressCard from "./NodeAddressCard";
+import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
 // import { useParams } from "react-router-dom";
 export default function BlockDetail() {
   // const params = useParams()
@@ -127,7 +128,7 @@ export default function BlockDetail() {
       align: 'center',
       key: "gasPrice",
       render(v) {
-        return formatEther(v.gasPrice * v.gasUsed).slice(0, 10);
+        return toFixed(formatEther(v.gasPrice * v.gasUsed),ERBIE_TX_FEE_LENGTH)
       },
     },
   ];

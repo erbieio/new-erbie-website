@@ -79,10 +79,7 @@ export default function Csbt() {
       const data = await get_stats();
       setStats(data);
     } finally {
-      const t = setTimeout(() => {
-        setStatLoading(false);
-        clearTimeout(t);
-      }, 100);
+      setStatLoading(false);
     }
   };
   const [loading, setLoading] = useState(false);

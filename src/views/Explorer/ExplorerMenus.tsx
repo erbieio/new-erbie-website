@@ -22,7 +22,7 @@ export default function ExplorerMenus() {
     <div className="explorer-menus">
       {menuList.map((item, i) => (
         <div
-          className={`explorer-card select-none h-36px lg:h-12.1vh font-size-12px hover:underline lg:font-size-16px w-25% lg:w-130px cursor-pointer flex items-center justify-center ${
+          className={`explorer-card select-none h-36px lg:h-12.1vh font-size-12px hover:underline lg:font-size-16px w-16.5% lg:w-130px cursor-pointer flex items-center justify-center ${
             location.pathname === item.path ? "active" : ""
           }`}
           key={i}

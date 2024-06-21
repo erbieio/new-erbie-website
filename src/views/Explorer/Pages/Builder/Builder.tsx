@@ -15,7 +15,10 @@ import {
 import ValidatorTable from "./ValidatorTable";
 import StakerTable from "./StakerTable";
 import { Pagination, Skeleton } from "antd";
-import { formatEther } from "ethers";
+import {  formatEther  } from "ethers";
+import { ERBIE_COIN_FIXED_LENGTH, ERBIE_COIN_PRECISION } from "../../../../const/coin";
+import { toFixed } from "../../../../utils/utils";
+
 
 export interface ValidatorMenuItem {
   label: string;
@@ -35,10 +38,7 @@ export default function Validator() {
       const data = await get_stats();
       setStats(data);
     } finally {
-      const t = setTimeout(() => {
-        setStatLoading(false);
-        clearTimeout(t);
-      }, 100);
+      setStatLoading(false);
     }
   };
   const params = useRef<{ page: number; page_size: number }>({
@@ -147,6 +147,13 @@ export default function Validator() {
   const handleChangePage = (page: number) => {
     params.current.page = page;
   };
+
+  const totalStakeOfStaker = useMemo(() => {
+    if(stats) {
+     return toFixed(((BigInt(stats.totalPledge) - BigInt(stats.validatorTotalPledge))/BigInt(ERBIE_COIN_PRECISION)).toString(),ERBIE_COIN_FIXED_LENGTH)
+    }
+    return 0
+  },[stats])
   return (
     <div className="page-validator flex flex-col flex-col-reverse lg:flex-row">
       <div className="flex-1 flex gap-2vh flex-col">
@@ -210,7 +217,7 @@ export default function Validator() {
                 active
                 paragraph={{ rows: 1, width: "100% " }}
               >
-                {stats ? stats.totalValidator : "--"}
+                {stats ? stats.totalValidator : "0"}
               </Skeleton>
             </div>
           </div>
@@ -255,10 +262,7 @@ export default function Validator() {
                 active
                 paragraph={{ rows: 1, width: "100% " }}
               >
-                {stats
-                  ? Number(formatEther(stats.totalPledge)) -
-                    Number(formatEther(stats.validatorTotalPledge))
-                  : 0}
+                {totalStakeOfStaker}
               </Skeleton>
             </div>
           </div>

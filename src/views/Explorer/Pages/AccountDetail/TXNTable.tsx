@@ -1,9 +1,10 @@
 import { GetTransitionPageListItem } from "../../../../api/modules/explorer";
 import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther } from "ethers";
-import { txInputToType } from "../../../../utils/utils";
+import { toFixed, txInputToType } from "../../../../utils/utils";
 import { TableColumnsType, Table } from "antd";
 import useRouter from "../../../../hooks/useRouter";
+import { ERBIE_COIN_FIXED_LENGTH, ERBIE_TX_FEE_LENGTH } from '../../../../const/coin';
 
 export interface TXTTableProps {
   list: Array<GetTransitionPageListItem>;
@@ -72,7 +73,7 @@ export default function TXNTable(props: TXTTableProps) {
       key: "value",
       align: 'center',
       render(v) {
-        return formatEther(v.value);
+        return toFixed(formatEther(v.value),ERBIE_COIN_FIXED_LENGTH);
       },
     },
     {
@@ -113,7 +114,7 @@ export default function TXNTable(props: TXTTableProps) {
       align: 'center',
       key: "gasPrice",
       render(v) {
-        return formatEther(v.gasPrice * v.gasUsed).slice(0, 10);
+        return toFixed(formatEther(v.gasPrice * v.gasUsed),ERBIE_TX_FEE_LENGTH)
       },
     },
   ];

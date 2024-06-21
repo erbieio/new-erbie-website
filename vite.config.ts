@@ -36,6 +36,7 @@ export default defineConfig({
     exclude: ['react-paginate']
   },
   server: {
+    port: 5175,
     headers: {
       // 'Cross-Origin-Opener-Policy': 'same-origin',
       // 'Cross-Origin-Embedder-Policy': 'require-corp',

@@ -81,10 +81,7 @@ export default function Chain() {
       const data = await get_stats();
       setStats(data);
     } finally {
-      const t = setTimeout(() => {
-        setStatLoading(false);
-        clearTimeout(t);
-      }, 100);
+      setStatLoading(false);
     }
   };
   const toBlockDetail = (blockNumber: number | string) => {

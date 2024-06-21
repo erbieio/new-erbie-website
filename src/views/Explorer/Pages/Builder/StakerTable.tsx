@@ -4,6 +4,7 @@ import { formatEther } from "ethers";
 import { addressDots, formatDate } from "../../../../utils/common";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
+import { toFixed } from "../../../../utils/utils";
 interface StakerTableProps {
   dataSource: Array<GetStakerListItem>;
   sorter: (order: string) => void
@@ -53,7 +54,7 @@ export default function StakerTable(props: StakerTableProps) {
         multiple: undefined,
       },
       render(v) {
-        return formatEther(v.amount);
+        return toFixed(formatEther(v.amount));
       },
     },
     {

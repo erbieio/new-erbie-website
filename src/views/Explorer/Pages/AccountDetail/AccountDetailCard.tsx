@@ -6,6 +6,7 @@ import { GetAccountDetailResponse } from "../../../../api/modules/explorer";
 import { Skeleton, message } from "antd";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { formatEther } from "ethers";
+import { toFixed } from "../../../../utils/utils";
 export interface TAccountDetailCardProps {
   loading: boolean;
   data: GetAccountDetailResponse | undefined;
@@ -41,17 +42,17 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
             <div>
               <div className="flex justify-between items-center text-line">
                 <div>ERB Balance</div>
-                <div>{formatEther(props.data?.balance || "0")} ERB</div>
+                <div>{toFixed(formatEther(props.data?.balance || "0"))} ERB</div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>Total Staking</div>
-                <div>{formatEther(props.data?.stakerAmount || "0")}</div>
+                <div>{toFixed(formatEther(props.data?.stakerAmount || "0"))}</div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>Total Staked</div>
-                <div>{formatEther(props.data?.validatorAmount || "0")}</div>
+                <div>{toFixed(formatEther(props.data?.validatorAmount || "0"))}</div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center  text-line">

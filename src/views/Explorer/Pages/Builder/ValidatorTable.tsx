@@ -8,6 +8,7 @@ import sad from '../../../../assets/builder/sad.svg'
 import moment from 'moment';
 import { SorterResult } from '../../../../api/api';
 import useRouter from '../../../../hooks/useRouter';
+import { toFixed } from '../../../../utils/utils';
 interface ValidatorTableProps {
   dataSource: Array<GetValidatorListItem>
   sorter: (order: string) => void
@@ -52,7 +53,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         multiple: undefined,
       },
       render(v){
-        return formatEther(v.amount)
+        return toFixed(formatEther(v.amount))
       }
     },
     {
@@ -63,7 +64,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         multiple: undefined,
       },
       render(v){
-        return formatEther(v.reward)
+        return toFixed(formatEther(v.reward))
       }
     },
     {

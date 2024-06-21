@@ -1,4 +1,5 @@
 import {dealType} from '../assets/json/deal.json'
+import { ERBIE_COIN_FIXED_LENGTH } from '../const/coin';
 // tx type
 export function txInputToType(hexCharCodeStr: string) {
     if (hexCharCodeStr) {
@@ -44,4 +45,17 @@ export function calcERBRewardsTimes(blocknumber: number, _DREBlockReward?: numbe
 	const rewardratio = DeflationRate**times
 	const u = rewardratio * (_DREBlockReward || DREBlockReward)
 	return u
+}
+
+
+
+// 将 wei单位转换为eth，并保留位数
+export function toFixed (val: string | number, FIXED_LEN = ERBIE_COIN_FIXED_LENGTH){
+    if(!val) return 0
+    let muVal = '1'
+    for(let i=0;i<FIXED_LEN;i++){
+        muVal += '0'
+    }
+    const intMuVal = Number(muVal)
+    return Math.floor(Number(val) * intMuVal) / intMuVal
 }

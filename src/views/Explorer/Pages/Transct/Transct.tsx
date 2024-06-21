@@ -16,8 +16,9 @@ import {
 import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { Pagination, Table, TableColumnsType } from "antd";
-import { txInputToType } from "../../../../utils/utils";
+import { toFixed, txInputToType } from "../../../../utils/utils";
 import useRouter from "../../../../hooks/useRouter";
+import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
 
 export default function Transct() {
   const handleSearch = () => {};
@@ -81,7 +82,7 @@ export default function Transct() {
       key: "value",
       align: "center",
       render(v) {
-        return formatEther(v.value);
+        return toFixed(formatEther(v.value));
       },
     },
     {
@@ -112,10 +113,9 @@ export default function Transct() {
     },
     {
       title: "TXN Fee",
-      key: "Height",
       align: "center",
       render(v) {
-        return formatEther(v.gasPrice * v.gasUsed);
+        return toFixed(formatEther(v.gasPrice * v.gasUsed),ERBIE_TX_FEE_LENGTH)
       },
     },
   ];
