@@ -15,6 +15,7 @@ import { Pagination, PaginationProps, Skeleton } from "antd";
 import { useNavigate } from "react-router-dom";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
+import { formatEther } from 'ethers';
 
 export interface TableMenuItem {
   label: string;
@@ -54,7 +55,6 @@ export default function Chain() {
     blocks: [],
     total: 0,
   });
-  const multiple = 0.5436;
   const handleGetBlocks = async () => {
     try {
       setLoading(true);
@@ -90,12 +90,6 @@ export default function Chain() {
   };
   const {toAccountDetail} = useRouter()
   const [statloading, setStatLoading] = useState(false);
-  // const [totalRewards, setTotalRewards] = useState(0)
-  // const totalERBRewards = useMemo(() => {
-  //   // const ReduceRewardPeriod = 365 * 720 * 24
-  //   // const DeflationRate = 0.85
-  // }, [stats])
-
   const columns: Array<TableColumn> = [
     {
       title: "Height",
@@ -249,11 +243,7 @@ export default function Chain() {
                 paragraph={{ rows: 1, width: "100% " }}
                 title={false}
               >
-                {stats
-                  ? Math.floor(
-                      Number(stats?.rewardCoinCount) * multiple * 100
-                    ) / 100
-                  : 0}
+                {formatEther(stats?.totalRewardAmount || '0')}
               </Skeleton>
             </div>
           </div>

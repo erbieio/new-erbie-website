@@ -207,7 +207,7 @@ export default function BlockDetail() {
   }, []);
   return (
     <div className="block-detail flex flex-col lg:flex-row lg:h-72vh">
-      <div className="lg:w-35% flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
+      <div className="lg:w-300px flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
         <BlockDetailCard data={block} listTX={listPage} />
         {blockType === 1 ? <><PunishmentDetailCard /><DetailsCard /></> : <></>}
         {blockType === 2 ? <><BlockholeDetailsCard /><NodeAddressCard /></> : <></>}

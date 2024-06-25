@@ -21,12 +21,11 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
   }, [params]);
 
   const erbieIncome = useMemo(() => {
-    if (props.data?.validatorReward) {
-      // TODO 计算收益
-      return formatEther(props.data?.validatorReward);
+    if (props.data?.stakerReward) {
+      return (BigInt(props.data?.stakerReward) + BigInt(props.data?.validatorReward)).toString();
     }
     return 0;
-  }, [props.data?.validatorReward]);
+  }, [props.data?.stakerReward, props.data?.validatorReward]);
   return (
     <div className="card-box h-100% flex flex-col justify-evenly mt-14px lg:mt-0">
       <div>

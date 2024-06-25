@@ -75,6 +75,7 @@ export interface GetStatsResponse {
   totalTransferTx: number;
   totalValidator: number;
   totalValidatorOnline: number;
+  totalRewardAmount: number;
 }
 export const get_stats = (): Promise<GetStatsResponse> => {
   return service.get(`${SCAN_API}/stats`);
@@ -371,6 +372,7 @@ export interface GetAccountDetailResponse {
   lastNumber: number;
   reward: string;
   profit: string;
+  stakerReward: string
 }
 export const get_account_detail = (
   address: string
