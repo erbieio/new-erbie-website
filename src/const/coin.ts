@@ -11,3 +11,4 @@ export const ERBIE_COIN_FIXED_LENGTH = 2
 // erbie 交易 TXFEE展示精度
 
 export const ERBIE_TX_FEE_LENGTH = 6
+

@@ -142,10 +142,10 @@ export interface SnftBlockReward {
 }
 
 export type BlockReward = AddressBlockReward | SnftBlockReward;
-
+export type GetBlockRewardResponse = Array<BlockReward>
 export const get_block_reward = (
   block: string
-): Promise<Array<BlockReward>> => {
+): Promise<GetBlockRewardResponse> => {
   return service.get(`${SCAN_API}/reward/${block}`);
 };
 
@@ -411,9 +411,13 @@ export interface GetSlashingParams {
   page_size: number
   address?: string
   number? : number
-  reason? : 1 | 2
+  reason? : 1 | 2 | null
+  // 1 惩罚块  2 黑洞块 null
 }
-// https://scanapi.erbie.io/slashings?page=1&page_size=10&address=&number=203431&reason=
-export const get_slashings = (params: GetSlashingParams) => {
+export interface GetSlashingsResponse {
+  data: Array<unknown>
+  total: number
+}
+export const get_slashings = (params: GetSlashingParams): Promise<GetSlashingsResponse> => {
   return service.get(`${SCAN_API}/slashings`, {params})
 }

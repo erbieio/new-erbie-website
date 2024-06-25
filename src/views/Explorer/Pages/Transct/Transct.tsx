@@ -220,7 +220,7 @@ export default function Transct() {
             <div className="flex flex-col h-100% justify-between">
               <div className="font-size-14px lg:font-size-16px">Total Transaction Volume</div>
               <div className="font-size-12px lg:font-size-24px">
-                {formatEther(stats?.totalAmount || "0")} ERB
+                {toFixed(formatEther(stats?.totalAmount || "0"))} ERB
               </div>
             </div>
           </div>

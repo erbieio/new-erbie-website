@@ -63,7 +63,7 @@ export default function Home() {
       <div className="flex-1 right-box w-100%">
         <div className="hidden lg:flex border-l-style-solid border-color-white border-l-width-1px">
           <HomeCard label="Total Transactions" value={`${stats && stats.totalTransaction ? stats.totalTransaction : 0}`} />
-          <HomeCard label="Total Staking" value={`${toFixed((Number(stats?.totalPledge)/1000000000000000000).toString())}}`} />
+          <HomeCard label="Total Staking" value={`${toFixed((Number(stats?.totalPledge)/1000000000000000000).toString())}`} />
           <HomeCard label="Total CSBT" value={`${stats && stats.rewardSNFTCount ? stats.rewardSNFTCount : 0}`} />
         </div>
         <div className="mt-45px lg:mt-2.3vh h-80%">

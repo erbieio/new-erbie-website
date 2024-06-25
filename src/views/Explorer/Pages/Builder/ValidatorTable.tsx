@@ -35,7 +35,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         if (v >= 40 && v <= 50) return neutral;
         if (v > 50) return smile;
   }
-  const {toAccountDetail} = useRouter()
+  const {toAccountDetail,toBlockDetail} = useRouter()
   const columns: TableColumnsType<GetValidatorListItem> = [
     {
       title: "Validator",
@@ -86,7 +86,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         multiple: undefined,
       },
       render(v){
-        return <div className='link hover:color-#1677ff'>{v.block_number}</div>
+        return <div className='link hover:color-#1677ff' onClick={() => toBlockDetail(v.block_number)}>{v.block_number}</div>
       }
     },
     {

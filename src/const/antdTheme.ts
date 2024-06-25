@@ -1,7 +1,7 @@
 export const ANTD_THEME = {
     token: {
         // Seed Token，影响范围大
-        colorPrimary: '#24152F',
+        colorPrimary: '#DC91E5',
         borderRadius: 0,
 
         // 派生变量，影响范围小

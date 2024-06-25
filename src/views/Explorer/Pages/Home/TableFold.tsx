@@ -11,8 +11,9 @@ import lv3 from "../../../../assets/fold-lv3.svg";
 
 import "./TableFold.scss";
 import { ERBIE_COIN } from "../../../../const/coin";
-import { Popover } from "antd";
+// import { Popover } from "antd";
 import NoData from "../../../../components/NoData";
+import useRouter from "../../../../hooks/useRouter";
 export interface TableFoldProps {
   loading: boolean;
   data: Array<BlockReward>;
@@ -26,6 +27,7 @@ function Fold(data: Array<BlockReward>) {
   const list2 = data.filter(
     (item) => item.identity === 3
   ) as Array<SnftBlockReward>;
+  const {toAccountDetail} = useRouter()
   return (
     <div className="fold-component font-size-12px">
       {one && list ? (
@@ -34,7 +36,7 @@ function Fold(data: Array<BlockReward>) {
             <div className="fold-component-card flex h-40px">
               <img src={lv1} alt="" className="w-14px mr-5px" />
               <div>
-                <span className="link hover:color-#1677ff">
+                <span className="link hover:color-#1677ff" onClick={() => toAccountDetail(one.address)}>
                   {one ? addressDots(one.address, 3, 4) : ""}
                 </span>
               </div>
@@ -49,6 +51,7 @@ function Fold(data: Array<BlockReward>) {
               list.map((item) => (
                 <div
                   key={item.address}
+                  onClick={() => toAccountDetail(item.address)}
                   className="w-33.3333% h-40px flex fold-component-card whitespace-normal"
                 >
                   <img src={lv2} alt="" className="w-14px mr-5px" />
@@ -76,6 +79,7 @@ function Fold(data: Array<BlockReward>) {
           list2.map((item) => (
             <div
               key={item.address}
+              onClick={() => toAccountDetail(item.address)}
               className="w-25% lh-30px fold-component-card py-5px"
             >
               <div className="flex h-24px">
@@ -94,7 +98,7 @@ function Fold(data: Array<BlockReward>) {
                   <span className="link hover:color-#1677ff">
                     {addressDots(item.snft, 3, 10)}
                   </span>
-                  <Popover
+                  {/* <Popover
                     trigger={"hover"}
                     placement="top"
                     content={
@@ -110,7 +114,7 @@ function Fold(data: Array<BlockReward>) {
                     }
                   >
                     <i className="i-material-symbols-help-outline ml-5px color-#D87CEE font-size-16px cursor-pointer"></i>
-                  </Popover>
+                  </Popover> */}
                 </div>
               </div>
             </div>

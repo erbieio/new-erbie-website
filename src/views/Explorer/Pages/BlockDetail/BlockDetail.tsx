@@ -1,37 +1,48 @@
 import { Pagination, Table, TableColumnsType } from "antd";
-import { useRef, useState } from "react";
+import { useEffect, useMemo, useRef, useState } from "react";
 import BlockDetailCard from "./BlockDetailCard";
-// import RewardListCard from "./RewardListCard";
-// import DelegateAccounts from "./DelegateAccounts";
-import { GetTransitionPageListItem } from '../../../../api/modules/explorer';
+import DetailsCard from './DetailCard';
+import {
+  GetBlockDetailResponse,
+  GetBlockRewardResponse,
+  GetSlashingsResponse,
+  GetTransactionPageParams,
+  GetTransactionPageResponse,
+  GetTransitionPageListItem,
+  get_block_detail,
+  get_block_reward,
+  get_slashings,
+  get_transaction_page,
+} from "../../../../api/modules/explorer";
 import { addressDots, formatDate } from "../../../../utils/common";
 import useRouter from "../../../../hooks/useRouter";
 import { formatEther } from "ethers";
 import { toFixed, txInputToType } from "../../../../utils/utils";
-import './BlockDetail.scss'
+import "./BlockDetail.scss";
 import BlockholeDetailsCard from "./BlockholeDetailsCard";
 import NodeAddressCard from "./NodeAddressCard";
 import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
-// import { useParams } from "react-router-dom";
+import { useParams } from "react-router-dom";
+import PunishmentDetailCard from "./PunishmentDetailCard";
+import RewardListCard from "./RewardListCard";
+import DelegateAccounts from "./DelegateAccounts";
 export default function BlockDetail() {
-  // const params = useParams()
-  const pageParams = useRef({
+  const params = useParams<{ blockNumber: string }>();
+  const pageParams = useRef<GetTransactionPageParams>({
     page: 1,
     page_size: 10,
-
   });
   const handleChangePage = (page: number) => {
     pageParams.current.page = page;
-
   };
-  const {toAccountDetail} = useRouter()
-  const [total] = useState(0)
-  const [list] = useState([])
+  const { toAccountDetail } = useRouter();
+  const [total] = useState(0);
+  const [listPage, setListPage] = useState<GetTransactionPageResponse>();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",
       key: "hash",
-      align: 'center',
+      align: "center",
       fixed: "left",
       render(v) {
         return (
@@ -44,16 +55,18 @@ export default function BlockDetail() {
     {
       title: "TXN Time",
       key: "timestamp",
-      align: 'center',
-      width:70,
+      align: "center",
+      width: 70,
       render(v) {
-        return <div className="whitespace-nowrap">{formatDate(v.timestamp)}</div>;
+        return (
+          <div className="whitespace-nowrap">{formatDate(v.timestamp)}</div>
+        );
       },
     },
     {
       title: "Sender",
       key: "from",
-      align: 'center',
+      align: "center",
       // width: 150,
       render(v) {
         return (
@@ -69,7 +82,7 @@ export default function BlockDetail() {
     {
       title: "Receiver",
       key: "to",
-      align: 'center',
+      align: "center",
       width: 150,
       render(v) {
         return (
@@ -85,7 +98,7 @@ export default function BlockDetail() {
     {
       title: "Transaction Value",
       key: "value",
-      align: 'center',
+      align: "center",
       render(v) {
         return formatEther(v.value);
       },
@@ -93,7 +106,7 @@ export default function BlockDetail() {
     {
       title: "TXN Type",
       key: "input",
-      align: 'center',
+      align: "center",
       render(v) {
         return (
           <div
@@ -108,7 +121,7 @@ export default function BlockDetail() {
     {
       title: "Status",
       key: "status",
-      align: 'center',
+      align: "center",
       render(v) {
         return (
           <div
@@ -125,44 +138,101 @@ export default function BlockDetail() {
     },
     {
       title: "TXN Fee",
-      align: 'center',
+      align: "center",
       key: "gasPrice",
       render(v) {
-        return toFixed(formatEther(v.gasPrice * v.gasUsed),ERBIE_TX_FEE_LENGTH)
+        return toFixed(
+          formatEther(v.gasPrice * v.gasUsed),
+          ERBIE_TX_FEE_LENGTH
+        );
       },
     },
   ];
-  // const [reward, setReward] = useState<GetBlockRewa>()
-  // const handleGetReward = async() => {
-  //   if(params.block) {
-  //     const data = await get_block_reward(params.block)
-  //   }
-  // }
+  // 块收益
+  const [reward, setReward] = useState<GetBlockRewardResponse>();
+  const [block, setBlock] = useState<GetBlockDetailResponse>();
+  const handleGetReward = async () => {
+    if (params.blockNumber) {
+      const data = await get_block_reward(params.blockNumber);
+      setReward(data);
+    }
+  };
+
+  const handleGetListTX = async () => {
+    if (params.blockNumber) {
+      pageParams.current.number = Number(params.blockNumber);
+    }
+    const data = await get_transaction_page(pageParams.current);
+    setListPage(data);
+  };
+  const handleGetBlockDetail = async () => {
+    if (params.blockNumber) {
+      const data = await get_block_detail(Number(params.blockNumber));
+      setBlock(data);
+    }
+  };
+  // 惩罚块 1
+  const [block1, setBlock1] = useState<GetSlashingsResponse>()
+  // 黑洞块 2
+  const [block2, setBlock2] = useState<GetSlashingsResponse>()
+// TODO 块类型  惩罚块 1  黑洞块 2  普通块 3
+  const blockType = useMemo(() => {
+    if(block1 && block2) {
+      if(block1.data.length) {
+        return 1
+      }
+      if(block2.data.length) {
+        return 2
+      }
+    }
+    return 3
+  },[block1, block2])
+  const handleGetSlashingsBlock = async(reason: 1 | 2 | null) => {
+    const data = await get_slashings({
+      page: 1,
+      page_size: 10,
+      reason
+    })
+    reason === 1 ? setBlock1(data) : setBlock2(data)
+  }
+
+  useEffect(() => {
+    handleGetReward();
+    handleGetListTX();
+    handleGetBlockDetail();
+    handleGetSlashingsBlock(1)
+    handleGetSlashingsBlock(2)
+    console.log(reward)
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
   return (
     <div className="block-detail flex flex-col lg:flex-row lg:h-72vh">
       <div className="lg:w-35% flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
-        <BlockDetailCard />
-        {/* <RewardListCard /> */}
-        <BlockholeDetailsCard />
-        {/* <DelegateAccounts /> */}
-        <NodeAddressCard />
+        <BlockDetailCard data={block} listTX={listPage} />
+        {blockType === 1 ? <><PunishmentDetailCard /><DetailsCard /></> : <></>}
+        {blockType === 2 ? <><BlockholeDetailsCard /><NodeAddressCard /></> : <></>}
+        {blockType === 3 ? <><RewardListCard /><DelegateAccounts/></> : <></>}
       </div>
       <div className="w-100% lg:ml-20px table-box mt-14px lg:mt-0">
-      <div className="text-left px-10px py-8px lh-4vh flex flex-col lg:flex-row items-center justify-between w-100%">
-            <div className="font-size-16px">TRANSACTIONS LIST</div>
-            <div>
-              <Pagination
-                current={pageParams.current.page}
-                pageSize={pageParams.current.page_size}
-                total={total}
-                onChange={handleChangePage}
-              />
-            </div>
+        <div className="text-left px-10px py-8px lh-4vh flex flex-col lg:flex-row items-center justify-between w-100%">
+          <div className="font-size-16px">TRANSACTIONS LIST</div>
+          <div>
+            <Pagination
+              current={pageParams.current.page}
+              pageSize={pageParams.current.page_size}
+              total={total}
+              onChange={handleChangePage}
+            />
           </div>
-          <div className=" overflow-x-scroll scrollbar-x h-100% lg:h-60vh">
-            <Table columns={columns} dataSource={list}></Table>
-            </div>
+        </div>
+        <div className=" overflow-x-scroll scrollbar-x h-100% lg:h-60vh">
+          <Table
+            columns={columns}
+            dataSource={listPage?.transactions}
+            pagination={false}
+          ></Table>
+        </div>
       </div>
     </div>
-  )
+  );
 }

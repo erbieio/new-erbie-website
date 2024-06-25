@@ -2,7 +2,7 @@
 .ant-pagination {
     .ant-pagination-item {
         border-radius: 0;
-        margin-right: 3px;
+        margin-right: 0;
     }
 
     .ant-pagination-item a {
@@ -37,6 +37,9 @@
 
     .ant-pagination-options {
         display: none;
+    }
+    .ant-pagination-disabled .ant-pagination-item-link{
+        color: #666 !important;
     }
 }
 

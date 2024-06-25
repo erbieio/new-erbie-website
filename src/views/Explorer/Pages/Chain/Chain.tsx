@@ -14,6 +14,7 @@ import { addressDots } from "../../../../utils/common";
 import { Pagination, PaginationProps, Skeleton } from "antd";
 import { useNavigate } from "react-router-dom";
 import useRouter from "../../../../hooks/useRouter";
+import { toFixed } from "../../../../utils/utils";
 
 export interface TableMenuItem {
   label: string;
@@ -133,7 +134,7 @@ export default function Chain() {
       key: "Height",
       render(row) {
         const rowData = row as BlockItem;
-        return `${rowData.gasUsed} %`;
+        return `${toFixed((rowData.gasUsed || 0)/(rowData.gasLimit || 0)*100, 5)} %`;
       },
     },
     {

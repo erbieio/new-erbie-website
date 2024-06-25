@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
 import "./Card.scss";
 import { addressDots } from "../../../../utils/common";
-import { useEffect, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { GetAccountDetailResponse } from "../../../../api/modules/explorer";
 import { Skeleton, message } from "antd";
 import { CopyToClipboard } from "react-copy-to-clipboard";
@@ -19,6 +19,14 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
       setAddr(params.address);
     }
   }, [params]);
+
+  const erbieIncome = useMemo(() => {
+    if (props.data?.validatorReward) {
+      // TODO 计算收益
+      return formatEther(props.data?.validatorReward);
+    }
+    return 0;
+  }, [props.data?.validatorReward]);
   return (
     <div className="card-box h-100% flex flex-col justify-evenly mt-14px lg:mt-0">
       <div>
@@ -29,10 +37,12 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
           <span> {addressDots(addr)} </span>{" "}
           <CopyToClipboard
             text={addr}
-            onCopy={() => message.open({
-              content: "Copied to clipboard",
-              type: 'success'
-            })}
+            onCopy={() =>
+              message.open({
+                content: "Copied to clipboard",
+                type: "success",
+              })
+            }
           >
             <i className="i-ep-copy-document color-white font-size-18px"></i>
           </CopyToClipboard>
@@ -42,17 +52,23 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
             <div>
               <div className="flex justify-between items-center text-line">
                 <div>ERB Balance</div>
-                <div>{toFixed(formatEther(props.data?.balance || "0"))} ERB</div>
+                <div>
+                  {toFixed(formatEther(props.data?.balance || "0"))} ERB
+                </div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>Total Staking</div>
-                <div>{toFixed(formatEther(props.data?.stakerAmount || "0"))}</div>
+                <div>
+                  {toFixed(formatEther(props.data?.stakerAmount || "0"))}
+                </div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>Total Staked</div>
-                <div>{toFixed(formatEther(props.data?.validatorAmount || "0"))}</div>
+                <div>
+                  {toFixed(formatEther(props.data?.validatorAmount || "0"))}
+                </div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center  text-line">
@@ -62,12 +78,12 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>ERB Income</div>
-                <div>{props.data?.rewardCoinCount}</div>
+                <div>{erbieIncome}</div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>TXN</div>
-                <div>0</div>
+                <div>{props.data?.nonce}</div>
               </div>
               <div className="line"></div>
             </div>
@@ -83,17 +99,17 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
             <div>
               <div className="flex justify-between items-center text-line">
                 <div>Owned CSBT</div>
-                <div>{props.data?.rewardSNFTCount}</div>
+                <div>{props.data?.snftCount}</div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>Royalty profits</div>
-                <div>0 ERB</div>
+                <div>{toFixed(props.data?.profit || "0")} ERB</div>
               </div>
               <div className="line"></div>
               <div className="flex justify-between items-center text-line">
                 <div>Owned NFTs</div>
-                <div>0</div>
+                <div>{props.data?.nftCount}</div>
               </div>
               <div className="line"></div>
             </div>
