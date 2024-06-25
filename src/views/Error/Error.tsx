@@ -1,20 +1,35 @@
 import "./Error.scss";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useRouteError } from "react-router-dom";
 export default function Error() {
   const navigator = useNavigate();
+  const error = useRouteError() as unknown as {
+    code: string;
+    message?: string;
+    stack?: string;
+  };
   const handleClick = () => {
     navigator("/", { replace: true });
   };
   return (
     <div className="w-100vw h-100vh flex items-center justify-center page-error">
-      <div>
-        <div className="font-size-150px font-bold h-130px flex justify-center">
-          <i className="i-tabler-error-404 color-#dedcdc"></i>
+      <div className="max-w-800px m-auto">
+        {Number(error.code) === 404 ? (
+          <div className="font-size-150px font-bold h-130px flex justify-center">
+            <i className="i-tabler-error-404 color-#dedcdc"></i>
+          </div>
+        ) : (
+          <></>
+        )}
+        <div className="font-size-14px text-center color-gray mb-20px">
+          {error.code || "Page Not Found"}
         </div>
-        <div className="font-size-14px text-center color-gray">
-          Page Not Found
-        </div>
-        <div className="mt-20px">
+        {error.message ? (
+          <div className="font-size-12px mb-10px">{error.message}</div>
+        ) : (
+          <></>
+        )}
+        {error.stack ? <code>{error.stack}</code> : <></>}
+        <div className="mt-20px flex justify-center items-center">
           <div className="lh-40px back-home-btn" onClick={handleClick}>
             Back to the home page
           </div>
