@@ -15,7 +15,7 @@ import moment from "moment";
 import useRouter from "../../../../hooks/useRouter";
 export default function Csbt() {
   const handleSearch = () => {};
-  const {toAccountDetail} = useRouter()
+  const { toAccountDetail } = useRouter();
   const columns: Array<TableColumn> = [
     {
       title: "Address",
@@ -23,7 +23,10 @@ export default function Csbt() {
       render(v) {
         const data = v as GetSnftMetaItem;
         return (
-          <span className="link hover:color-#1677ff" onClick={() => toAccountDetail(data.address)}>
+          <span
+            className="link hover:color-#1677ff"
+            onClick={() => toAccountDetail(data.address)}
+          >
             {addressDots(data.address, 6, 6)}
           </span>
         );
@@ -42,7 +45,7 @@ export default function Csbt() {
       key: "createdAt",
       render(v) {
         const data = v as GetSnftMetaItem;
-        return moment(data.createdAt * 1000).format("YYYY/MM/DD HH:mm:ss");
+        return moment(data.reward_at * 1000).format("YYYY/MM/DD HH:mm:ss");
       },
     },
     {

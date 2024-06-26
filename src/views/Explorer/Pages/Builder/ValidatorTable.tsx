@@ -1,120 +1,146 @@
-import { Table, type TableProps, type TableColumnsType } from 'antd';
-import { GetValidatorListItem } from '../../../../api/modules/explorer';
-import { formatEther } from 'ethers';
-import { addressDots } from '../../../../utils/common';
-import smile from '../../../../assets/builder/smile.svg'
-import neutral from '../../../../assets/builder/neutral.svg'
-import sad from '../../../../assets/builder/sad.svg'
-import moment from 'moment';
-import { SorterResult } from '../../../../api/api';
-import useRouter from '../../../../hooks/useRouter';
-import { toFixed } from '../../../../utils/utils';
+import { Table, type TableProps, type TableColumnsType } from "antd";
+import { GetValidatorListItem } from "../../../../api/modules/explorer";
+import { formatEther } from "ethers";
+import { addressDots } from "../../../../utils/common";
+import smile from "../../../../assets/builder/smile.svg";
+import neutral from "../../../../assets/builder/neutral.svg";
+import sad from "../../../../assets/builder/sad.svg";
+import moment from "moment";
+import { SorterResult } from "../../../../api/api";
+import useRouter from "../../../../hooks/useRouter";
+import { toFixed } from "../../../../utils/utils";
 interface ValidatorTableProps {
-  dataSource: Array<GetValidatorListItem>
-  sorter: (order: string) => void
-  loading: boolean
+  dataSource: Array<GetValidatorListItem>;
+  sorter: (order: string) => void;
+  loading: boolean;
 }
-  
+
 export default function ValidatorTable(props: ValidatorTableProps) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  const onChange: TableProps<GetValidatorListItem>['onChange'] = (pagination, filters, sorter: SorterResult<GetValidatorListItem>) => {
-    if(sorter.order) {
-      if(sorter.order === "ascend") {
-        props.sorter(`${sorter.columnKey} ASC`)
-      } else if(sorter.order === "descend") {
-        props.sorter(`${sorter.columnKey} DESC`)
+  const onChange: TableProps<GetValidatorListItem>["onChange"] = (
+    sorter: SorterResult<GetValidatorListItem>
+  ) => {
+    if (sorter.order) {
+      if (sorter.order === "ascend") {
+        props.sorter(`${sorter.columnKey} ASC`);
+      } else if (sorter.order === "descend") {
+        props.sorter(`${sorter.columnKey} DESC`);
       }
     } else {
-      props.sorter('')
+      props.sorter("");
     }
   };
 
   const getIconPath = (v: number) => {
-         if (v < 40) return sad;
-        if (v >= 40 && v <= 50) return neutral;
-        if (v > 50) return smile;
-  }
-  const {toAccountDetail,toBlockDetail} = useRouter()
+    if (v < 40) return sad;
+    if (v >= 40 && v <= 50) return neutral;
+    if (v > 50) return smile;
+  };
+  const { toAccountDetail, toBlockDetail } = useRouter();
   const columns: TableColumnsType<GetValidatorListItem> = [
     {
       title: "Validator",
-      align: 'center',
-      render(v){
-        return <div className='link hover:color-#1677ff' onClick={() => toAccountDetail(v.address)}>{addressDots(v.address,6,6)}</div>
-      }
+      align: "center",
+      render(v) {
+        return (
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toAccountDetail(v.address)}
+          >
+            {addressDots(v.address, 6, 6)}
+          </div>
+        );
+      },
     },
 
     {
       title: "Total Staking",
-      align: 'center',
-      key:"amount",
+      align: "center",
+      key: "amount",
       sorter: {
         multiple: undefined,
       },
-      render(v){
-        return toFixed(formatEther(v.amount))
-      }
+      render(v) {
+        return toFixed(formatEther(v.amount));
+      },
     },
     {
       title: "Total Rewards (ERB)",
-      align: 'center',
-      key:"reward",
+      align: "center",
+      key: "reward",
       sorter: {
         multiple: undefined,
       },
-      render(v){
-        return toFixed(formatEther(v.reward))
-      }
+      render(v) {
+        return toFixed(formatEther(v.reward));
+      },
     },
     {
       title: "Time",
-      align: 'center',
-      key:"timestamp",
+      align: "center",
+      key: "timestamp",
       sorter: {
         multiple: undefined,
       },
-      render(v){
-        return moment(v.timestamp * 1000).format('YYYY/MM/DD HH:mm:ss')
-      }
+      render(v) {
+        return moment(v.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss");
+      },
     },
     {
       title: "Latest Active",
-      align: 'center',
-      key:"block_number",
+      align: "center",
+      key: "block_number",
       sorter: {
         multiple: undefined,
       },
-      render(v){
-        return <div className='link hover:color-#1677ff' onClick={() => toBlockDetail(v.block_number)}>{v.block_number}</div>
-      }
+      render(v) {
+        return (
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toBlockDetail(v.block_number)}
+          >
+            {v.block_number}
+          </div>
+        );
+      },
     },
     {
       title: "Online Weight",
-      key:"weight",
+      key: "weight",
       sorter: {
         multiple: undefined,
       },
-      align: 'center',
-      render(v){
-        const path = getIconPath(v.weight)
-        return <div className='flex items-center justify-center'>{v.weight} <img src={path} className='w-1vw ml-8px' alt="" /></div>
-      }
+      align: "center",
+      render(v) {
+        const path = getIconPath(v.weight);
+        return (
+          <div className="flex items-center justify-center">
+            {v.weight}{" "}
+            <img src={path} className="w-14px lg:w-1vw ml-8px" alt="" />
+          </div>
+        );
+      },
     },
     {
       title: "Reputation Score",
       dataIndex: "score",
-      key:"score",
+      key: "score",
       sorter: {
         multiple: undefined,
       },
-      align: 'center'
+      align: "center",
     },
-
   ];
   return (
-    <div className='w-100% validator-table  h-100% overflow-x-scroll scrollbar-x'>
-      <Table columns={columns} dataSource={props.dataSource} pagination={false} onChange={onChange} loading={props.loading}></Table>
+    <div className="w-100% validator-table  h-100% overflow-x-scroll scrollbar-x">
+      <Table
+        columns={columns}
+        dataSource={props.dataSource}
+        pagination={false}
+        onChange={onChange}
+        loading={props.loading}
+      ></Table>
     </div>
-  )
+  );
 }

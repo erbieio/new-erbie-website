@@ -20,12 +20,12 @@ export default function ExplorerMenus() {
 
   return (
     <div className="explorer-menus">
-      {menuList.map((item, i) => (
+      {menuList.map((item) => (
         <div
           className={`explorer-card select-none h-36px lg:h-12.1vh font-size-12px hover:underline lg:font-size-16px w-16.5% lg:w-130px cursor-pointer flex items-center justify-center ${
             location.pathname === item.path ? "active" : ""
           }`}
-          key={i}
+          key={item.path}
           onClick={() => handleClick(item)}
         >
           {item.name}

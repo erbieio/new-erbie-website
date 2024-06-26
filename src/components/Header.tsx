@@ -49,7 +49,7 @@ export default function Header() {
   const dispatch = useDispatch();
   const handleRoute = (item: PageItem) => {
     if (window.screen.width < 1024) {
-      dispatch(setAnimate(""))
+      dispatch(setAnimate(""));
     }
     const currentItem = PAGE_LIST.find((c) => c.path === location.pathname);
     if (currentItem && currentItem.index > item.index) {
@@ -60,13 +60,13 @@ export default function Header() {
     const t = setTimeout(() => {
       navigator(item.path);
       clearTimeout(t);
-      handleChangeMenu(false)
+      handleChangeMenu(false);
     });
   };
   const goHome = () => {
-    navigator("/")
-    handleChangeMenu(false)
-  }
+    navigator("/");
+    handleChangeMenu(false);
+  };
   return (
     <div className="flex flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex  header px-16px lg:px-40px py-12px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32">
       <div className="flex items-center justify-between">
@@ -85,7 +85,6 @@ export default function Header() {
                     ? "i-ic-round-equals font-size-24px"
                     : "i-material-symbols-close-small-outline-rounded font-size-28px"
                 }  absolute z-100  right--10px top-5px`}
-
               ></i>
             </div>
           </Button>
@@ -93,20 +92,24 @@ export default function Header() {
       </div>
       {/* pc show */}
       <div className={`hidden lg:flex flex-col lg:flex-row `}>
-        {PAGE_LIST.map((item,i) => item.name ?(
-          <div
-            className={`px-16px lg:px-48px flex items-center py-16px lg:py-0 justify-start lg:justify-center cursor-pointer uppercase hover:color-white ${
-              item.path === location.pathname ? "color-white" : "color-#777"
-            }`}
-            key={item.path}
-            onClick={() => handleRoute(item)}
-          >
-            {item.name}
-          </div>
-        ) : <div key={i}></div>)}
+        {PAGE_LIST.map((item, i) =>
+          item.name ? (
+            <div
+              className={`px-16px lg:px-48px flex items-center py-16px lg:py-0 justify-start lg:justify-center cursor-pointer uppercase hover:color-white ${
+                item.path === location.pathname ? "color-white" : "color-#777"
+              }`}
+              key={item.path}
+              onClick={() => handleRoute(item)}
+            >
+              {item.name}
+            </div>
+          ) : (
+            <div key={i}></div>
+          )
+        )}
       </div>
       <div className="hidden lg:flex justify-start px-16px lg:px-0 lg:justify-end items-center">
-        <Button onClick={() => message.warning('Coming soon')}>
+        <Button onClick={() => message.warning("Coming soon")}>
           <div className="uppercase">Get in Touch</div>
         </Button>
       </div>
@@ -118,21 +121,26 @@ export default function Header() {
       >
         <div>
           <TransitionGroup>
-            {menuList.filter(item => item.name).map((item, i) => (
-              <CSSTransition key={i} timeout={300} classNames="slider">
-                <div
-                  className={`px-16px lg:px-48px flex items-center py-16px lg:py-0 justify-start lg:justify-center cursor-pointer uppercase ${
-                    item.path === location.pathname
-                      ? "color-white"
-                      : "color-#777"
-                  }`}
+            {menuList
+              .filter((item) => item.name)
+              .map((item) => (
+                <CSSTransition
                   key={item.path}
-                  onClick={() => handleRoute(item)}
+                  timeout={300}
+                  classNames="slider"
                 >
-                  {item.name}
-                </div>
-              </CSSTransition>
-            ))}
+                  <div
+                    className={`px-16px lg:px-48px flex items-center py-16px lg:py-0 justify-start lg:justify-center cursor-pointer uppercase ${
+                      item.path === location.pathname
+                        ? "color-white"
+                        : "color-#777"
+                    }`}
+                    onClick={() => handleRoute(item)}
+                  >
+                    {item.name}
+                  </div>
+                </CSSTransition>
+              ))}
           </TransitionGroup>
         </div>
         {openMenu ? (

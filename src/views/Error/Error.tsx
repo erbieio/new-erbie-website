@@ -3,7 +3,7 @@ import { useNavigate, useRouteError } from "react-router-dom";
 export default function Error() {
   const navigator = useNavigate();
   const error = useRouteError() as unknown as {
-    code: string;
+    code?: string;
     message?: string;
     stack?: string;
   };
@@ -13,7 +13,7 @@ export default function Error() {
   return (
     <div className="w-100vw h-100vh flex items-center justify-center page-error">
       <div className="max-w-800px m-auto">
-        {Number(error.code) === 404 ? (
+        {error.code && Number(error.code) === 404 ? (
           <div className="font-size-150px font-bold h-130px flex justify-center">
             <i className="i-tabler-error-404 color-#dedcdc"></i>
           </div>
@@ -21,7 +21,7 @@ export default function Error() {
           <></>
         )}
         <div className="font-size-14px text-center color-gray mb-20px">
-          {error.code || "Page Not Found"}
+          {error.code && Number(error.code) === 404 ? "Page Not Found" : ""}
         </div>
         {error.message ? (
           <div className="font-size-12px mb-10px">{error.message}</div>

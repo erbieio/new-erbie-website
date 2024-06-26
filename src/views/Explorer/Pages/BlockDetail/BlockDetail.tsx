@@ -1,7 +1,7 @@
 import { Pagination, Table, TableColumnsType } from "antd";
 import { useEffect, useMemo, useRef, useState } from "react";
 import BlockDetailCard from "./BlockDetailCard";
-import DetailsCard from './DetailCard';
+import DetailsCard from "./DetailCard";
 import {
   GetBlockDetailResponse,
   GetBlockRewardResponse,
@@ -172,46 +172,67 @@ export default function BlockDetail() {
     }
   };
   // 惩罚块 1
-  const [block1, setBlock1] = useState<GetSlashingsResponse>()
+  const [block1, setBlock1] = useState<GetSlashingsResponse>();
   // 黑洞块 2
-  const [block2, setBlock2] = useState<GetSlashingsResponse>()
-// TODO 块类型  惩罚块 1  黑洞块 2  普通块 3
+  const [block2, setBlock2] = useState<GetSlashingsResponse>();
+  // TODO 块类型  惩罚块 1  黑洞块 2  普通块 3
   const blockType = useMemo(() => {
-    if(block1 && block2) {
-      if(block1.data.length) {
-        return 1
+    if (block1 && block2) {
+      if (block1.data.length) {
+        return 1;
       }
-      if(block2.data.length) {
-        return 2
+      if (block2.data.length) {
+        return 2;
       }
     }
-    return 3
-  },[block1, block2])
-  const handleGetSlashingsBlock = async(reason: 1 | 2 | null) => {
+    return 3;
+  }, [block1, block2]);
+  const handleGetSlashingsBlock = async (reason: 1 | 2 | null) => {
     const data = await get_slashings({
       page: 1,
       page_size: 10,
-      reason
-    })
-    reason === 1 ? setBlock1(data) : setBlock2(data)
-  }
+      reason,
+    });
+    reason === 1 ? setBlock1(data) : setBlock2(data);
+  };
 
   useEffect(() => {
     handleGetReward();
     handleGetListTX();
     handleGetBlockDetail();
-    handleGetSlashingsBlock(1)
-    handleGetSlashingsBlock(2)
-    console.log(reward)
+    handleGetSlashingsBlock(1);
+    handleGetSlashingsBlock(2);
+    console.log(reward);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   return (
     <div className="block-detail flex flex-col lg:flex-row lg:h-72vh">
       <div className="lg:w-300px flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
         <BlockDetailCard data={block} listTX={listPage} />
-        {blockType === 1 ? <><PunishmentDetailCard /><DetailsCard /></> : <></>}
-        {blockType === 2 ? <><BlockholeDetailsCard /><NodeAddressCard /></> : <></>}
-        {blockType === 3 ? <><RewardListCard /><DelegateAccounts/></> : <></>}
+        {blockType === 1 ? (
+          <>
+            <PunishmentDetailCard />
+            <DetailsCard />
+          </>
+        ) : (
+          <></>
+        )}
+        {blockType === 2 ? (
+          <>
+            <BlockholeDetailsCard />
+            <NodeAddressCard />
+          </>
+        ) : (
+          <></>
+        )}
+        {blockType === 3 ? (
+          <>
+            <RewardListCard data={reward} />
+            <DelegateAccounts data={reward} />
+          </>
+        ) : (
+          <></>
+        )}
       </div>
       <div className="w-100% lg:ml-20px table-box mt-14px lg:mt-0">
         <div className="text-left px-10px py-8px lh-4vh flex flex-col lg:flex-row items-center justify-between w-100%">

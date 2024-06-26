@@ -22,7 +22,15 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
 
   const erbieIncome = useMemo(() => {
     if (props.data?.stakerReward) {
-      return (BigInt(props.data?.stakerReward) + BigInt(props.data?.validatorReward)).toString();
+      return toFixed(
+        formatEther(
+          (
+            BigInt(props.data?.stakerReward) +
+            BigInt(props.data?.validatorReward)
+          ).toString()
+        ),
+        4
+      );
     }
     return 0;
   }, [props.data?.stakerReward, props.data?.validatorReward]);

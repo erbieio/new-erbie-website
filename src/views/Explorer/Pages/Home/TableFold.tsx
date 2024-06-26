@@ -27,7 +27,7 @@ function Fold(data: Array<BlockReward>) {
   const list2 = data.filter(
     (item) => item.identity === 3
   ) as Array<SnftBlockReward>;
-  const {toAccountDetail} = useRouter()
+  const { toAccountDetail } = useRouter();
   return (
     <div className="fold-component font-size-12px">
       {one && list ? (
@@ -36,7 +36,10 @@ function Fold(data: Array<BlockReward>) {
             <div className="fold-component-card flex h-40px">
               <img src={lv1} alt="" className="w-14px mr-5px" />
               <div>
-                <span className="link hover:color-#1677ff" onClick={() => toAccountDetail(one.address)}>
+                <span
+                  className="link hover:color-#1677ff"
+                  onClick={() => toAccountDetail(one.address)}
+                >
                   {one ? addressDots(one.address, 3, 4) : ""}
                 </span>
               </div>
@@ -123,9 +126,7 @@ function Fold(data: Array<BlockReward>) {
           <></>
         )}
       </div>
-      {
-        !one && !list.length && !list2.length && <NoData />
-      }
+      {!one && !list.length && !list2.length && <NoData />}
     </div>
   );
 }
