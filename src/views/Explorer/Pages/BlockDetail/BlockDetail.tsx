@@ -35,7 +35,7 @@ export default function BlockDetail() {
   const handleChangePage = (page: number) => {
     pageParams.current.page = page;
   };
-  const { toAccountDetail } = useRouter();
+  const { toAccountDetail, toTxDetail } = useRouter();
   const [total] = useState(0);
   const [listPage, setListPage] = useState<GetTransactionPageResponse>();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
@@ -46,7 +46,10 @@ export default function BlockDetail() {
       fixed: "left",
       render(v) {
         return (
-          <span className="link hover:color-blue">
+          <span
+            className="link hover:color-blue"
+            onClick={() => toTxDetail(v.hash)}
+          >
             {addressDots(v.hash, 6, 6)}
           </span>
         );

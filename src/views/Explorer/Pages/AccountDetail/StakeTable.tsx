@@ -10,7 +10,7 @@ export interface StakeTableProps {
   type: 2 | 3; // STAKE  STAKED
 }
 export default function StakeTable(props: StakeTableProps) {
-  const {toAccountDetail} = useRouter()
+  const { toAccountDetail, toTxDetail } = useRouter();
   const columns: Array<TableColumn> = [
     {
       title: "Account",
@@ -36,7 +36,7 @@ export default function StakeTable(props: StakeTableProps) {
         return (
           <span
             className="link hover:color-blue"
-            onClick={() => toAccountDetail(data.tx_hash)}
+            onClick={() => toTxDetail(data.tx_hash)}
           >
             {addressDots(data.tx_hash, 3, 3)}
           </span>
@@ -66,7 +66,8 @@ export default function StakeTable(props: StakeTableProps) {
   ];
   return (
     <div>
-      <Table        columns={columns}
+      <Table
+        columns={columns}
         dataSources={props.list}
         loading={props.loading}
       />

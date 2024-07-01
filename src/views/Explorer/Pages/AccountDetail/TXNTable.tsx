@@ -4,24 +4,30 @@ import { formatEther } from "ethers";
 import { toFixed, txInputToType } from "../../../../utils/utils";
 import { TableColumnsType, Table } from "antd";
 import useRouter from "../../../../hooks/useRouter";
-import { ERBIE_COIN_FIXED_LENGTH, ERBIE_TX_FEE_LENGTH } from '../../../../const/coin';
+import {
+  ERBIE_COIN_FIXED_LENGTH,
+  ERBIE_TX_FEE_LENGTH,
+} from "../../../../const/coin";
 
 export interface TXTTableProps {
   list: Array<GetTransitionPageListItem>;
   loading: boolean;
 }
 export default function TXNTable(props: TXTTableProps) {
-  const {toAccountDetail} = useRouter()
+  const { toAccountDetail, toTxDetail } = useRouter();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",
       key: "hash",
-      align: 'center',
+      align: "center",
       // width:180,
       // fixed: "left",
       render(v) {
         return (
-          <span className="link hover:color-blue">
+          <span
+            className="link hover:color-blue"
+            onClick={() => toTxDetail(v.hash)}
+          >
             {addressDots(v.hash, 6, 6)}
           </span>
         );
@@ -30,16 +36,18 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "TXN Time",
       key: "timestamp",
-      align: 'center',
-      width:70,
+      align: "center",
+      width: 70,
       render(v) {
-        return <div className="whitespace-nowrap">{formatDate(v.timestamp)}</div>;
+        return (
+          <div className="whitespace-nowrap">{formatDate(v.timestamp)}</div>
+        );
       },
     },
     {
       title: "Sender",
       key: "from",
-      align: 'center',
+      align: "center",
       // width: 150,
       render(v) {
         return (
@@ -55,7 +63,7 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Receiver",
       key: "to",
-      align: 'center',
+      align: "center",
       width: 150,
       render(v) {
         return (
@@ -71,15 +79,15 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Transaction Value",
       key: "value",
-      align: 'center',
+      align: "center",
       render(v) {
-        return toFixed(formatEther(v.value),ERBIE_COIN_FIXED_LENGTH);
+        return toFixed(formatEther(v.value), ERBIE_COIN_FIXED_LENGTH);
       },
     },
     {
       title: "TXN Type",
       key: "input",
-      align: 'center',
+      align: "center",
       render(v) {
         return (
           <div
@@ -94,7 +102,7 @@ export default function TXNTable(props: TXTTableProps) {
     {
       title: "Status",
       key: "status",
-      align: 'center',
+      align: "center",
       render(v) {
         return (
           <div
@@ -111,10 +119,13 @@ export default function TXNTable(props: TXTTableProps) {
     },
     {
       title: "TXN Fee",
-      align: 'center',
+      align: "center",
       key: "gasPrice",
       render(v) {
-        return toFixed(formatEther(v.gasPrice * v.gasUsed),ERBIE_TX_FEE_LENGTH)
+        return toFixed(
+          formatEther(v.gasPrice * v.gasUsed),
+          ERBIE_TX_FEE_LENGTH
+        );
       },
     },
   ];

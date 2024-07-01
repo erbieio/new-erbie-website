@@ -55,7 +55,7 @@ interface MapDataItem {
   };
 }
 export default function WorldCharts() {
-  const myRef = useRef(null)
+  const myRef = useRef(null);
   let validatorLocations: Array<MapDataItem> = [];
   const renderMap = debounce(() => {
     const myChart = echarts.init(myRef.current);
@@ -71,22 +71,20 @@ export default function WorldCharts() {
   const handleGetLocations = async () => {
     const data = await get_validator_locations();
     if (data && data.length) {
-      const mapData = data?.map((item) => {
-        return {
-          name: item.address,
-          value: [item.longitude, item.latitude],
-          itemStyle: { color: "#9e42e4" },
-          emphasis: {
-            // 高亮样式
-            itemStyle: {
-              color: "#9e42e4", // 高亮时区域颜色
+      const mapData = data
+        ?.filter((item) => item.country !== "China,")
+        .map((item) => {
+          return {
+            name: item.address,
+            value: [item.longitude, item.latitude],
+            itemStyle: { color: "#9e42e4" },
+            emphasis: {
+              itemStyle: {
+                color: "#9e42e4",
+              },
             },
-            // label: {
-            //   show: false
-            // }
-          },
-        };
-      });
+          };
+        });
       validatorLocations = mapData;
       setTotalCitys(Array.from(new Set(data.map((item) => item.city))).length);
       setTotalCountrys(
@@ -108,7 +106,11 @@ export default function WorldCharts() {
   }, []);
   return (
     <div className="flex justify-center items-center relative world-chart">
-      <div id="world-chart" ref={myRef} className="w-500px h-30vh lg:w-600px lg:h-36vh"></div>
+      <div
+        id="world-chart"
+        ref={myRef}
+        className="w-500px h-30vh lg:w-600px lg:h-36vh"
+      ></div>
       <div className="absolute bottom-0 left-0">
         <div className="total-card">
           <span>{totalCountry}</span> Countries
