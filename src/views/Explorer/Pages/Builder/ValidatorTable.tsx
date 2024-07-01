@@ -19,6 +19,8 @@ export default function ValidatorTable(props: ValidatorTableProps) {
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const onChange: TableProps<GetValidatorListItem>["onChange"] = (
+    _pagination,
+    _filters,
     sorter: SorterResult<GetValidatorListItem>
   ) => {
     if (sorter.order) {

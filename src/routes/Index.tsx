@@ -32,6 +32,9 @@ const AccountDetail = lazy(
 const BlockDetail = lazy(
   () => import("../views/Explorer/Pages/BlockDetail/BlockDetail.tsx")
 );
+const TxDetail = lazy(
+  () => import("../views/Explorer/Pages/TxDetail/TxDetail.tsx")
+);
 const PrivacyPolicy = lazy(() => import("../views/Agreement/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("../views/Agreement/TermsOfUse"));
 
@@ -92,6 +95,10 @@ const router = createBrowserRouter([
           {
             path: "/explorer/blockDetail/:blockNumber",
             element: LazyLoad(BlockDetail),
+          },
+          {
+            path: "/explorer/txDetail/:txhash",
+            element: LazyLoad(TxDetail),
           },
         ],
       },

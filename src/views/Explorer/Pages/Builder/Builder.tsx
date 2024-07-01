@@ -15,10 +15,12 @@ import {
 import ValidatorTable from "./ValidatorTable";
 import StakerTable from "./StakerTable";
 import { Pagination, Skeleton } from "antd";
-import {  formatEther  } from "ethers";
-import { ERBIE_COIN_FIXED_LENGTH, ERBIE_COIN_PRECISION } from "../../../../const/coin";
+import { formatEther } from "ethers";
+import {
+  ERBIE_COIN_FIXED_LENGTH,
+  ERBIE_COIN_PRECISION,
+} from "../../../../const/coin";
 import { toFixed } from "../../../../utils/utils";
-
 
 export interface ValidatorMenuItem {
   label: string;
@@ -29,7 +31,6 @@ export interface ValidatorMenuItem {
 export default function Validator() {
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<GetStatsResponse>();
-  const handleSearch = () => {};
   // get total stats
   const [statloading, setStatLoading] = useState(false);
   const handleGetStats = async () => {
@@ -149,11 +150,17 @@ export default function Validator() {
   };
 
   const totalStakeOfStaker = useMemo(() => {
-    if(stats) {
-     return toFixed(((BigInt(stats.totalPledge) - BigInt(stats.validatorTotalPledge))/BigInt(ERBIE_COIN_PRECISION)).toString(),ERBIE_COIN_FIXED_LENGTH)
+    if (stats) {
+      return toFixed(
+        (
+          (BigInt(stats.totalPledge) - BigInt(stats.validatorTotalPledge)) /
+          BigInt(ERBIE_COIN_PRECISION)
+        ).toString(),
+        ERBIE_COIN_FIXED_LENGTH
+      );
     }
-    return 0
-  },[stats])
+    return 0;
+  }, [stats]);
   return (
     <div className="page-validator flex flex-col flex-col-reverse lg:flex-row">
       <div className="flex-1 flex gap-2vh flex-col">
@@ -170,7 +177,7 @@ export default function Validator() {
             ))}
           </div>
           <div className="w-100% lg:w-65% mt-14px lg:mt-0">
-            <SearchIpt className="lg:ml-12px" onSearch={handleSearch} />
+            <SearchIpt className="lg:ml-12px" />
           </div>
         </div>
         <div className="lg:h-64.6vh flex flex-col">

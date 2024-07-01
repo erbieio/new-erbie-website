@@ -14,7 +14,6 @@ import { addressDots } from "../../../../utils/common";
 import moment from "moment";
 import useRouter from "../../../../hooks/useRouter";
 export default function Csbt() {
-  const handleSearch = () => {};
   const { toAccountDetail } = useRouter();
   const columns: Array<TableColumn> = [
     {
@@ -123,7 +122,7 @@ export default function Csbt() {
       <div className="flex flex-col flex-col-reverse lg:flex-row">
         <div className="flex-1">
           <div>
-            <SearchIpt onSearch={handleSearch} />
+            <SearchIpt />
           </div>
           <div className="table-box lg:h-65vh mt-2vh">
             <div className="px-10px pt-10px pb-14px">

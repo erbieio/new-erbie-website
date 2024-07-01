@@ -21,17 +21,19 @@ import useRouter from "../../../../hooks/useRouter";
 import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
 
 export default function Transct() {
-  const handleSearch = () => {};
-  const {toAccountDetail,toBlockDetail} = useRouter()
+  const { toAccountDetail, toBlockDetail, toTxDetail } = useRouter();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
       title: "TXN Hash",
       key: "blockHash",
       align: "center",
-      fixed: 'left',
+      fixed: "left",
       render(v) {
         return (
-          <div className="link hover:color-#1677ff">
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toTxDetail(v.blockHash)}
+          >
             {addressDots(v.blockHash, 6, 6)}
           </div>
         );
@@ -42,7 +44,11 @@ export default function Transct() {
       key: "timestamp",
       align: "center",
       render(v) {
-        return <div className="whitespace-nowrap">{formatDate(v.timestamp,'YYYY/MM/DD HH:mm:ss')}</div>;
+        return (
+          <div className="whitespace-nowrap">
+            {formatDate(v.timestamp, "YYYY/MM/DD HH:mm:ss")}
+          </div>
+        );
       },
     },
     {
@@ -50,7 +56,14 @@ export default function Transct() {
       key: "blockNumber",
       align: "center",
       render(v) {
-        return <div className="link hover:color-#1677ff" onClick={() => toBlockDetail(v.blockNumber)}>{v.blockNumber}</div>;
+        return (
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toBlockDetail(v.blockNumber)}
+          >
+            {v.blockNumber}
+          </div>
+        );
       },
     },
     {
@@ -59,7 +72,10 @@ export default function Transct() {
       align: "center",
       render(v) {
         return (
-          <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(v.from)}>
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toAccountDetail(v.from)}
+          >
             {addressDots(v.from, 6, 6)}
           </div>
         );
@@ -71,7 +87,10 @@ export default function Transct() {
       align: "center",
       render(v) {
         return (
-          <div className="link hover:color-#1677ff" onClick={() => toAccountDetail(v.to)}>
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toAccountDetail(v.to)}
+          >
             {addressDots(v.to, 6, 6)}
           </div>
         );
@@ -90,7 +109,9 @@ export default function Transct() {
       key: "Height",
       align: "center",
       render(v) {
-        return <div className="whitespace-nowrap">{txInputToType(v.input)}</div>;
+        return (
+          <div className="whitespace-nowrap">{txInputToType(v.input)}</div>
+        );
       },
     },
     {
@@ -115,7 +136,10 @@ export default function Transct() {
       title: "TXN Fee",
       align: "center",
       render(v) {
-        return toFixed(formatEther(v.gasPrice * v.gasUsed),ERBIE_TX_FEE_LENGTH)
+        return toFixed(
+          formatEther(v.gasPrice * v.gasUsed),
+          ERBIE_TX_FEE_LENGTH
+        );
       },
     },
   ];
@@ -142,33 +166,36 @@ export default function Transct() {
   const [chart1Data, setChart1Data] = useState<Get24hTxsResponse>();
   const handleGetChart1 = async () => {
     const data = await get_24h_txs();
-    setChart1Data(data && data.length ? data: [
-      {hour:1,num:0},
-      {hour:2,num:0},
-      {hour:3,num:0},
-      {hour:4,num:0},
-      {hour:5,num:0},
-      {hour:6,num:0},
-      {hour:7,num:0},
-      {hour:8,num:0},
-      {hour:9,num:0},
-      {hour:10,num:0},
-      {hour:11,num:0},
-      {hour:12,num:0},
-      {hour:13,num:0},
-      {hour:14,num:0},
-      {hour:15,num:0},
-      {hour:16,num:0},
-      {hour:17,num:0},
-      {hour:18,num:0},
-      {hour:19,num:0},
-      {hour:20,num:0},
-      {hour:21,num:0},
-      {hour:22,num:0},
-      {hour:23,num:0},
-    ]);
+    setChart1Data(
+      data && data.length
+        ? data
+        : [
+            { hour: 1, num: 0 },
+            { hour: 2, num: 0 },
+            { hour: 3, num: 0 },
+            { hour: 4, num: 0 },
+            { hour: 5, num: 0 },
+            { hour: 6, num: 0 },
+            { hour: 7, num: 0 },
+            { hour: 8, num: 0 },
+            { hour: 9, num: 0 },
+            { hour: 10, num: 0 },
+            { hour: 11, num: 0 },
+            { hour: 12, num: 0 },
+            { hour: 13, num: 0 },
+            { hour: 14, num: 0 },
+            { hour: 15, num: 0 },
+            { hour: 16, num: 0 },
+            { hour: 17, num: 0 },
+            { hour: 18, num: 0 },
+            { hour: 19, num: 0 },
+            { hour: 20, num: 0 },
+            { hour: 21, num: 0 },
+            { hour: 22, num: 0 },
+            { hour: 23, num: 0 },
+          ]
+    );
   };
-
 
   useEffect(() => {
     handleGetList();
@@ -186,7 +213,7 @@ export default function Transct() {
         <div className="flex-1 flex">
           {/* 上 左 */}
           <div className="flex-1">
-            <SearchIpt onSearch={handleSearch} />
+            <SearchIpt />
             {/* 图表 24h */}
             <div className="tb1 flex flex-col justify-evenly">
               <div className="font-size-14px flex justify-center items-center w-100% py-2vh">
@@ -218,7 +245,9 @@ export default function Transct() {
         <div className="data-box flex gap-1vh mt-14px lg:mt-0">
           <div className="data-card flex-1">
             <div className="flex flex-col h-100% justify-between">
-              <div className="font-size-14px lg:font-size-16px">Total Transaction Volume</div>
+              <div className="font-size-14px lg:font-size-16px">
+                Total Transaction Volume
+              </div>
               <div className="font-size-12px lg:font-size-24px">
                 {toFixed(formatEther(stats?.totalAmount || "0"))} ERB
               </div>
@@ -226,7 +255,9 @@ export default function Transct() {
           </div>
           <div className="data-card flex-1">
             <div className="flex flex-col h-100% justify-between">
-              <div className="font-size-14px lg:font-size-16px">Total Transactions</div>
+              <div className="font-size-14px lg:font-size-16px">
+                Total Transactions
+              </div>
               <div className="font-size-12px lg:font-size-24px">
                 {stats?.totalTransaction || "0"}
               </div>
@@ -250,12 +281,12 @@ export default function Transct() {
             </div>
             <div className="lg:min-h-50vh">
               <div className="overflow-x-scroll scrollbar-x">
-              <Table
-                columns={columns}
-                dataSource={listData?.transactions}
-                loading={loading}
-                pagination={false}
-              />
+                <Table
+                  columns={columns}
+                  dataSource={listData?.transactions}
+                  loading={loading}
+                  pagination={false}
+                />
               </div>
             </div>
           </div>

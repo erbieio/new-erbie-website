@@ -15,7 +15,7 @@ import { Pagination, PaginationProps, Skeleton } from "antd";
 import { useNavigate } from "react-router-dom";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
-import { formatEther } from 'ethers';
+import { formatEther } from "ethers";
 
 export interface TableMenuItem {
   label: string;
@@ -25,9 +25,7 @@ export interface TableMenuItem {
 
 export default function Chain() {
   const navigator = useNavigate();
-  const handleSearch = (v: string) => {
-    console.log("search", v);
-  };
+
   const params = useRef<GetBlockPageParams>({
     page: 1,
     page_size: 11,
@@ -88,7 +86,7 @@ export default function Chain() {
   const toBlockDetail = (blockNumber: number | string) => {
     navigator(`/explorer/blockDetail/${blockNumber}`);
   };
-  const {toAccountDetail} = useRouter()
+  const { toAccountDetail } = useRouter();
   const [statloading, setStatLoading] = useState(false);
   const columns: Array<TableColumn> = [
     {
@@ -128,7 +126,10 @@ export default function Chain() {
       key: "Height",
       render(row) {
         const rowData = row as BlockItem;
-        return `${toFixed((rowData.gasUsed || 0)/(rowData.gasLimit || 0)*100, 5)} %`;
+        return `${toFixed(
+          ((rowData.gasUsed || 0) / (rowData.gasLimit || 0)) * 100,
+          5
+        )} %`;
       },
     },
     {
@@ -188,7 +189,7 @@ export default function Chain() {
             ))}
           </div>
           <div className="flex-1 lg:ml-26px pt-20px lg:pt-0">
-            <SearchIpt onSearch={handleSearch} className="font-size-14px" />
+            <SearchIpt className="font-size-14px" />
           </div>
         </div>
         {/* 左下 */}
@@ -243,7 +244,7 @@ export default function Chain() {
                 paragraph={{ rows: 1, width: "100% " }}
                 title={false}
               >
-                {formatEther(stats?.totalRewardAmount || '0')}
+                {formatEther(stats?.totalRewardAmount || "0")}
               </Skeleton>
             </div>
           </div>
