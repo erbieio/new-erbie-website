@@ -73,7 +73,7 @@ export default function TxDetail() {
   return (
     <div className="tx-detail justify-start lg:flex-row lg:h-72vh text-left">
       {messageContext}
-      <div className="lg:h-38vh bg-box w-100%">
+      <div className="lg:h-38vh bg-box w-100% mt-14px lg:mt-0">
         <div className="font-size-16px line h-6vh flex items-center">
           Transaction Details
         </div>
@@ -106,16 +106,16 @@ export default function TxDetail() {
           )}
         </div>
         <div className="font-size-12px">
-          <div className="line flex flex-wrap">
-            <div className="line-c">Transaction Block</div>
+          <div className=" flex flex-wrap">
+            <div className="line-c line">Transaction Block</div>
             <div
-              className="line-c"
+              className="line-c line"
               onClick={() => toBlockDetail(data?.blockNumber || "")}
             >
               {data?.blockNumber}
             </div>
-            <div className="line-c">TXN Hash</div>
-            <div className="line-c">
+            <div className="line-c line">TXN Hash</div>
+            <div className="line-c line">
               {addressDots("0x833e501a98.698729fff0f7a701", 6, 6)}
               <CopyToClipboard
                 text={params.txhash as string}
@@ -130,11 +130,13 @@ export default function TxDetail() {
               </CopyToClipboard>
             </div>
           </div>
-          <div className="line flex  flex-wrap">
-            <div className="line-c">Timestamp</div>
-            <div className="line-c">{formatDate(data?.timestamp || 0)}</div>
-            <div className="line-c">From</div>
-            <div className="line-c">
+          <div className=" flex  flex-wrap">
+            <div className="line-c line">Timestamp</div>
+            <div className="line-c line">
+              {formatDate(data?.timestamp || 0)}
+            </div>
+            <div className="line-c line">From</div>
+            <div className="line-c line">
               <span
                 className="hover:color-#8AA4FF cursor-pointer"
                 onClick={() => toAccountDetail(data?.from as string)}
@@ -154,13 +156,13 @@ export default function TxDetail() {
               </CopyToClipboard>
             </div>
           </div>
-          <div className="line flex  flex-wrap">
-            <div className="line-c">Gas Price</div>
-            <div className="line-c">
+          <div className=" flex  flex-wrap">
+            <div className="line-c line">Gas Price</div>
+            <div className="line-c line">
               {formatUnits(data?.gasPrice || 0, "gwei")} Gwei
             </div>
-            <div className="line-c">Receiver</div>
-            <div className="line-c">
+            <div className="line-c line">Receiver</div>
+            <div className="line-c line">
               <span
                 className="hover:color-#8AA4FF cursor-pointer"
                 onClick={() =>
@@ -186,21 +188,25 @@ export default function TxDetail() {
               )}
             </div>
           </div>
-          <div className="line flex  flex-wrap">
-            <div className="line-c">TXN Type</div>
-            <div className="line-c">{txInputToType(data?.input || "")}</div>
-            <div className="line-c">TXN Fee</div>
-            <div className="line-c">
+          <div className=" flex  flex-wrap">
+            <div className="line-c line">TXN Type</div>
+            <div className="line-c line">
+              {txInputToType(data?.input || "")}
+            </div>
+            <div className="line-c line">TXN Fee</div>
+            <div className="line-c line">
               ≈
               {data ? toFixed(formatEther(data.gasPrice * data.gasUsed), 6) : 0}{" "}
               ERB
             </div>
           </div>
-          <div className="line flex  flex-wrap">
-            <div className="line-c">Volume</div>
-            <div className="line-c">{formatEther(data?.value || 0)} ERB</div>
-            <div className="line-c">Gas Used</div>
-            <div className="line-c">{data?.gasUsed} gas</div>
+          <div className=" flex  flex-wrap">
+            <div className="line-c line">Volume</div>
+            <div className="line-c line">
+              {formatEther(data?.value || 0)} ERB
+            </div>
+            <div className="line-c line">Gas Used</div>
+            <div className="line-c line">{data?.gasUsed} gas</div>
           </div>
         </div>
       </div>
