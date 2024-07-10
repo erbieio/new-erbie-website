@@ -174,11 +174,11 @@ export default function BlockDetail() {
       setBlock(data);
     }
   };
-  // 惩罚块 1
-  const [block1, setBlock1] = useState<GetSlashingsResponse>();
-  // 黑洞块 2
+  // 惩罚块 2
   const [block2, setBlock2] = useState<GetSlashingsResponse>();
-  // TODO 块类型  惩罚块 1  黑洞块 2  普通块 3
+  // 黑洞块 1
+  const [block1, setBlock1] = useState<GetSlashingsResponse>();
+  // 块类型  惩罚块 2  黑洞块 1  普通块 3
   const blockType = useMemo(() => {
     if (block1 && block2) {
       if (block1.data.length) {
@@ -193,10 +193,12 @@ export default function BlockDetail() {
   const handleGetSlashingsBlock = async (reason: 1 | 2 | null) => {
     const data = await get_slashings({
       page: 1,
-      page_size: 10,
+      page_size: 6,
       reason,
+      number: Number(params.blockNumber),
     });
-    reason === 1 ? setBlock1(data) : setBlock2(data);
+    reason === 1 && setBlock1(data);
+    reason === 2 && setBlock2(data);
   };
 
   useEffect(() => {
@@ -210,20 +212,20 @@ export default function BlockDetail() {
   }, []);
   return (
     <div className="block-detail flex flex-col lg:flex-row lg:h-72vh">
-      <div className="lg:w-300px flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
+      <div className="lg:w-340px flex flex-col lg:flex-row lg:flex-col gap-1.3vh mt-14px lg:mt-0">
         <BlockDetailCard data={block} listTX={listPage} />
-        {blockType === 1 ? (
+        {blockType === 2 ? (
           <>
-            <PunishmentDetailCard />
-            <DetailsCard />
+            <PunishmentDetailCard data={block2} />
+            <DetailsCard list={block?.proof || []} />
           </>
         ) : (
           <></>
         )}
-        {blockType === 2 ? (
+        {blockType === 1 ? (
           <>
-            <BlockholeDetailsCard />
-            <NodeAddressCard />
+            <BlockholeDetailsCard list={block1?.data || []} />
+            <NodeAddressCard list={block?.proposers || []} />
           </>
         ) : (
           <></>
@@ -237,7 +239,7 @@ export default function BlockDetail() {
           <></>
         )}
       </div>
-      <div className="w-100% lg:ml-20px table-box mt-14px lg:mt-0">
+      <div className="flex-1 lg:ml-20px table-box mt-14px lg:mt-0">
         <div className="text-left px-10px py-8px lh-4vh flex flex-col lg:flex-row items-center justify-between w-100%">
           <div className="font-size-16px">TRANSACTIONS LIST</div>
           <div>

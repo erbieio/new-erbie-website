@@ -32,9 +32,9 @@ export default function Transct() {
         return (
           <div
             className="link hover:color-#1677ff"
-            onClick={() => toTxDetail(v.blockHash)}
+            onClick={() => toTxDetail(v.hash)}
           >
-            {addressDots(v.blockHash, 6, 6)}
+            {addressDots(v.hash, 6, 6)}
           </div>
         );
       },
@@ -279,7 +279,7 @@ export default function Transct() {
                 ></Pagination>
               </div>
             </div>
-            <div className="lg:min-h-50vh">
+            <div className="lg:h-51.2vh">
               <div className="overflow-x-scroll scrollbar-x">
                 <Table
                   columns={columns}

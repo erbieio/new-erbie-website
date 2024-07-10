@@ -42,7 +42,7 @@ export function addressDots(v: string | number, len = 12, lastlen = 12) {
     ? newstr.slice(0, len) +
         "..." +
         newstr.slice(newstr.length - lastlen, newstr.length)
-    : "";
+    : "-";
 }
 
 // format date

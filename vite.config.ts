@@ -1,39 +1,39 @@
-import { defineConfig } from 'vite'
-import react from '@vitejs/plugin-react'
-import legacy from '@vitejs/plugin-legacy'
-import UnoCSS from 'unocss/vite'
-const isProd = process.env.NODE_ENV === 'production' ? true : false
+import { defineConfig } from "vite";
+import react from "@vitejs/plugin-react";
+import legacy from "@vitejs/plugin-legacy";
+import UnoCSS from "unocss/vite";
+const isProd = process.env.NODE_ENV === "production" ? true : false;
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [
     legacy({
-      targets: ['since 2013'],
-      additionalLegacyPolyfills: ['regenerator-runtime/runtime'],
+      targets: ["since 2013"],
+      additionalLegacyPolyfills: ["regenerator-runtime/runtime"],
       renderLegacyChunks: true,
       polyfills: [
-        'es.symbol',
-        'es.array.filter',
-        'es.promise',
-        'es.promise.finally',
-        'es/map',
-        'es/set',
-        'es.array.for-each',
-        'es.object.define-properties',
-        'es.object.define-property',
-        'es.object.get-own-property-descriptor',
-        'es.object.get-own-property-descriptors',
-        'es.object.keys',
-        'es.object.to-string',
-        'web.dom-collections.for-each',
-        'esnext.global-this',
-        'esnext.string.match-all'
-      ]
+        "es.symbol",
+        "es.array.filter",
+        "es.promise",
+        "es.promise.finally",
+        "es/map",
+        "es/set",
+        "es.array.for-each",
+        "es.object.define-properties",
+        "es.object.define-property",
+        "es.object.get-own-property-descriptor",
+        "es.object.get-own-property-descriptors",
+        "es.object.keys",
+        "es.object.to-string",
+        "web.dom-collections.for-each",
+        "esnext.global-this",
+        "esnext.string.match-all",
+      ],
     }),
     react(),
-    UnoCSS()
+    UnoCSS(),
   ],
   optimizeDeps: {
-    exclude: ['react-paginate']
+    exclude: ["react-paginate"],
   },
   server: {
     port: 5175,
@@ -42,16 +42,17 @@ export default defineConfig({
       // 'Cross-Origin-Embedder-Policy': 'require-corp',
     },
     proxy: {
-      '/scanApi': {
-        target: 'https://scanapi.erbie.io',
+      "/scanApi": {
+        // target: "https://scanapi.erbie.io",
+        target: "http://192.168.1.235:3001",
         changeOrigin: true,
         secure: false,
-        rewrite: (path) => path.replace(/^\/scanApi/, '')
+        rewrite: (path) => path.replace(/^\/scanApi/, ""),
       },
-    }
+    },
   },
   esbuild: {
-    drop: isProd ? ['console', 'debugger'] : []
+    drop: isProd ? ["console", "debugger"] : [],
   },
   build: {
     chunkSizeWarningLimit: 1000,
@@ -64,19 +65,23 @@ export default defineConfig({
       },
       output: {
         // 去掉注释内容
-        comments: true
-      }
+        comments: true,
+      },
     },
     rollupOptions: {
       output: {
         manualChunks(id) {
           // TODO 打包配置优化
-          if (id.includes('node_modules')) {
-            return id.toString().split('node_modules/')[1].split('/')[0].toString()
+          if (id.includes("node_modules")) {
+            return id
+              .toString()
+              .split("node_modules/")[1]
+              .split("/")[0]
+              .toString();
           }
-        }
-      }
-    }
+        },
+      },
+    },
   },
-  define: {}
-})
+  define: {},
+});

@@ -14,6 +14,7 @@ import { ERBIE_COIN } from "../../../../const/coin";
 // import { Popover } from "antd";
 import NoData from "../../../../components/NoData";
 import useRouter from "../../../../hooks/useRouter";
+import { toFixed } from "../../../../utils/utils";
 export interface TableFoldProps {
   loading: boolean;
   data: Array<BlockReward>;
@@ -44,7 +45,7 @@ function Fold(data: Array<BlockReward>) {
                 </span>
               </div>
               <div className="color-#a1a1a1 ml-8px">
-                {one ? formatEther(one.amount) : ""} {ERBIE_COIN}
+                {one ? toFixed(formatEther(one.amount)) : ""} {ERBIE_COIN}
               </div>
             </div>
             <div className="fold-component-card h-40px"></div>
@@ -64,7 +65,7 @@ function Fold(data: Array<BlockReward>) {
                     </span>
                   </div>
                   <div className="color-#a1a1a1 ml-8px whitespace-normal w-80px">
-                    {formatEther(item.amount || "0")} {ERBIE_COIN}
+                    {toFixed(formatEther(item.amount || "0"))} {ERBIE_COIN}
                   </div>
                 </div>
               ))

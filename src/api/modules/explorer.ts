@@ -143,7 +143,7 @@ export interface SnftBlockReward {
 }
 
 export type BlockReward = AddressBlockReward | SnftBlockReward;
-export type GetBlockRewardResponse = Array<BlockReward>
+export type GetBlockRewardResponse = Array<BlockReward>;
 export const get_block_reward = (
   block: string
 ): Promise<GetBlockRewardResponse> => {
@@ -302,7 +302,7 @@ export interface GetTransitionPageListItem {
 export interface GetTransactionPageParams extends PageParams {
   addr?: string;
   types?: null | string;
-  number?: number
+  number?: number;
 }
 
 export interface GetTransactionPageResponse extends PageResponse {
@@ -372,7 +372,7 @@ export interface GetAccountDetailResponse {
   lastNumber: number;
   reward: string;
   profit: string;
-  stakerReward: string
+  stakerReward: string;
 }
 export const get_account_detail = (
   address: string
@@ -400,6 +400,8 @@ export interface GetBlockDetailResponse {
   totalTransaction: number;
   transactionsRoot: string;
   uncles: Array<unknown>;
+  proposers: Array<string>;
+  proof: Array<string>;
 }
 // /block/203431
 export const get_block_detail = (
@@ -409,17 +411,79 @@ export const get_block_detail = (
 };
 
 export interface GetSlashingParams {
-  page: number
-  page_size: number
-  address?: string
-  number? : number
-  reason? : 1 | 2 | null
-  // 1 惩罚块  2 黑洞块 null
+  page: number;
+  page_size: number;
+  address?: string;
+  number?: number;
+  reason?: 1 | 2 | null;
+  // 2 惩罚块  1 黑洞块 null
+}
+
+export interface GetSlashingsBlackHoleItem {
+  address: string;
+  block_number: number;
+  reason: string;
+  weight: number;
 }
 export interface GetSlashingsResponse {
-  data: Array<unknown>
-  total: number
+  data: Array<GetSlashingsBlackHoleItem>;
+  total: number;
 }
-export const get_slashings = (params: GetSlashingParams): Promise<GetSlashingsResponse> => {
-  return service.get(`${SCAN_API}/slashings`, {params})
+export const get_slashings = (
+  params: GetSlashingParams
+): Promise<GetSlashingsResponse> => {
+  return service.get(`${SCAN_API}/slashings`, { params });
+};
+
+export type GetTransactionLogsResponse = Array<unknown>;
+
+export const get_transaction_logs = (
+  hash: string
+): Promise<GetTransactionLogsResponse> => {
+  return service.get(`${SCAN_API}/transaction_logs/${hash}`);
+};
+
+export interface GetTransactionByHashResponse {
+  blockHash: string;
+  blockNumber: number;
+  contractAddress: null | string;
+  cumulativeGasUsed: number;
+  from: string;
+  gas: number;
+  gasPrice: number;
+  gasUsed: number;
+  hash: string;
+  input: string;
+  nonce: number;
+  status: number;
+  timestamp: number;
+  to: string;
+  transactionIndex: number;
+  value: string;
 }
+export const get_transaction_Hash = (
+  hash: string
+): Promise<GetTransactionByHashResponse> => {
+  return service.get(`${SCAN_API}/transaction/${hash}`);
+};
+export interface GetTransactionErbieByHashResponse {
+  tx_hash: string; //owned transaction hash
+  type: number; //transaction type
+  address: string; //the NFT or SNFT address of the transaction
+  from: string; //seller or caller address
+  to: string; //buyer or proxy address to set
+  value: string; //price value, the unit is wei
+  extra: string; //fee receive address or meta url
+  timestamp: string; //transaction timestamp
+  block_number: string; //block number
+  royalty_rate: number; //for the creator royalty rate
+  fee_rate: number; //fee rate, unit wei; or number of recycle snft pieces
+  proxy: string;
+}
+//
+//It's validator's proxy address to run a node
+export const get_transaction_erbie_Hash = (
+  hash: string
+): Promise<GetTransactionErbieByHashResponse> => {
+  return service.get(`${SCAN_API}/transaction/erbie/${hash}`);
+};
