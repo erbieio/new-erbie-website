@@ -116,7 +116,7 @@ export default function TxDetail() {
             </div>
             <div className="line-c line">TXN Hash</div>
             <div className="line-c line">
-              {addressDots("0x833e501a98.698729fff0f7a701", 6, 6)}
+              {addressDots(params.txhash || "", 6, 6)}
               <CopyToClipboard
                 text={params.txhash as string}
                 onCopy={() =>
