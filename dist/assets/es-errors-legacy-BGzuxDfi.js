@@ -1,1 +1,0 @@
-System.register([],(function(r,e){"use strict";return{execute:function(){/** @type {import('.')} */r("e",Error),r("_",EvalError),r("r",RangeError),r("a",ReferenceError),r("s",SyntaxError),r("t",TypeError),r("u",URIError)/** @type {import('./eval')} */}}}));
