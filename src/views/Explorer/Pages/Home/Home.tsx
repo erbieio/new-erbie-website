@@ -86,13 +86,13 @@ export default function Home() {
                 value={`${stats?.avgBlockTime || 0} ms`}
               />
               <HomeCard
-                label="Blockhole Block"
+                label="Blockhole"
                 value={`${stats?.totalBlackHole || 0}`}
               />
             </div>
             <div className="flex lg:border-l-style-solid lg:border-color-white lg:border-l-width-1px  lg:hidden">
               <HomeCard
-                label="Total Transactions"
+                label="Transactions"
                 value={`${stats?.totalTransaction || 0}`}
               />
               <HomeCard
