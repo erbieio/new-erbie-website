@@ -58,7 +58,7 @@ export default function Wallet() {
             className="mt-20px lg:mt-0 lg:mt-0"
             onClick={() =>
               window.open(
-                "https://chrome.google.com/webstore/detail/liminowallet/ljgaiedhmdfibdpilgpglddemlbedmhh",
+                "https://chromewebstore.google.com/detail/erbiewallet/focaabpomeijajpoahmbcpkbggogljhl",
                 "__blank"
               )
             }
