@@ -31,7 +31,7 @@ export default function CSBTTable(props: CSBTTableProps) {
     },
     {
       title: (
-        <div>
+        <div className="whitespace-nowrap">
           SNFT Number
           <i className="i-material-symbols-help-outline-rounded font-size-18px cursor-pointer"></i>
         </div>
@@ -43,11 +43,13 @@ export default function CSBTTable(props: CSBTTableProps) {
       },
     },
     {
-      title: "Creation Time",
+      title: <div className="whitespace-nowrap">Creation Time</div>,
       key: "createdAt",
       align: "center",
       render(v) {
-        return formatDate(v.reward_at);
+        return (
+          <div className="whitespace-nowrap">{formatDate(v.reward_at)}</div>
+        );
       },
     },
     {
@@ -81,7 +83,7 @@ export default function CSBTTable(props: CSBTTableProps) {
       },
     },
     {
-      title: "Owner Get Time",
+      title: <div className="whitespace-nowrap">Owner Get Time</div>,
       key: "reward_at",
       align: "center",
       render(v) {

@@ -30,7 +30,9 @@ export default function BlockDetailCard(props: BlockDetailCardProps) {
           Block Generation Time
         </div>
         <div className="whitespace-nowrap text-ellipsis">
-          {formatDate(props.data?.timestamp || 0)}
+          <div className="whitespace-nowrap">
+            {formatDate(props.data?.timestamp || 0)}
+          </div>
         </div>
       </div>
       <div className="flex justify-between items-center line lh-3vh">

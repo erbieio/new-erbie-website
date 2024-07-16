@@ -42,8 +42,8 @@ export default function Wallet() {
         <div className="right-box w-100% lg:w-50% flex flex-col justify-between w-100%">
           <WalletCard
             label={label1()}
-            desc="PC Wallet Users"
-            onClick={() => window.open("https://wallet.erbie.io/", "__blank")}
+            desc="Minapp Wallet Users"
+            onClick={() => window.open("https://t.me/ErbieChainBot", "_self")}
           >
             <img src={bg2} className="w-100px lg:w-180px default-img" alt="" />
             <img

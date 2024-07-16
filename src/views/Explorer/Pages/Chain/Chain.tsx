@@ -16,6 +16,7 @@ import { useNavigate } from "react-router-dom";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
 import { formatEther } from "ethers";
+import { getSystemInfo } from "../../../../utils/system";
 
 export interface TableMenuItem {
   label: string;
@@ -25,7 +26,7 @@ export interface TableMenuItem {
 
 export default function Chain() {
   const navigator = useNavigate();
-
+  const systemInfo = getSystemInfo();
   const params = useRef<GetBlockPageParams>({
     page: 1,
     page_size: 11,
@@ -175,7 +176,7 @@ export default function Chain() {
     <div className="page-chain flex flex-col flex-col-reverse lg:flex-row">
       <div className="chain-header flex-1 mt-14px lg:mt-0 w-100%">
         <div className="flex flex-col lg:flex-row w-100% lg:h-48px">
-          <div className="flex-1 flex gap-10px">
+          <div className="flex-1 flex gap-8px lg:gap-10px">
             {tableMenus.map((item) => (
               <div
                 key={item.label}
@@ -188,22 +189,27 @@ export default function Chain() {
               </div>
             ))}
           </div>
-          <div className="flex-1 lg:ml-26px pt-20px lg:pt-0">
+          <div className="flex-1 lg:ml-26px pt-14px lg:pt-0 hidden lg:block">
             <SearchIpt className="font-size-14px" />
           </div>
         </div>
         {/* 左下 */}
-        <div className="lg:h-64.5vh">
+        <div className="lg:h-65vh">
           <div className="table-list mt-14px flex-1 h-100%">
-            <div className="flex flex-col lg:flex-row justify-between p-10px">
-              <div className="font-size-12px lg:font-size-16px">
+            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
+              <div className="font-size-12px font-size-16px hidden lg:block">
                 CHAIN INFORMATION
+              </div>
+              <div className="font-size-12px font-size-16px block lg:hidden">
+                CHAIN
               </div>
               <Pagination
                 current={params.current.page}
                 pageSize={params.current.page_size}
                 total={blockData.total}
                 onChange={handleChangePage}
+                showQuickJumper={systemInfo.isMobile ? true : false}
+                simple={systemInfo.isMobile ? true : false}
               ></Pagination>
             </div>
             <div className="flex h-100% lg:h-90%  overflow-x-scroll scrollbar-x">
@@ -216,22 +222,47 @@ export default function Chain() {
           </div>
         </div>
       </div>
-      <div className="mt-14px lg:mt-0 w-100% lg:w-250px lg:ml-22px gap-10px lg:gap-0 flex justify-between flex-row lg:flex-col">
-        <div className="total-card flex justify-center items-center">
-          <div className="w-100%">
-            <div className="font-size-10px lg:font-size-16px">Block Height</div>
-            <div className="font-size-10px lg:font-size-24px lg:mt-16px">
-              <Skeleton
-                loading={statloading}
-                title={false}
-                active
-                paragraph={{ rows: 1, width: "100% " }}
-              >
-                {stats?.totalBlock}
-              </Skeleton>
+      <div className="mt-14px lg:mt-0 w-100% lg:w-250px lg:ml-22px gap-8px lg:gap-0 flex justify-between flex-row lg:flex-col">
+        <div className="flex flex-col gap-8px lg:gap-1.5vh w-full">
+          <div className="total-card flex justify-center items-center">
+            <div className="w-100%">
+              <div className="font-size-10px lg:font-size-16px">
+                Block Height
+              </div>
+              <div className="font-size-10px lg:font-size-24px lg:mt-16px">
+                <Skeleton
+                  loading={statloading}
+                  title={false}
+                  active
+                  paragraph={{ rows: 1, width: "100% " }}
+                >
+                  {stats?.totalBlock}
+                </Skeleton>
+              </div>
+            </div>
+          </div>
+
+          <div>
+            <div className="total-card flex justify-center items-center">
+              <div className="w-100%">
+                <div className="font-size-10px lg:font-size-16px">
+                  Total CSBT
+                </div>
+                <div className="font-size-10px lg:font-size-24px lg:mt-16px">
+                  <Skeleton
+                    loading={statloading}
+                    title={false}
+                    active
+                    paragraph={{ rows: 1, width: "100% " }}
+                  >
+                    {stats?.rewardSNFTCount}
+                  </Skeleton>
+                </div>
+              </div>
             </div>
           </div>
         </div>
+
         <div className="total-card flex justify-center items-center">
           <div className="w-100%">
             <div className="font-size-10px lg:font-size-16px">
@@ -245,21 +276,6 @@ export default function Chain() {
                 title={false}
               >
                 {formatEther(stats?.totalRewardAmount || "0")}
-              </Skeleton>
-            </div>
-          </div>
-        </div>
-        <div className="total-card flex justify-center items-center">
-          <div className="w-100%">
-            <div className="font-size-10px lg:font-size-16px">Total CSBT</div>
-            <div className="font-size-10px lg:font-size-24px lg:mt-16px">
-              <Skeleton
-                loading={statloading}
-                title={false}
-                active
-                paragraph={{ rows: 1, width: "100% " }}
-              >
-                {stats?.rewardSNFTCount}
               </Skeleton>
             </div>
           </div>

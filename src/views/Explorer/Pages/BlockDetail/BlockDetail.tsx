@@ -26,11 +26,14 @@ import { useParams } from "react-router-dom";
 import PunishmentDetailCard from "./PunishmentDetailCard";
 import RewardListCard from "./RewardListCard";
 import DelegateAccounts from "./DelegateAccounts";
+import { getSystemInfo } from "../../../../utils/system";
 export default function BlockDetail() {
   const params = useParams<{ blockNumber: string }>();
+  const systemInfo = getSystemInfo();
+
   const pageParams = useRef<GetTransactionPageParams>({
     page: 1,
-    page_size: 10,
+    page_size: 11,
   });
   const handleChangePage = (page: number) => {
     pageParams.current.page = page;
@@ -193,7 +196,7 @@ export default function BlockDetail() {
   const handleGetSlashingsBlock = async (reason: 1 | 2 | null) => {
     const data = await get_slashings({
       page: 1,
-      page_size: 6,
+      page_size: 11,
       reason,
       number: Number(params.blockNumber),
     });
@@ -240,14 +243,19 @@ export default function BlockDetail() {
         )}
       </div>
       <div className="flex-1 lg:ml-20px table-box mt-14px lg:mt-0">
-        <div className="text-left px-10px py-8px lh-4vh flex flex-col lg:flex-row items-center justify-between w-100%">
-          <div className="font-size-16px">TRANSACTIONS LIST</div>
+        <div className="text-left px-10px py-8px lh-4vh flex flex-row items-center justify-between w-100%">
+          <div className="font-size-16px hidden lg:block">
+            TRANSACTIONS LIST
+          </div>
+          <div className="font-size-16px block lg:hidden">TRANSACTIONS</div>
           <div>
             <Pagination
               current={pageParams.current.page}
               pageSize={pageParams.current.page_size}
               total={total}
               onChange={handleChangePage}
+              showQuickJumper={systemInfo.isMobile ? true : false}
+              simple={systemInfo.isMobile ? true : false}
             />
           </div>
         </div>

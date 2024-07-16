@@ -1,7 +1,8 @@
 .page-chain {
-    .chain-btn{
+    .chain-btn {
         --at-apply: font-size-12px h-40px lg:h-auto lg:font-size-14px border-1px border-style-solid border-color-#fff flex items-center justify-center lg:min-w-80px cursor-pointer flex-auto;
         background: rgba(56, 55, 82, 0.60);
+
         &.active {
             transition: ease .3s;
             background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
@@ -9,15 +10,17 @@
             backdrop-filter: blur(25px);
         }
     }
+
     .total-card {
-        --at-apply: px-0px py-5px lg:px-20px lg:py-20px lg:h-22.8vh w-33% lg:w-100%;
+        --at-apply: px-0px py-10px lg:px-20px lg:py-20px lg:h-22.8vh w-100% lg:w-100%;
         border: 1px solid #D87CEE;
         background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
         border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
         backdrop-filter: blur(25px);
     }
+
     .table-list {
         background: rgba(255, 255, 255, 0.05);
-        border: 1px solid  rgba(255, 255, 255, 0.05);
-     }
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
 }

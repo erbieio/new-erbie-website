@@ -20,8 +20,10 @@ import { formatEther } from "ethers";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
+import { getSystemInfo } from "../../../../utils/system";
 export default function Account() {
   const { toAccountDetail } = useRouter();
+  const systemInfo = getSystemInfo();
   const columns: TableColumnsType<GetAccountPageListItem> = [
     {
       title: "Address",
@@ -39,7 +41,7 @@ export default function Account() {
       },
     },
     {
-      title: "Balance（ERB）",
+      title: <div className="whitespace-nowrap">Balance（ERB）</div>,
       key: "balance",
       defaultSortOrder: "descend",
       align: "center",
@@ -52,7 +54,7 @@ export default function Account() {
       },
     },
     {
-      title: "Total Staking",
+      title: <div className="whitespace-nowrap">Total Staking</div>,
       align: "center",
       key: "staker_amount",
       sortDirections: ["ascend", "descend"],
@@ -64,7 +66,7 @@ export default function Account() {
       },
     },
     {
-      title: "Total Staked",
+      title: <div className="whitespace-nowrap">Total Staked</div>,
       align: "center",
       key: "validator_amount",
       sortDirections: ["ascend", "descend"],
@@ -76,7 +78,7 @@ export default function Account() {
       },
     },
     {
-      title: "Owned CSBT",
+      title: <div className="whitespace-nowrap">Owned CSBT</div>,
       dataIndex: "snftCount",
       sortDirections: ["ascend", "descend"],
       align: "center",
@@ -180,21 +182,22 @@ export default function Account() {
 
   return (
     <div className="page-account">
-      <div className="flex flex-col lg:flex-row overflow-hidden mt-20px lg:mt-0">
+      <div className="flex flex-col lg:flex-row overflow-hidden flex-col-reverse">
         <div className="flex-1">
-          <div>
+          <div className="hidden lg:block">
             <SearchIpt />
           </div>
           <div className="table-box lg:h-65vh mt-2vh">
-            <div className="flex flex-col lg:flex-row lg:justify-between pt-10px px-10px pb-14px">
-              <div className="uppercase font-size-16px">
-                Account Informations
-              </div>
+            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
+              <div className="hidden lg:block">ACCOUNT INFOMATIONS</div>
+              <div className="block lg:hidden">ACCOUNT</div>
               <Pagination
                 total={accountData?.total}
                 current={params.current.page}
                 pageSize={params.current.page_size}
                 onChange={handlePageChange}
+                showQuickJumper={systemInfo.isMobile ? true : false}
+                simple={systemInfo.isMobile ? true : false}
               />
             </div>
             <div className="h-90% flex w-100% overflow-x-scroll scrollbar-x">
@@ -209,13 +212,13 @@ export default function Account() {
           </div>
         </div>
         <div className="w-100% lg:w-25vw lg:ml-22px flex flex-col justify-between gap-10px lg:gap-20px mt-20px lg:mt-0">
-          <div className="data-card h-16vh">
+          <div className="data-card lg:h-16vh">
             <div>
               <div className="font-size-16px">Total Coin Addresses</div>
               <div className="font-size-24px">{stats?.totalAccount}</div>
             </div>
           </div>
-          <div className="data-card h-36vh">
+          <div className="data-card lg:h-36vh">
             <div className="w-100%">
               <div className="font-size-14px">
                 24h Account Growth <br />
@@ -226,7 +229,7 @@ export default function Account() {
               </div>
             </div>
           </div>
-          <div className="data-card h-16vh">
+          <div className="data-card lg:h-16vh">
             <div>
               <div className="font-size-16px">Total Active Addresses</div>
               <div className="font-size-24px">{stats?.activeAccount}</div>

@@ -21,6 +21,7 @@ import {
   ERBIE_COIN_PRECISION,
 } from "../../../../const/coin";
 import { toFixed } from "../../../../utils/utils";
+import { getSystemInfo } from "../../../../utils/system";
 
 export interface ValidatorMenuItem {
   label: string;
@@ -31,6 +32,7 @@ export interface ValidatorMenuItem {
 export default function Validator() {
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<GetStatsResponse>();
+  const systemInfo = getSystemInfo();
   // get total stats
   const [statloading, setStatLoading] = useState(false);
   const handleGetStats = async () => {
@@ -164,8 +166,8 @@ export default function Validator() {
   return (
     <div className="page-validator flex flex-col flex-col-reverse lg:flex-row">
       <div className="flex-1 flex gap-2vh flex-col">
-        <div className="flex flex-col lg:flex-row mt-14px lg:mt-0">
-          <div className="w-100% lg:w-35% flex gap-14px lg:gap-12px">
+        <div className="flex flex-col lg:flex-row mt-8px lg:mt-0">
+          <div className="w-100% lg:w-35% flex gap-10px lg:gap-12px">
             {tableMenus.map((item) => (
               <div
                 key={item.value}
@@ -176,19 +178,22 @@ export default function Validator() {
               </div>
             ))}
           </div>
-          <div className="w-100% lg:w-65% mt-14px lg:mt-0">
+          <div className="w-100% lg:w-65% mt-14px lg:mt-0 hidden lg:block">
             <SearchIpt className="lg:ml-12px" />
           </div>
         </div>
         <div className="lg:h-64.6vh flex flex-col">
           <div className="table-box h-100%">
-            <div className="flex flex-col lg:flex-row justify-between px-10px pt-10px pb-14px">
-              <div>VALIDATOR INFORMATION</div>
+            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
+              <div className="hidden lg:block">VALIDATOR INFORMATION</div>
+              <div className="block lg:hidden">VALIDATOR</div>
               <div>
                 <Pagination
                   onChange={handleChangePage}
                   current={params.current.page}
                   pageSize={params.current.page_size}
+                  showQuickJumper={systemInfo.isMobile ? true : false}
+                  simple={systemInfo.isMobile ? true : false}
                   total={
                     currentFilter === 1 ? validatorData.total : stakerData.total
                   }
@@ -213,7 +218,7 @@ export default function Validator() {
           </div>
         </div>
       </div>
-      <div className="w-100% lg:w-250px flex flex-wrap justify-between gap-10px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-14px lg:mt-0">
+      <div className="w-100% lg:w-250px flex flex-wrap justify-between gap-8px lg:gap-10px ml-0 lg:ml-22px flex-row lg:flex-col mt-14px lg:mt-0">
         <div className="data-panel">
           <div className="w-100% px-10px lg:px-20px">
             <div className="tit">Validator Number</div>

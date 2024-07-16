@@ -12,15 +12,17 @@ export default function NodeAddressCard(props: NodeAddressCardProps) {
       <div className="px-16px color-#D387FF lh-4.5vh font-bold">
         Node Address
       </div>
-      {props.list.map((addr, idx) => (
-        <div
-          className="line lh-3vh text-ellipsis whitespace-nowrap hover:color-#8AA4FF cursor-pointer"
-          onClick={() => toAccountDetail(addr)}
-          key={idx}
-        >
-          {addressDots(addr)}
-        </div>
-      ))}
+      <div className="lg:h-15vh overflow-y-scroll scrollbar-y">
+        {props.list.map((addr, idx) => (
+          <div
+            className="line lh-3vh text-ellipsis whitespace-nowrap hover:color-#8AA4FF cursor-pointer flex-1"
+            onClick={() => toAccountDetail(addr)}
+            key={idx}
+          >
+            {addressDots(addr, 10, 10)}
+          </div>
+        ))}
+      </div>
     </div>
   );
 }

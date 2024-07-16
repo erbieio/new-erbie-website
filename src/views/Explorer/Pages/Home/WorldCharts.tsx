@@ -56,19 +56,23 @@ interface MapDataItem {
 }
 export default function WorldCharts() {
   const myRef = useRef(null);
+  const myChart = useRef<echarts.ECharts>();
   let validatorLocations: Array<MapDataItem> = [];
   const renderMap = debounce(() => {
-    const myChart = echarts.init(myRef.current);
+    myChart.current = echarts.init(myRef.current);
     // eslint-disable-next-line @typescript-eslint/ban-ts-comment
     // @ts-expect-error
     registerMap("world", worldGeoJSON);
     // 使用刚指定的配置项和数据显示图表。
-    myChart.setOption(getOption(validatorLocations));
-  }, 200);
+    myChart.current.setOption(getOption(validatorLocations));
+  }, 500);
 
   const [totalCity, setTotalCitys] = useState(0);
   const [totalCountry, setTotalCountrys] = useState(0);
   const handleGetLocations = async () => {
+    if (myChart.current) {
+      myChart.current.dispose();
+    }
     const data = await get_validator_locations();
     if (data && data.length) {
       const mapData = data
@@ -94,13 +98,13 @@ export default function WorldCharts() {
     }
   };
 
+  const reRenderMap = debounce(handleGetLocations, 300);
   useEffect(() => {
     renderMap();
     handleGetLocations();
-    // renderMap()
-    window.addEventListener("resize", renderMap);
+    window.addEventListener("resize", reRenderMap);
     return () => {
-      window.removeEventListener("resize", renderMap);
+      window.removeEventListener("resize", reRenderMap);
     };
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -109,9 +113,9 @@ export default function WorldCharts() {
       <div
         id="world-chart"
         ref={myRef}
-        className="w-500px h-30vh lg:w-600px lg:h-36vh"
+        className="w-500px h-200px lg:w-600px lg:h-36vh"
       ></div>
-      <div className="absolute bottom-0 left-0">
+      <div className="hidden lg:absolute bottom-0 left-0">
         <div className="total-card">
           <span>{totalCountry}</span> Countries
         </div>

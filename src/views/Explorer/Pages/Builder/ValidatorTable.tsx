@@ -57,7 +57,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
     },
 
     {
-      title: "Total Staking",
+      title: <div className="whitespace-nowrap">Total Staking</div>,
       align: "center",
       key: "amount",
       sorter: {
@@ -68,7 +68,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
       },
     },
     {
-      title: "Total Rewards (ERB)",
+      title: <div className="whitespace-nowrap">Total Rewards (ERB)</div>,
       align: "center",
       key: "reward",
       sorter: {
@@ -90,7 +90,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
       },
     },
     {
-      title: "Latest Active",
+      title: <div className="whitespace-nowrap">Latest Active</div>,
       align: "center",
       key: "block_number",
       sorter: {
@@ -108,7 +108,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
       },
     },
     {
-      title: "Online Weight",
+      title: <div className="whitespace-nowrap">Online Weight</div>,
       key: "weight",
       sorter: {
         multiple: undefined,
@@ -125,7 +125,7 @@ export default function ValidatorTable(props: ValidatorTableProps) {
       },
     },
     {
-      title: "Reputation Score",
+      title: <div className="whitespace-nowrap">Reputation Score</div>,
       dataIndex: "score",
       key: "score",
       sorter: {

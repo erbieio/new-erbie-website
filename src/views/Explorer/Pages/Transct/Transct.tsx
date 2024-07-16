@@ -19,12 +19,13 @@ import { Pagination, Table, TableColumnsType } from "antd";
 import { toFixed, txInputToType } from "../../../../utils/utils";
 import useRouter from "../../../../hooks/useRouter";
 import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
+import { getSystemInfo } from "../../../../utils/system";
 
 export default function Transct() {
   const { toAccountDetail, toBlockDetail, toTxDetail } = useRouter();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
-      title: "TXN Hash",
+      title: <div className="whitespace-nowrap">TXN Hash</div>,
       key: "blockHash",
       align: "center",
       fixed: "left",
@@ -40,7 +41,7 @@ export default function Transct() {
       },
     },
     {
-      title: "TXN Time",
+      title: <div className="whitespace-nowrap">TXN Time</div>,
       key: "timestamp",
       align: "center",
       render(v) {
@@ -52,7 +53,7 @@ export default function Transct() {
       },
     },
     {
-      title: "Block Height",
+      title: <div className="whitespace-nowrap">Block Height</div>,
       key: "blockNumber",
       align: "center",
       render(v) {
@@ -97,7 +98,7 @@ export default function Transct() {
       },
     },
     {
-      title: "Value (ERB)	",
+      title: <div className="whitespace-nowrap">Value (ERB) </div>,
       key: "value",
       align: "center",
       render(v) {
@@ -105,7 +106,7 @@ export default function Transct() {
       },
     },
     {
-      title: "TXN Type",
+      title: <div className="whitespace-nowrap">TXN Type</div>,
       key: "Height",
       align: "center",
       render(v) {
@@ -133,7 +134,7 @@ export default function Transct() {
       },
     },
     {
-      title: "TXN Fee",
+      title: <div className="whitespace-nowrap">TXN Fee</div>,
       align: "center",
       render(v) {
         return toFixed(
@@ -143,6 +144,7 @@ export default function Transct() {
       },
     },
   ];
+  const systemInfo = getSystemInfo();
   const [stats, setStats] = useState<GetStatsResponse | undefined>();
 
   // 获取统计数据
@@ -208,15 +210,17 @@ export default function Transct() {
     handleGetList();
   };
   return (
-    <div className="page-transct min-h-70vh flex flex-col flex-col-reverse lg:flex-row">
+    <div className="page-transct min-h-70vh flex flex-col lg:flex-row">
       <div className="flex flex-col lg:w-35% gap-2vh">
         <div className="flex-1 flex">
           {/* 上 左 */}
           <div className="flex-1">
-            <SearchIpt />
+            <div className="hidden lg:block">
+              <SearchIpt />
+            </div>
             {/* 图表 24h */}
             <div className="tb1 flex flex-col justify-evenly">
-              <div className="font-size-14px flex justify-center items-center w-100% py-2vh">
+              <div className="font-size-14px flex justify-center items-center w-100% lg:py-2vh">
                 <div className="flex">
                   <div className="lh-20px">24h TXN Volume Growth</div>
                   <div className="font-size-20px lh-20px ml-10px">+0.0000%</div>
@@ -232,10 +236,10 @@ export default function Transct() {
         <div className="flex flex-1">
           {/* 上 右 右 饼图 */}
           <div className="tb2 flex flex-col justify-between flex-1">
-            <div className="font-size-14px h-10vh flex justify-center items-center">
+            <div className="font-size-14px h-60px lg:h-10vh flex justify-center items-center">
               TRANSACTIONS BY TYPE
             </div>
-            <div className="bingtu h-20vh flex justify-center px-20px">
+            <div className="bingtu lg:h-20vh flex justify-center px-20px">
               <TransitionChart data={stats}></TransitionChart>
             </div>
           </div>
@@ -266,16 +270,17 @@ export default function Transct() {
         </div>
         <div>
           <div className="table-box mt-2vh">
-            <div className="flex flex-col lg:flex-row lg:justify-between px-10px pt-10px pb-14px">
-              <div className="font-size-16px uppercase">
-                Transct Informations
-              </div>
+            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
+              <div className="hidden lg:block">TRANSCT INFOMATIONS</div>
+              <div className="block lg:hidden">TRANSCT</div>
               <div>
                 <Pagination
                   current={params.current.page}
                   pageSize={params.current.page_size}
                   total={listData?.total}
                   onChange={handlePageChange}
+                  showQuickJumper={systemInfo.isMobile ? true : false}
+                  simple={systemInfo.isMobile ? true : false}
                 ></Pagination>
               </div>
             </div>

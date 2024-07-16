@@ -9,7 +9,7 @@ export default function Footer() {
         <div className="flex mt-16px lg:mt-0">
           <div>
             <span
-              className="link color-#777 "
+              className="link color-#7B779B "
               onClick={() => navigator("/PrivacyPolicy")}
             >
               Privacy Policy
@@ -17,7 +17,7 @@ export default function Footer() {
           </div>
           <div className="ml-24px lg:ml-40px">
             <span
-              className="link color-#777 "
+              className="link color-#7B779B "
               onClick={() => navigator("/TermsOfUse")}
             >
               Terms of Use

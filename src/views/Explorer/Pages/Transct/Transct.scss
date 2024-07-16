@@ -1,23 +1,28 @@
 .page-transct {
     .data-box {
         .data-card {
-            --at-apply: flex justify-center items-center py-10px lg:py-20px 0 h-auto lg:h-13vh ;
-            border: 1px solid #fff;
+            --at-apply: flex justify-center items-center py-10px lg:py-20px 0 h-auto lg:h-13vh;
+            border: 1px solid rgba($color: #fff, $alpha: .5);
+            background: linear-gradient(180deg, rgba(211, 135, 255, 0.05) 0%, rgba(211, 135, 255, 0.1) 100%);
+            backdrop-filter: blur(25px);
             // background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
             // border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
             // backdrop-filter: blur(25px);
         }
     }
+
     .tb1 {
-        --at-apply: h-33vh mt-2vh;
+        --at-apply: lg:h-33vh mt-2vh py-15px lg:py-0;
         background: linear-gradient(180deg, rgba(211, 135, 255, 0.05) 0%, rgba(211, 135, 255, 0.1) 100%);
-        backdrop-filter: blur(25px);  
+        backdrop-filter: blur(25px);
     }
+
     .tb2 {
-        --at-apply: h-30vh w-317px;
+        --at-apply: lg:h-30vh w-317px;
         background: linear-gradient(180deg, rgba(211, 135, 255, 0.05) 0%, rgba(211, 135, 255, 0.1) 100%);
-        backdrop-filter: blur(25px);  
+        backdrop-filter: blur(25px);
     }
+
     .table-box {
         background: rgba(255, 255, 255, 0.05);
         border: 1px solid rgba(255, 255, 255, 0.05);

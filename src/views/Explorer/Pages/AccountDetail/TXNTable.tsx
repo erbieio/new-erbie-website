@@ -17,7 +17,7 @@ export default function TXNTable(props: TXTTableProps) {
   const { toAccountDetail, toTxDetail } = useRouter();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
-      title: "TXN Hash",
+      title: <div className="whitespace-nowrap">TXN Hash</div>,
       key: "hash",
       align: "center",
       // width:180,
@@ -34,7 +34,7 @@ export default function TXNTable(props: TXTTableProps) {
       },
     },
     {
-      title: "TXN Time",
+      title: <div className="whitespace-nowrap">TXN Time</div>,
       key: "timestamp",
       align: "center",
       width: 70,
@@ -77,7 +77,7 @@ export default function TXNTable(props: TXTTableProps) {
       },
     },
     {
-      title: "Transaction Value",
+      title: <div className="whitespace-nowrap">Transaction Value</div>,
       key: "value",
       align: "center",
       render(v) {
@@ -85,7 +85,7 @@ export default function TXNTable(props: TXTTableProps) {
       },
     },
     {
-      title: "TXN Type",
+      title: <div className="whitespace-nowrap">TXN Type</div>,
       key: "input",
       align: "center",
       render(v) {
@@ -118,7 +118,7 @@ export default function TXNTable(props: TXTTableProps) {
       },
     },
     {
-      title: "TXN Fee",
+      title: <div className="whitespace-nowrap">TXN Fee</div>,
       align: "center",
       key: "gasPrice",
       render(v) {

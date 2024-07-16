@@ -2,3 +2,9 @@
     min-height: calc(100vh - 18vh);
 
 }
+
+@media (max-width: 768px) {
+    .page-explorer {
+        min-height: auto;
+    }
+}

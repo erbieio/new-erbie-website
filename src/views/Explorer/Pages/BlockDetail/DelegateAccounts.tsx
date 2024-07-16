@@ -85,7 +85,7 @@ export default function DelegateAccounts(props: DelegateAccounts) {
           {addressDots(list[4]?.proxy || nullAddr, 2, 3)}
         </span>
       </div>
-      <div className="line lh-3vh flex justify-start">
+      <div className="line lh-3vh flex justify-start ">
         <span
           className="link hover:color-#8AA4FF"
           onClick={() => toAccountDetail(list[5]?.proxy || "")}

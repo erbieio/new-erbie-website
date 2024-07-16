@@ -94,7 +94,7 @@ export default function Table(props: TableProps) {
             </tbody>
           </table>
           {!list.length && loaded && (
-            <div className="flex justify-center items-center h-100% min-h-48vh w-100%">
+            <div className="flex justify-center items-center h-100% min-h-240px lg:min-h-48vh w-100%">
               <NoData />
             </div>
           )}

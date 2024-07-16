@@ -1,17 +1,14 @@
 .explorer-menus {
-    --at-apply: flex flex-wrap justify-center lg:justify-start lg:mb-20px lg:mb-0 lg:h-73vh lg:block lg:flex-none w-100%;
+    --at-apply: flex-wrap justify-center lg:justify-start lg:mb-20px lg:mb-0 lg:h-73vh hidden lg:flex lg:flex-none w-100% lg:w-112px;
+
     .explorer-card {
         --at-apply:
-            border-t-solid
-            border-l-style-solid
-            border-r-style-solid
-            border-b-style-solid
-            border-width-1px
-        ;
+            border-t-solid border-l-style-solid border-r-style-solid border-b-style-solid border-width-1px;
         border-color: rgba(255, 255, 255, 0.50);
+
         &.active {
-            --at-apply:  border-width-2px;
-            border-image: linear-gradient(to right, #8f41e9,#FACB7C) 1;
+            --at-apply: border-width-2px;
+            border-image: linear-gradient(to right, #8f41e9, #FACB7C) 1;
         }
     }
 }

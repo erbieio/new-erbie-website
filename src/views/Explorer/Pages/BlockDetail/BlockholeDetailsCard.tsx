@@ -17,18 +17,20 @@ export default function BlockholeDetailsCard(props: BlockholeDetailsCardProps) {
         <div className="w-33.3% text-center">Penalty Weight</div>
         <div className="w-33.3% text-right">Current Weight</div>
       </div>
-      {props.list.map((item, idx) => (
-        <div className="flex line lh-2.5vh text-center" key={idx}>
-          <div
-            className="w-33.3% color-#8AA4FF text-left cursor-pointer"
-            onClick={() => toAccountDetail(item.address)}
-          >
-            {addressDots(item.address, 3, 5)}
+      <div className="lg:h-17vh overflow-y-scroll scrollbar-y">
+        {props.list.map((item, idx) => (
+          <div className="flex line lh-2.5vh text-center" key={idx}>
+            <div
+              className="w-33.3% color-#8AA4FF text-left cursor-pointer"
+              onClick={() => toAccountDetail(item.address)}
+            >
+              {addressDots(item.address, 3, 5)}
+            </div>
+            <div className="w-33.3%">20</div>
+            <div className="w-33.3%  text-right">{item.weight}</div>
           </div>
-          <div className="w-33.3%">20</div>
-          <div className="w-33.3%  text-right">{item.weight}</div>
-        </div>
-      ))}
+        ))}
+      </div>
     </div>
   );
 }

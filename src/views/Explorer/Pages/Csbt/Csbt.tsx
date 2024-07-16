@@ -13,8 +13,11 @@ import { Pagination, Skeleton } from "antd";
 import { addressDots } from "../../../../utils/common";
 import moment from "moment";
 import useRouter from "../../../../hooks/useRouter";
+import { getSystemInfo } from "../../../../utils/system";
+import csbticon from "./../../../../assets/csbticon.svg";
 export default function Csbt() {
   const { toAccountDetail } = useRouter();
+  const systemInfo = getSystemInfo();
   const columns: Array<TableColumn> = [
     {
       title: "Address",
@@ -121,18 +124,21 @@ export default function Csbt() {
     <div className="page-csbt">
       <div className="flex flex-col flex-col-reverse lg:flex-row">
         <div className="flex-1">
-          <div>
+          <div className="hidden lg:block">
             <SearchIpt />
           </div>
-          <div className="table-box lg:h-65vh mt-2vh">
-            <div className="px-10px pt-10px pb-14px">
-              <div className="flex lg:justify-between flex-col lg:flex-row">
-                <div>CHAINLAYER SBT</div>
+          <div className="table-box lg:h-65vh lg:mt-2vh">
+            <div>
+              <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
+                <div className="hidden lg:block">CHAINLAYER SBT</div>
+                <div className="block lg:hidden">CSBT</div>
                 <Pagination
                   onChange={handleChangePage}
                   total={csbtData?.total || 0}
                   pageSize={params.current.page_size}
                   current={params.current.page}
+                  showQuickJumper={systemInfo.isMobile ? true : false}
+                  simple={systemInfo.isMobile ? true : false}
                 ></Pagination>
               </div>
             </div>
@@ -146,31 +152,38 @@ export default function Csbt() {
           </div>
         </div>
         <div className="w-100% lg:w-250px lg:ml-22px flex flex-row justify-between lg:flex-col gap-10px mb-14px mt-14px lg:mt-0 lg:mb-0 lg:gap-2vh">
-          <div className="data-panel">
-            <div className="w-100% px-10px lg:px-20px">
-              <div className="tit">Mined CSBT Number</div>
-              <div className="val">
-                <Skeleton
-                  loading={statloading}
-                  title={false}
-                  active
-                  paragraph={{ rows: 1, width: "100% " }}
-                >
-                  {stats ? stats.totalSNFT : 0}
-                </Skeleton>
+          <div className="flex-1">
+            <div className="data-panel h-200px lg:h-23vh">
+              <div className="w-100% px-10px lg:px-20px">
+                <div className="tit">Mined CSBT Number</div>
+                <div className="val">
+                  <Skeleton
+                    loading={statloading}
+                    title={false}
+                    active
+                    paragraph={{ rows: 1, width: "100% " }}
+                  >
+                    {stats ? stats.totalSNFT : 0}
+                  </Skeleton>
+                </div>
+                <div className="flex lg:hidden justify-center items-center mt-10px">
+                  <img src={csbticon} alt="" />
+                </div>
               </div>
             </div>
           </div>
-          <div className="data-panel">
-            <div className="w-100% px-10px lg:px-20px">
-              <div className="tit">Minted Personal CSBT</div>
-              <div className="val">--</div>
+          <div className="flex flex-col gap-10px lg:gap-2vh flex-1">
+            <div className="data-panel h-95px lg:h-23vh">
+              <div className="w-100% px-10px lg:px-20px">
+                <div className="tit">Minted Personal CSBT</div>
+                <div className="val">--</div>
+              </div>
             </div>
-          </div>
-          <div className="data-panel">
-            <div className="w-100% px-10px lg:px-20px">
-              <div className="tit">Minted Group CSBT</div>
-              <div className="val">--</div>
+            <div className="data-panel h-95px lg:h-23vh">
+              <div className="w-100% px-10px lg:px-20px">
+                <div className="tit">Minted Group CSBT</div>
+                <div className="val">--</div>
+              </div>
             </div>
           </div>
         </div>

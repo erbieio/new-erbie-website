@@ -68,23 +68,23 @@ export default function Header() {
     handleChangeMenu(false);
   };
   return (
-    <div className="flex flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex  header px-16px lg:px-40px py-12px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32">
+    <div className="flex bg-#0D0316  flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex  header px-16px lg:px-40px py-12px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32">
       <div className="flex items-center justify-between">
         <img
           src={logo}
-          className="h-33px cursor-pointer"
+          className="h-20px lg:h-33px cursor-pointer"
           onClick={goHome}
           alt=""
         />
         <div className="block lg:hidden">
-          <Button onClick={() => handleChangeMenu(!openMenu)}>
+          <Button onClick={() => handleChangeMenu(!openMenu)} align="center">
             <div className="relative w-100% h-100%">
               <i
                 className={`${
                   !openMenu
                     ? "i-ic-round-equals font-size-24px"
                     : "i-material-symbols-close-small-outline-rounded font-size-28px"
-                }  absolute z-100  right--10px top-5px`}
+                }  absolute z-100  right--4px top-5px`}
               ></i>
             </div>
           </Button>
@@ -110,7 +110,7 @@ export default function Header() {
       </div>
       <div className="hidden lg:flex justify-start px-16px lg:px-0 lg:justify-end items-center">
         <Button onClick={() => message.warning("Coming soon")}>
-          <div className="uppercase">Get in Touch</div>
+          <div className="uppercase px-8px">Get in Touch</div>
         </Button>
       </div>
       {/* mobile show */}
@@ -146,7 +146,7 @@ export default function Header() {
         {openMenu ? (
           <div className="flex justify-start px-16px lg:px-0 lg:justify-end mt-20px  mb-20px">
             <Button>
-              <div className="uppercase">Get in Touch</div>
+              <div className="uppercase  px-8px">Get in Touch</div>
             </Button>
           </div>
         ) : (

@@ -36,44 +36,78 @@ export default function Home() {
     <div className="page-explorer-home flex justify-center items-center w-100%">
       <div className=" flex flex-col lg:flex-row w-100%">
         <div className="lg:mr-30px flex-1 flex flex-col justify-evenly">
-          <div className="flex flex-wrap lg:flex-nowrap lg:border-l-style-solid border-color-white border-l-width-1px">
-            <HomeCard
-              label="Block Height"
-              value={stats && stats.totalBlock ? stats.totalBlock - 1 : 0}
-            />
-            <HomeCard
-              label="Block Time"
-              value={`${stats?.avgBlockTime || 0} ms`}
-            />
-            <HomeCard
-              label="Blockhole Block"
-              value={`${stats?.totalBlackHole || 0}`}
-            />
+          <div className="hidden lg:block">
+            <div className="flex flex-wrap lg:flex-nowrap lg:border-l-style-solid border-color-white border-l-width-1px">
+              <HomeCard
+                label="Block Height"
+                value={stats && stats.totalBlock ? stats.totalBlock - 1 : 0}
+              />
+              <HomeCard
+                label="Block Time"
+                value={`${stats?.avgBlockTime || 0} ms`}
+              />
+              <HomeCard
+                label="Blockhole Block"
+                value={`${stats?.totalBlackHole || 0}`}
+              />
+            </div>
+            <div className="flex lg:border-l-style-solid lg:border-color-white lg:border-l-width-1px  lg:hidden">
+              <HomeCard
+                label="Total Transactions"
+                value={`${stats?.totalTransaction || 0}`}
+              />
+              <HomeCard
+                label="Total Staking"
+                value={`${toFixed(
+                  (Number(stats?.totalPledge) / 1000000000000000000).toString()
+                )}`}
+              />
+              <HomeCard
+                label="Total CSBT"
+                value={`${stats?.rewardSNFTCount || 0}`}
+              />
+            </div>
           </div>
-          <div className="flex lg:border-l-style-solid lg:border-color-white lg:border-l-width-1px  lg:hidden">
-            <HomeCard
-              label="Total Transactions"
-              value={`${stats?.totalTransaction || 0}`}
-            />
-            <HomeCard
-              label="Total Staking"
-              value={`${toFixed(
-                (Number(stats?.totalPledge) / 1000000000000000000).toString()
-              )}`}
-            />
-            <HomeCard
-              label="Total CSBT"
-              value={`${stats?.rewardSNFTCount || 0}`}
-            />
-          </div>
-          <div className="mt-45px lg:mt-2.3vh">
+          <div className="mt-20px lg:mt-45px lg:mt-2.3vh hidden lg:block">
             <SearchIpt />
           </div>
-          <div className="mt-23px lg:mt-2.3vh">
+          <div className="mt-14px lg:mt-2.3vh">
             {/* <img src={ditu} className="h-180px lg:h-30vh" alt="" /> */}
             <WorldCharts />
           </div>
-          <div className="flex justify-between gap-12px mt-20px lg:flex">
+          <div className="block lg:hidden">
+            <div className="flex flex-wrap lg:flex-nowrap lg:border-l-style-solid border-color-white border-l-width-1px">
+              <HomeCard
+                label="Block Height"
+                value={stats && stats.totalBlock ? stats.totalBlock - 1 : 0}
+              />
+              <HomeCard
+                label="Block Time"
+                value={`${stats?.avgBlockTime || 0} ms`}
+              />
+              <HomeCard
+                label="Blockhole Block"
+                value={`${stats?.totalBlackHole || 0}`}
+              />
+            </div>
+            <div className="flex lg:border-l-style-solid lg:border-color-white lg:border-l-width-1px  lg:hidden">
+              <HomeCard
+                label="Total Transactions"
+                value={`${stats?.totalTransaction || 0}`}
+              />
+              <HomeCard
+                label="Total Staking"
+                value={`${toFixed(
+                  (Number(stats?.totalPledge) / 1000000000000000000).toString()
+                )}`}
+              />
+              <HomeCard
+                label="Total CSBT"
+                value={`${stats?.rewardSNFTCount || 0}`}
+              />
+            </div>
+          </div>
+          <div className="flex justify-between gap-12px mt-20px hidden lg:flex">
             <OnlineCard label="Online Nodes" value={onlineAddr?.count || 0} />
             <OnlineCard
               label="Online Validators"
@@ -103,7 +137,7 @@ export default function Home() {
               }`}
             />
           </div>
-          <div className="mt-45px lg:mt-2.3vh h-80%">
+          <div className="mt-20px lg:mt-2.3vh h-80%">
             <BlockList />
           </div>
         </div>

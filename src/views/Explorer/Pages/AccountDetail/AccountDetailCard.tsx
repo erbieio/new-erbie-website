@@ -37,7 +37,7 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
   return (
     <div className="card-box h-100% flex flex-col justify-evenly mt-14px lg:mt-0">
       <div>
-        <div className="color-#D387FF font-size-16px font-bold text-left px-16px">
+        <div className="color-#D387FF font-size-16px font-bold text-left px-16px pt-10px lg:pt-0">
           Account Detail
         </div>
         <div className="link color-blue mb-2vh mt-1vh font-size-12px text-left px-16px flex justify-between">
