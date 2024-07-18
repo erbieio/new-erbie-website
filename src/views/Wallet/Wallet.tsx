@@ -6,6 +6,7 @@ import bg3active from "../../assets/wallet-bg2-active.svg";
 import share from "../../assets/shareright.svg";
 import WalletCard from "./WalletCard";
 import "./Wallet.scss";
+import { message } from "antd";
 
 function label1() {
   return (
@@ -23,8 +24,20 @@ function label2() {
 }
 
 export default function Wallet() {
+  const [messageApi, messageContext] = message.useMessage();
+  const handleToPlayStore = () => {
+    messageApi.open({
+      type: "warning",
+      content: "Coming Soon",
+    });
+    // window.open(
+    //   "https://chromewebstore.google.com/detail/erbiewallet/focaabpomeijajpoahmbcpkbggogljhl",
+    //   "__blank"
+    // )
+  };
   return (
     <div className="page-wallet pb-30px lg:pb-0 flex items-center justify-center">
+      {messageContext}
       <div className="flex justify-around flex-col gap-40px lg:gap-80px lg:flex-row w-100%">
         <div className="left-box lg:mb-0 lg:h-70vh relative w-100% lg:w-50% flex justify-center items-center">
           <img src={bg1} className="h-300px lg:h-100%" alt="" />
@@ -56,12 +69,7 @@ export default function Wallet() {
             label={label2()}
             desc="Plug-in Download"
             className="mt-20px lg:mt-0 lg:mt-0"
-            onClick={() =>
-              window.open(
-                "https://chromewebstore.google.com/detail/erbiewallet/focaabpomeijajpoahmbcpkbggogljhl",
-                "__blank"
-              )
-            }
+            onClick={handleToPlayStore}
           >
             <img src={bg3} className="w-100px lg:w-150px default-img" alt="" />
             <img
