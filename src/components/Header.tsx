@@ -48,15 +48,17 @@ export default function Header() {
   };
   const dispatch = useDispatch();
   const handleRoute = (item: PageItem) => {
+    const currentItem = PAGE_LIST.find((c) => c.path === location.pathname);
     if (window.screen.width < 1024) {
       dispatch(setAnimate(""));
-    }
-    const currentItem = PAGE_LIST.find((c) => c.path === location.pathname);
-    if (currentItem && currentItem.index > item.index) {
-      dispatch(setAnimate("scroll-down"));
     } else {
-      dispatch(setAnimate("scroll-top"));
+      if (currentItem && currentItem.index > item.index) {
+        dispatch(setAnimate("scroll-down"));
+      } else {
+        dispatch(setAnimate("scroll-top"));
+      }
     }
+
     const t = setTimeout(() => {
       navigator(item.path);
       clearTimeout(t);
