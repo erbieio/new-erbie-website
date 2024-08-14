@@ -38,7 +38,7 @@ export default function Chain() {
       active: true,
     },
     {
-      label: "Blackhole Blocks",
+      label: "BlackHole Blocks",
       filter: 1,
       active: false,
     },

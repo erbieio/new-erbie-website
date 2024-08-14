@@ -86,7 +86,11 @@ export default function ValidatorTable(props: ValidatorTableProps) {
         multiple: undefined,
       },
       render(v) {
-        return moment(v.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss");
+        return (
+          <div className="whitespace-nowrap">
+            {moment(v.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss")}
+          </div>
+        );
       },
     },
     {

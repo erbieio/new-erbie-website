@@ -206,7 +206,9 @@ export default function TxDetail() {
               {formatEther(data?.value || 0)} ERB
             </div>
             <div className="line-c line">Gas Used</div>
-            <div className="line-c line">{data?.gasUsed} gas</div>
+            <div className="line-c line">
+              {data?.gasUsed ? toFixed(data?.gasUsed, 5) : 0} gas
+            </div>
           </div>
         </div>
       </div>

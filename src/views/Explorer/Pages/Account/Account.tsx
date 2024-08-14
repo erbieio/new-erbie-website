@@ -134,7 +134,7 @@ export default function Account() {
     handleGetList();
   };
 
-  // 24h addount chart
+  // 24h account chart
   const [accountChartData, setAccountChartData] = useState<Get24hTxsResponse>();
   const handleGetChart = async () => {
     const data = await get_24h_accounts();
@@ -189,7 +189,7 @@ export default function Account() {
           </div>
           <div className="table-box lg:h-65vh mt-2vh">
             <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-              <div className="hidden lg:block">ACCOUNT INFOMATIONS</div>
+              <div className="hidden lg:block">ACCOUNT INFORMATION</div>
               <div className="block lg:hidden">ACCOUNT</div>
               <Pagination
                 total={accountData?.total}

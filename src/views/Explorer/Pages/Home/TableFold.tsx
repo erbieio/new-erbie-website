@@ -28,7 +28,7 @@ function Fold(data: Array<BlockReward>) {
   const list2 = data.filter(
     (item) => item.identity === 3
   ) as Array<SnftBlockReward>;
-  const { toAccountDetail } = useRouter();
+  const { toAccountDetail, toBlockDetail } = useRouter();
   return (
     <div className="fold-component font-size-12px">
       {one && list ? (
@@ -83,7 +83,10 @@ function Fold(data: Array<BlockReward>) {
           list2.map((item) => (
             <div
               key={item.address}
-              onClick={() => toAccountDetail(item.address)}
+              onClick={(e) => {
+                e.stopPropagation()
+                toAccountDetail(item.address);
+              }}
               className="w-25% lh-30px fold-component-card py-5px"
             >
               <div className="flex h-24px">
@@ -93,7 +96,10 @@ function Fold(data: Array<BlockReward>) {
                     {addressDots(item.address, 3, 4)}
                   </span>
                 </div>
-                <span className="link color-#a1a1a1 ml-8px">
+                <span className="link color-#a1a1a1 ml-8px" onClick={(e) => {
+                  e.stopPropagation()
+                  toBlockDetail(item.block_number)
+                }}>
                   #{item.block_number}
                 </span>
               </div>
@@ -102,23 +108,6 @@ function Fold(data: Array<BlockReward>) {
                   <span className="link hover:color-#1677ff">
                     {addressDots(item.snft, 3, 10)}
                   </span>
-                  {/* <Popover
-                    trigger={"hover"}
-                    placement="top"
-                    content={
-                      <div className="w-300px">
-                        This is the address of this SNFT.The No.39 number of the
-                        address shows the stage number of the SNFT synthesis.The
-                        No.40 number of the address shows the collection number
-                        of the SNFT synthesis.The No.41 number of the address
-                        shows the SNFT number of the SNFT synthesis.The NO.42
-                        number of the address shows the synthesis number of the
-                        SNFT synthesis.
-                      </div>
-                    }
-                  >
-                    <i className="i-material-symbols-help-outline ml-5px color-#D87CEE font-size-16px cursor-pointer"></i>
-                  </Popover> */}
                 </div>
               </div>
             </div>

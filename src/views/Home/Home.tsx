@@ -61,6 +61,13 @@ export default function Home() {
                 >
                   <i className="i-ant-design-youtube-filled  font-size-26px lg:mr-44px"></i>
                 </a>
+                <a
+                  href="https://github.com/erbieio"
+                  target="__blank"
+                  className="w-60px lg:w-auto"
+                >
+                  <i className="i-mdi-github  font-size-26px lg:mr-44px"></i>
+                </a>
               </div>
             </div>
           </div>

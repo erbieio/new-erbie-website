@@ -2,7 +2,7 @@ import { MouseEventHandler, ReactNode } from "react";
 import "./WalletCard.scss";
 export interface WalletCardProps {
   label: ReactNode;
-  desc: string;
+  desc: string | ReactNode;
   children: ReactNode;
   className?: string;
   onClick?: MouseEventHandler<HTMLDivElement>;
@@ -15,7 +15,7 @@ export default function WalletCard(props: WalletCardProps) {
     >
       <div className="flex w-100% relative">
         <div className="flex-full px-20px lg:px-40px text-left">
-          <div className="font-size-24px lg:font-size-46px lg:lh-48px">
+          <div className="font-size-24px lg:font-size-38px lg:lh-48px">
             {props.label}
           </div>
           <div className="font-size-16px lg:font-size-24px mt-7vh">

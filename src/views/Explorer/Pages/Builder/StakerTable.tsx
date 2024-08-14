@@ -57,13 +57,13 @@ export default function StakerTable(props: StakerTableProps) {
         return toFixed(formatEther(v.amount));
       },
     },
-    {
-      title: "SNFT Value",
-      align: "center",
-      render(v) {
-        return formatEther(v.reward);
-      },
-    },
+    // {
+    //   title: "SNFT Value",
+    //   align: "center",
+    //   render(v) {
+    //     return formatEther(v.reward);
+    //   },
+    // },
     {
       title: "Stake Time",
       align: "center",

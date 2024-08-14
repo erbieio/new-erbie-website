@@ -44,7 +44,7 @@ export default function BlockDetailCard(props: BlockDetailCardProps) {
         <div>
           {props.data?.gasUsed}(
           {((props.data?.gasUsed || 0) / (props.data?.gasLimit || 0)).toFixed(
-            4
+            5
           )}
           %)
         </div>
