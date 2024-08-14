@@ -43,8 +43,8 @@ export default function Wallet() {
             alt=""
           />
 
-          <div className="lg:absolute left-0 right-0 top-0px lg:top-50px text-center lg:text-left">
-            <div className="font-size-24px lg:font-size-42px lh-36px mb-18px lg:mb-0 lg:lh-60px">
+          <div className="lg:absolute left-0 right-0 top-0px lg:top-0px text-center lg:text-left">
+            <div className="font-size-24px lg:font-size-42px lh-36px mb-18px lg:mb-0 lg:lh-56px">
               Get started with Erbie <br /> Wallet Portfolio
             </div>
             <div className="font-size-14px mt-12px lh-30px hidden lg:block">
