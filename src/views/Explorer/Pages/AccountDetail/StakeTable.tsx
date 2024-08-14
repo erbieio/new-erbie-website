@@ -1,8 +1,9 @@
 import { GetPledgePageItem } from "../../../../api/modules/explorer";
 import Table, { TableColumn } from "../../../../components/Table";
-import { addressDots, formatDate } from "../../../../utils/common";
+import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import useRouter from "../../../../hooks/useRouter";
+import moment from "moment";
 
 export interface StakeTableProps {
   list: Array<GetPledgePageItem>;
@@ -52,7 +53,11 @@ export default function StakeTable(props: StakeTableProps) {
       key: "timestamp",
       render(val) {
         const data = val as GetPledgePageItem;
-        return formatDate(data.timestamp);
+        return (
+          <div className="whitespace-nowrap">
+            {moment(data.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss")}
+          </div>
+        );
       },
     },
     {
