@@ -82,14 +82,6 @@ export const LOCATIONS: GetValidatorLocationsItem[] = [
     country: "Turkey",
   },
   {
-    address: "0xdf6a9ebe8d86077d4017f628c90a2a3a213a7bca",
-    proxy: "",
-    latitude: 1.3036,
-    longitude: 103.8554,
-    city: "Singapore",
-    country: "Singapore",
-  },
-  {
     address: "0xdf6a9ebe8d86077d4017f628c90a2a3a213a7bcc",
     proxy: "",
     latitude: -33.8715,
