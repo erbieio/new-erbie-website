@@ -4,8 +4,8 @@ export const LOCATIONS: GetValidatorLocationsItem[] = [
   {
     address: "0xdf6a9ebe8d86077d4017f628c90a2a3a213a7bcb",
     proxy: "",
-    latitude: 37.6171,
-    longitude: 55.7483,
+    latitude: 55.7483,
+    longitude: 37.6171,
     city: "Moscow",
     country: "Russia",
   },
