@@ -1,1 +1,0 @@
-System.register(["./react-legacy-DxSpAB0g.js","./rc-util-legacy-Qq4_lPuU.js","./react-dom-legacy-B0bx0NKw.js","./classnames-legacy-D4BrmxoT.js","./rc-motion-legacy-DJBZBtd3.js","./rc-dialog-legacy-DTTa1o-J.js"],(function(l,e){"use strict";return{setters:[null,null,null,null,null,null],execute:function(){}}}));
