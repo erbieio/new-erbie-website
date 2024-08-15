@@ -102,7 +102,7 @@ export default function VolumeChart(props: VolumeChartProps) {
     <div className="w-100% flex justify-center">
       <div
         id="volume-chart"
-        className="h-20vh w-84vw lg:h-22vh lg:w-26vw"
+        className="h-20vh w-84vw lg:h-22vh lg:w-22vw"
         ref={myRef}
       ></div>
     </div>
