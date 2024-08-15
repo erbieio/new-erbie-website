@@ -27,25 +27,29 @@ export default function Infrastructure() {
               </div>
             </div>
           </div>
-          <div className="flex items-center hardware-box pl-40px pr-30px py-20px lg:h-23vh w-100%">
+          <div className="flex items-center hardware-box pl-40px pr-10px lg:pr-30px py-20px lg:h-23vh w-100%">
             <div className="flex justify-between flex-1">
-              <div className="flex justify-start items-center">
-              </div>
-              <div className="w-30% text-left">
+              <div className="flex justify-start items-center"></div>
+              <div className="w-70% lg:w-40% text-left">
                 <div className="font-size-20px mb-10px">Hardware</div>
                 <div className="font-size-14px underline">
-                  CPU with 4+ <br />
-                  cores16 GB+
+                  CPU with 4+cores 16 GB+
                   <br />
-                  SSD with 2+TB
-                  <br />
-                  25+ MBit/s
+                  SSD with 2+TB 25+ MBit/s
                   <br />
                 </div>
               </div>
             </div>
           </div>
-          <div className="right-box-bottom cursor-pointer w-100%" onClick={() => window.open(`${ERBIE_DOCUMENT}/newnavigation/guide/run.html`, '__blank')}>
+          <div
+            className="right-box-bottom cursor-pointer w-100%"
+            onClick={() =>
+              window.open(
+                `${ERBIE_DOCUMENT}/newnavigation/guide/run.html`,
+                "__blank"
+              )
+            }
+          >
             <div>Become A Vaildator</div>
             <img src={share} className="ml-30px w-20px" alt="" />
           </div>

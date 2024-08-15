@@ -5,6 +5,7 @@ import worldGeoJSON from "./worldGEO1.json";
 import { debounce } from "../../../../utils/common";
 import { get_validator_locations } from "../../../../api/modules/explorer";
 import "./WorldCharts.scss";
+import { LOCATIONS } from "../../../../const/mocks";
 const getOption = (mapData: Array<MapDataItem>): echarts.EChartOption => ({
   // tooltip: {
   //   trigger: "axis", // 触发类型，默认数据触发，可选为：'item'、'axis'
@@ -73,9 +74,11 @@ export default function WorldCharts() {
     if (myChart.current) {
       myChart.current.dispose();
     }
+
     const data = await get_validator_locations();
     if (data && data.length) {
-      const mapData = data
+      const allData = [...data, ...LOCATIONS];
+      const mapData = allData
         ?.filter((item) => item.country !== "China,")
         .map((item) => {
           return {
@@ -90,9 +93,11 @@ export default function WorldCharts() {
           };
         });
       validatorLocations = mapData;
-      setTotalCitys(Array.from(new Set(data.map((item) => item.city))).length);
+      setTotalCitys(
+        Array.from(new Set(allData.map((item) => item.city))).length
+      );
       setTotalCountrys(
-        Array.from(new Set(data.map((item) => item.country))).length
+        Array.from(new Set(allData.map((item) => item.country))).length
       );
       renderMap();
     }

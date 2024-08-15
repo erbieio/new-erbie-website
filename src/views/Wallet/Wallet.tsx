@@ -6,7 +6,6 @@ import WalletCard from "./WalletCard";
 import erbie from '../../assets/wallet/erbie.svg'
 import tg from "../../assets/wallet/tg.svg";
 import metamask from "../../assets/wallet/metamask.svg";
-import into from "../../assets/wallet/intoken.svg";
 import gate from "../../assets/wallet/gate.svg";
 import base from "../../assets/wallet/basewallet.svg";
 import walletConnect from "../../assets/wallet/walletConnect.svg";
@@ -18,15 +17,25 @@ import "./Wallet.scss";
 function label1() {
   return (
     <div>
-      Official <br /> Wallet
+      <div className="hidden lg:block">
+        Official <br /> Wallet
+      </div>
+      <div className="block lg:hidden">
+        Official Wallet
+      </div>
     </div>
   );
 }
 function label2() {
   return (
     <div>
-      Other EVM <br />
-      Wallet
+      <div className="hidden lg:block">
+        Other EVM <br />
+        Wallet
+      </div>
+      <div className="block lg:hidden">
+        Other EVM Wallet
+      </div>
     </div>
   );
 }
@@ -76,10 +85,14 @@ export default function Wallet() {
               </div>
             }
           >
-            <img src={bg2} className="w-100px lg:w-180px default-img" alt="" />
+            <img
+              src={bg2}
+              className="w-100px lg:w-180px default-img mr-20px lg:mr-40px"
+              alt=""
+            />
             <img
               src={bg2active}
-              className="w-100px lg:w-180px active-img"
+              className="w-100px lg:w-170px active-img mr-20px lg:mr-40px"
               alt=""
             />
           </WalletCard>
@@ -94,13 +107,13 @@ export default function Wallet() {
                 >
                   <img src={metamask} className="w-36px" alt="" />
                 </a>
-                <a
+                {/* <a
                   href="https://token.im/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <img src={into} className="w-36px" alt="" />
-                </a>
+                </a> */}
                 <a
                   href="https://www.gate.io/"
                   target="_blank"
@@ -127,10 +140,14 @@ export default function Wallet() {
             className="mt-20px lg:mt-0 lg:mt-0"
             // onClick={handleToPlayStore}
           >
-            <img src={bg3} className="w-100px lg:w-150px default-img" alt="" />
+            <img
+              src={bg3}
+              className="w-84px lg:w-148px default-img mr-28px mt-6px lg:mr-36px"
+              alt=""
+            />
             <img
               src={bg3active}
-              className="w-145px lg:w-220px active-img translate-y--30px"
+              className="w-110px lg:w-194px mt--12px lg:mt--20px active-img mr-22px lg:mt--25px lg:mr-27px"
               alt=""
             />
           </WalletCard>
