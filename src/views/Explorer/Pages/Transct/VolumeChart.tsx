@@ -7,18 +7,19 @@ export type VolumeChartProps = {
   list: Array<Get24hTxsItem>;
 };
 export default function VolumeChart(props: VolumeChartProps) {
-  const data = props.list.map((item) => item.num);
   const myRef = useRef<HTMLDivElement>(null);
 
   let myChart: echarts.ECharts;
   const initChart = debounce(() => {
+    const data = props.list.map((item) => ({ value: item.num }));
+    const hours = props.list.map((item) => ({ value: item.hour }));
     if (myChart) {
       myChart.dispose();
     }
     const option: echarts.EChartOption = {
       xAxis: {
         type: "category",
-        data: props.list.map(item => item.hour),
+        data: hours,
         axisTick: {
           show: false,
         },
@@ -77,7 +78,7 @@ export default function VolumeChart(props: VolumeChartProps) {
         },
       ],
       grid: {
-        left: "6%",
+        left: "12%",
         right: "4%",
         top: "10%",
         bottom: "22%",
@@ -101,7 +102,7 @@ export default function VolumeChart(props: VolumeChartProps) {
     <div className="w-100% flex justify-center">
       <div
         id="volume-chart"
-        className="h-20vh w-84vw lg:h-22vh lg:w-23vw"
+        className="h-20vh w-84vw lg:h-22vh lg:w-26vw"
         ref={myRef}
       ></div>
     </div>
