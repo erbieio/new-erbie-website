@@ -2,12 +2,12 @@ import { GetValidatorLocationsItem } from "../api/modules/explorer";
 
 export const LOCATIONS: GetValidatorLocationsItem[] = [
   {
-    address: "0x171178b6cf688e13b9740ae74819cb75b304f3d9",
+    address: "0xdf6a9ebe8d86077d4017f628c90a2a3a213a7bcb",
     proxy: "",
-    latitude: 1.3036,
-    longitude: 103.8554,
-    city: "Singapore",
-    country: "Singapore",
+    latitude: 37.6171,
+    longitude: 55.7483,
+    city: "Moscow",
+    country: "Russia",
   },
   {
     address: "0xdf6a9ebe8d86077d4017f628c90a2a3a213a7bc1",
@@ -54,7 +54,7 @@ export const LOCATIONS: GetValidatorLocationsItem[] = [
     proxy: "",
     latitude: 51.4964,
     longitude: -0.1224,
-    city: "",
+    city: "United Kingdom",
     country: "United Kingdom",
   },
   {
@@ -62,7 +62,7 @@ export const LOCATIONS: GetValidatorLocationsItem[] = [
     proxy: "",
     latitude: -6.1728,
     longitude: 106.8272,
-    city: "",
+    city: "Indonesia",
     country: "Indonesia",
   },
   {

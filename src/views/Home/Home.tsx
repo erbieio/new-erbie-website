@@ -26,13 +26,13 @@ export default function Home() {
           <div className="w-100% lg:flex-1 h-200px lg:h-auto flex items-center">
             <div className="flex-1  lg:absolute left-0 lg:top-50% lg:mt--225px z-10 lg:w-50%">
               <div className="font-size-24px lg:font-size-56px lh-40px lg:lh-60px text-center lg:text-left">
-                Low-Energy Layer1 For Web Data Aggregation And Monetization
+                Low-Energy Layer1 For <br /> Web Data Aggregation <br /> And Monetization
               </div>
               <div className="hidden lg:block font-size-20px mt-45px pr-140px lh-30px text-left">
                 Connect Web2 data to Web3 to foster multi-dimensional data
                 fusion and generate new value streams.
               </div>
-              <div className="flex items-center justify-center lg:justify-start mt-45px icon-box">
+              <div className="flex items-center justify-center lg:justify-start mt-40px lg:mt-45px icon-box">
                 <a
                   href="https://twitter.com/ErbieChain"
                   className="w-60px lg:w-auto"
