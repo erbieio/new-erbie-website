@@ -39,7 +39,6 @@ export default function BlockDetail() {
     pageParams.current.page = page;
   };
   const { toAccountDetail, toTxDetail } = useRouter();
-  const [total] = useState(0);
   const [listPage, setListPage] = useState<GetTransactionPageResponse>();
   const columns: TableColumnsType<GetTransitionPageListItem> = [
     {
@@ -252,7 +251,7 @@ export default function BlockDetail() {
             <Pagination
               current={pageParams.current.page}
               pageSize={pageParams.current.page_size}
-              total={total}
+              total={listPage?.total || 0}
               onChange={handleChangePage}
               showQuickJumper={systemInfo.isMobile ? true : false}
               simple={systemInfo.isMobile ? true : false}

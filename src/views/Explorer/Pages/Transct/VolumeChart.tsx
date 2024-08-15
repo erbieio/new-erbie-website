@@ -8,7 +8,6 @@ export type VolumeChartProps = {
 };
 export default function VolumeChart(props: VolumeChartProps) {
   const myRef = useRef<HTMLDivElement>(null);
-
   let myChart: echarts.ECharts;
   const initChart = debounce(() => {
     const data = props.list.map((item) => ({ value: item.num }));
