@@ -222,7 +222,7 @@ export default function Account() {
             <div className="w-100%">
               <div className="font-size-14px">
                 24h Account Growth <br />
-                +0.00%{" "}
+                +0.00%
               </div>
               <div className="w-100%">
                 <GrowChart data={accountChartData || []} />

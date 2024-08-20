@@ -108,10 +108,13 @@ export default function Home() {
             </div>
           </div>
           <div className="flex justify-between gap-12px mt-20px hidden lg:flex">
-            <OnlineCard label="Online Nodes" value={onlineAddr?.count || 0} />
+            <OnlineCard
+              label="Online Nodes"
+              value={onlineAddr?.onlineNode4h || 0}
+            />
             <OnlineCard
               label="Online Validators"
-              value={`${stats?.totalValidator}/${onlineAddr?.count}`}
+              value={`${stats?.totalValidator}/${onlineAddr?.onlineNode4h}`}
             />
             <OnlineCard label="Total Stakers" value={stats?.totalStaker || 0} />
           </div>
