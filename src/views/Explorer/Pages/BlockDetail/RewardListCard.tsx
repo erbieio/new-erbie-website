@@ -112,7 +112,7 @@ export default function RewardListCard(props: RewardListCardProps) {
           {addressDots(list[7]?.address, 6, 6)}
         </span> */}
       </div>
-      <div className="font-bold line  lh-3vh">Staker</div>
+      <div className="font-bold line  lh-3vh">CSBT Pool</div>
       <div className="line lh-3vh text-ellipsis whitespace-nowrap flex">
         {list2.map((item, i) => (
           <div key={i}>
