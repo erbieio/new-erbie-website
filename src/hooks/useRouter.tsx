@@ -20,13 +20,13 @@ export default function useRouter() {
     });
   };
   const toAccountDetail = (address: string) => {
-    to(`/explorer/accountDetail/${address}`);
+    to(`/explorer/address/${address}`);
   };
   const toBlockDetail = (block: number | string) => {
-    to(`/explorer/blockDetail/${block}`);
+    to(`/explorer/block/${block}`);
   };
   const toTxDetail = (hash: string) => {
-    to(`/explorer/txDetail/${hash}`);
+    to(`/explorer/tx/${hash}`);
   };
   return {
     to,

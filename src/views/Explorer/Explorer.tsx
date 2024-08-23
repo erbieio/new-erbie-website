@@ -8,7 +8,9 @@ import {
 import ExplorerMenus from "./ExplorerMenus";
 import SearchIpt from "./components/SearchIpt";
 export default function Explorer() {
-  const currentOutlet = useOutlet();
+  const currentOutlet = useOutlet({
+    redirect: "/explorer",
+  });
   return (
     <div className="page-explorer flex flex-col lg:flex-row lg:justify-between">
       <div className="flex items-center">

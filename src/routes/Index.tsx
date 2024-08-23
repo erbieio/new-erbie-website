@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { createBrowserRouter } from "react-router-dom";
+import { createBrowserRouter } from 'react-router-dom';
 
 import App from "../App.tsx";
 import LazyLoad from "./LazyLoad.tsx";
@@ -61,7 +61,7 @@ const router = createBrowserRouter([
         element: <Explorer />,
         children: [
           {
-            path: "/explorer/home",
+            path: "/explorer",
             element: <ExplorerHome />,
           },
           {
@@ -89,15 +89,15 @@ const router = createBrowserRouter([
             element: LazyLoad(Transct),
           },
           {
-            path: "/explorer/accountDetail/:address",
+            path: "/explorer/address/:address",
             element: LazyLoad(AccountDetail),
           },
           {
-            path: "/explorer/blockDetail/:blockNumber",
+            path: "/explorer/block/:blockNumber",
             element: LazyLoad(BlockDetail),
           },
           {
-            path: "/explorer/txDetail/:txhash",
+            path: "/explorer/tx/:txhash",
             element: LazyLoad(TxDetail),
           },
         ],

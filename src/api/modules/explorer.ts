@@ -24,7 +24,7 @@ export interface OnlineHItem {
   addrs: Array<string>;
   count: number;
 }
-export interface GetOnlineAddrResopnse {
+export interface GetOnlineAddrResponse {
   addrs: Array<string>;
   count: number;
   h1: OnlineHItem;
@@ -32,7 +32,7 @@ export interface GetOnlineAddrResopnse {
   onlineIdleNode: Array<string>;
   onlineNode4h: number;
 }
-export const get_onlineAddr = (): Promise<GetOnlineAddrResopnse> => {
+export const get_onlineAddr = (): Promise<GetOnlineAddrResponse> => {
   return service.get(`${SCAN_RESOURCE_PATH}/upload/onlineAddr.json`);
 };
 

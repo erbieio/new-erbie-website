@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import OnlineCard from "./OnlineCard";
 import BlockList from "./BlockList";
 import {
-  GetOnlineAddrResopnse,
+  GetOnlineAddrResponse,
   GetStatsResponse,
   get_onlineAddr,
   get_stats,
@@ -14,7 +14,7 @@ import WorldCharts from "./WorldCharts";
 import { toFixed } from "../../../../utils/utils";
 export default function Home() {
   const [stats, setStats] = useState<GetStatsResponse>();
-  const [onlineAddr, setOnlineAddr] = useState<GetOnlineAddrResopnse>();
+  const [onlineAddr, setOnlineAddr] = useState<GetOnlineAddrResponse>();
 
   // 获取统计数据
   const handleGetStats = async () => {

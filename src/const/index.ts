@@ -24,11 +24,11 @@ export const PAGE_LIST:Array<PageItem> = [
     path: "/wallet",
     index: 2,
     name: "Wallet",
-    next: '/explorer/home',
+    next: '/explorer',
     prev: '/docs'
   },
   {
-    path: "/explorer/home",
+    path: "/explorer",
     index: 3,
     name: "Explorer",
     next: null,

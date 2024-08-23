@@ -12,7 +12,6 @@ import {
 } from "../../../../api/modules/explorer";
 import { addressDots } from "../../../../utils/common";
 import { Pagination, PaginationProps, Skeleton } from "antd";
-import { useNavigate } from "react-router-dom";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
 import { formatEther } from "ethers";
@@ -25,7 +24,6 @@ export interface TableMenuItem {
 }
 
 export default function Chain() {
-  const navigator = useNavigate();
   const systemInfo = getSystemInfo();
   const params = useRef<GetBlockPageParams>({
     page: 1,
@@ -54,6 +52,7 @@ export default function Chain() {
     blocks: [],
     total: 0,
   });
+  const {toBlockDetail} = useRouter()
   const handleGetBlocks = async () => {
     try {
       setLoading(true);
@@ -84,8 +83,8 @@ export default function Chain() {
       setStatLoading(false);
     }
   };
-  const toBlockDetail = (blockNumber: number | string) => {
-    navigator(`/explorer/blockDetail/${blockNumber}`);
+  const handleToBlockDetail = (blockNumber: number | string) => {
+    toBlockDetail(blockNumber);
   };
   const { toAccountDetail } = useRouter();
   const [statloading, setStatLoading] = useState(false);
@@ -98,7 +97,7 @@ export default function Chain() {
         return (
           <span
             className="link hover:color-#1677ff"
-            onClick={() => toBlockDetail(rowData.number)}
+            onClick={() => handleToBlockDetail(rowData.number)}
           >
             {rowData.number}
           </span>
