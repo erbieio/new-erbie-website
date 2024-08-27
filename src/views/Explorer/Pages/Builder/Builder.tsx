@@ -149,6 +149,11 @@ export default function Validator() {
 
   const handleChangePage = (page: number) => {
     params.current.page = page;
+    if (currentFilter === 1) {
+      handleGetValidatorList();
+    } else {
+      handleGetStakerList();
+    }
   };
 
   const totalStakeOfStaker = useMemo(() => {
