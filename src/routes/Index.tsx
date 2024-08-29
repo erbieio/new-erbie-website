@@ -35,6 +35,9 @@ const BlockDetail = lazy(
 const TxDetail = lazy(
   () => import("../views/Explorer/Pages/TxDetail/TxDetail.tsx")
 );
+const TokenDetail = lazy(
+  () => import("../views/Explorer/Pages/Token/Token.tsx")
+);
 const PrivacyPolicy = lazy(() => import("../views/Agreement/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("../views/Agreement/TermsOfUse"));
 
@@ -99,6 +102,10 @@ const router = createBrowserRouter([
           {
             path: "/explorer/tx/:txhash",
             element: LazyLoad(TxDetail),
+          },
+          {
+            path: "/explorer/token/:tokenAddress",
+            element: LazyLoad(TokenDetail),
           },
         ],
       },
