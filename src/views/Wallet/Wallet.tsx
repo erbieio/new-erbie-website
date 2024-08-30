@@ -7,7 +7,7 @@ import erbie from '../../assets/wallet/erbie.svg'
 import tg from "../../assets/wallet/tg.svg";
 import metamask from "../../assets/wallet/metamask.svg";
 import gate from "../../assets/wallet/gate.svg";
-import base from "../../assets/wallet/basewallet.svg";
+import rabby from '../../assets/wallet/rabby.svg'
 import walletConnect from "../../assets/wallet/walletConnect.svg";
 import pcbg from "../../assets/wallet/pcbg.svg";
 import h5bg from "../../assets/wallet/h5bg.svg";
@@ -107,26 +107,12 @@ export default function Wallet() {
                 >
                   <img src={metamask} className="w-36px" alt="" />
                 </a>
-                {/* <a
-                  href="https://token.im/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={into} className="w-36px" alt="" />
-                </a> */}
                 <a
-                  href="https://www.gate.io/"
+                  href="https://rabby.io/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={gate} className="w-36px" alt="" />
-                </a>
-                <a
-                  href="https://www.base.org/"
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  <img src={base} className="w-36px" alt="" />
+                  <img src={rabby} className="w-36px" alt="" />
                 </a>
                 <a
                   href="https://walletconnect.com/"
@@ -134,6 +120,13 @@ export default function Wallet() {
                   rel="noopener noreferrer"
                 >
                   <img src={walletConnect} className="w-36px" alt="" />
+                </a>
+                <a
+                  href="https://www.gate.io/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <img src={gate} className="w-36px" alt="" />
                 </a>
               </div>
             }
