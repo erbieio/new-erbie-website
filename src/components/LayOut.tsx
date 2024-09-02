@@ -53,7 +53,7 @@ export default function LayOut() {
     };
   });
   return (
-    <div className="lg:max-w-1400px m-auto px-14px lg:px-40px">
+    <div className="lg:max-w-1400px m-auto px-14px lg:px-14px">
       <TransitionGroup>
         <SwitchTransition mode="out-in">
           <CSSTransition
