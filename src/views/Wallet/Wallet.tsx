@@ -7,7 +7,7 @@ import erbie from '../../assets/wallet/erbie.svg'
 import tg from "../../assets/wallet/tg.svg";
 import metamask from "../../assets/wallet/metamask.svg";
 import gate from "../../assets/wallet/gate.svg";
-import rabby from '../../assets/wallet/rabby.svg'
+import okx from '../../assets/wallet/okx.svg'
 import walletConnect from "../../assets/wallet/walletConnect.svg";
 import pcbg from "../../assets/wallet/pcbg.svg";
 import h5bg from "../../assets/wallet/h5bg.svg";
@@ -108,11 +108,11 @@ export default function Wallet() {
                   <img src={metamask} className="w-36px" alt="" />
                 </a>
                 <a
-                  href="https://rabby.io/"
+                  href="https://www.okx.com/web3"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={rabby} className="w-36px" alt="" />
+                  <img src={okx} className="w-36px" alt="" />
                 </a>
                 <a
                   href="https://walletconnect.com/"
