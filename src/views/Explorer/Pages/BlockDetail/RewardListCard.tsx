@@ -105,12 +105,6 @@ export default function RewardListCard(props: RewardListCardProps) {
           {addressDots(list[6]?.address, 6, 6)}
         </span>
         {/* <span className="mx-5px">|</span> */}
-        {/* <span
-          className="link hover:color-#8AA4FF"
-          onClick={() => toAccountDetail(list[7]?.address || "")}
-        >
-          {addressDots(list[7]?.address, 6, 6)}
-        </span> */}
       </div>
       <div className="font-bold line  lh-3vh">CSBT Pool</div>
       <div className="line lh-3vh text-ellipsis whitespace-nowrap flex">
