@@ -11,11 +11,11 @@ import {
   GetStatsResponse,
 } from "../../../../api/modules/explorer";
 import { addressDots } from "../../../../utils/common";
-import { Pagination, PaginationProps, Skeleton } from "antd";
+import { PaginationProps, Skeleton } from "antd";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
 import { formatEther } from "ethers";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 
 export interface TableMenuItem {
   label: string;
@@ -24,7 +24,6 @@ export interface TableMenuItem {
 }
 
 export default function Chain() {
-  const systemInfo = getSystemInfo();
   const params = useRef<GetBlockPageParams>({
     page: 1,
     page_size: 11,
@@ -195,22 +194,13 @@ export default function Chain() {
         {/* 左下 */}
         <div className="lg:h-65vh">
           <div className="table-list mt-14px flex-1 h-100%">
-            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-              <div className="font-size-12px font-size-16px hidden lg:block">
-                CHAIN INFORMATION
-              </div>
-              <div className="font-size-12px font-size-16px block lg:hidden">
-                CHAIN
-              </div>
-              <Pagination
-                current={params.current.page}
-                pageSize={params.current.page_size}
-                total={blockData.total}
-                onChange={handleChangePage}
-                showQuickJumper={systemInfo.isMobile ? true : false}
-                simple={systemInfo.isMobile ? true : false}
-              ></Pagination>
-            </div>
+            <TableHeader
+              titlePC="CHAIN INFORMATION"
+              titleH5="CHAIN"
+              params={params}
+              onChange={handleChangePage}
+              total={blockData.total}
+            />
             <div className="flex h-100% lg:h-90%  overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}

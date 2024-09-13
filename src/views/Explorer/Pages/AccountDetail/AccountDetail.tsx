@@ -1,7 +1,6 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import { useLocation, useParams } from "react-router-dom";
 import "./AccountDetail.scss";
-import { Pagination } from "antd";
 import {
   GetAccountDetailResponse,
   GetPledgePageItem,
@@ -16,7 +15,7 @@ import TXNTable from "./TXNTable";
 import StakeTable from "./StakeTable";
 import CSBTTable from "./CSBTTable";
 import AccountDetailCard from "./AccountDetailCard";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 export interface AcccountDetailMenusItem {
   label: string;
   checked: boolean;
@@ -26,8 +25,6 @@ export default function AccountDetail() {
   const params = useParams();
   const location = useLocation();
   const [loading, setLoading] = useState(false);
-  const systemInfo = getSystemInfo();
-
   const [total, setTotal] = useState(0);
   const [accountDetail, setAccountDetail] =
     useState<GetAccountDetailResponse>();
@@ -186,22 +183,13 @@ export default function AccountDetail() {
           ))}
         </div>
         <div className="table-box h-100%">
-          <div className="text-left px-10px py-8px lh-4vh flex flex-row items-center justify-between w-100%">
-            <div className="font-size-16px hidden lg:block">
-              TRANSACTIONS LIST
-            </div>
-            <div className="font-size-16px block lg:hidden">TRANSACTIONS</div>
-            <div>
-              <Pagination
-                current={pageParams.current.page}
-                pageSize={pageParams.current.page_size}
-                total={total}
-                onChange={handleChangePage}
-                showQuickJumper={systemInfo.isMobile ? true : false}
-                simple={systemInfo.isMobile ? true : false}
-              />
-            </div>
-          </div>
+          <TableHeader
+            titlePC="TRANSACTIONS LIST"
+            titleH5="TRANSACTIONS"
+            params={pageParams}
+            total={total}
+            onChange={handleChangePage}
+          />
           <div className=" overflow-x-scroll scrollbar-x lg:h-60vh">
             {currentMenu === 1 ? (
               <TXNTable list={tableList} loading={loading} />

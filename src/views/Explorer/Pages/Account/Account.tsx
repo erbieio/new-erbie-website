@@ -14,16 +14,15 @@ import {
   get_24h_accounts,
   Get24hTxsResponse,
 } from "../../../../api/modules/explorer";
-import { Pagination, Table, TableColumnsType, TableProps } from "antd";
+import { Table, TableColumnsType, TableProps } from "antd";
 import { addressDots } from "../../../../utils/common";
 import { formatEther } from "ethers";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
 import { toFixed } from "../../../../utils/utils";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 export default function Account() {
   const { toAccountDetail } = useRouter();
-  const systemInfo = getSystemInfo();
   const columns: TableColumnsType<GetAccountPageListItem> = [
     {
       title: "Address",
@@ -188,18 +187,13 @@ export default function Account() {
             <SearchIpt />
           </div>
           <div className="table-box lg:h-65vh mt-2vh">
-            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-              <div className="hidden lg:block">ACCOUNT INFORMATION</div>
-              <div className="block lg:hidden">ACCOUNT</div>
-              <Pagination
-                total={accountData?.total}
-                current={params.current.page}
-                pageSize={params.current.page_size}
-                onChange={handlePageChange}
-                showQuickJumper={systemInfo.isMobile ? true : false}
-                simple={systemInfo.isMobile ? true : false}
-              />
-            </div>
+            <TableHeader
+              titlePC="ACCOUNT INFORMATION"
+              titleH5="ACCOUNT"
+              params={params}
+              onChange={handlePageChange}
+              total={accountData?.total || 0}
+            />
             <div className="h-90% flex w-100% overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}

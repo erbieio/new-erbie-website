@@ -1,0 +1,16 @@
+.token-detail-card {
+    background: url('../../../../assets/token/card.svg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: #1C0C29;
+    height: 100%;
+
+    .title {
+        --at-apply: color-#D387FF font-size-16px font-bold px-20px title;
+    }
+
+    .line-card {
+        border-bottom: 1px solid rgb(82, 64, 94);
+        --at-apply: px-20px flex justify-between lh-44px lg:lh-5vh;
+    }
+}

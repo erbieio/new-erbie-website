@@ -15,11 +15,11 @@ import {
 } from "../../../../api/modules/explorer";
 import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther } from "ethers";
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Table, TableColumnsType } from "antd";
 import { toFixed, txInputToType } from "../../../../utils/utils";
 import useRouter from "../../../../hooks/useRouter";
 import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 
 export default function Transct() {
   const { toAccountDetail, toBlockDetail, toTxDetail } = useRouter();
@@ -144,7 +144,6 @@ export default function Transct() {
       },
     },
   ];
-  const systemInfo = getSystemInfo();
   const [stats, setStats] = useState<GetStatsResponse | undefined>();
 
   // 获取统计数据
@@ -270,20 +269,13 @@ export default function Transct() {
         </div>
         <div>
           <div className="table-box mt-2vh">
-            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-              <div className="hidden lg:block">TRANSCT INFOMATIONS</div>
-              <div className="block lg:hidden">TRANSCT</div>
-              <div>
-                <Pagination
-                  current={params.current.page}
-                  pageSize={params.current.page_size}
-                  total={listData?.total}
-                  onChange={handlePageChange}
-                  showQuickJumper={systemInfo.isMobile ? true : false}
-                  simple={systemInfo.isMobile ? true : false}
-                ></Pagination>
-              </div>
-            </div>
+            <TableHeader
+              titlePC="TRANSCT INFORMATION"
+              titleH5="TRANSCT"
+              total={listData?.total || 0}
+              params={params}
+              onChange={handlePageChange}
+            />
             <div className="lg:h-51.2vh">
               <div className="overflow-x-scroll scrollbar-x">
                 <Table

@@ -1,0 +1,34 @@
+.page-token {
+    .menu-btn {
+        --at-apply: font-size-12px h-40px lg:h-48px lg:font-size-14px border-1px border-style-solid border-color-#fff flex items-center justify-center w-48% lg:w-120px cursor-pointer flex-auto;
+        background: rgba(56, 55, 82, 0.60);
+
+        &.active {
+            transition: ease .3s;
+            background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
+            border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
+            backdrop-filter: blur(25px);
+        }
+    }
+
+    .data-panel {
+        --at-apply: h-80px lg:h-16.3vh flex flex-row w-47.6% lg:w-48.8% lg:w-100% justify-center items-center;
+        border: 1px solid #D87CEE;
+        background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
+        border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
+        backdrop-filter: blur(25px);
+
+        .tit {
+            --at-apply: font-size-13px lg:font-size-16px;
+        }
+
+        .val {
+            --at-apply: mt-0 lg:mt-14px font-size-14px lg:font-size-24px;
+        }
+    }
+
+    .list-con {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+    }
+}

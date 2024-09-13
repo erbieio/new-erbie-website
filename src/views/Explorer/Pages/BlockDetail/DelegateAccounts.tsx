@@ -93,14 +93,6 @@ export default function DelegateAccounts(props: DelegateAccounts) {
           <img src={lv2} className="h-12px mr-3px" alt="" />
           {addressDots(list[5]?.proxy || nullAddr, 2, 3)}
         </span>
-        <span className="mx-3px">|</span>
-        <span
-          className="link "
-          onClick={() => toAccountDetail(list[6]?.proxy || "")}
-        >
-          <img src={lv2} className="h-12px mr-3px" alt="" />
-          {addressDots(list[6]?.proxy || nullAddr, 2, 3)}
-        </span>
       </div>
     </div>
   );

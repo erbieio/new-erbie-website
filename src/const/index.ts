@@ -73,7 +73,7 @@ export const EXPLORER_PAGE_LIST:Array<ExplorerPageItem> = [
     name: "CSBT",
   },
   {
-    path: "/explorer/asset",
+    path: "/explorer/token",
     index: 4,
     name: "ASSET",
   },

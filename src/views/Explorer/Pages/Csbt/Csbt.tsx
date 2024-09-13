@@ -9,15 +9,14 @@ import {
   get_snft_meta_page,
   get_stats,
 } from "../../../../api/modules/explorer";
-import { Pagination, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import { addressDots } from "../../../../utils/common";
 import moment from "moment";
 import useRouter from "../../../../hooks/useRouter";
-import { getSystemInfo } from "../../../../utils/system";
 import csbticon from "./../../../../assets/csbticon.svg";
+import TableHeader from "../../components/TableHeader";
 export default function Csbt() {
   const { toAccountDetail } = useRouter();
-  const systemInfo = getSystemInfo();
   const columns: Array<TableColumn> = [
     {
       title: "Address",
@@ -128,20 +127,13 @@ export default function Csbt() {
             <SearchIpt />
           </div>
           <div className="table-box lg:h-65vh lg:mt-2vh">
-            <div>
-              <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-                <div className="hidden lg:block">CHAINLAYER SBT</div>
-                <div className="block lg:hidden">CSBT</div>
-                <Pagination
-                  onChange={handleChangePage}
-                  total={csbtData?.total || 0}
-                  pageSize={params.current.page_size}
-                  current={params.current.page}
-                  showQuickJumper={systemInfo.isMobile ? true : false}
-                  simple={systemInfo.isMobile ? true : false}
-                ></Pagination>
-              </div>
-            </div>
+            <TableHeader
+              titlePC="CHAINLAYER SBT"
+              titleH5="CSBT"
+              total={csbtData?.total || 0}
+              params={params}
+              onChange={handleChangePage}
+            />
             <div className="h-90% flex overflow-x-scroll scrollbar-x">
               <Table
                 columns={columns}
