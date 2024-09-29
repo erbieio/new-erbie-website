@@ -8,144 +8,16 @@ import {
   GetStatsResponse,
   GetTransactionPageParams,
   GetTransactionPageResponse,
-  GetTransitionPageListItem,
   get_24h_txs,
   get_stats,
   get_transaction_page,
 } from "../../../../api/modules/explorer";
-import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther } from "ethers";
-import { Table, TableColumnsType } from "antd";
-import { toFixed, txInputToType } from "../../../../utils/utils";
-import useRouter from "../../../../hooks/useRouter";
-import { ERBIE_TX_FEE_LENGTH } from "../../../../const/coin";
-import TableHeader from "../../components/TableHeader";
+import { toFixed } from "../../../../utils/utils";
+import TxList from "./TxList";
 
 export default function Transct() {
-  const { toAccountDetail, toBlockDetail, toTxDetail } = useRouter();
-  const columns: TableColumnsType<GetTransitionPageListItem> = [
-    {
-      title: <div className="whitespace-nowrap">TXN Hash</div>,
-      key: "blockHash",
-      align: "center",
-      fixed: "left",
-      render(v) {
-        return (
-          <div
-            className="link hover:color-#1677ff"
-            onClick={() => toTxDetail(v.hash)}
-          >
-            {addressDots(v.hash, 6, 6)}
-          </div>
-        );
-      },
-    },
-    {
-      title: <div className="whitespace-nowrap">TXN Time</div>,
-      key: "timestamp",
-      align: "center",
-      render(v) {
-        return (
-          <div className="whitespace-nowrap">
-            {formatDate(v.timestamp, "YYYY/MM/DD HH:mm:ss")}
-          </div>
-        );
-      },
-    },
-    {
-      title: <div className="whitespace-nowrap">Block Height</div>,
-      key: "blockNumber",
-      align: "center",
-      render(v) {
-        return (
-          <div
-            className="link hover:color-#1677ff"
-            onClick={() => toBlockDetail(v.blockNumber)}
-          >
-            {v.blockNumber}
-          </div>
-        );
-      },
-    },
-    {
-      title: "Sender",
-      key: "from",
-      align: "center",
-      render(v) {
-        return (
-          <div
-            className="link hover:color-#1677ff"
-            onClick={() => toAccountDetail(v.from)}
-          >
-            {addressDots(v.from, 6, 6)}
-          </div>
-        );
-      },
-    },
-    {
-      title: "Receiver",
-      key: "to",
-      align: "center",
-      render(v) {
-        return (
-          <div
-            className="link hover:color-#1677ff"
-            onClick={() => toAccountDetail(v.to)}
-          >
-            {addressDots(v.to, 6, 6)}
-          </div>
-        );
-      },
-    },
-    {
-      title: <div className="whitespace-nowrap">Value (ERB) </div>,
-      key: "value",
-      align: "center",
-      render(v) {
-        return toFixed(formatEther(v.value));
-      },
-    },
-    {
-      title: <div className="whitespace-nowrap">TXN Type</div>,
-      key: "Height",
-      align: "center",
-      render(v) {
-        return (
-          <div className="whitespace-nowrap">{txInputToType(v.input)}</div>
-        );
-      },
-    },
-    {
-      title: "Status",
-      key: "Height",
-      align: "center",
-      render(v) {
-        return (
-          <div
-            className={`px-4px rounded-4px ${
-              v.status === 1
-                ? "color-#9effcc bg-#3B4C43"
-                : "color-#FE4FA7 bg-#4C293A"
-            } ${"rgba(168, 255, 210, .2)"}`}
-          >
-            {v.status === 1 ? "Success" : "Defeat"}
-          </div>
-        );
-      },
-    },
-    {
-      title: <div className="whitespace-nowrap">TXN Fee</div>,
-      align: "center",
-      render(v) {
-        return toFixed(
-          formatEther(v.gasPrice * v.gasUsed),
-          ERBIE_TX_FEE_LENGTH
-        );
-      },
-    },
-  ];
   const [stats, setStats] = useState<GetStatsResponse | undefined>();
-
   // 获取统计数据
   const handleGetStats = async () => {
     const data = await get_stats();
@@ -269,23 +141,13 @@ export default function Transct() {
         </div>
         <div>
           <div className="table-box mt-2vh">
-            <TableHeader
-              titlePC="TRANSCT INFORMATION"
-              titleH5="TRANSCT"
-              total={listData?.total || 0}
-              params={params}
+            <TxList
               onChange={handlePageChange}
+              loading={loading}
+              params={params}
+              total={listData?.total || 0}
+              dataSource={listData?.transactions || []}
             />
-            <div className="lg:h-51.2vh">
-              <div className="overflow-x-scroll scrollbar-x">
-                <Table
-                  columns={columns}
-                  dataSource={listData?.transactions}
-                  loading={loading}
-                  pagination={false}
-                />
-              </div>
-            </div>
           </div>
         </div>
       </div>

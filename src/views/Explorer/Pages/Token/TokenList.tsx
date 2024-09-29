@@ -1,26 +1,24 @@
 import { Table, type TableColumnsType, TableProps } from "antd";
-import { GetStakerListItem } from "../../../../api/modules/explorer";
 import { formatEther } from "ethers";
 import { addressDots } from "../../../../utils/common";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
-import { toFixed } from "../../../../utils/utils";
 import './TokenList.scss'
-import moment from "moment";
+import { GetContractItem } from "../../../../api/modules/explorer";
 interface StakerTableProps {
-  dataSource: Array<GetStakerListItem>;
+  dataSource: Array<GetContractItem>;
   sorter?: (order: string) => void;
   loading?: boolean;
 }
 
 export default function TokenList(props: StakerTableProps) {
-  const { toAccountDetail } = useRouter();
+  const { toTokenDetail } = useRouter();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
   const onChange: TableProps<GetStakerListItem>["onChange"] = (
     _pagination,
     _filters,
-    sorter: SorterResult<GetStakerListItem>
+    sorter: SorterResult<GetContractItem>
   ) => {
     if (sorter.order) {
       if (sorter.order === "ascend") {
@@ -32,43 +30,48 @@ export default function TokenList(props: StakerTableProps) {
       props.sorter && props.sorter("");
     }
   };
-  const columns: TableColumnsType<GetStakerListItem> = [
+  const columns: TableColumnsType<GetContractItem> = [
     {
       title: "Token Name",
       align: "center",
+      key: "contract_name",
       render(v) {
-        return (
-          <div
-            className="link hover:color-#1677ff"
-            onClick={() => toAccountDetail(v.address)}
-          >
-            {addressDots(v.address, 6, 6)}
-          </div>
-        );
+        return <div className="">{v.token_name || "-"}</div>;
       },
     },
     {
       title: "type",
       align: "center",
+      key: "contract_type",
       render(v) {
-        return <div className="link hover:color-#1677ff">{v.block_number}</div>;
+        return (
+          <div className="">{v.contract_type}</div>
+        );
       },
     },
     {
       title: "Contract",
       align: "center",
-      key: "amount",
+      key: "contract_address",
       render(v) {
-        return toFixed(formatEther(v.amount));
+        return (
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => toTokenDetail(v.contract_address)}
+          >
+            {addressDots(v.contract_address, 10,10)}
+          </div>
+        ); 
       },
     },
     {
       title: "Total Supply",
       align: "center",
+      key: "total_supply",
       render(v) {
         return (
           <div className="whitespace-nowrap">
-            {moment(v.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss")}
+            {v.total_supply ? formatEther(v.total_supply) : "-"}
           </div>
         );
       },
@@ -77,11 +80,7 @@ export default function TokenList(props: StakerTableProps) {
       title: "Holder",
       align: "center",
       render(v) {
-        return (
-          <div className="whitespace-nowrap">
-            {moment(v.timestamp * 1000).format("YYYY/MM/DD HH:mm:ss")}
-          </div>
-        );
+        return <div className="whitespace-nowrap">{v.holders}</div>;
       },
     },
   ];

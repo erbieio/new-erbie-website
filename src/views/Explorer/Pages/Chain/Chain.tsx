@@ -192,7 +192,7 @@ export default function Chain() {
           </div>
         </div>
         {/* 左下 */}
-        <div className="lg:h-65vh">
+        <div className="lg:h-65.2vh">
           <div className="table-list mt-14px flex-1 h-100%">
             <TableHeader
               titlePC="CHAIN INFORMATION"

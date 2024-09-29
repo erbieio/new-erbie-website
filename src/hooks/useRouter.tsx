@@ -28,10 +28,14 @@ export default function useRouter() {
   const toTxDetail = (hash: string) => {
     to(`/explorer/tx/${hash}`);
   };
+    const toTokenDetail = (address: string) => {
+      to(`/explorer/token/${address}`);
+    };
   return {
     to,
     toAccountDetail,
     toBlockDetail,
     toTxDetail,
+    toTokenDetail,
   };
 }

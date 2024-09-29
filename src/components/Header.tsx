@@ -1,4 +1,4 @@
-import { SetStateAction, useState } from "react";
+import { SetStateAction, useEffect, useRef, useState } from "react";
 import logo from "../assets/logo.svg";
 import { useLocation, useNavigate } from "react-router-dom";
 import Button from "./Button";
@@ -8,6 +8,7 @@ import { setAnimate } from "../store/pageAnimateSlice";
 import "./Header.scss";
 import { TransitionGroup, CSSTransition } from "react-transition-group";
 import { message } from "antd";
+import { debounce } from "../utils/common";
 
 export default function Header() {
   const navigator = useNavigate();
@@ -69,8 +70,38 @@ export default function Header() {
     navigator("/");
     handleChangeMenu(false);
   };
+  const lastTop = useRef(0);
+  const [dir, setDir] = useState("down");
+  const handleScroll = debounce(() => {
+    if (location.pathname === "/" || location.pathname === "/newsDetail") {
+      if (dir !== "top") {
+        setDir("top");
+      }
+      return;
+    }
+    const scrollTop = document.documentElement.scrollTop;
+    if (scrollTop < lastTop.current) {
+      // down
+      if (dir !== "down") {
+        setDir("down");
+      }
+    } else {
+      // top
+      if (dir !== "top") {
+        setDir("top");
+      }
+    }
+    lastTop.current = scrollTop;
+  }, 100);
+
+  useEffect(() => {
+    window.addEventListener("scroll", handleScroll);
+    return () => {
+      window.removeEventListener("scroll", handleScroll);
+    };
+  }, [handleScroll]);
   return (
-    <div className="flex bg-#0D0316  flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex  header px-16px lg:px-40px py-12px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32">
+    <div className={`layout-header ${dir}`}>
       <div className="flex items-center justify-between">
         <img
           src={logo}

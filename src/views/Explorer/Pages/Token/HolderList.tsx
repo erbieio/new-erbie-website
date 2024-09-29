@@ -1,39 +1,25 @@
-import { Table, type TableColumnsType, TableProps } from "antd";
-import { GetStakerListItem } from "../../../../api/modules/explorer";
-import { formatEther } from "ethers";
+import { Table, type TableColumnsType } from "antd";
+import { GetContractHoldersByAddrItem } from "../../../../api/modules/explorer";
 import { addressDots } from "../../../../utils/common";
-import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
-import { toFixed } from "../../../../utils/utils";
 import "./TokenList.scss";
-import { useRef } from "react";
+import { MutableRefObject } from "react";
 import TableHeader from "../../components/TableHeader";
+import { PageNationProps } from "../../../../components/PageNation";
+import { toFixed } from "../../../../utils/utils";
 interface HolderListTableProps {
-  dataSource: Array<GetStakerListItem>;
-  sorter: (order: string) => void;
+  dataSource: Array<GetContractHoldersByAddrItem>;
+  sorter?: (order: string) => void;
   loading: boolean;
+  params: MutableRefObject<{ page: number; page_size: number }>;
+  onChange: PageNationProps["change"];
+  total: number;
+  totalAmount: string
 }
 
 export default function HolderList(props: HolderListTableProps) {
   const { toAccountDetail } = useRouter();
-  // eslint-disable-next-line @typescript-eslint/ban-ts-comment
-  // @ts-expect-error
-  const onChange: TableProps<GetStakerListItem>["onChange"] = (
-    _pagination,
-    _filters,
-    sorter: SorterResult<GetStakerListItem>
-  ) => {
-    if (sorter.order) {
-      if (sorter.order === "ascend") {
-        props.sorter(`${sorter.columnKey} ASC`);
-      } else if (sorter.order === "descend") {
-        props.sorter(`${sorter.columnKey} DESC`);
-      }
-    } else {
-      props.sorter("");
-    }
-  };
-  const columns: TableColumnsType<GetStakerListItem> = [
+  const columns: TableColumnsType<GetContractHoldersByAddrItem> = [
     {
       title: "Holder Address",
       align: "center",
@@ -43,7 +29,7 @@ export default function HolderList(props: HolderListTableProps) {
             className="link hover:color-#1677ff"
             onClick={() => toAccountDetail(v.address)}
           >
-            {addressDots(v.address, 6, 6)}
+            {addressDots(v.address, 10, 10)}
           </div>
         );
       },
@@ -52,7 +38,7 @@ export default function HolderList(props: HolderListTableProps) {
       title: "Quantity",
       align: "center",
       render(v) {
-        return <div className="link hover:color-#1677ff">{v.block_number}</div>;
+        return v.quantity;
       },
     },
     {
@@ -60,28 +46,24 @@ export default function HolderList(props: HolderListTableProps) {
       align: "center",
       key: "amount",
       render(v) {
-        return toFixed(formatEther(v.amount));
+        return toFixed(v.quantity / Number(props.totalAmount),4) + "%";
       },
     },
   ];
-  const params = useRef<{ page: number; page_size: number }>({
-    page: 1,
-    page_size: 11,
-  });
-  const handleChangePage = () => {};
+
   return (
-    <div className="w-100% token-list overflow-x-scroll scrollbar-x">
+    <div className="w-100%  overflow-x-scroll scrollbar-x">
       <TableHeader
-        title="HOLDER LIST"
-        params={params}
-        total={0}
-        onChange={handleChangePage}
+        titlePC="HOLDER LIST"
+        titleH5="HOLDERS"
+        params={props.params}
+        total={props.total}
+        onChange={props.onChange}
       />
       <Table
         columns={columns}
         dataSource={props.dataSource}
         pagination={false}
-        onChange={onChange}
         loading={props.loading}
       ></Table>
     </div>

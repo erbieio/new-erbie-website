@@ -33,8 +33,8 @@ export default function LayOut() {
     const pathname = location.pathname;
     const nextRoute = PAGE_LIST.find((item) => item.path === pathname);
     if (nextRoute) {
-      const { prev, next } = nextRoute;
       dispatch(setAnimate(dir === "top" ? "scroll-down" : "scroll-top"));
+      const { prev, next } = nextRoute;
       const t = setTimeout(() => {
         if(dir === "top" && prev) {
           navigator(dir === "top" ? String(prev) : String(next));

@@ -186,7 +186,7 @@ export default function Validator() {
             <SearchIpt className="lg:ml-12px" />
           </div>
         </div>
-        <div className="lg:h-64.6vh flex flex-col">
+        <div className="lg:h-100% flex flex-col">
           <div className="table-box h-100%">
             <TableHeader
               titlePC="VALIDATOR INFORMATION"
