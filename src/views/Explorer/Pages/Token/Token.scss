@@ -1,23 +1,18 @@
-.page-validator {
-    .data-card {
+.page-token {
+    .menu-btn {
+        --at-apply: font-size-12px h-40px lg:h-48px lg:font-size-14px border-1px border-style-solid border-color-#fff flex items-center justify-center w-47.6% lg:w-120px cursor-pointer flex-auto;
         background: rgba(56, 55, 82, 0.60);
-        --at-apply: border-color-white border-1px border-solid flex justify-center items-center cursor-pointer h-40px lg:h-auto;
 
         &.active {
+            transition: ease .3s;
             background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
             border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
             backdrop-filter: blur(25px);
         }
     }
 
-    .table-box {
-        height: 100%;
-        background: rgba(255, 255, 255, 0.05);
-        border: 1px solid rgba(255, 255, 255, 0.05);
-    }
-
     .data-panel {
-        --at-apply: h-80px lg:h-17.27vh flex flex-row w-48.8% lg:w-100% justify-center items-center;
+        --at-apply: h-80px lg:h-16.3vh flex flex-row w-48.5% lg:w-47.6% lg:w-48.8% lg:w-100% justify-center items-center;
         border: 1px solid #D87CEE;
         background: linear-gradient(180deg, rgba(211, 135, 255, 0.06) 0%, rgba(211, 135, 255, 0.1) 100%);
         border-image: linear-gradient(to bottom, rgba(255, 255, 255, 0.5), rgba(211, 135, 255, 0.6)) 1;
@@ -30,5 +25,11 @@
         .val {
             --at-apply: mt-0 lg:mt-14px font-size-14px lg:font-size-24px;
         }
+    }
+
+    .list-con {
+        background: rgba(255, 255, 255, 0.05);
+        border: 1px solid rgba(255, 255, 255, 0.05);
+        height: 100%;
     }
 }

@@ -61,7 +61,8 @@ export default defineConfig(({ mode }) => {
       proxy: {
         "/scanApi": {
           // target: "https://scanapi.erbie.io",
-          target: "http://192.168.1.235:3001",
+          // target: "http://192.168.1.235:3001",
+          target: "http://192.168.85.22:3000",
           changeOrigin: true,
           secure: false,
           rewrite: (path) => path.replace(/^\/scanApi/, ""),

@@ -14,14 +14,14 @@ import {
 } from "../../../../api/modules/explorer";
 import ValidatorTable from "./ValidatorTable";
 import StakerTable from "./StakerTable";
-import { Pagination, Skeleton } from "antd";
+import { Skeleton } from "antd";
 import { formatEther } from "ethers";
 import {
   ERBIE_COIN_FIXED_LENGTH,
   ERBIE_COIN_PRECISION,
 } from "../../../../const/coin";
 import { toFixed } from "../../../../utils/utils";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 
 export interface ValidatorMenuItem {
   label: string;
@@ -32,7 +32,6 @@ export interface ValidatorMenuItem {
 export default function Validator() {
   const [loading, setLoading] = useState(false);
   const [stats, setStats] = useState<GetStatsResponse>();
-  const systemInfo = getSystemInfo();
   // get total stats
   const [statloading, setStatLoading] = useState(false);
   const handleGetStats = async () => {
@@ -187,24 +186,17 @@ export default function Validator() {
             <SearchIpt className="lg:ml-12px" />
           </div>
         </div>
-        <div className="lg:h-64.6vh flex flex-col">
+        <div className="lg:h-100% flex flex-col">
           <div className="table-box h-100%">
-            <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-              <div className="hidden lg:block">VALIDATOR INFORMATION</div>
-              <div className="block lg:hidden">VALIDATOR</div>
-              <div>
-                <Pagination
-                  onChange={handleChangePage}
-                  current={params.current.page}
-                  pageSize={params.current.page_size}
-                  showQuickJumper={systemInfo.isMobile ? true : false}
-                  simple={systemInfo.isMobile ? true : false}
-                  total={
-                    currentFilter === 1 ? validatorData.total : stakerData.total
-                  }
-                />
-              </div>
-            </div>
+            <TableHeader
+              titlePC="VALIDATOR INFORMATION"
+              titleH5="VALIDATOR"
+              onChange={handleChangePage}
+              params={params}
+              total={
+                currentFilter === 1 ? validatorData.total : stakerData.total
+              }
+            />
             <div className="flex h-100% lg:h-90% overflow-x-scroll scrollbar-x">
               {showTable === 1 ? (
                 <ValidatorTable

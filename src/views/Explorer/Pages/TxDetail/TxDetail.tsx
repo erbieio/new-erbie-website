@@ -13,8 +13,7 @@ import { addressDots, formatDate } from "../../../../utils/common";
 import { formatEther, formatUnits } from "ethers";
 import { toFixed, txInputToType } from "../../../../utils/utils";
 import useRouter from "../../../../hooks/useRouter";
-import { CopyToClipboard } from "react-copy-to-clipboard";
-import { message } from "antd";
+import Copy from "../../../../components/Copy";
 
 type MenuItem = {
   label: string;
@@ -22,7 +21,6 @@ type MenuItem = {
   select: boolean;
 };
 export default function TxDetail() {
-  const [messageApi, messageContext] = message.useMessage();
   const params = useParams<{ txhash: string }>();
   const { toAccountDetail, toBlockDetail } = useRouter();
   const [menus, setMenus] = useState<Array<MenuItem>>([
@@ -72,24 +70,15 @@ export default function TxDetail() {
   }, [params]);
   return (
     <div className="tx-detail justify-start lg:flex-row lg:h-72vh text-left">
-      {messageContext}
       <div className="lg:h-38vh bg-box w-100% mt-14px lg:mt-0">
         <div className="font-size-16px line h-6vh flex items-center">
           Transaction Details
         </div>
-        <div className="font-size-14px flex items-center color-#8AA4FF line">
-          {addressDots(params.txhash || "", 10, 10)}
-          <CopyToClipboard
-            text={params.txhash as string}
-            onCopy={() =>
-              messageApi.open({
-                content: "Copied to clipboard",
-                type: "success",
-              })
-            }
-          >
-            <i className="i-material-symbols-content-copy-outline-rounded color-#D387FF ml-8px cursor-pointer"></i>
-          </CopyToClipboard>
+        <div className="font-size-14px flex items-center line">
+          <span className=" color-#8AA4FF">
+            {addressDots(params.txhash || "", 10, 10)}
+          </span>
+          <Copy className="ml-4px" text={params.txhash as string} />
         </div>
         <div className="font-size-12px line">
           {data?.status === 1 ? (
@@ -117,17 +106,7 @@ export default function TxDetail() {
             <div className="line-c line">TXN Hash</div>
             <div className="line-c line">
               {addressDots(params.txhash || "", 6, 6)}
-              <CopyToClipboard
-                text={params.txhash as string}
-                onCopy={() =>
-                  messageApi.open({
-                    content: "Copied to clipboard",
-                    type: "success",
-                  })
-                }
-              >
-                <i className="i-material-symbols-content-copy-outline-rounded color-#D387FF ml-4px font-size-16px  cursor-pointer"></i>
-              </CopyToClipboard>
+              <Copy className="ml-4px" text={params.txhash as string} />
             </div>
           </div>
           <div className=" flex  flex-wrap">
@@ -143,17 +122,7 @@ export default function TxDetail() {
               >
                 {addressDots(data?.from || "", 6, 6)}
               </span>
-              <CopyToClipboard
-                text={data?.from as string}
-                onCopy={() =>
-                  messageApi.open({
-                    content: "Copied to clipboard",
-                    type: "success",
-                  })
-                }
-              >
-                <i className="i-material-symbols-content-copy-outline-rounded color-#D387FF ml-4px font-size-16px  cursor-pointer"></i>
-              </CopyToClipboard>
+              <Copy className="ml-4px" text={data?.from as string} />
             </div>
           </div>
           <div className=" flex  flex-wrap">
@@ -172,17 +141,7 @@ export default function TxDetail() {
                 {addressDots(data?.to || "", 6, 6)}
               </span>
               {data?.to ? (
-                <CopyToClipboard
-                  text={data?.to as string}
-                  onCopy={() =>
-                    messageApi.open({
-                      content: "Copied to clipboard",
-                      type: "success",
-                    })
-                  }
-                >
-                  <i className="i-material-symbols-content-copy-outline-rounded color-#D387FF ml-4px  font-size-16px cursor-pointer"></i>
-                </CopyToClipboard>
+                <Copy className="ml-4px" text={data?.to as string} />
               ) : (
                 <></>
               )}

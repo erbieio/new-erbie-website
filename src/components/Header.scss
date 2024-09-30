@@ -1,6 +1,15 @@
-.header {
+.layout-header {
     backdrop-filter: blur(12px);
     border-bottom: 1px solid #333;
+    --at-apply: flex bg-#0D0316 flex-col lg:flex-row fixed left-0 top-0 right-0 z-100 lg:flex header px-16px lg:px-40px py-12px lg:py-0 lg:h-9vh font-size-16px lg:font-size-12px font-bold justify-between border-b-width-1px border-b-style-solid border-b-color-#2A1F32;
+
+    &.top {
+        animation: animate-top .3s forwards;
+    }
+
+    &.down {
+        animation: animate-down .3s forwards;
+    }
 
     .mini-menus {
         transition: ease .24s;
@@ -40,7 +49,27 @@
 }
 
 @media (max-width: 1024px) {
-    .header {
+    .layout-header {
         border-bottom: none;
+    }
+}
+
+@keyframes animate-down {
+    0% {
+        transform: translateY(-100%);
+    }
+
+    100% {
+        transform: translateY(0);
+    }
+}
+
+@keyframes animate-top {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-100%);
     }
 }

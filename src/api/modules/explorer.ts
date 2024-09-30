@@ -487,3 +487,145 @@ export const get_transaction_erbie_Hash = (
 ): Promise<GetTransactionErbieByHashResponse> => {
   return service.get(`${SCAN_API}/transaction/erbie/${hash}`);
 };
+
+export type GetContractType = "0" | "1";
+export interface GetContractParams {
+  page: number;
+  page_size: number;
+  // 0 token  , 1 nft
+  ctype: GetContractType;
+}
+export interface GetContractItem {
+  ID: number;
+  CreatedAt: string;
+  UpdatedAt: string;
+  DeletedAt: null | string;
+  tx_hash: string;
+  block_number: number; //block number
+  contract_creator: string;
+  contract_address: string;
+  implement_contract_addr: string;
+  contract_name: string;
+  contract_type: string;
+  token_name: string;
+  symbol: string;
+  icon: string;
+  total_supply: string;
+  source_code: string;
+  holders: number;
+  call_times: number;
+  verified: boolean;
+  audited: boolean;
+  contract_abi: string;
+  create_code: string;
+  deployed_code: string;
+  constructor_arg: string;
+  compiler_version: string;
+  license: string;
+}
+export interface GetContractResponse extends PageResponse {
+  contracts: GetContractItem[];
+}
+// token/nft list search
+export const get_contract_page = (
+  params: GetContractParams
+): Promise<GetContractResponse> => {
+  return service.get(`${SCAN_API}/contract/page`, { params });
+};
+
+export interface GetContractDetail {}
+// search token detail
+export const get_contract_detail = (
+  address: string
+): Promise<GetContractItem> => {
+  return service.get(`${SCAN_API}/contract/${address}`);
+};
+
+export interface GetContractListByAddrParams extends PageParams {
+  addr: string;
+}
+export interface GetContractHoldersByAddrItem {
+  address: string;
+  quantity: number;
+}
+export interface GetContractHoldersByAddrResponse extends PageResponse {
+  holders: [];
+  total_amount: string;
+  total: number;
+}
+// search contract holders page
+export const get_contract_holders_page = (
+  params: GetContractListByAddrParams
+): Promise<GetContractHoldersByAddrResponse> => {
+  return service.get(`${SCAN_API}/contract/holders/page`, { params });
+};
+
+export interface GetContractTxItem {
+  blockHash: string;
+  block_number: number;
+  contractAddress: null | string;
+  cumulativeGasUsed: number;
+  from: string;
+  function_name: string;
+  gas: number;
+  gasPrice: number;
+  gasUsed: number;
+  hash: string;
+  input: string;
+  nonce: number;
+  status: number;
+  timestamp: number;
+  to: string;
+  transactionIndex: 0;
+  value: string;
+}
+export interface GetContractTxsByAddrResponse extends PageResponse {
+  contract_txs: GetContractTxItem[];
+  total: number;
+}
+// /contract_tx/page
+export const get_contract_tx_page = (
+  params: GetContractListByAddrParams
+): Promise<GetContractTxsByAddrResponse> => {
+  return service.get(`${SCAN_API}/contract_tx/page`, { params });
+};
+
+// 查24小时账户增长率
+export const get_account_growth_rate = (
+): Promise<number> => {
+  return service.get(`${SCAN_API}/account/growth_rate`);
+};
+
+// 查24小时交易增长率 
+export const get_txs_growth_rate = (): Promise<number> => {
+  return service.get(`${SCAN_API}/transaction/growth_rate`);
+};
+
+// 查询全网总账户数 
+export const get_total_accounts = (): Promise<number> => {
+  return service.get(`${SCAN_API}/account/total_num`);
+};
+
+// 查询全网token总数 
+export const get_account_total = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/token_total_num`);
+};
+
+// 查询nft全网总数 /contract/nft_total_num
+export const get_nft_total_num = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/nft_total_num`);
+};
+
+// 查询全网合约总数 /contract/total_num
+export const get_contract_total_num = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/total_num`);
+};
+// 查询全网合约调用次数  /contract_tx/total_num
+export const get_contract_tx_total_num = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract_tx/total_num`);
+};
+
+//  查询合约的 transfers  
+export const get_contract_transfer_num = (addr: string): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/transfer_num/${addr}`);
+};

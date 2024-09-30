@@ -1,0 +1,25 @@
+.token-detail-card {
+    background: url('../../../../assets/token/card.svg') no-repeat;
+    background-size: cover;
+    background-position: center center;
+    background-color: #1C0C29;
+    height: 100%;
+    border: 1px solid rgba($color: #F2B59B, $alpha: 0.4);
+
+    .title {
+        --at-apply: color-#D387FF font-size-16px font-bold px-20px title;
+    }
+
+    .line-card {
+        border-bottom: 1px solid rgb(82, 64, 94);
+        --at-apply: px-20px flex justify-between lh-36px lg:lh-5vh;
+    }
+}
+
+@media (max-width: 1024px) {
+    .token-detail-card {
+        background: url('../../../../assets/token/h5Card.svg') no-repeat;
+        background-size: cover;
+        height: 480px;
+    }
+}

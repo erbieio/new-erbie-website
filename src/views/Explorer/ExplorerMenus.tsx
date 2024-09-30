@@ -1,22 +1,21 @@
 import { useLocation, useNavigate } from "react-router-dom";
 import { EXPLORER_PAGE_LIST, ExplorerPageItem } from "../../const";
 import "./ExplorerMenus.scss";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { setAnimate } from "../../store/pageAnimateSlice";
 import { useEffect, useState } from "react";
 import Button from "../../components/Button";
+import { RootState } from "../../store";
 
 export default function ExplorerMenus() {
   const navigator = useNavigate();
   const location = useLocation();
   const dispatch = useDispatch();
+  const explorerFixed = useSelector((state: RootState) => state.pageAnimate.explorerFixed);
   const [menuList] = useState(EXPLORER_PAGE_LIST);
   const handleClick = (e: ExplorerPageItem) => {
     dispatch(setAnimate(""));
-    const t = setTimeout(() => {
-      navigator(e.path);
-      clearTimeout(t);
-    });
+    navigator(e.path);
   };
   const [show, setShow] = useState(false);
   const root = document.getElementsByTagName("body");
@@ -58,9 +57,9 @@ export default function ExplorerMenus() {
           </Button>
         </div>
         <div
-          className={`${
-            show ? "block" : "hidden"
-          } fixed left-0 right-0 top-112px bg-#0D0316 bottom-0 z-99`}
+          className={`${show ? "block" : "hidden"} fixed left-0 right-0 ${
+            explorerFixed ? "top-62px" : "top-132px"
+          } bg-#0D0316 bottom-0 z-99`}
         >
           {menuList.map((item) => (
             <div

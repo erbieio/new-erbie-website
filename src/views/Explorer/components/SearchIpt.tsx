@@ -51,11 +51,10 @@ export default function SearchIpt(props: SearchIptProps) {
     }
   };
   return (
-    <div>
-      {messageContext}
       <div
         className={`search-box flex ${focus ? "focus" : ""} ${props.className}`}
       >
+        {messageContext}
         <input
           className={`font-size-12px lg:font-size-16px color-white`}
           placeholder="Search by Address/ Txn Hash/ Block"
@@ -71,6 +70,5 @@ export default function SearchIpt(props: SearchIptProps) {
           alt=""
         />
       </div>
-    </div>
   );
 }

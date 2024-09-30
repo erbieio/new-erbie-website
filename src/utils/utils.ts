@@ -55,11 +55,46 @@ export function toFixed(
   val: string | number,
   FIXED_LEN = ERBIE_COIN_FIXED_LENGTH
 ) {
-  if (!val) return 0;
-  let muVal = "1";
-  for (let i = 0; i < FIXED_LEN; i++) {
-    muVal += "0";
+  // if (!val) return 0;
+  // let muVal = "1";
+  // for (let i = 0; i < FIXED_LEN; i++) {
+  //   muVal += "0";
+  // }
+  // const intMuVal = Number(muVal);
+  // return Math.floor(Number(val) * intMuVal) / intMuVal;
+  // 检查val是否为字符串
+  // if (typeof val !== "string") {
+  //   throw new TypeError("val参数必须是字符串类型");
+  // }
+  const newVal = String(val)
+
+  // 检查len是否为正整数
+  if (
+    typeof FIXED_LEN !== "number" ||
+    FIXED_LEN < 0 ||
+    !Number.isInteger(FIXED_LEN)
+  ) {
+    throw new TypeError("len参数必须是正整数");
   }
-  const intMuVal = Number(muVal);
-  return Math.floor(Number(val) * intMuVal) / intMuVal;
+
+  // 找到小数点的位置
+  const dotIndex = newVal.indexOf(".");
+
+  // 如果没有小数点，则直接返回原字符串
+  if (dotIndex === -1) {
+    return val;
+  }
+
+  // 获取小数点后的字符串
+  const decimalPart = newVal.substring(dotIndex + 1);
+
+  // 如果小数点后的位数没有超过len，则直接返回原字符串
+  if (decimalPart.length <= FIXED_LEN) {
+    return newVal;
+  }
+
+  // 如果超过了，则截取小数点后len位，并拼接回原字符串
+  const integerPart = newVal.substring(0, dotIndex + 1); // 整数部分加上小数点
+  const truncatedDecimalPart = decimalPart.substring(0, FIXED_LEN); // 截取后的小数部分
+  return integerPart + truncatedDecimalPart;
 }

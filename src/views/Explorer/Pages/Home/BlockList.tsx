@@ -8,7 +8,6 @@ import {
   get_block_reward,
 } from "../../../../api/modules/explorer";
 import {
-  Pagination,
   type PaginationProps,
   Popover,
   Table,
@@ -17,16 +16,13 @@ import {
 import { addressDots, formatDate } from "../../../../utils/common";
 import TableFold from "./TableFold";
 import useRouter from "../../../../hooks/useRouter";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 
 export default function BlockList() {
   const [list, setList] = useState<Array<BlockItem>>([]);
   const [totalPage, setTotalPage] = useState(0);
-  const [page, setPage] = useState(1);
   const [loading, setLoading] = useState(false);
   const { toAccountDetail, toBlockDetail } = useRouter();
-  const systemInfo = getSystemInfo();
-
   const params = useRef({
     page: 1,
     page_size: 10,
@@ -58,7 +54,6 @@ export default function BlockList() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
   const handleChangePage: PaginationProps["onChange"] = (page) => {
-    setPage(page);
     params.current.page = page;
     handleGetBlockPage(params.current);
   };
@@ -174,21 +169,13 @@ export default function BlockList() {
   ];
   return (
     <div className="block-list h-100%">
-      <div className="font-size-16px text-left py-10px px-10px lg:px-16px tit items-center justify-between flex flex-row lg:flex-row lg:h-6.4vh">
-        <div className="items-center h-100%  hidden lg:flex">Block List</div>
-        <div className="items-center h-100%  flex lg:hidden">Blocks</div>
-        <div className="flex items-center page-box">
-          <Pagination
-            current={page}
-            pageSize={10}
-            total={totalPage}
-            showQuickJumper={systemInfo.isMobile ? true : false}
-            simple={systemInfo.isMobile ? true : false}
-            onChange={handleChangePage}
-            pageSizeOptions={[]}
-          />
-        </div>
-      </div>
+      <TableHeader
+        titleH5="Blocks"
+        titlePC="Block List"
+        total={totalPage}
+        onChange={handleChangePage}
+        params={params}
+      />
       <div className="scrollbar-x overflow-x-scroll h-90%">
         <Table
           columns={columns}

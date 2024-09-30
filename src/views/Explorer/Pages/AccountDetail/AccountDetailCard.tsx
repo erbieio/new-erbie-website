@@ -7,6 +7,7 @@ import { Skeleton, message } from "antd";
 import { CopyToClipboard } from "react-copy-to-clipboard";
 import { formatEther } from "ethers";
 import { toFixed } from "../../../../utils/utils";
+import Copy from "../../../../components/Copy";
 export interface TAccountDetailCardProps {
   loading: boolean;
   data: GetAccountDetailResponse | undefined;
@@ -40,19 +41,9 @@ export default function AccountDetailCard(props: TAccountDetailCardProps) {
         <div className="color-#D387FF font-size-16px font-bold text-left px-16px pt-10px lg:pt-0">
           Account Detail
         </div>
-        <div className="link color-blue mb-2vh mt-1vh font-size-12px text-left px-16px flex justify-between">
-          <span> {addressDots(addr)} </span>{" "}
-          <CopyToClipboard
-            text={addr}
-            onCopy={() =>
-              message.open({
-                content: "Copied to clipboard",
-                type: "success",
-              })
-            }
-          >
-            <i className="i-ep-copy-document color-white font-size-18px"></i>
-          </CopyToClipboard>
+        <div className="link mb-2vh mt-1vh font-size-12px text-left px-16px flex justify-between">
+          <span className="color-blue "> {addressDots(addr)} </span>{" "}
+          <Copy text={addr} />
         </div>
         <div className="px-16px">
           <Skeleton loading={props.loading} active paragraph={{ rows: 6 }}>

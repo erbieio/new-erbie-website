@@ -1,4 +1,4 @@
-import { Pagination, Table, TableColumnsType } from "antd";
+import { Table, TableColumnsType } from "antd";
 import { useEffect, useMemo, useRef, useState } from "react";
 import BlockDetailCard from "./BlockDetailCard";
 import DetailsCard from "./DetailCard";
@@ -26,11 +26,9 @@ import { useParams } from "react-router-dom";
 import PunishmentDetailCard from "./PunishmentDetailCard";
 import RewardListCard from "./RewardListCard";
 import DelegateAccounts from "./DelegateAccounts";
-import { getSystemInfo } from "../../../../utils/system";
+import TableHeader from "../../components/TableHeader";
 export default function BlockDetail() {
   const params = useParams<{ blockNumber: string }>();
-  const systemInfo = getSystemInfo();
-
   const pageParams = useRef<GetTransactionPageParams>({
     page: 1,
     page_size: 11,
@@ -242,22 +240,13 @@ export default function BlockDetail() {
         )}
       </div>
       <div className="flex-1 lg:ml-20px table-box mt-14px lg:mt-0">
-        <div className="text-left px-10px py-8px lh-4vh flex flex-row items-center justify-between w-100%">
-          <div className="font-size-16px hidden lg:block">
-            TRANSACTIONS LIST
-          </div>
-          <div className="font-size-16px block lg:hidden">TRANSACTIONS</div>
-          <div>
-            <Pagination
-              current={pageParams.current.page}
-              pageSize={pageParams.current.page_size}
-              total={listPage?.total || 0}
-              onChange={handleChangePage}
-              showQuickJumper={systemInfo.isMobile ? true : false}
-              simple={systemInfo.isMobile ? true : false}
-            />
-          </div>
-        </div>
+        <TableHeader
+          titleH5="TRANSACTIONS"
+          titlePC="TRANSACTIONS LIST"
+          params={pageParams}
+          total={listPage?.total || 0}
+          onChange={handleChangePage}
+        />
         <div className=" overflow-x-scroll scrollbar-x h-100% lg:h-60vh">
           <Table
             columns={columns}

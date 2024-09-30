@@ -6,6 +6,7 @@ import { CanvasRenderer } from "echarts/renderers";
 import { useEffect, useRef } from "react";
 import { GetStatsResponse } from "../../../../api/modules/explorer";
 import { debounce } from "../../../../utils/common";
+import { toFixed } from "../../../../utils/utils";
 
 echarts.use([
   TooltipComponent,
@@ -27,6 +28,19 @@ export default function TransitionChart(props: TransactionChartProps) {
     }
     if (myRef.current && props.data) {
       myChart = echarts.init(myRef.current);
+      const erbieTotal = props.data.totalErbieTx;
+      const contracTotal =
+        props.data.totalTransaction -
+        props.data.totalErbieTx -
+        props.data.totalTransferTx;
+      const regTotal = props.data.totalTransferTx;
+      const erbieRate = Number(
+        toFixed(erbieTotal / props.data.totalTransaction, 2)
+      ) * 100;
+      const contractRate = Number(
+        toFixed(contracTotal / props.data.totalTransaction, 2)
+      ) * 100;
+      const regRate = Number(toFixed(regTotal / props.data.totalTransaction, 2)) * 100;
       const option = {
         tooltip: {
           trigger: "item",
@@ -52,7 +66,7 @@ export default function TransitionChart(props: TransactionChartProps) {
             data: [
               {
                 value: props.data.totalErbieTx,
-                name: "Erbie Transactions",
+                name: "Erbie Transactions" + ` (${erbieRate}%)`,
                 itemStyle: { color: "#740091" },
               },
               {
@@ -60,12 +74,12 @@ export default function TransitionChart(props: TransactionChartProps) {
                   props.data.totalTransaction -
                   props.data.totalErbieTx -
                   props.data.totalTransferTx,
-                name: "Contract Transactions",
+                name: "Contract Transactions" + ` (${contractRate}%)`,
                 itemStyle: { color: "#393552" },
               },
               {
                 value: props.data.totalTransferTx,
-                name: "Regular Way",
+                name: "Regular Way" + ` (${regRate}%)`,
                 itemStyle: { color: "#4A336B" },
               },
             ],

@@ -1,6 +1,6 @@
 /* eslint-disable react-refresh/only-export-components */
 
-import { createBrowserRouter } from 'react-router-dom';
+import { createBrowserRouter } from "react-router-dom";
 
 import App from "../App.tsx";
 import LazyLoad from "./LazyLoad.tsx";
@@ -19,7 +19,7 @@ const Builder = lazy(
   () => import("../views/Explorer/Pages/Builder/Builder.tsx")
 );
 const Csbt = lazy(() => import("../views/Explorer/Pages/Csbt/Csbt.tsx"));
-const Asset = lazy(() => import("../views/Explorer/Pages/Asset/Asset.tsx"));
+const Token = lazy(() => import("../views/Explorer/Pages/Token/Token.tsx"));
 const Account = lazy(
   () => import("../views/Explorer/Pages/Account/Account.tsx")
 );
@@ -36,7 +36,7 @@ const TxDetail = lazy(
   () => import("../views/Explorer/Pages/TxDetail/TxDetail.tsx")
 );
 const TokenDetail = lazy(
-  () => import("../views/Explorer/Pages/Token/Token.tsx")
+  () => import("../views/Explorer/Pages/Token/TokenDetail.tsx")
 );
 const PrivacyPolicy = lazy(() => import("../views/Agreement/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("../views/Agreement/TermsOfUse"));
@@ -80,8 +80,12 @@ const router = createBrowserRouter([
             element: LazyLoad(Csbt),
           },
           {
-            path: "/explorer/asset",
-            element: LazyLoad(Asset),
+            path: "/explorer/token",
+            element: LazyLoad(Token),
+          },
+          {
+            path: "/explorer/token/:tokenAddress",
+            element: LazyLoad(TokenDetail),
           },
           {
             path: "/explorer/account",
@@ -102,10 +106,6 @@ const router = createBrowserRouter([
           {
             path: "/explorer/tx/:txhash",
             element: LazyLoad(TxDetail),
-          },
-          {
-            path: "/explorer/token/:tokenAddress",
-            element: LazyLoad(TokenDetail),
           },
         ],
       },
