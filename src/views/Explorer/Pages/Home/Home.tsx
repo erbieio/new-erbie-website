@@ -1,6 +1,6 @@
 import HomeCard from "./HomeCard";
 import { useEffect, useState } from "react";
-
+import './Home.scss'
 import OnlineCard from "./OnlineCard";
 import BlockList from "./BlockList";
 import {
@@ -37,7 +37,7 @@ export default function Home() {
       <div className=" flex flex-col lg:flex-row w-100%">
         <div className="lg:mr-30px flex-1 flex flex-col justify-evenly">
           <div className="hidden lg:block">
-            <div className="flex flex-wrap lg:flex-nowrap lg:border-l-style-solid border-color-white border-l-width-1px">
+            <div className="flex flex-wrap lg:flex-nowrap lg:border-l-style-solid box-left-border border-l-width-1px">
               <HomeCard
                 label="Block Height"
                 value={stats && stats.totalBlock ? stats.totalBlock - 1 : 0}
@@ -120,7 +120,7 @@ export default function Home() {
           </div>
         </div>
         <div className="flex-1 right-box w-100%">
-          <div className="hidden lg:flex border-l-style-solid border-color-white border-l-width-1px">
+          <div className="hidden lg:flex border-l-style-solid box-left-border border-l-width-1px">
             <HomeCard
               label="Total Transactions"
               value={`${

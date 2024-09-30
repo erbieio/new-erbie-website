@@ -7,15 +7,12 @@
         --at-apply: border-b-1px border-b-solid border-b-#52405E px-16px lh-4vh;
         box-sizing: border-box;
 
-        // &:nth-last-of-type(1) {
-        //     --at-apply: border-none;
-        // }
     }
 
     .menu-item {
-
         background: rgba(56, 55, 82, 0.60);
         transition: ease .3s;
+        border-color: rgba($color: #fff, $alpha: .3);
 
         &.select {
             border: 1px solid #D87CEE;

@@ -1,7 +1,8 @@
 .page-token {
     .menu-btn {
-        --at-apply: font-size-12px h-40px lg:h-48px lg:font-size-14px border-1px border-style-solid border-color-#fff flex items-center justify-center w-47.6% lg:w-120px cursor-pointer flex-auto;
+        --at-apply: font-size-12px h-40px lg:h-48px lg:font-size-14px border-1px border-style-solid flex items-center justify-center w-47.6% lg:w-140px cursor-pointer flex-auto;
         background: rgba(56, 55, 82, 0.60);
+        border-color: rgba($color: #fff, $alpha: 0.3);
 
         &.active {
             transition: ease .3s;

@@ -11,7 +11,7 @@ export default function WalletCard(props: WalletCardProps) {
   return (
     <div
       onClick={props.onClick}
-      className={`wallet-card select-none flex justify-center items-center min-w-100% lg:min-w-463px h-160px lg:h-32vh border-style-solid border-color-#fff border-width-1px cursor-pointer ${props.className}`}
+      className={`wallet-card select-none flex justify-center items-center min-w-100% lg:min-w-463px h-160px lg:h-32vh border-style-solid border-width-1px cursor-pointer ${props.className}`}
     >
       <div className="flex w-100% relative py-20px">
         <div className="flex-full px-20px lg:px-40px text-left">

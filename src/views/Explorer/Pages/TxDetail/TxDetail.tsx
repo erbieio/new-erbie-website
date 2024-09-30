@@ -176,7 +176,7 @@ export default function TxDetail() {
           <div
             onClick={() => handleMenuClick(item)}
             className={`lh-5vh border-1px border-solid  lg:w-256px cursor-pointer menu-item px-10px ${
-              item.select ? "select" : "color-white border-#eee"
+              item.select ? "select" : "color-white"
             }`}
             key={item.value}
           >

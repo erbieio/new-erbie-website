@@ -1,14 +1,14 @@
 import { Pagination, PaginationProps } from "antd";
 import { getSystemInfo } from "../../../utils/system";
-import { MutableRefObject, useRef } from "react";
+import { MutableRefObject, ReactNode, useRef } from "react";
 export interface TableHeaderProps {
   params: MutableRefObject<{
     page: number;
     page_size: number;
   }>;
-  titlePC?: string;
-  titleH5?: string;
-  title?: string;
+  titlePC?: ReactNode;
+  titleH5?: ReactNode;
+  title?: ReactNode;
   onChange: PaginationProps["onChange"];
   total: number;
 }

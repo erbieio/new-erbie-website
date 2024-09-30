@@ -15,6 +15,7 @@ import {
   GetContractType,
 } from "../../../../api/modules/explorer";
 import { Skeleton } from "antd";
+import ComingSoon from "../../../../components/ComingSoon";
 export interface TokenMenu {
   label: string;
   value: GetContractType;
@@ -31,6 +32,11 @@ export default function Token() {
     {
       label: "NFTs",
       value: "1",
+      select: false,
+    },
+    {
+      label: "Deployment",
+      value: "2",
       select: false,
     },
   ]);
@@ -111,7 +117,7 @@ export default function Token() {
     <div className="page-token flex flex-col-reverse flex-col lg:flex-row lg:h-73vh gap-10px lg:gap-20px">
       <div className="flex w-100% lg:w-75% flex-col gap-8px lg:gap-20px">
         <div className="flex gap-10px lg:gap-16px h-48px">
-          <div className="tab-list flex gap-10px lg:gap-16px w-100% lg:w-30%">
+          <div className="tab-list flex gap-10px lg:gap-16px w-100% lg:w-40%">
             {list.map((item) => (
               <div
                 className={`menu-btn ${item.select && "active"}`}
@@ -128,10 +134,19 @@ export default function Token() {
         </div>
         <div className="list-con">
           <TableHeader
-            title={
-              selectMenu.value === "0"
-                ? "TOKENS INFORMATION"
-                : "NFTs INFORMATION"
+            titlePC={
+              <span>
+                {(selectMenu.value === "0" && "TOKENS INFORMATION") ||
+                  (selectMenu.value === "1" && "NFTs INFORMATION") ||
+                  (selectMenu.value === "2" && "Deployment INFORMATION")}
+              </span>
+            }
+            titleH5={
+              <span>
+                {(selectMenu.value === "0" && "TOKENS") ||
+                  (selectMenu.value === "1" && "NFTs") ||
+                  (selectMenu.value === "2" && "Deployment")}
+              </span>
             }
             params={params}
             total={data?.total || 0}
@@ -142,6 +157,11 @@ export default function Token() {
           )}
           {selectMenu.value === "1" && (
             <NftList dataSource={data?.contracts || []} loading={loading} />
+          )}
+          {selectMenu.value === "2" && (
+            <div className="flex justify-center items-center h-200px lg:h-80%">
+              <ComingSoon />
+            </div>
           )}
         </div>
       </div>

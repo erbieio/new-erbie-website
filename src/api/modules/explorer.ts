@@ -488,7 +488,7 @@ export const get_transaction_erbie_Hash = (
   return service.get(`${SCAN_API}/transaction/erbie/${hash}`);
 };
 
-export type GetContractType = "0" | "1";
+export type GetContractType = "0" | "1"| "2";
 export interface GetContractParams {
   page: number;
   page_size: number;

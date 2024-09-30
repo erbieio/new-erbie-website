@@ -1,0 +1,95 @@
+.page-partners {
+    min-height: 82vh;
+
+    .left-card {
+        --at-apply: w-100% lg:h-34vh rounded-12px lg:rounded-18px border-solid border-2px py-20px lg:py-0 px-12px lg:px-34px;
+        border-color: rgba($color: #D387FF, $alpha: .2);
+        transition: ease .3s;
+        background: linear-gradient(0deg, rgba(211, 135, 255, 0) 0%, rgba(211, 135, 255, 0.1) 100%);
+
+        &:hover {
+            border-color: rgba($color: #D387FF, $alpha: .3);
+            // background: linear-gradient(0deg, rgba(211, 135, 255, 0) 0%, rgba(211, 135, 255, 0.5) 100%);
+            background: rgba($color: #D387FF, $alpha: .25);
+        }
+    }
+
+    .right-card {
+        --at-apply: lg:rounded-18px;
+        border-color: rgba($color: #D387FF, $alpha: .2);
+        transition: ease .3s;
+        background: linear-gradient(0deg, rgba(211, 135, 255, .1) 10%, rgba(211, 135, 255, 0.1) 100%);
+
+
+
+        .right-list-card {
+            --at-apply: flex justify-between px-20px rounded-12px py-2vh lg:h-13.7vh;
+            background: rgba($color: #D387FF, $alpha: .1);
+
+            &:hover {
+                border-color: rgba($color: #D387FF, $alpha: .3);
+                // background: linear-gradient(0deg, rgba(211, 135, 255, 0) 0%, rgba(211, 135, 255, 0.5) 100%);
+                background: rgba($color: #D387FF, $alpha: .25);
+            }
+
+            .text-box {
+                --at-apply: px-20px lg:flex items-center;
+            }
+
+            .tit {
+                --at-apply: text-left;
+            }
+
+            .desc {
+                --at-apply: text-left font-size-14px;
+            }
+        }
+    }
+}
+
+@media (max-width: 1024px) {
+    .page-partners {
+        .mobile-box {
+            border-color: rgba($color: #D387FF, $alpha: .3);
+            --at-apply: p-16px rounded-12px border-2px border-solid rounded-12px;
+            background: linear-gradient(0deg, rgba(211, 135, 255, 0) 0%, rgba(211, 135, 255, 0.1) 100%);
+        }
+
+        .right-card {
+            --at-apply: border-2px border-solid rounded-12px mb-20px;
+            border-color: rgba($color: #D387FF, $alpha: .3);
+
+            background: linear-gradient(0deg, rgba(211, 135, 255, 0) 0%, rgba(211, 135, 255, 0.1) 100%);
+
+            .right-list-card {
+                background: none;
+                padding: 0;
+                width: 48%;
+                --at-apply: flex-col mb-20px pt-10px;
+
+                &:hover {
+                    background: none;
+                }
+
+                &>div {
+                    width: 100%;
+
+                    img {
+                        width: 80%;
+                    }
+                }
+
+                .text-box {
+                    .tit {
+                        text-align: center;
+                        margin-top: 8px;
+                    }
+
+                    .desc {
+                        display: none;
+                    }
+                }
+            }
+        }
+    }
+}

@@ -3,7 +3,7 @@ import { formatEther } from "ethers";
 import { addressDots } from "../../../../utils/common";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
-import './TokenList.scss'
+import "./TokenList.scss";
 import { GetContractItem } from "../../../../api/modules/explorer";
 interface StakerTableProps {
   dataSource: Array<GetContractItem>;
@@ -15,7 +15,7 @@ export default function TokenList(props: StakerTableProps) {
   const { toTokenDetail } = useRouter();
   // eslint-disable-next-line @typescript-eslint/ban-ts-comment
   // @ts-expect-error
-  const onChange: TableProps<GetStakerListItem>["onChange"] = (
+  const onChange: TableProps<GetContractItem>["onChange"] = (
     _pagination,
     _filters,
     sorter: SorterResult<GetContractItem>
@@ -32,11 +32,21 @@ export default function TokenList(props: StakerTableProps) {
   };
   const columns: TableColumnsType<GetContractItem> = [
     {
-      title: "Token Name",
+      title: <div className="whitespace-nowrap">Token Name</div>,
       align: "center",
       key: "contract_name",
       render(v) {
-        return <div className="">{v.token_name || "-"}</div>;
+        return (
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => {
+              localStorage.setItem("tokenType", v.contract_type);
+              toTokenDetail(v.contract_address);
+            }}
+          >
+            {v.token_name || "-"}
+          </div>
+        );
       },
     },
     {
@@ -44,9 +54,7 @@ export default function TokenList(props: StakerTableProps) {
       align: "center",
       key: "contract_type",
       render(v) {
-        return (
-          <div className="">{v.contract_type}</div>
-        );
+        return <div className="">{v.contract_type}</div>;
       },
     },
     {
@@ -59,12 +67,12 @@ export default function TokenList(props: StakerTableProps) {
             className="link hover:color-#1677ff"
             onClick={() => {
               localStorage.setItem("tokenType", v.contract_type);
-              toTokenDetail(v.contract_address);
+              toTokenDetail(v.contract_address + `?index=2`);
             }}
           >
-            {addressDots(v.contract_address, 10,10)}
+            {addressDots(v.contract_address, 10, 10)}
           </div>
-        ); 
+        );
       },
     },
     {

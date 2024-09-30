@@ -1,6 +1,8 @@
 .page-explorer {
     min-height: calc(100vh - 18vh);
-
+    .fixed-box>div {
+        width: 100%;
+    }
 }
 
 @media (max-width: 768px) {

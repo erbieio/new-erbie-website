@@ -34,13 +34,18 @@ export default function TransitionChart(props: TransactionChartProps) {
         props.data.totalErbieTx -
         props.data.totalTransferTx;
       const regTotal = props.data.totalTransferTx;
-      const erbieRate = Number(
-        toFixed(erbieTotal / props.data.totalTransaction, 2)
-      ) * 100;
-      const contractRate = Number(
-        toFixed(contracTotal / props.data.totalTransaction, 2)
-      ) * 100;
-      const regRate = Number(toFixed(regTotal / props.data.totalTransaction, 2)) * 100;
+      const erbieRate = toFixed(
+        Number(erbieTotal / props.data.totalTransaction) * 100,
+        2
+      );
+      const contractRate = toFixed(
+        Number(contracTotal / props.data.totalTransaction) * 100,
+        2
+      );
+      const regRate = toFixed(
+        Number(regTotal / props.data.totalTransaction) * 100,
+        2
+      );
       const option = {
         tooltip: {
           trigger: "item",

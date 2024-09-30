@@ -1,40 +1,47 @@
-export const PAGE_LIST:Array<PageItem> = [
+export const PAGE_LIST: Array<PageItem> = [
   {
     path: "/",
     index: 0,
     name: "",
-    next:'/infrastructure',
-    prev: null
+    next: "/infrastructure",
+    prev: null,
   },
   {
     path: "/infrastructure",
     index: 0,
     name: "Infrastructure",
-    next:'/docs',
-    prev: '/'
+    next: "/docs",
+    prev: "/",
   },
   {
     path: "/docs",
     index: 1,
     name: "Documents",
-    next:'/wallet',
-    prev: '/infrastructure'
+    next: "/partners",
+    prev: "/infrastructure",
   },
   {
-    path: "/wallet",
+    path: "/partners",
     index: 2,
-    name: "Wallet",
-    next: '/explorer',
-    prev: '/docs'
+    name: "Partners",
+    next: "/explorer",
+    prev: "/docs",
   },
   {
     path: "/explorer",
     index: 3,
     name: "Explorer",
-    next: null,
-    prev: '/wallet'
+    next: "/wallet",
+    prev: "/partners",
   },
 
+  {
+    path: "/wallet",
+    index: 4,
+    name: "Wallet",
+    next: null,
+    prev: "/explorer",
+  },
 ];
 
 export interface PageItem{

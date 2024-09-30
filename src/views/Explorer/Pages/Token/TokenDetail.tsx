@@ -3,7 +3,7 @@ import DetailCard from "./DetailCard";
 import "./TokenDetail.scss";
 // import SourceCode from "./SocureCode";
 import HolderList from "./HolderList";
-import { useParams } from "react-router-dom";
+import { useParams, useSearchParams } from "react-router-dom";
 import {
   get_contract_holders_page,
   GetContractHoldersByAddrResponse,
@@ -24,6 +24,7 @@ export interface MenuItem {
 }
 const TokenDetail = () => {
   const params = useParams<{ tokenAddress: string }>();
+  const [search] = useSearchParams();
   const [token, setToken] = useState<GetContractItem>();
   const [list, setList] = useState<MenuItem[]>([
     {
@@ -42,11 +43,12 @@ const TokenDetail = () => {
       select: false,
     },
   ]);
+  const index = search.get("index");
+
   const selectMenu = useMemo(() => {
     return list.find((item) => item.select)!;
   }, [list]);
   const handleClickMenu = (e: MenuItem) => {
-    
     const arr = list.map((e) => e);
     arr.forEach((item) => {
       if (item.value === e.value) {
@@ -70,36 +72,36 @@ const TokenDetail = () => {
     addr: "",
   });
   const [txs, setTxs] = useState<GetContractTxsByAddrResponse>();
-  const [loading, setLoading] = useState(false)
+  const [loading, setLoading] = useState(false);
   const handleGeTxs = async () => {
     try {
       setLoading(true);
-    const data = await get_contract_tx_page(searchParams.current);
-    setTxs(data);
+      const data = await get_contract_tx_page(searchParams.current);
+      setTxs(data);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
-  const [holders, setHolders] = useState<GetContractHoldersByAddrResponse>()
+  const [holders, setHolders] = useState<GetContractHoldersByAddrResponse>();
   const handleGetHolders = async () => {
     try {
       setLoading(true);
-    const data = await get_contract_holders_page(searchParams.current);
-    setHolders(data);
+      const data = await get_contract_holders_page(searchParams.current);
+      setHolders(data);
     } finally {
-      setLoading(false)
+      setLoading(false);
     }
   };
   const handleChange = (page: number) => {
-    searchParams.current.page = page
-    const e = list.find(item => item.select)
+    searchParams.current.page = page;
+    const e = list.find((item) => item.select);
     if (e?.value === 0) {
       handleGeTxs();
     }
     if (e?.value === 1) {
       handleGetHolders();
     }
-  }
+  };
   useEffect(() => {
     if (params.tokenAddress) {
       searchParams.current.addr = params.tokenAddress;
@@ -108,7 +110,16 @@ const TokenDetail = () => {
   }, [params.tokenAddress]);
   useEffect(() => {
     handleGeTxs();
-  },[]);
+    if (index) {
+      list.forEach((item) => {
+        if (Number(index) === item.value) {
+          handleClickMenu(item);
+        }
+      });
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
   return (
     <div className="token-detail flex flex-col lg:flex-row lg:h-73vh gap-20px">
       <div className="w-100% lg:w-285px mt-16px lg:mt-0">

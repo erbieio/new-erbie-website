@@ -34,7 +34,17 @@ export default function TokenList(props: StakerTableProps) {
       title: "Token Name",
       align: "center",
       render(v) {
-        return <div className="">{v.token_name || "-"}</div>;
+        return (
+          <div
+            className="link hover:color-#1677ff"
+            onClick={() => {
+              localStorage.setItem("tokenType", v.contract_type);
+              toTokenDetail(v.contract_address);
+            }}
+          >
+            {v.token_name || "-"}
+          </div>
+        );
       },
     },
     {
@@ -54,7 +64,7 @@ export default function TokenList(props: StakerTableProps) {
             className="link hover:color-#1677ff"
             onClick={() => {
               localStorage.setItem("tokenType", v.contract_type);
-              toTokenDetail(v.contract_address);
+              toTokenDetail(v.contract_address + `?index=2`);
             }}
           >
             {addressDots(v.contract_address, 10, 10)}

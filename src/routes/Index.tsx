@@ -7,6 +7,7 @@ import LazyLoad from "./LazyLoad.tsx";
 import { lazy } from "react";
 import Home from "../views/Home/Home.tsx";
 import Docs from "../views/Docs/Docs.tsx";
+import Partners from '../views/Partners/Partners.tsx'
 import Explorer from "../views/Explorer/Explorer.tsx";
 import ExplorerHome from "../views/Explorer/Pages/Home/Home.tsx";
 import Infrastructure from "../views/Infrastructure/Infrastructure.tsx";
@@ -58,6 +59,10 @@ const router = createBrowserRouter([
       {
         path: "/docs",
         element: <Docs />,
+      },
+      {
+        path: "/partners",
+        element: <Partners />,
       },
       {
         path: "/explorer",

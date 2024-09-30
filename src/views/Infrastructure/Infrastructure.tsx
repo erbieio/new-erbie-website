@@ -7,7 +7,7 @@ export default function Infrastructure() {
   return (
     <div className="page-infrastructure flex items-center justify-center">
       <div className="flex flex-col lg:flex-row">
-        <div className="bg-box mb-20px py-15px px-30px lg:mb-0 w-100% flex justify-center items-center lg:w-55% h-275px lg:min-h-70vh border-white border-solid border-1px rounded-20px">
+        <div className="bg-box mb-20px py-15px px-30px lg:mb-0 w-100% flex justify-center items-center lg:w-55% h-275px lg:min-h-70vh  border-solid border-1px rounded-20px">
           <video autoPlay={true} className="h-100% w-100%" muted loop>
             <source src={video}></source>
           </video>
