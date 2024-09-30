@@ -13,6 +13,7 @@ import ExplorerHome from "../views/Explorer/Pages/Home/Home.tsx";
 import Infrastructure from "../views/Infrastructure/Infrastructure.tsx";
 import Wallet from "../views/Wallet/Wallet.tsx";
 
+
 const Error = lazy(() => import("../views/Error/Error.tsx"));
 // const Wallet = lazy(() => import("../views/Wallet/Wallet.tsx"));
 const Chain = lazy(() => import("../views/Explorer/Pages/Chain/Chain.tsx"));
@@ -20,7 +21,8 @@ const Builder = lazy(
   () => import("../views/Explorer/Pages/Builder/Builder.tsx")
 );
 const Csbt = lazy(() => import("../views/Explorer/Pages/Csbt/Csbt.tsx"));
-const Token = lazy(() => import("../views/Explorer/Pages/Token/Token.tsx"));
+// const Token = lazy(() => import("../views/Explorer/Pages/Token/Token.tsx"));
+const Assets = lazy(() => import("../views/Explorer/Pages/Assets/Assets.tsx"));
 const Account = lazy(
   () => import("../views/Explorer/Pages/Account/Account.tsx")
 );
@@ -86,7 +88,7 @@ const router = createBrowserRouter([
           },
           {
             path: "/explorer/token",
-            element: LazyLoad(Token),
+            element: LazyLoad(Assets),
           },
           {
             path: "/explorer/token/:tokenAddress",

@@ -1,0 +1,1 @@
+import{j as e}from"./react-CBAF3Uyv.js";function o(){return e.jsx("div",{className:"coming-soon flex justify-center items-center",children:e.jsx("div",{children:e.jsx("div",{className:"text-center font-size-32px font-bold",children:"Coming Soon"})})})}export{o as C};

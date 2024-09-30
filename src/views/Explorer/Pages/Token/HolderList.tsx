@@ -54,7 +54,7 @@ export default function HolderList(props: HolderListTableProps) {
       render(v) {
         return (
           toFixed(
-            (Number(v.quantity) / Number(props.totalAmount))
+            ((Number(v.quantity) / Number(props.totalAmount)) * 100)
               .toFixed(6)
               .toString(),
             6

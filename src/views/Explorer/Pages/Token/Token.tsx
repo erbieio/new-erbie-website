@@ -51,7 +51,7 @@ export default function Token() {
       }
     });
     setList(arr);
-    params.current.page = 0;
+    params.current.page = 1;
     getData();
   };
 
