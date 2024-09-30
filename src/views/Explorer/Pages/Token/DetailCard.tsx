@@ -1,17 +1,29 @@
 import "./DetailCard.scss";
-import tokenIcon from "../../../../assets/token/token.svg";
 import Copy from "../../../../components/Copy";
-import { GetContractItem } from "../../../../api/modules/explorer";
+import { GetContractItem, get_contract_transfer_num } from '../../../../api/modules/explorer';
 import { addressDots } from "../../../../utils/common";
 import useRouter from "../../../../hooks/useRouter";
 import { formatEther } from "ethers";
+import TokenIcon from "./TokenIcon";
+import { useEffect, useState } from "react";
 const DetailCard = (props: { data: GetContractItem | undefined }) => {
-  const {toAccountDetail} = useRouter()
+  const { toAccountDetail } = useRouter()
+  const [total, setTotal] = useState(0)
+  const handleGetTransfer = async (addr: string) => {
+    const res = await get_contract_transfer_num(addr)
+    setTotal(res)
+  }
+  useEffect(() => {
+    if (props.data?.contract_address) {
+          handleGetTransfer(props.data.contract_address);
+    }
+
+  }, [props.data?.contract_address])
   return (
-    <div className="token-detail-card pt-16px lg:pt-6vh text-left">
+    <div className="token-detail-card pt-16px lg:pt-5vh text-left">
       <div className="title">Token Detail</div>
       <div className="mt-16px flex items-center gap-8px font-bold px-18px">
-        <img src={tokenIcon} alt="" />
+        <TokenIcon name={props.data?.token_name} />
         <span className="color-white">{props.data?.token_name}</span>
         <span className="color-#999">{props.data?.symbol}</span>
       </div>
@@ -36,14 +48,17 @@ const DetailCard = (props: { data: GetContractItem | undefined }) => {
         <div className="line-card">
           <span>Supply</span>
           <div>
-            {props.data?.total_supply
-              ? formatEther(props.data.total_supply)
-              : "0"}
+            {props.data?.contract_type === "ERC20" && props.data?.total_supply
+              ? Number(formatEther(BigInt(props.data.total_supply).toString()))
+              : ""}
+            {props.data?.contract_type !== "ERC20" && props.data?.total_supply
+              ? Number(props.data.total_supply)
+              : ""}
           </div>
         </div>
         <div className="line-card">
           <span>Transfers</span>
-          <div>-</div>
+          <div>{total || '-'}</div>
         </div>
         <div className="line-card">
           <span>Holders</span>
@@ -58,8 +73,12 @@ const DetailCard = (props: { data: GetContractItem | undefined }) => {
             {props.data ? addressDots(props.data.contract_address, 10, 10) : ""}
           </span>
           <div>
-            <Copy text="123123" />
+            <Copy text={props.data?.contract_address || ""} />
           </div>
+        </div>
+        <div className="line-card">
+          <span>Verified</span>
+          <div>{props.data?.verified ? "Yes" : "No"}</div>
         </div>
         <div className="line-card">
           <span>Calls</span>

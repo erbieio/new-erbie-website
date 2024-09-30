@@ -1,7 +1,7 @@
 import { useEffect, useMemo, useRef, useState } from "react";
 import DetailCard from "./DetailCard";
 import "./TokenDetail.scss";
-import SourceCode from "./SocureCode";
+// import SourceCode from "./SocureCode";
 import HolderList from "./HolderList";
 import { useParams } from "react-router-dom";
 import {
@@ -16,6 +16,7 @@ import {
   GetContractItem,
 } from "../../../../api/modules/explorer";
 import TxList from "../Transct/TxList";
+import ComingSoon from "../../../../components/ComingSoon";
 export interface MenuItem {
   label: string;
   value: number;
@@ -147,7 +148,12 @@ const TokenDetail = () => {
               totalAmount={holders?.total_amount || "0"}
             />
           )}
-          {selectMenu.value === 2 && <SourceCode />}
+          {/* {selectMenu.value === 2 && <SourceCode />} */}
+          {selectMenu.value === 2 && (
+            <div className="flex h-100% items-center justify-center">
+              <ComingSoon />
+            </div>
+          )}
         </div>
       </div>
     </div>

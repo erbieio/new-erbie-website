@@ -589,3 +589,43 @@ export const get_contract_tx_page = (
 ): Promise<GetContractTxsByAddrResponse> => {
   return service.get(`${SCAN_API}/contract_tx/page`, { params });
 };
+
+// 查24小时账户增长率
+export const get_account_growth_rate = (
+): Promise<number> => {
+  return service.get(`${SCAN_API}/account/growth_rate`);
+};
+
+// 查24小时交易增长率 
+export const get_txs_growth_rate = (): Promise<number> => {
+  return service.get(`${SCAN_API}/transaction/growth_rate`);
+};
+
+// 查询全网总账户数 
+export const get_total_accounts = (): Promise<number> => {
+  return service.get(`${SCAN_API}/account/total_num`);
+};
+
+// 查询全网token总数 
+export const get_account_total = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/token_total_num`);
+};
+
+// 查询nft全网总数 /contract/nft_total_num
+export const get_nft_total_num = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/nft_total_num`);
+};
+
+// 查询全网合约总数 /contract/total_num
+export const get_contract_total_num = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/total_num`);
+};
+// 查询全网合约调用次数  /contract_tx/total_num
+export const get_contract_tx_total_num = (): Promise<number> => {
+  return service.get(`${SCAN_API}/contract_tx/total_num`);
+};
+
+//  查询合约的 transfers  
+export const get_contract_transfer_num = (addr: string): Promise<number> => {
+  return service.get(`${SCAN_API}/contract/transfer_num/${addr}`);
+};

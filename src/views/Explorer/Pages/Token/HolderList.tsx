@@ -6,7 +6,9 @@ import "./TokenList.scss";
 import { MutableRefObject } from "react";
 import TableHeader from "../../components/TableHeader";
 import { PageNationProps } from "../../../../components/PageNation";
-import { toFixed } from "../../../../utils/utils";
+import { toFixed } from '../../../../utils/utils';
+import { formatEther } from "ethers";
+
 interface HolderListTableProps {
   dataSource: Array<GetContractHoldersByAddrItem>;
   sorter?: (order: string) => void;
@@ -19,6 +21,7 @@ interface HolderListTableProps {
 
 export default function HolderList(props: HolderListTableProps) {
   const { toAccountDetail } = useRouter();
+  const tokenType = localStorage.getItem("tokenType");
   const columns: TableColumnsType<GetContractHoldersByAddrItem> = [
     {
       title: "Holder Address",
@@ -29,7 +32,7 @@ export default function HolderList(props: HolderListTableProps) {
             className="link hover:color-#1677ff"
             onClick={() => toAccountDetail(v.address)}
           >
-            {addressDots(v.address, 10, 10)}
+            {addressDots(v.address, 12, 12)}
           </div>
         );
       },
@@ -38,7 +41,10 @@ export default function HolderList(props: HolderListTableProps) {
       title: "Quantity",
       align: "center",
       render(v) {
-        return v.quantity;
+        console.log(toFixed(formatEther(BigInt(v.quantity).toString()),4));
+        return tokenType === "ERC20"
+          ? toFixed(formatEther(BigInt(v.quantity).toString()),4)
+          : v.quantity;
       },
     },
     {
@@ -46,7 +52,14 @@ export default function HolderList(props: HolderListTableProps) {
       align: "center",
       key: "amount",
       render(v) {
-        return toFixed(v.quantity / Number(props.totalAmount),4) + "%";
+        return (
+          toFixed(
+            (Number(v.quantity) / Number(props.totalAmount))
+              .toFixed(6)
+              .toString(),
+            6
+          ) + "%"
+        );
       },
     },
   ];

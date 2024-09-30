@@ -13,6 +13,8 @@ import {
   get_stats,
   get_24h_accounts,
   Get24hTxsResponse,
+  get_account_growth_rate,
+  get_total_accounts,
 } from "../../../../api/modules/explorer";
 import { Table, TableColumnsType, TableProps } from "antd";
 import { addressDots } from "../../../../utils/common";
@@ -167,10 +169,24 @@ export default function Account() {
           ]
     );
   };
+
+  const [rate, setRate] = useState(0)
+  const handleGetAccountRate = async() => {
+    const data = await get_account_growth_rate()
+    setRate(data)
+  }
+
+  const [totalAddrs, setTotalAddrs] = useState(0)
+  const handleGetTotalAddrs = async () => {
+    const data = await get_total_accounts()
+    setTotalAddrs(data);
+  }
   useEffect(() => {
     handleGetList();
     handleGetStats();
     handleGetChart();
+    handleGetAccountRate();
+    handleGetTotalAddrs();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
@@ -209,14 +225,14 @@ export default function Account() {
           <div className="data-card lg:h-16vh">
             <div>
               <div className="font-size-16px">Total Coin Addresses</div>
-              <div className="font-size-24px">{stats?.totalAccount}</div>
+              <div className="font-size-24px">{totalAddrs}</div>
             </div>
           </div>
           <div className="data-card lg:h-36vh">
             <div className="w-100%">
               <div className="font-size-14px">
                 24h Account Growth <br />
-                +0.00%
+                {(rate * 100).toFixed(2)}%
               </div>
               <div className="w-100%">
                 <GrowChart data={accountChartData || []} />

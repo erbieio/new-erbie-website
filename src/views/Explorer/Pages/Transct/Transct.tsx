@@ -11,6 +11,7 @@ import {
   get_24h_txs,
   get_stats,
   get_transaction_page,
+  get_txs_growth_rate,
 } from "../../../../api/modules/explorer";
 import { formatEther } from "ethers";
 import { toFixed } from "../../../../utils/utils";
@@ -70,10 +71,16 @@ export default function Transct() {
     );
   };
 
+  const [totalTxs, setTotalTxs] = useState(0)
+  const handleGetTxs = async () => {
+    const data = await get_txs_growth_rate()
+    setTotalTxs(data)
+  }
   useEffect(() => {
     handleGetList();
     handleGetStats();
     handleGetChart1();
+    handleGetTxs();
   }, []);
 
   const handlePageChange = (page: number) => {
@@ -94,7 +101,9 @@ export default function Transct() {
               <div className="font-size-14px flex justify-center items-center w-100% lg:py-2vh">
                 <div className="flex">
                   <div className="lh-20px">24h TXN Volume Growth</div>
-                  <div className="font-size-20px lh-20px ml-10px">+0.0000%</div>
+                  <div className="font-size-20px lh-20px ml-10px">
+                    {(totalTxs * 100).toFixed(2)}%
+                  </div>
                 </div>
               </div>
               <div className="w-100%">

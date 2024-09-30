@@ -57,7 +57,10 @@ export default function TokenList(props: StakerTableProps) {
         return (
           <div
             className="link hover:color-#1677ff"
-            onClick={() => toTokenDetail(v.contract_address)}
+            onClick={() => {
+              localStorage.setItem("tokenType", v.contract_type);
+              toTokenDetail(v.contract_address);
+            }}
           >
             {addressDots(v.contract_address, 10,10)}
           </div>
