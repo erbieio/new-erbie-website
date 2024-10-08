@@ -4,25 +4,22 @@ import bg3 from "../../assets/wallet-bg2.svg";
 import bg3active from "../../assets/wallet-bg2-active.svg";
 import WalletCard from "./WalletCard";
 import erbie from '../../assets/wallet/erbie.svg'
-import tg from "../../assets/wallet/tg.svg";
 import metamask from "../../assets/wallet/metamask.svg";
 import gate from "../../assets/wallet/gate.svg";
 import okx from '../../assets/wallet/okx.svg'
 import walletConnect from "../../assets/wallet/walletConnect.svg";
 import pcbg from "../../assets/wallet/pcbg.svg";
 import h5bg from "../../assets/wallet/h5bg.svg";
-
+import limino from "../../assets/partners/limino2.svg";
 import "./Wallet.scss";
 
 function label1() {
   return (
     <div>
       <div className="hidden lg:block">
-        Official <br /> Wallet
+        Supported <br /> Wallets
       </div>
-      <div className="block lg:hidden">
-        Official Wallet
-      </div>
+      <div className="block lg:hidden">Supported Wallets</div>
     </div>
   );
 }
@@ -31,10 +28,10 @@ function label2() {
     <div>
       <div className="hidden lg:block">
         Other EVM <br />
-        Wallet
+        Wallets
       </div>
       <div className="block lg:hidden">
-        Other EVM Wallet
+        Other EVM Wallets
       </div>
     </div>
   );
@@ -80,7 +77,7 @@ export default function Wallet() {
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={tg} className="w-36px" alt="" />
+                  <img src={limino} className="w-36px rounded-full" alt="" />
                 </a>
               </div>
             }

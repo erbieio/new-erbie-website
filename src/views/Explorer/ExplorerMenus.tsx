@@ -15,7 +15,10 @@ export default function ExplorerMenus() {
   const [menuList] = useState(EXPLORER_PAGE_LIST);
   const handleClick = (e: ExplorerPageItem) => {
     dispatch(setAnimate(""));
-    navigator(e.path);
+    const t = setTimeout(() => {
+      navigator(e.path);
+      clearTimeout(t)
+    })
   };
   const [show, setShow] = useState(false);
   const root = document.getElementsByTagName("body");
