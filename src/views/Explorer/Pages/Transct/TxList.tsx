@@ -103,7 +103,7 @@ const TxList = (props: TxListProps) => {
       },
     },
     {
-      title: <div className="whitespace-nowrap">Value (ERB) </div>,
+      title: <div className="whitespace-nowrap">Value</div>,
       key: "value",
       align: "center",
       render(v) {
