@@ -23,6 +23,7 @@ interface TxListProps {
   loading: boolean;
   titlePC?: string;
   titleH5?: string;
+  symbol?: string
 }
 const TxList = (props: TxListProps) => {
   const { toTxDetail, toBlockDetail, toAccountDetail } = useRouter();
@@ -103,8 +104,12 @@ const TxList = (props: TxListProps) => {
       },
     },
     {
-      title: <div className="whitespace-nowrap">Value</div>,
-      key: "value",
+      title: (
+        <div className="whitespace-nowrap">
+          Value ({props.symbol || "ERB"})
+        </div>
+      ),
+      key: `value`,
       align: "center",
       render(v) {
         return toFixed(formatEther(v.value));

@@ -1,0 +1,10 @@
+.upload-panel {
+    .upload-card {
+        --at-apply: h-88% border-#573a6c border-solid border-1px rounded-8px flex-1 px-20px pt-20px pb-20px flex flex-col justify-between;
+        transition: ease .3s;
+        // &:hover {
+        //     --at-apply: border-#D387FF;
+        //     background: rgba($color: #D387FF, $alpha: .25);
+        // }
+    }
+}

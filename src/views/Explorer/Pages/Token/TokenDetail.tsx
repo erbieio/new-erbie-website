@@ -6,6 +6,7 @@ import HolderList from "./HolderList";
 import { useParams, useSearchParams } from "react-router-dom";
 import {
   get_contract_holders_page,
+  get_contract_source_code,
   GetContractHoldersByAddrResponse,
   GetContractListByAddrParams,
   GetContractTxsByAddrResponse,
@@ -16,7 +17,9 @@ import {
   GetContractItem,
 } from "../../../../api/modules/explorer";
 import TxList from "../Transct/TxList";
-import ComingSoon from "../../../../components/ComingSoon";
+// import ComingSoon from "../../../../components/ComingSoon";
+// import VerifyPublishCode from "./VerifyPublishCode";
+import SourceCode from "./SocureCode";
 export interface MenuItem {
   label: string;
   value: number;
@@ -102,10 +105,12 @@ const TokenDetail = () => {
       handleGetHolders();
     }
   };
+  const [code, setCode] = useState('')
   useEffect(() => {
     if (params.tokenAddress) {
       searchParams.current.addr = params.tokenAddress;
       get_contract_detail(params.tokenAddress).then((res) => setToken(res));
+      get_contract_source_code(params.tokenAddress).then(res => setCode(res))
     }
   }, [params.tokenAddress]);
   useEffect(() => {
@@ -147,6 +152,7 @@ const TokenDetail = () => {
               total={txs?.total || 0}
               onChange={handleChange}
               params={searchParams}
+              symbol={token?.symbol}
             />
           )}
           {selectMenu.value === 1 && (
@@ -162,7 +168,8 @@ const TokenDetail = () => {
           {/* {selectMenu.value === 2 && <SourceCode />} */}
           {selectMenu.value === 2 && (
             <div className="flex h-100% items-center justify-center">
-              <ComingSoon />
+              {/* <VerifyPublishCode /> */}
+              <SourceCode code={code} />
             </div>
           )}
         </div>

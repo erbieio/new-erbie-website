@@ -11,6 +11,7 @@ export interface TableHeaderProps {
   title?: ReactNode;
   onChange: PaginationProps["onChange"];
   total: number;
+  showPage?: boolean;
 }
 const TableHeader = (props: TableHeaderProps) => {
   const systemInfo = getSystemInfo();
@@ -33,14 +34,18 @@ const TableHeader = (props: TableHeaderProps) => {
         </div>
       )}
       <div>
-        <Pagination
-          onChange={props.onChange}
-          current={props.params.current.page}
-          pageSize={props.params.current.page_size}
-          showQuickJumper={systemInfo.isMobile ? true : false}
-          simple={systemInfo.isMobile ? true : false}
-          total={props.total}
-        />
+        {props.showPage !== false ? (
+          <Pagination
+            onChange={props.onChange}
+            current={props.params.current.page}
+            pageSize={props.params.current.page_size}
+            showQuickJumper={systemInfo.isMobile ? true : false}
+            simple={systemInfo.isMobile ? true : false}
+            total={props.total}
+          />
+        ) : (
+          <></>
+        )}
       </div>
     </div>
   );

@@ -1,0 +1,2 @@
+System.register(["./format-legacy-Dg2Mrwmy.js"],(function(r,e){"use strict";var n;return{setters:[function(r){n=r.f}],execute:function(){var e=n,t=a(Error);// Create a new `EConstructor`, with the formatted `format` as a first argument.
+function a(r){return n.displayName=r.displayName||r.name,n;function n(n){return n&&(n=e.apply(null,arguments)),new r(n)}}r("f",t),t.eval=a(EvalError),t.range=a(RangeError),t.reference=a(ReferenceError),t.syntax=a(SyntaxError),t.type=a(TypeError),t.uri=a(URIError),t.create=a}}}));

@@ -15,33 +15,43 @@ import {
   GetContractType,
 } from "../../../../api/modules/explorer";
 import { Skeleton } from "antd";
-import ComingSoon from "../../../../components/ComingSoon";
+import Deployment from "./Deployment";
+import { useDispatch, useSelector } from "react-redux";
+import { RootState } from "../../../../store";
+import { setStep } from "../../../../store/deploymentSlice";
 export interface TokenMenu {
   label: string;
   value: GetContractType;
   select: boolean;
+  path: string;
 }
 
 export default function Token() {
+  const title = useSelector((state: RootState) => state.deploymentStore.title)
   const [list, setList] = useState<TokenMenu[]>([
     {
       label: "Tokens",
       value: "0",
       select: true,
+      path: "/explorer/token/list",
     },
     {
       label: "NFTs",
       value: "1",
       select: false,
+      path: "/explorer/token/NFTs",
     },
     {
       label: "Deployment",
       value: "2",
       select: false,
+      path: "/explorer/token/deployment",
     },
   ]);
+  const dispatch = useDispatch()
   const handleClickMenu = (e: TokenMenu) => {
     const arr = list.map((e) => e);
+    dispatch(setStep(1));
     arr.forEach((item) => {
       if (item.value === e.value) {
         item.select = true;
@@ -53,7 +63,7 @@ export default function Token() {
     setList(arr);
     params.current.page = 1;
     getData();
-  };
+  }; 
 
   const selectMenu = useMemo(() => {
     return list.find((item) => item.select)!;
@@ -108,7 +118,7 @@ export default function Token() {
       setTotalLoading(false);
     }
   };
-
+  
   useEffect(() => {
     getData();
     handleGetTotal();
@@ -120,7 +130,7 @@ export default function Token() {
           <div className="tab-list flex gap-10px lg:gap-16px w-100% lg:w-40%">
             {list.map((item) => (
               <div
-                className={`menu-btn ${item.select && "active"}`}
+                className={`menu-btn ${item.select ? "active" : ""}`}
                 key={item.value}
                 onClick={() => handleClickMenu(item)}
               >
@@ -138,19 +148,20 @@ export default function Token() {
               <span>
                 {(selectMenu.value === "0" && "TOKENS INFORMATION") ||
                   (selectMenu.value === "1" && "NFTs INFORMATION") ||
-                  (selectMenu.value === "2" && "Deployment INFORMATION")}
+                  (selectMenu.value === "2" && title)}
               </span>
             }
             titleH5={
               <span>
                 {(selectMenu.value === "0" && "TOKENS") ||
                   (selectMenu.value === "1" && "NFTs") ||
-                  (selectMenu.value === "2" && "Deployment")}
+                  (selectMenu.value === "2" && title)}
               </span>
             }
             params={params}
             total={data?.total || 0}
             onChange={handlePageChange}
+            showPage={selectMenu.value !== "2" ? true : false}
           />
           {selectMenu.value === "0" && (
             <TokenList dataSource={data?.contracts || []} loading={loading} />
@@ -159,9 +170,7 @@ export default function Token() {
             <NftList dataSource={data?.contracts || []} loading={loading} />
           )}
           {selectMenu.value === "2" && (
-            <div className="flex justify-center items-center h-200px lg:h-80%">
-              <ComingSoon />
-            </div>
+            <Deployment />
           )}
         </div>
       </div>

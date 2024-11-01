@@ -1,0 +1,26 @@
+    .verify-contract {
+        .deployment-form {
+            .label {
+                --at-apply: font-size-14px mb-1vh;
+            }
+
+            input {
+                --at-apply: lh-34px bg-#160F20 px-10px border-color-#5C5763 border-solid border-1px flex-1 block w-100%;
+
+                &:focus {
+                    outline: 1px solid #8C2DDA;
+                    border: none;
+                }
+            }
+        }
+
+        .dp-btn {
+            --at-apply: bg-#584777 color-white text-center font-size-18px lh-42px rounded-4px select-none cursor-pointer;
+            transition: ease .3s;
+
+            &:hover {
+                --at-apply: bg-#8C2DDA;
+
+            }
+        }
+    }

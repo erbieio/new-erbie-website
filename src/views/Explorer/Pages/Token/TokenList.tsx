@@ -95,6 +95,7 @@ export default function TokenList(props: StakerTableProps) {
       },
     },
   ];
+
   return (
     <div className="w-100% token-list overflow-x-scroll scrollbar-x">
       <Table

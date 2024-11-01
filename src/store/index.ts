@@ -1,9 +1,11 @@
 import { configureStore } from "@reduxjs/toolkit";
 import pageAnimateSlice from "./pageAnimateSlice";
+import deploymentStore from "./deploymentSlice";
 
 export const store = configureStore({
     reducer:{
-        pageAnimate: pageAnimateSlice
+        pageAnimate: pageAnimateSlice,
+        deploymentStore
     }
 })
 

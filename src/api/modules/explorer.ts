@@ -629,3 +629,10 @@ export const get_contract_tx_total_num = (): Promise<number> => {
 export const get_contract_transfer_num = (addr: string): Promise<number> => {
   return service.get(`${SCAN_API}/contract/transfer_num/${addr}`);
 };
+
+// 查询合约源码
+export const get_contract_source_code = (
+  addr: string
+): Promise<string> => {
+  return service.get(`${SCAN_API}/contract/source_code/${addr}`);
+};

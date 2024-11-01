@@ -68,7 +68,7 @@ export default function Home() {
               />
             </div>
           </div>
-          <div className="mt-20px lg:mt-45px lg:mt-2.3vh hidden lg:block">
+          <div className="mt-20px lg:mt-2.3vh hidden lg:block">
             <SearchIpt />
           </div>
           <div className="mt-14px lg:mt-2.3vh">

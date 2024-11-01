@@ -43,6 +43,15 @@ const TokenDetail = lazy(
 );
 const PrivacyPolicy = lazy(() => import("../views/Agreement/PrivacyPolicy"));
 const TermsOfUse = lazy(() => import("../views/Agreement/TermsOfUse"));
+// const TokenList = lazy(
+//   () => import("../views/Explorer/Pages/Token/TokenList.tsx")
+// );
+// const NFTs = lazy(
+//   () => import("../views/Explorer/Pages/Token/NftList.tsx")
+// );
+// const Deployment = lazy(
+//   () => import("../views/Explorer/Pages/Token/Deployment.tsx")
+// );
 
 const router = createBrowserRouter([
   {

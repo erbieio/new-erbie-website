@@ -14,7 +14,14 @@
         }
     }
 
+    i {
+        transition: ease .3s;
+    }
+
     &.focus {
         border-color: #a864cf;
+        i {
+            transform: scale(1.2);
+        }
     }
 }

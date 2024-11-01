@@ -1,5 +1,4 @@
 import { KeyboardEvent, useRef, useState } from "react";
-import search from "../../../assets/search.svg";
 import "./SearchIpt.scss";
 import { message } from "antd";
 import useRouter from "../../../hooks/useRouter";
@@ -51,24 +50,22 @@ export default function SearchIpt(props: SearchIptProps) {
     }
   };
   return (
-      <div
-        className={`search-box flex ${focus ? "focus" : ""} ${props.className}`}
-      >
-        {messageContext}
-        <input
-          className={`font-size-12px lg:font-size-16px color-white`}
-          placeholder="Search by Address/ Txn Hash/ Block"
-          onChange={(e) => (searchVal.current = e.target.value)}
-          onFocus={() => setFocus(true)}
-          onBlur={() => setFocus(false)}
-          onKeyDown={handleKeyDown}
-        />
-        <img
-          src={search}
-          className="w-24px h-24px cursor-pointer"
-          onClick={handleSearch}
-          alt=""
-        />
-      </div>
+    <div
+      className={`search-box flex ${focus ? "focus" : ""} ${props.className}`}
+    >
+      {messageContext}
+      <input
+        className={`font-size-12px lg:font-size-16px color-white`}
+        placeholder="Search by Address/ Txn Hash/ Block"
+        onChange={(e) => (searchVal.current = e.target.value)}
+        onFocus={() => setFocus(true)}
+        onBlur={() => setFocus(false)}
+        onKeyDown={handleKeyDown}
+      />
+      <i
+        className="i-mingcute-search-line font-size-26px cursor-pointer color-#9A98B9 hover:color-#8C2DDA"
+        onClick={handleSearch}
+      ></i>
+    </div>
   );
 }
