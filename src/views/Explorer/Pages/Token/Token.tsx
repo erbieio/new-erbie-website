@@ -27,12 +27,18 @@ export interface TokenMenu {
 }
 
 export default function Token() {
-  const title = useSelector((state: RootState) => state.deploymentStore.title)
+  const title = useSelector((state: RootState) => state.deploymentStore.title);
   const [list, setList] = useState<TokenMenu[]>([
+    {
+      label: "Deployment",
+      value: "2",
+      select: true,
+      path: "/explorer/token/deployment",
+    },
     {
       label: "Tokens",
       value: "0",
-      select: true,
+      select: false,
       path: "/explorer/token/list",
     },
     {
@@ -41,14 +47,8 @@ export default function Token() {
       select: false,
       path: "/explorer/token/NFTs",
     },
-    {
-      label: "Deployment",
-      value: "2",
-      select: false,
-      path: "/explorer/token/deployment",
-    },
   ]);
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
   const handleClickMenu = (e: TokenMenu) => {
     const arr = list.map((e) => e);
     dispatch(setStep(1));
@@ -63,7 +63,7 @@ export default function Token() {
     setList(arr);
     params.current.page = 1;
     getData();
-  }; 
+  };
 
   const selectMenu = useMemo(() => {
     return list.find((item) => item.select)!;
@@ -118,7 +118,7 @@ export default function Token() {
       setTotalLoading(false);
     }
   };
-  
+
   useEffect(() => {
     getData();
     handleGetTotal();
@@ -169,9 +169,7 @@ export default function Token() {
           {selectMenu.value === "1" && (
             <NftList dataSource={data?.contracts || []} loading={loading} />
           )}
-          {selectMenu.value === "2" && (
-            <Deployment />
-          )}
+          {selectMenu.value === "2" && <Deployment />}
         </div>
       </div>
       <div className="flex w-100% lg:w-25% flex-row justify-between flex-wrap lg:flex-col gap-10px lg:gap-14px mt-14px lg:mt-0">

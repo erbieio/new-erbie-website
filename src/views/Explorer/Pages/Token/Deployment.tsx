@@ -1,26 +1,24 @@
 import "./Deployment.scss";
 import icon2 from "../../../../assets/token/deployment-icon2.svg";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import { RootState } from "../../../../store";
-// import { setStep } from "../../../../store/deploymentSlice";
+import { setStep } from "../../../../store/deploymentSlice";
 import UploadContract from "./UploadContract";
 import NoCodeDeployment from "./NoCodeDeployment";
-import { message } from "antd";
+
 interface DeploymentProps {
   handleResetList?: () => void;
 }
 const Deployment = (props: DeploymentProps) => {
-  // const dispatch = useDispatch();
-  const [messageApi, messageContext] = message.useMessage()
+  const dispatch = useDispatch();
+
   const step = useSelector((state: RootState) => state.deploymentStore.step);
-  const handleToStep = () => {
-    messageApi.warning('Coming soon')
-    // dispatch(setStep(n));
-    props.handleResetList && props.handleResetList() ;
+  const handleToStep = (n: number) => {
+    dispatch(setStep(n));
+    props.handleResetList && props.handleResetList();
   };
   return (
     <div className="w-100% h-90% px-20px py-12px deployment-panel">
-      {messageContext}
       {step === 1 && (
         <div className=" flex gap-20px h-100%">
           {/* <div className="de-card">
@@ -58,7 +56,7 @@ const Deployment = (props: DeploymentProps) => {
                   required information in a form.
                 </div>
               </div>
-              <div className="dp-btn mt-6vh" onClick={() => handleToStep()}>
+              <div className="dp-btn mt-6vh" onClick={() => handleToStep(3)}>
                 Enter Edit
               </div>
             </div>

@@ -5,6 +5,7 @@ import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
 import "./TokenList.scss";
 import { GetContractItem } from "../../../../api/modules/explorer";
+import { toFixed } from "../../../../utils/utils";
 interface StakerTableProps {
   dataSource: Array<GetContractItem>;
   sorter?: (order: string) => void;
@@ -82,7 +83,7 @@ export default function TokenList(props: StakerTableProps) {
       render(v) {
         return (
           <div className="whitespace-nowrap">
-            {v.total_supply ? formatEther(v.total_supply) : "-"}
+            {v.total_supply ? toFixed(formatEther(v.total_supply),4) : "-"}
           </div>
         );
       },
