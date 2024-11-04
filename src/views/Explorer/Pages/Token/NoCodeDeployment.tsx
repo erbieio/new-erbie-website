@@ -18,7 +18,7 @@ const NoCodeDeployment = () => {
       selected: true,
     },
     {
-      label: "ERC-21",
+      label: "ERC-721",
       value: 2,
       selected: false,
     },
