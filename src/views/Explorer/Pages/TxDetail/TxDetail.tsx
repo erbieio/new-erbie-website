@@ -169,6 +169,14 @@ export default function TxDetail() {
               {data?.gasUsed ? toFixed(data?.gasUsed, 5) : 0} gas
             </div>
           </div>
+          <div className="flex flex-wrap">
+            <div className="line-c line">Token Volume</div>
+            <div className="line-c line">
+              {toFixed(formatEther(data?.token_amount || "0"))}
+            </div>
+            <div className="line-c line"></div>
+            <div className="line-c line"></div>
+          </div>
         </div>
       </div>
       <div className="flex text-center gap-14px mt-2vh">

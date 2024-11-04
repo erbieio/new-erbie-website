@@ -460,6 +460,7 @@ export interface GetTransactionByHashResponse {
   to: string;
   transactionIndex: number;
   value: string;
+  token_amount: string
 }
 export const get_transaction_Hash = (
   hash: string

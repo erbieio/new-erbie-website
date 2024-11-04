@@ -32,13 +32,13 @@ export default function Token() {
     {
       label: "Deployment",
       value: "2",
-      select: true,
+      select: false,
       path: "/explorer/token/deployment",
     },
     {
       label: "Tokens",
       value: "0",
-      select: false,
+      select: true,
       path: "/explorer/token/list",
     },
     {
