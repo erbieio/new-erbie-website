@@ -47,12 +47,9 @@ const NoCodeDeployment = () => {
     <div className="no-code-deployment pb-20px lg:pb-0">
       {messageContext}
       <div className="font-size-12px text-left">
-        This method is suitable for users who lack programming sks. There is no
-        need to wite any code, simply filouthe reguired information in a form to
-        generate and deploy a smartcontract.This method is suitable for users
-        who lack programming sks. There is no need to wite any code, simply
-        filouthe reguired information in a form to generate and deploy a
-        smartcontract.
+        This approach is ideal for users who do not have programming skills.
+        There’s no need to write any code; simply complete the required
+        information in a form to generate and deploy a smart contract.
       </div>
       <div className="flex justify-start erc-card-box">
         <div className="bg-#0C0A11 rounded-8px flex">
@@ -73,25 +70,25 @@ const NoCodeDeployment = () => {
             <div className="flex-1">
               <div className="text-left label">Token Name</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="string" type="text" />
               </div>
             </div>
             <div className="flex-1">
               <div className="text-left label">Token Symbol</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="string" type="text" />
               </div>
             </div>
             <div className="flex-1">
               <div className="text-left label">Token Logo URL</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="string" type="text" />
               </div>
             </div>
             <div className="flex-1">
               <div className="text-left label">Decimals</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="uint8" type="text" />
               </div>
             </div>
           </div>
@@ -99,13 +96,15 @@ const NoCodeDeployment = () => {
             <div className="w-100% lg:w-24.3%">
               <div className="text-left label">TotalSupply</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="unit256" type="text" />
               </div>
             </div>
             <div className="w-100% lg:w-75.7% flex justify-start font-size-12px text-left mt-0px lg:mt-3vh">
-              The Total Supply is the actual total supply * 10^n, where n is the
-              number of decimals.The Total Supply is the actual total supply *
-              10^n, where n is the number of decimals.
+              Total Supply is the actual total supply multiplied by 10 to the
+              power of n, where n is the number of decimal places. For example,
+              if the actual total supply is 10,000 and there are 8 decimals,
+              then Total Supply would be 10,000 * 10^8, which equals
+              1,000,000,000,000.
             </div>
           </div>
         </div>
@@ -116,25 +115,25 @@ const NoCodeDeployment = () => {
             <div className="flex-1">
               <div className="text-left label">Token Name</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="string" type="text" />
               </div>
             </div>
             <div className="flex-1">
               <div className="text-left label">Token Logo URL</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="string" type="text" />
               </div>
             </div>
             <div className="flex-1">
               <div className="text-left label">BaseTokenURL</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="string" type="text" />
               </div>
             </div>
             <div className="flex-1">
               <div className="text-left label">TotalSupply</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="unit256" type="text" />
               </div>
             </div>
           </div>
@@ -142,14 +141,14 @@ const NoCodeDeployment = () => {
             <div className="w-100% lg:w-24.3%">
               <div className="text-left label">InitialFeePerNFT</div>
               <div>
-                <input placeholder="Enter" type="text" />
+                <input placeholder="unit256" type="text" />
               </div>
             </div>
             <div className="w-100% lg:w-75.7% flex justify-start font-size-12px text-left mt-0px lg:mt-3vh"></div>
           </div>
         </div>
       )}
-      <div className="justify-between flex gap-20px mt-4vh">
+      <div className="justify-between flex gap-10px lg:gap-20px mt-4vh">
         <div className="dp-btn flex-1">Clear</div>
         <div className="dp-btn flex-1" onClick={handleConfirm}>
           Confirm

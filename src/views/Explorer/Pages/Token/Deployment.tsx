@@ -50,14 +50,14 @@ const Deployment = (props: DeploymentProps) => {
                   No-Code Contract Deployment
                 </div>
                 <div className="font-size-14px text-center color-#ddd">
-                  No-code smart contract deployment is suitable for users who
-                  lackprogramming skills. Users do not need to write any code;
-                  they can generateand deploy smart contracts by filling out the
-                  required information in a form.
+                  No-code smart contract deployment is designed for users
+                  without programming skills. There's no need for coding; users
+                  can simply fill out a form to generate and deploy smart
+                  contracts.
                 </div>
               </div>
               <div className="dp-btn mt-6vh" onClick={() => handleToStep(3)}>
-                Enter Edit
+                Start Edit
               </div>
             </div>
           </div>

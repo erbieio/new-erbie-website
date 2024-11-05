@@ -73,12 +73,6 @@ export default function Header() {
   const lastTop = useRef(0);
   const [dir, setDir] = useState("down");
   const handleScroll = debounce(() => {
-    if (location.pathname === "/" || location.pathname === "/newsDetail") {
-      if (dir !== "top") {
-        setDir("top");
-      }
-      return;
-    }
     const scrollTop = document.documentElement.scrollTop;
     if (scrollTop < lastTop.current) {
       // down
