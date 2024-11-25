@@ -35,13 +35,13 @@ export default function TokenList(props: StakerTableProps) {
   };
   const columns: TableColumnsType<GetContractItem> = [
     {
-      title: <div className="whitespace-nowrap">Token Name</div>,
-      align: "center",
+      title: <div className="whitespace-nowrap pl-10px">Token Name</div>,
+      align: "left",
       key: "contract_name",
       render(v) {
         return (
           <div
-            className="link hover:color-#1677ff flex items-center justify-left pl-24px gap-5px"
+            className="link hover:color-#1677ff flex items-center justify-left pl-10px gap-5px"
             onClick={() => {
               localStorage.setItem("tokenType", v.contract_type);
               toTokenDetail(v.contract_address);
