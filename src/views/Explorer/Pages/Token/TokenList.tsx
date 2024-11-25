@@ -6,6 +6,8 @@ import useRouter from "../../../../hooks/useRouter";
 import "./TokenList.scss";
 import { GetContractItem } from "../../../../api/modules/explorer";
 import { toFixed } from "../../../../utils/utils";
+import TokenIcon from "./TokenIcon";
+
 interface StakerTableProps {
   dataSource: Array<GetContractItem>;
   sorter?: (order: string) => void;
@@ -39,13 +41,14 @@ export default function TokenList(props: StakerTableProps) {
       render(v) {
         return (
           <div
-            className="link hover:color-#1677ff"
+            className="link hover:color-#1677ff flex items-center justify-center gap-5px"
             onClick={() => {
               localStorage.setItem("tokenType", v.contract_type);
               toTokenDetail(v.contract_address);
             }}
           >
-            {v.token_name || "-"}
+            <TokenIcon name={v.token_name}></TokenIcon>
+            <div>{v.token_name || "-"}</div>
           </div>
         );
       },

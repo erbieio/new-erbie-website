@@ -4,6 +4,7 @@ import { addressDots } from "../../../../utils/common";
 import { SorterResult } from "../../../../api/api";
 import useRouter from "../../../../hooks/useRouter";
 import "./TokenList.scss";
+
 interface StakerTableProps {
   dataSource: Array<GetContractItem>;
   sorter?: (order: string) => void;
@@ -42,7 +43,10 @@ export default function TokenList(props: StakerTableProps) {
               toTokenDetail(v.contract_address);
             }}
           >
-            {v.token_name || "-"}
+            <div>
+
+              {v.token_name || "-"}
+            </div>
           </div>
         );
       },
