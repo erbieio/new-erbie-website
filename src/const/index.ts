@@ -95,3 +95,15 @@ export const EXPLORER_PAGE_LIST:Array<ExplorerPageItem> = [
     name: "TRANSCT",
   },
 ]
+// VITE_ERB_XL_CONTRACT
+
+export const TOKEN_LIST = [
+  {
+    name: "XL",
+    contract: import.meta.env.VITE_ERB_XL_CONTRACT,
+  },
+  {
+    name: "L",
+    contract: import.meta.env.VITE_ERB_L_CONTRACT,
+  },
+];

@@ -41,13 +41,16 @@ export default function TokenList(props: StakerTableProps) {
       render(v) {
         return (
           <div
-            className="link hover:color-#1677ff flex items-center justify-center gap-5px"
+            className="link hover:color-#1677ff flex items-center justify-left pl-24px gap-5px"
             onClick={() => {
               localStorage.setItem("tokenType", v.contract_type);
               toTokenDetail(v.contract_address);
             }}
           >
-            <TokenIcon name={v.token_name}></TokenIcon>
+            <TokenIcon
+              symbol={v.symbol}
+              address={v.contract_address}
+            ></TokenIcon>
             <div>{v.token_name || "-"}</div>
           </div>
         );

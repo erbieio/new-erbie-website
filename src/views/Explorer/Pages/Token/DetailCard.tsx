@@ -23,7 +23,7 @@ const DetailCard = (props: { data: GetContractItem | undefined }) => {
     <div className="token-detail-card pt-16px lg:pt-5vh text-left">
       <div className="title">Token Detail</div>
       <div className="mt-16px flex items-center gap-8px font-bold px-18px">
-        <TokenIcon name={props.data?.token_name} />
+        <TokenIcon symbol={props.data?.symbol || ''} address={props.data?.contract_address || ''} />
         <span className="color-white">{props.data?.token_name}</span>
         <span className="color-#999">{props.data?.symbol}</span>
       </div>
@@ -58,7 +58,7 @@ const DetailCard = (props: { data: GetContractItem | undefined }) => {
         </div>
         <div className="line-card">
           <span>Transfers</span>
-          <div>{total || '-'}</div>
+          <div>{total || "-"}</div>
         </div>
         <div className="line-card">
           <span>Holders</span>
