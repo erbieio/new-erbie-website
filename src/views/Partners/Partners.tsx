@@ -3,7 +3,7 @@ import l2 from '../../assets/partners/l2.svg'
 import limino from '../../assets/partners/limino.svg'
 import link from '../../assets/partners/linklayer.svg'
 import em from '../../assets/partners/em.svg'
-import urora from '../../assets/partners/urora.svg'
+import straits from "../../assets/partners/straits.svg";
 import './Partners.scss'
 const Partners = () => {
     return (
@@ -46,7 +46,7 @@ const Partners = () => {
                     quarterback Joe Montana, Cloudant founder Mike Miller, and
                     TalkBin founder Michael Ma.
                   </div>
-                  <div className='text-left font-size-12px block lg:hidden'>
+                  <div className="text-left font-size-12px block lg:hidden">
                     Liquid 2 is a venture capital firm based in SanFrancisco.
                   </div>
                 </div>
@@ -103,15 +103,15 @@ const Partners = () => {
                   </div>
                   <div className="right-list-card">
                     <div className="flex justify-center items-center">
-                      <img src={urora} alt="" />
+                      <img src={straits} className='w-60px rounded-8px' alt="" />
                     </div>
                     <div className="text-box">
                       <div>
-                        <div className="tit">URORA</div>
+                        <div className="tit">STRAITS</div>
                         <div className="desc">
-                          URORA offers developers an all-in-one service for push
-                          notifications, authentication, SMS, messaging, and
-                          analytics.
+                          StraitS transforms disruptive ideas into
+                          reality, driving future technological change through
+                          crypto investment and incubation.
                         </div>
                       </div>
                     </div>

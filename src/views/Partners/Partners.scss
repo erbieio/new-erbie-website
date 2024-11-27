@@ -33,7 +33,10 @@
             }
 
             .text-box {
-                --at-apply: px-20px lg:flex items-center;
+                --at-apply: px-20px lg:flex items-center w-100%;
+                &>div {
+                    width: 100%;
+                }
             }
 
             .tit {
