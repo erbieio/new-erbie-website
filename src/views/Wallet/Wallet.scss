@@ -1,3 +1,9 @@
 .page-wallet {
     min-height: calc(100vh - 18vh);
+    .icon-list {
+        a {
+            display: block;
+            height: 100%;
+        }
+    }
 }

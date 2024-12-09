@@ -7,7 +7,7 @@ import erbie from '../../assets/wallet/erbie.svg'
 import metamask from "../../assets/wallet/metamask.svg";
 import gate from "../../assets/wallet/gate.svg";
 import okx from '../../assets/wallet/okx.svg'
-import walletConnect from "../../assets/wallet/walletConnect.svg";
+import trustWallet from "../../assets/partners/trustWallet.svg";
 import pcbg from "../../assets/wallet/pcbg.svg";
 import h5bg from "../../assets/wallet/h5bg.svg";
 import limino from "../../assets/partners/limino2.svg";
@@ -96,7 +96,7 @@ export default function Wallet() {
           <WalletCard
             label={label2()}
             desc={
-              <div className="flex gap-20px font-size-26px items-center h-30px">
+              <div className="flex gap-20px font-size-26px items-center h-36px icon-list">
                 <a
                   href="https://metamask.io/"
                   target="_blank"
@@ -112,11 +112,13 @@ export default function Wallet() {
                   <img src={okx} className="w-36px" alt="" />
                 </a>
                 <a
-                  href="https://walletconnect.com/"
+                  href="https://trustwallet.com/"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
-                  <img src={walletConnect} className="w-36px" alt="" />
+                  <div className="w-36px h-36px p-5px bg-white rounded-full flex items-center justify-center">
+                    <img src={trustWallet} className="w-100% h-100%" alt="" />
+                  </div>
                 </a>
                 <a
                   href="https://www.gate.io/"
