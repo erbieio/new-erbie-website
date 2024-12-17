@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import img1 from "../../assets/home-xz.svg";
 import img2 from "../../assets/home-xz1.svg";
 import img3 from "../../assets/home-xz2.svg";
+import iq from "../../assets/home/iq.svg";
 import "./Home.scss";
 export default function Home() {
   const [animate1, setAnimate1] = useState("");
@@ -71,6 +72,13 @@ export default function Home() {
                   className="w-60px lg:w-auto"
                 >
                   <i className="i-mdi-github  font-size-26px lg:mr-44px"></i>
+                </a>
+                <a
+                  href="https://iq.wiki/wiki/erbiechain"
+                  target="__blank"
+                  className="w-60px lg:w-auto flex items-center justify-center"
+                >
+                  <img src={iq} className="w-24px" alt="" />
                 </a>
               </div>
             </div>
