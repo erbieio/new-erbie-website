@@ -6,11 +6,12 @@ export interface GrowChartProps {
   data: Get24hTxsResponse;
 }
 export default function GrowChart(props: GrowChartProps) {
+
   const myRef = useRef<HTMLDivElement>(null);
   const option: echarts.EChartOption = {
     xAxis: {
       type: "category",
-      data: props.data.map(item => item.hour),
+      data: props.data.map((item) => item.hour),
       axisTick: {
         show: false,
       },
@@ -23,12 +24,12 @@ export default function GrowChart(props: GrowChartProps) {
         },
       },
       axisLabel: {
-        margin: 26, // 设置标签与轴线之间的距离为10
+        margin: 12, // 设置标签与轴线之间的距离为10
       },
     },
     yAxis: {
       type: "value",
-      min: 5,
+      min: 0,
       // minInterval: 200,
       splitNumber: 3, // 分割成10段
       nameTextStyle: {
@@ -72,7 +73,7 @@ export default function GrowChart(props: GrowChartProps) {
       left: "14%",
       right: "6%",
       top: "14%",
-      bottom: "24%",
+      bottom: "22%",
     },
   };
 
@@ -98,7 +99,7 @@ export default function GrowChart(props: GrowChartProps) {
     <div className="w-100%">
       <div
         id="growth-chart"
-        className="w-84vw lg:w-21vw h-20vh lg:h-22vh"
+        className="w-84vw lg:w-21vw h-20vh lg:h-28vh"
         ref={myRef}
       ></div>
     </div>
