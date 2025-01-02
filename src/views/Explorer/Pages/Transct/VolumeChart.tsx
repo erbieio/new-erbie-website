@@ -36,7 +36,7 @@ export default function VolumeChart(props: VolumeChartProps) {
       },
       yAxis: {
         type: "value",
-        min: 5,
+        min: 0,
         // minInterval: 200,
         splitNumber: 3, // 分割成10段
         nameTextStyle: {
